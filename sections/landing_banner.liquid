@@ -1,0 +1,98 @@
+<div class="landing_banner" style="background: url({{ section.settings.image | img_url:'master' }}) no-repeat scroll center; background-size: cover;">
+  <div class="container">
+    <div class="inner_landing_banner">
+      <div class="description">
+        {% if section.settings.title != blank %}<h1 class="main_title">{{ section.settings.title }}</h1>{% endif %}
+        {% if section.settings.subttl != blank %}<span class="label_ttl">{{ section.settings.subttl }}</span>{% endif %}
+        {% if section.settings.content != blank %}{{ section.settings.content }}{% endif %}
+        {% if section.settings.straimage %}
+          <div class="star_image_div">
+            <img src="{{ section.settings.straimage | img_url:'master' }}" alt="{{ section.settings.straimage | handle }}" title="{{ section.settings.straimage | handle }}" />
+          </div>
+        {% endif %}
+        <div class="review_slider">
+          <div class="review_view">
+            <div class="iner_rv_container">
+              <div class="left_div">
+                {% if section.settings.customer_review != blank %}<h2 class="count_text">{{ section.settings.customer_review }}</h2>{% endif %}
+                {% if section.settings.customer_review_text != blank %}<span class="count_text_text">{{ section.settings.customer_review_text }}</span>{% endif %}
+              </div>
+              <div class="center_div">
+                <img src="{{ section.settings.reviewimage | img_url:'master' }}" alt="{{ section.settings.reviewimage | handle }}" title="{{ section.settings.reviewimage | handle }}" />
+              </div>
+              <div class="right_div">
+                {% if section.settings.avg_rating_count != blank %}<h2 class="count_text">{{ section.settings.avg_rating_count }}</h2>{% endif %}
+                {% if section.settings.avg_rating_text != blank %}<span class="count_text_text">{{ section.settings.avg_rating_text }}</span>{% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Landing Banner",
+    "settings": [
+      {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subttl",
+      "label": "SubTitle"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "straimage",
+      "label": "Review Star Image"
+    },
+    {
+      "type": "header",
+      "content": "Review Slider"
+    },
+    {
+      "type": "image_picker",
+      "id": "reviewimage",
+      "label": "Product review Image"
+    },
+    {
+      "type": "text",
+      "id": "customer_review",
+      "label": "Customer Reviews Count"
+    },
+    {
+      "type": "text",
+      "id": "customer_review_text",
+      "label": "Customer Reviews Text"
+    },
+    {
+      "type": "text",
+      "id": "avg_rating_count",
+      "label": "Average Rating Count"
+    },
+    {
+      "type": "text",
+      "id": "avg_rating_text",
+      "label": "Average Rating Text"
+    }],
+    "presets": [{
+      "name": "Landing Banner",
+      "category": "text"
+    }]
+  }
+{% endschema %}

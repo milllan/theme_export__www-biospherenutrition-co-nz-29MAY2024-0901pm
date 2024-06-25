@@ -1,0 +1,182 @@
+<div class="about-pro-section about-wwr-section page-width text-center">
+  {%- if section.settings.title != blank -%}<div class="section-header">
+    <h2 class="fw-semi-bold h2-large no-ls">{{ section.settings.title }}</h2>
+  </div>{%- endif -%}
+  {%- if section.settings.detail != blank -%}
+  <div class="aps_detail rte">{{ section.settings.detail }}</div>{%- endif -%}
+  {%- if section.settings.bage_img != blank -%}<div class="aps_badge text-center">   
+  <img class="lazyload" data-src="{{ section.settings.bage_img | img_url:'115x' }}" width="auto" height="auto" />
+  </div>{% endif %}
+  {%- if section.blocks.size > 0 -%}  
+  {%- if section.settings.title_1 != blank -%}<div class="section-header sec_block_title">
+    <h2 class="fw-semi-bold h2-large no-ls">{{ section.settings.title_1 }}</h2>
+  </div>{%- endif -%}
+  <div class="wwr_grid grid ">
+    {%- for block in section.blocks -%}      
+    <div class="wwr_grid__item grid__item medium-up--one-half text-center" {{ block.shopify_attributes }} >
+      <div class="wwr_card">
+        {%- if block.settings.image != blank -%}<div class="wwr_img_wrapper">
+        <div class="border_img">
+          <img class="lazyload bi-1 one-whole" src="{{ 'biosphere-border_img.png' | asset_img_url:'50x' }}" data-src="{{ 'biosphere-border_img.png' | asset_url }}" width="auto" height="auto" />
+          <img class="lazyload bi-1-hover" data-src="{{ 'biosphere-border_img_hover.png' | asset_url }}" width="auto" height="auto" />        
+          <div class="main_img">
+            <img class="lazyload" src="{{section.settings.image | img_url:'50x'}}" data-src="{{block.settings.image | img_url:''}}" width="auto" height="auto" />
+          </div>
+        </div>
+        </div>{%- endif -%}
+        <div class="wwr_d_wrapper fw-medium">
+          {%- if block.settings.title != blank -%}
+          <h4 class="fw-semi-bold">{{ block.settings.title }}</h4>
+          {%- endif -%}{%- if block.settings.subtitle != blank -%}
+          <div class="wwr_subtitle">{{ block.settings.subtitle }}</div>
+          {%- endif -%}         
+          {%- if block.settings.detail != blank -%}
+          <div class="wwr_text">
+            {{ block.settings.detail }}
+          </div>{%- endif -%}
+
+          {%- assign socials = "Facebook Twitter Instagram" | split: ' ' -%}   
+          {%- for social in socials -%}
+          {%- assign social_link = social | prepend: 'social_' | append: '_link' | downcase -%}
+          {%- assign icon_link = social | prepend: 'icon-' | downcase -%}
+          {%- if block.settings[social_link] != blank -%}
+          {%- if forloop.index == 1 -%}
+          <ul class="list--inline social-icons wwr_social">
+            {%- endif -%}
+            <li class="social-icons__item">
+              <a class="social-icons__link" href="{{ block.settings[social_link] | escape }}" aria-describedby="a11y-external-message">
+                {%- include icon_link -%}
+                <span class="icon__fallback-text">{{ social }}</span>
+              </a>
+            </li>
+            {%- if forloop.last == 1 -%}
+          </ul>
+          {%- endif -%}
+          {%- endif -%}
+          {%- endfor -%}
+          {%- if block.settings.stitle != blank -%}
+          <div class="wwr_so_title">{{ block.settings.stitle }}</div>
+          {%- endif -%}
+          {%- if block.settings.btn_link != blank -%}
+          <div class="text-center btn_vall_div">
+            <a href="{{ block.settings.btn_link }}"{% if block.settings.btn_target %} target="_blank"{% endif %} class="btn btn--has-shadow btn--medium btn-con-bg btn-round_true tt-none">{{ block.settings.btn_title }}</a>
+          </div>
+          {%- endif -%}
+        </div>
+      </div>
+      </div>      
+    {%- endfor -%}
+    </div>
+    {%- endif -%}
+</div>
+{% schema %}
+  {
+    "name": "Who We Are",
+	"class":"thick-border-top",
+    "settings": [
+      {
+		"type":"richtext",
+		"id":"title",
+		"label":"Enter title",
+		"default":"<p><strong>WHO</strong> WE ARE</p>"
+      },
+	  {
+		"type":"richtext",
+		"id":"detail",
+		"label":"Enter detail",
+		"default":"<p>Biosphere Nutrition is a nutritional supplement company specialising in creating the most bioavailable supplements that function to protect health-conscious individuals against the most common health concerns and deficiencies. Founded in 2015, we are a family-owned and operated company based in Auckland, New Zealand. Our ultimate goal is to improve the health and wellness of people all over the world.</p><p>Since our inception as a proud provider of bioavailable supplements, Biosphere Nutrition has become an industry leader in providing the highest quality supplements available today. With the health and wellness of every individual whether man or woman at the heart of our company, we team up with an experienced Doctor Ron Goedeke, who has been running an alternative wellness clinic for over ten years, and Nutritionist Kaytee Boyd to create exceptional nutritional products with real benefit. We take pride in putting the quality and efficacy of our products above everything else.</p>"
+	  },
+      {
+		"type":"header",
+		"content":"Block title"
+      },
+      {
+		"type":"richtext",
+		"id":"title_1",
+		"label":"Enter title for the block",
+		"default":"<p><strong>RECOMMENDED</strong> BY PROFESSIONALS</p>"
+      }
+    ],
+	"blocks":[
+	{
+      "type":"image",
+      "name":"Team block",
+	  "settings":[
+		{
+		  "type":"image_picker",
+		  "id":"image",
+		  "label":"Upload image"
+		},
+		{
+		  "type":"text",
+		  "id":"title",
+		  "label":"Enter title"
+		},
+		{
+		  "type":"text",
+		  "id":"subtitle",
+		  "label":"Enter Subtitle"
+		},
+		{
+		  "type":"richtext",
+		  "id":"detail",
+		  "label":"Enter detail"
+		},
+		{
+		  "type":"header",
+		  "content":"Social"
+		},
+		{
+		  "type":"text",
+		  "id":"stitle",
+		  "label":"Enter Social title"
+		},
+        {
+          "type": "text",
+          "id": "social_twitter_link",
+          "label": "Twitter",
+          "info": "https:\/\/twitter.com\/shopify"
+        },
+        {
+          "type": "text",
+          "id": "social_facebook_link",
+          "label": "Facebook",
+          "info": "https:\/\/facebook.com\/shopify"
+        },
+        {
+          "type": "text",
+          "id": "social_instagram_link",
+          "label": "Instagram",
+          "info": "http:\/\/instagram.com\/shopify"
+        },
+		{
+		  "type":"header",
+		  "content":"Button"
+		},
+		{
+		  "type":"text",
+		  "id":"btn_title",
+		  "label":"Enter button title"
+		},
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Provide button link"
+        },
+        {
+          "type": "checkbox",
+          "id": "btn_target",
+          "label": "Link open in another tab",
+		  "default":true
+        }
+	  ]
+	}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

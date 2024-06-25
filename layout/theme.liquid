@@ -1,0 +1,880 @@
+<!doctype html>
+<html class="no-js" lang="{{ shop.locale }}">
+  <head>
+    <link data-href="{{'font-awesome.scss.css'| asset_url }}" rel="preload" as="style" type="text/css" media="all">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;800&display=swap" rel="stylesheet">
+
+    <style>
+              .breadcrumbs__item {
+          display: inline-block;
+        }
+      {%- if settings.custom_font -%}
+
+      @font-face { font-family: 'Futura PT'; src: url('FuturaPT-Book.woff2') format('woff2'), url('FuturaPT-Book.woff') format('woff');
+        font-weight: normal; font-style: normal; font-display: swap; }
+
+      @font-face { font-family: 'Futura PT'; src: url('FuturaPT-BookObl.woff2') format('woff2'), url('FuturaPT-BookObl.woff') format('woff');
+          font-weight: normal; font-style: italic; font-display: swap;
+      }
+
+      @font-face { font-family: 'Futura PT'; src: url('FuturaPT-MediumObl.woff2') format('woff2'), url('FuturaPT-MediumObl.woff') format('woff');
+          font-weight: 500; font-style: italic; font-display: swap;
+      }
+
+      @font-face { font-family: 'Futura PT'; src: url('FuturaPT-Light.woff2') format('woff2'), url('FuturaPT-Light.woff') format('woff');
+          font-weight: 300; font-style: normal; font-display: swap;
+      }
+
+      @font-face { font-family: 'Futura PT'; src: url('FuturaPT-Medium.woff2') format('woff2'), url('FuturaPT-Medium.woff') format('woff');
+          font-weight: 500;
+          font-style: normal; font-display: swap; }
+
+      @font-face { font-family: 'Futura PT'; src: url('FuturaPT-Heavy.woff2') format('woff2'), url('FuturaPT-Heavy.woff') format('woff');
+          font-weight: 900; font-style: normal; font-display: swap;
+      }
+
+      @font-face { font-family: 'Futura PT'; src: url('FuturaPT-LightObl.woff2') format('woff2'), url('FuturaPT-LightObl.woff') format('woff');
+          font-weight: 300; font-style: italic; font-display: swap; }
+
+      @font-face { font-family: 'Futura PT'; src: url('FuturaPT-DemiObl.woff2') format('woff2'), url('FuturaPT-DemiObl.woff') format('woff');
+          font-weight: 600; font-style: italic; font-display: swap; }
+
+      @font-face { font-family: 'Futura PT'; src: url('FuturaPT-Demi.woff2') format('woff2'), url('FuturaPT-Demi.woff') format('woff');
+          font-weight: 600; font-style: normal; font-display: swap; }
+
+      @font-face { font-family: 'Futura PT'; src: url('FuturaPT-HeavyObl.woff2') format('woff2'), url('FuturaPT-HeavyObl.woff') format('woff');
+          font-weight: 900; font-style: italic; font-display: swap; }
+
+      @font-face { font-family: 'Futura PT'; src: url('FuturaPT-BoldObl.woff2') format('woff2'), url('FuturaPT-BoldObl.woff') format('woff');
+          font-weight: bold; font-style: italic; font-display: swap;
+      }
+
+      @font-face { font-family: 'Futura PT'; src: url('FuturaPT-Bold.woff2') format('woff2'), url('FuturaPT-Bold.woff') format('woff');
+          font-weight: bold;
+          font-style: normal; font-display: swap; }
+
+
+      $font-weight-body--bold: bold;
+      $font-weight-body--bolder: 900;
+
+      $font-stack-header: 'Futura PT', sans-serif;
+      $font-style-header: normal;
+      $font-weight-header: bold;
+
+      $font-stack-body: 'Futura PT', sans-serif;;
+      $font-style-body: normal;
+      $font-weight-body: normal;
+
+      {%- else -%}
+
+      {% assign header_font = settings.type_header_font %}
+      {% assign base_font = settings.type_base_font %}
+
+      {{ header_font | font_face }}
+      {{ base_font | font_face }}
+
+      {%- assign base_font_bolder = base_font | font_modify: 'weight', 'bolder' -%}
+      {%- assign base_font_bold = base_font | font_modify: 'weight', 'bold' -%}
+      {%- assign base_font_italic = base_font | font_modify: 'style', 'italic' -%}
+      {%- assign base_font_bold_italic = base_font_bold | font_modify: 'style', 'italic' -%}
+
+      {{ base_font_bold | font_face }}
+
+
+
+        
+      {{ base_font_bolder | font_face }}
+      {{ base_font_italic | font_face }}
+      {{ base_font_bold_italic | font_face }}
+
+      $font-weight-body--bold: {{ base_font_bold.weight | default: 700 }};
+      $font-weight-body--bolder: {{ base_font_bolder.weight | default: 700 }};
+
+      $font-stack-header: {{ header_font.family }}, {{ header_font.fallback_families }};
+      $font-style-header: {{ header_font.style }};
+      $font-weight-header: {{ header_font.weight }};
+
+      $font-stack-body: {{ base_font.family }}, {{ base_font.fallback_families }};
+      $font-style-body: {{ base_font.style }};
+      $font-weight-body: {{ base_font.weight }};
+      {%- endif -%}
+      body, input, textarea, button, select, .disclosure__toggle {
+          font-size: 16px;
+          font-family: "Futura PT", sans-serif;
+          font-style: normal;
+          font-weight: normal;
+          color: #4c4c4e;
+          line-height: 1.5;
+      }
+      site-header-contact .announcement-bar {
+          font-family: "Futura PT", sans-serif;
+      }
+    </style>
+    {% include 'pro-blogger-section-wrapper' %}
+
+    <!-- Google Tag Manager -->
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-W639SXC');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_button }}">
+    <meta name="google-site-verification" content="UzwWsZ3iGMIahuXFalcZBvoKJEOnVJJVNfqw6suup7o">
+    <meta name="facebook-domain-verification" content="vf3b6wxn1pjcww8r3arfsx9erdl6s0">
+    <link rel="dns-prefetch" href="https://static.klaviyo.com/">
+    <link rel="dns-prefetch" href="https://cdn.shopify.com/">
+    <link rel="dns-prefetch" href="https://telemetrics.klaviyo.com/">
+    <link rel="dns-prefetch" href="https://monorail-edge.shopifysvc.com">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async data-src="https://www.googletagmanager.com/gtag/js?id=G-XJE45BV22V"></script>
+    <script defer="defer">
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XJE45BV22V');
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Ads: 993494140 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-993494140"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      	function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date()); gtag('config', 'AW-993494140');
+    </script>
+    {{ 'incredient_css.css' | asset_url | stylesheet_tag }}
+    <script type="application/ld+json">
+      { "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Biosphere Nutrition",
+      "legalName" : "BIOSPHERE LTD",
+      "url": "https://www.biospherenutrition.co.nz/",
+      "logo": "https://cdn.shopify.com/s/files/1/0473/6679/9525/files/biosphere-logo-dark_360x.png?v=1599194389",
+      "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "72A Apollo Drive",
+      "addressLocality": "Rosedale",
+      "addressRegion": "Auckland",
+      "postalCode": "0632",
+      "addressCountry": "new zealand"
+      },
+      "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "telephone": "09-889 1250",
+      "email": "info@biospherenutrition.co.nz"
+      },
+      "sameAs": [
+      "https://www.facebook.com/biospherenutrition/",
+      "https://instagram.com/biospherenutrition",
+      "https://www.youtube.com/channel/UCyApOKKW1YaQQX9xH4sfd-g"
+      ]}
+    </script>
+
+    {{ 'cart-drawer.css' | asset_url | stylesheet_tag }}
+    {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
+    <style type="text/css">
+        .as-group{box-shadow:unset!important;position:relative;z-index:1;overflow:unset!important;}
+        .as-group:after{height:100%;content:'';position:absolute;border-radius:15px;border:2px solid #979797;width:90%;left:50%;transform:translateX(-50%);z-index:0;}
+        .as-gap-5{gap:60px 30px!important;}
+        .as-group > .as-rounded-md.as-relative.as-w-full{border-radius:30px!important;background-color:#fff!important;border:2px solid #979797;z-index:1;padding:60px;}
+        .as-group .as-mt-4.as-mb-2.as-text-center{z-index:1;margin:-25px auto 25px;}
+        .as-group .as-mt-4.as-mb-2.as-text-center h3{border-radius:25px;background-color:#404040;border:2px solid #404040;padding:6px 20px;}
+        .as-group .as-mt-4.as-mb-2.as-text-center h3 a{font-size:20px;line-height:normal;letter-spacing:0;text-transform:uppercase;color:#fff;font-weight:bold;}
+        .as-mt-3.as-mb-2{display:block!important;width:90%;margin:0 auto;z-index:2;}
+        .appstle-product-price,.appstle-product-compare-at-price{line-height:1;font-weight:bold!important;color:#0075ba!important;}
+        .appstle-product-compare-at-price{color:#abafb3!important;}
+        .as-flex.as-w-full.as-justify-center.as-items-center.as-flex-col{flex-wrap:wrap;padding:0;}
+        .as-ml-1.false{flex:0 0 100%;width:100%;margin:0;}
+        .as-mb-3 ul{max-height:200px;}
+        .as-flex.as-w-full.as-justify-center.as-items-center.as-flex-col button{width:100%;background:#0075ba;border-radius:5px;font-size:21px;letter-spacing:0;font-weight:bold;margin-top:20px;}
+        @media(min-width:768px){
+          .as-group .as-mt-4.as-mb-2.as-text-center h3{padding:6px 50px;}
+          .as-group .as-mt-4.as-mb-2.as-text-center h3 a{font-size:26px;letter-spacing:1px;}
+        }
+        @media(max-width:767px){
+          .as-p-4.as-w-full{padding:0!important;}
+        }
+      .about_bred_cum_main{
+      	padding-top:0!important;
+      }
+      .blog_page_c .index-section{
+      	padding-top:0!important;
+      }
+      .about_bred_cum{
+        position: absolute;
+        top: 120px;
+        z-index: 9;
+        color: white;
+        width: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .about_bred_cum .breadcrumbs__item a{color:white;}
+      .grid.grid--no-gutters.grid--table.site-header__mobile-nav {
+        width: 100% !important;
+        max-width: 1580px;margin-left: auto;margin-right: auto;
+      }
+      .landing-header .s-nav {
+        padding-left: 60px;
+        width: 100%;
+      }
+      .header_btn {
+      	justify-content: flex-end;
+      }
+
+      @media only screen and (max-width: 1440px){
+        a.get-touch-btn {
+          font-size: 18px;
+          text-align: center;
+          padding: 10px 20px !important;
+          max-width: 140px;
+          line-height: 20px;
+        }
+            .about_bred_cum{
+            	top:100px;
+            }
+      }
+      @media only screen and (max-width: 1198px){
+      	 .about_bred_cum{
+            	top:75px;
+            }
+      }
+      @media only screen and (max-width: 1110px){
+      	 .about_bred_cum{
+            	top:60px;
+            }
+        .about_bred_cum .breadcrumbs__item a{font-size:14px;}
+      }
+      @media only screen and (max-width: 991px) {
+        .grid__item.medium-up--one-quarter.text-right.site-header__icons.site-header__icons--plus {
+          display: flex;
+          flex-direction: row-reverse;
+        }
+      }
+      @media only screen and (max-width: 991px) {
+        .landing-header .site-header {
+        	padding-top: 0;
+        }
+        .site-header__icons-wrapper {
+          width: auto;
+          padding-left: 20px;
+        }
+      }
+      @media only screen and (max-width: 376px) {
+        a.get-touch-btn {
+          font-size: 16px;
+          padding: 5px 12px !important;
+          max-width: 120px;
+          align-items: center;
+        }
+      }
+
+      /* CLS fixe product pages */
+      .pro_review_badge {
+        min-height:35.71px
+      }
+      @media only screen and (min-width: 1200px) {
+        .pro_review_badge {
+          min-height:46px
+        }
+      }
+      .selector-wrapper.js.product-form__item{
+        display:none
+      }
+      @media (min-width: 768px) {
+          .product-single__media-wrapper,
+          .big_slider:not(.slick-slider) .product-single__media-wrapper:first-child {
+            width: calc((100vw - 96px - 30px) / 2 * .8);
+            max-width: calc((100vw - 96px - 30px) / 2 * .8);
+          }
+      }
+      @media only screen and (min-width: 992px) {
+        .product-single__thumbnails {
+            display: block;
+        }
+        .product-single__thumbnails-item--medium {
+            /*flex: unset;*/
+            display: block;
+        }
+      }
+    </style>
+
+    {%- if canonical_url != blank -%}
+      <link rel="canonical" href="{{ canonical_url }}">
+    {%- endif -%}
+
+    {%- if settings.favicon != blank -%}
+      <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+    {%- endif -%}
+
+    {%- capture seo_title -%}
+    {%- if request.page_type == 'search' and search.performed == true -%}
+      {{ 'general.search.heading' | t: count: search.results_count }}: {{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+    {%- else -%}
+      {{ page_title }}
+    {%- endif -%}
+    {%- if current_tags -%}
+      {%- assign meta_tags = current_tags | join: ', ' -%} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+    {%- endif -%}
+    {%- if current_page != 1 -%}
+      &ndash; {{ 'general.meta.page' | t: page: current_page }}
+    {%- endif -%}
+    {%- assign escaped_page_title = page_title | escape -%}
+    {%- unless escaped_page_title contains shop.name %} | {{ shop.name }}{%- endunless -%}
+  {%- endcapture -%}
+    <title>{{ seo_title | strip | strip_newlines }}</title>
+
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    {% include 'social-meta-tags' %}
+
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+
+    {{ 'custmization_article.css' | asset_url | stylesheet_tag }}
+    {{ 'changes.css' | asset_url | stylesheet_tag }}
+    {{ 'custom.css' | asset_url | stylesheet_tag }}
+    {% if template == 'page.nitric-oxide-landing' %}
+      {{ 'nitric-oxide.css' | asset_url | stylesheet_tag }}
+    {% endif %}
+    {% if template == 'page.sleep-landing' %}
+      {{ 'sleep-landing.css' | asset_url | stylesheet_tag }}
+    {% endif %}
+    {% if template == 'article.new-layout' %}
+      {{ 'article-new-layout.css' | asset_url | stylesheet_tag }}
+    {% endif %}
+  
+    {{ 'magnesium_20_off.css' | asset_url | stylesheet_tag }}
+     
+
+    <script>
+      {%- capture var_theme -%}
+      var theme = {
+        breakpoints: {
+          medium: 768,
+          large: 992,
+          widescreen: 1440
+        },
+        strings: {
+          addToCart: {{ 'products.product.add_to_cart' | t | json }},
+          soldOut: {{ 'products.product.sold_out' | t | json }},
+          unavailable: {{ 'products.product.unavailable' | t | json }},
+          regularPrice: {{ 'products.product.regular_price' | t | json }},
+          salePrice: {{ 'products.product.sale_price' | t | json }},
+          sale: {{ 'products.product.on_sale' | t | json }},
+          fromLowestPrice: {{ 'products.product.from_lowest_price_html' | t: lowest_price: '[price]' | json }},
+          vendor: {{'products.product.vendor' | t | json }},
+          showMore: {{ 'general.filters.show_more' | t | json }},
+          showLess: {{ 'general.filters.show_less' | t | json }},
+          searchFor: {{ 'general.search.search_for' | t | json }},
+          addressError: {{ 'sections.map.address_error' | t | json }},
+          addressNoResults: {{ 'sections.map.address_no_results' | t | json }},
+          addressQueryLimit: {{ 'sections.map.address_query_limit_html' | t | json }},
+          authError: {{ 'sections.map.auth_error_html' | t | json }},
+          newWindow: {{ 'general.accessibility.link_messages.new_window' | t | json }},
+          external: {{ 'general.accessibility.link_messages.external' | t | json }},
+          newWindowExternal: {{ 'general.accessibility.link_messages.new_window_and_external' | t | json }},
+          removeLabel: {{ 'cart.label.remove' | t: product: '[product]' | json }},
+          update: {{ 'cart.label.update' | t | json }},
+          quantity: {{ 'cart.label.quantity' | t | json }},
+          discountedTotal: {{ 'cart.label.discounted_total' | t | json }},
+          regularTotal: {{ 'cart.label.regular_total' | t | json }},
+          priceColumn: {{ 'cart.label.price_column' | t | json }},
+          quantityMinimumMessage: {{ 'products.product.quantity_minimum_message' | t | json }},
+          cartError: {{ 'cart.general.cart_error' | t | json }},
+          removedItemMessage: {{ 'cart.general.removed_item_html' | t: quantity: '[quantity]', link: '[link]' | json }},
+          unitPrice: {{ 'products.product.unit_price_label' | t | json }},
+          unitPriceSeparator: {{ 'general.accessibility.unit_price_separator' | t | json }},
+          oneCartCount: {{ 'cart.popup.cart_count' | t: count: 1 | json }},
+          otherCartCount: {{ 'cart.popup.cart_count' | t: count: '[count]' | json }},
+          quantityLabel: {{ 'cart.popup.quantity_label' | t: quantity_count: '[count]' | json }},
+          products: {{ 'general.search.products' | t | json }},
+          loading: {{ 'general.search.loading' | t | json }},
+          number_of_results: {{ 'general.search.number_of_results' | t: result_number: '[result_number]', results_count: '[results_count]' | json }},
+          number_of_results_found: {{ 'general.search.number_of_results_found' | t: results_count: '[results_count]' | json }},
+          one_result_found: {{ 'general.search.one_result_found' | t | json }}
+        },
+        moneyFormat: {{ shop.money_format | json }},
+        moneyFormatWithCurrency: {{ shop.money_with_currency_format | json }},
+        settings: {
+          predictiveSearchEnabled: {{ settings.predictive_search_enabled | json }},
+          predictiveSearchShowPrice: {{ settings.predictive_search_show_price | json }},
+          predictiveSearchShowVendor: {{ settings.predictive_search_show_vendor | json }}
+        }
+      }; {%- endcapture -%}
+      {{ var_theme | strip_newlines }}
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    </script>
+
+    {%- if request.page_type contains 'customers/' -%}
+      <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
+    {%- endif -%}
+    <script src="{{ 'jquery.min.js' | asset_url }}" type="text/javascript"></script>
+    <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'lazysizes.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'vendor.js' | asset_url }}" defer="defer"></script>
+    {% comment %}  <script src="{{ 'theme.min.js' | asset_url }}" defer="defer"></script> {% endcomment %}
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+    <script src="{{'jquery.matchheight.js'| asset_url}}" defer="defer"></script>
+
+    {% comment %}{{ content_for_header }}{% endcomment %}
+    {% include 'biosphere' %}
+    <script defer="defer">
+      setTimeout(function(){ var _script = document.getElementsByTagName('script');for( var i = 0 ; i < _script.length ; i++ ){ var str = _script[i].getAttribute('src'); str = str == null ? 'empty' : str; if(_script[i].getAttribute('defer') == null || str.search("jquery.min.js") < 0 ){ if (_script[i].getAttribute('async') === null ){ _script[i].setAttribute('defer','defer'); }}}},10);
+    </script>
+    {% unless request.page_type == 'index' %}{% include 'kart_discount' %}{% endunless %}
+
+    {% include 'dataLayer-allPages' %}
+    {% include 'alpha-offer' %}
+    {% include 'sca.storelocator' %}
+
+    <!-- FigPii Async Tracking Code -->
+    <script id="piiTester" type="text/javascript" async="async" crossorigin="anonymous" src="//tracking-cdn.figpii.com/e4f0fb6e937c7621dbaf05a547964bdd.js"></script>
+    <!-- End FigPii Async Tracking Code -->
+    
+  </head>
+
+  <body class="template-{{ request.page_type | handle }} {{ template.title }} {{ template  | handle }} {{ page_title }} template-{{ template.suffix }}">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-W639SXC"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <a class="in-page-link visually-hidden skip-link" href="#MainContent">
+      {{- 'general.accessibility.skip_to_content' | t -}}
+    </a>
+    {%- if settings.enable_ajax -%}
+      {%- capture cart_popup -%}{% include 'cart-popup' %}{%- endcapture -%}
+      {{- cart_popup | strip_newlines -}}
+    {%- endif -%}
+
+    {%- if template == 'page.landing' -%}
+      {%- section 'new-header' -%}
+    {%- else -%}
+  {%- capture header -%}{%- section 'header' -%}{%- endcapture -%}
+      {% unless template.suffix == 'new-static-nitric-oxide' or template.suffix == 'nitric-oxide-20-percent-off' or template.suffix == 'new_prebiotic_product'  %}
+        {{- header | strip_newlines -}}
+        {% endunless %}
+    {%- endif -%} 
+
+    <div class="page-container drawer-page-content" id="PageContainer">
+      <main
+        class="main-content js-focus-hidden  {% unless request.page_type == "index" %} pt-0 {% endunless %}{% if request.page_type == "product" %}pt-0{% endif %} {% for tag in article.tags %}{% if tag == "newCustmization" %}pt-0 custoum_article{% endif %}{% endfor %} {% if  template == 'page.about-us' %}about_bred_cum_main{% endif %} {% if request.page_type == "blog" %}pt-0 blog_page_c{% endif %}"
+        id="MainContent"
+        role="main"
+        tabindex="-1"
+      >
+        {%- unless template == 'page.landing_page' or template == 'page.new_landing_page' or template.suffix == 'new-static-page' or template.suffix == 'new-static-nitric-oxide' or template.suffix == 'nitric-oxide-20-percent-off' or template.suffix == 'new_prebiotic_product' or template == 'page.new-magnesium'  -%}
+          {% render 'bread_cum' %}
+        {% endunless %}
+        {% if request.page_type == 'index' %}
+          {% capture con_for_layout %}
+      {{ content_for_layout }}
+      {% endcapture %}
+          {{ con_for_layout | strip_newlines }}
+        {%- else -%}
+          {{ content_for_layout }}
+        {%- endif -%}
+      </main>
+
+      {%- capture sec-color-swatch -%}
+        {%- if template contains 'product' or template.suffix == 'new-static-page'  -%}
+        {% section 'sec-color-swatch' %}
+        {%- endif -%}
+      {% endcapture %}
+
+      {{ sec-color-swatch | strip_newlines }}
+
+      {% comment %} or template.suffix == 'new_prebiotic_product' {% endcomment %}
+      {%- unless template == 'page.landing' or template.suffix == 'new-static-page'  -%}
+        {%- capture footer -%}{%- section 'footer' -%}{%- endcapture -%}
+        {{- footer | strip_newlines -}}
+      {%- endunless -%}
+
+      <div id="slideshow-info" class="visually-hidden" aria-hidden="true">
+        {{- 'sections.slideshow.navigation_instructions' | t -}}
+      </div>
+    </div>
+
+    <div class="overlay-box">&nbsp;</div>
+    <div class="cart-sidebar"></div>
+
+    <ul hidden>
+      <li id="a11y-refresh-page-message">{{ 'general.accessibility.refresh_page' | t }}</li>
+      <li id="a11y-selection-message">{{ 'general.accessibility.selection_help' | t }}</li>
+    </ul>
+    {% unless request.page_type == 'index' %}
+      {%- include 'th-product-review' -%}
+      <!-- Begin ReCharge code -->
+      {% comment %}
+        {%- include 'subscription-theme-footer' -%}
+      {% endcomment %}
+      <!-- End ReCharge code -->
+    {% endunless %}
+    {{ 'gem.js' | asset_url | script_tag }}
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@id": "{{ shop.url }}",
+              "name": "Home"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              {% if collection %}
+                "@id": "{{ collection.url }}",
+                "name": "{{ collection.title }}"
+              {% else %}
+                "@id": "{{ routes.all_products_collection_url }}",
+                "name": "{{ collections.all.title }}"
+              {% endif %}
+            }
+          }
+        ]
+      }
+    </script>
+
+    <script>
+            {% if settings.discount_code  != blank  %}
+              setTimeout(function(){
+                let wc = $(location).attr('href');
+                if( window.location.href.indexOf("discount=true") > -1) {
+                  var date = new Date();
+                  date.setTime(date.getTime() +(24*60*60*1000));
+                  $.cookie('discount', 'get_discount', { expires: date, path: '/'  });
+                }
+                if( window.location.href.indexOf("cart") > -1) {
+                  var my_cookie = $.cookie('discount');
+                  if(my_cookie != undefined){
+                    setTimeout(function(){
+                      $('#appikon-discount-code-1').val("{{settings.discount_code}}").trigger('change');
+                      $('#apply-appikon-discount').trigger('click');
+                    }, 2000);
+                  }
+                  else{
+                    if($.cookie('discount_code') == "{{settings.discount_code}}"){
+                     $.cookie("discount_code", null, { path: '/' });
+                    }
+                  }
+                }
+              }, 500);
+            {% endif %}
+            {% if settings.magnesium_discount_code  != blank  %}
+              setTimeout(function(){
+                let wc = $(location).attr('href');
+                if( window.location.href.indexOf("discount-magnesium=true") > -1) {
+                      var date = new Date();
+                      date.setTime(date.getTime() +(24*60*60*1000));
+                      $.cookie('magnesium-discount', 'get_discount', { expires: date, path: '/'  });
+                }
+                if( window.location.href.indexOf("cart") > -1) {
+                  var my_cookie = $.cookie('magnesium-discount');
+                  if(my_cookie != undefined){
+                    $('#appikon-discount-code-1').val("{{settings.magnesium_discount_code }}").trigger('change');
+                    $('#apply-appikon-discount').trigger('click');
+                  }
+                  else{
+                    if($.cookie('discount_code') == "{{settings.magnesium_discount_code }}"){
+                     $.cookie("discount_code", null, { path: '/' });
+                    }
+                  }
+                }
+               }, 500);
+            {% endif %}
+
+            $(document).on('click','.product-form__cart-submit',function(){
+              {% if settings.discount_code  != blank  %}
+                setTimeout(function(){
+                  let wc = $(location).attr('href');
+                  if( window.location.href.indexOf("discount=true") > -1) {
+                    var date = new Date();
+                    date.setTime(date.getTime() +(24*60*60*1000));
+                    $.cookie('discount', 'get_discount', { expires: date, path: '/'  });
+                  }
+                  var my_cookie = $.cookie('discount');
+                  if(my_cookie != undefined){
+                    setTimeout(function(){
+                      $('#appikon-discount-code-0').val("{{settings.discount_code}}").trigger('change');
+                      $('#apply-appikon-discount').trigger('click');
+                    }, 2000);
+                  }
+                  else{
+                    if($.cookie('discount_code') == "{{settings.discount_code}}"){
+                     $.cookie("discount_code", null, { path: '/' });
+                    }
+                  }
+                }, 500);
+              {% endif %}
+              {% if settings.magnesium_discount_code  != blank  %}
+                setTimeout(function(){
+                  let wc = $(location).attr('href');
+                  if( window.location.href.indexOf("discount-magnesium=true") > -1) {
+                        var date = new Date();
+                        date.setTime(date.getTime() +(24*60*60*1000));
+                        $.cookie('magnesium-discount', 'get_discount', { expires: date, path: '/'  });
+                  }
+                  var my_cookie = $.cookie('magnesium-discount');
+                  if(my_cookie != undefined){
+                    $('#appikon-discount-code-0').val("{{settings.magnesium_discount_code }}").trigger('change');
+                    $('#apply-appikon-discount').trigger('click');
+                  }
+                  else{
+                    if($.cookie('discount_code') == "{{settings.magnesium_discount_code }}"){
+                     $.cookie("discount_code", null, { path: '/' });
+                    }
+                  }
+                 }, 500);
+              {% endif %}
+            });
+
+                  {% comment %}}
+                  {% if settings.sleep_discount_code  != blank  %}
+                    setTimeout(function() {
+
+                      let wc = $(location).attr('href')
+
+
+                      if( window.location.href.indexOf("sleep-discount=true") > -1) {
+                            console.log("sleep_discount_code set-cookie");
+                            var date = new Date();
+                            date.setTime(date.getTime() +(24*60*60*1000));
+                            $.cookie('sleep_discount', 'get_discount_sleep', { expires: date, path: '/'  });
+                      }
+                      if( window.location.href.indexOf("cart") > -1) {
+                            var my_cookie = $.cookie('sleep_discount');
+
+                            if(my_cookie != undefined){
+                              $('#af_custom_coupon_text').val("{{settings.sleep_discount_code}}");
+                              $('#af_custom_apply_coupon_trigger').trigger('click');
+                            }
+                        else{
+
+                            if($.cookie('discount_code') == "{{settings.sleep_discount_code}}"){
+                             $.cookie("discount_code", null, { path: '/' });
+                            }
+                          }
+                        }
+                       }, 500);
+                   {% endif %}
+             {% endcomment %}
+             $(document).on('click','#appikon-remove-discount-code',function(){
+          $('.appikon-discounts-wrapper').css('display','flex');
+      })
+    </script>
+    {% comment %}
+      <!-- Back in Stock helper snippet -->
+      {% render 'back-in-stock-helper' %}
+      <!-- End Back in Stock helper snippet -->
+    {% endcomment %}
+    {% render 'appikon-discounts' %}
+
+    <!-- google dynamic remarketing tag for theme.liquid -->
+    {% if template contains 'product' %}
+      <script type="text/javascript">
+        var json_product = {{ product | json }};
+      </script>
+      <script>
+        var ecomm_prodid=[];
+        for(var i=0;i<json_product.variants.length;i++)
+          ecomm_prodid.push('shopify_NZ_{{product.id}}_'+json_product.variants[i].id);
+      </script>
+      <script type="text/javascript">
+        var google_tag_params = {
+          ecomm_prodid: ecomm_prodid,
+          ecomm_pagetype: 'product',
+          ecomm_totalvalue: parseFloat('{{ product.price | money_without_currency | remove: ","}}')
+        };
+      </script>
+    {% elsif template contains 'collection' %}
+      <script type="text/javascript">
+        var google_tag_params = {
+          ecomm_pagetype: 'category'
+        };
+      </script>
+    {% elsif template contains 'cart' %}
+      <script type="text/javascript">
+        var id = new Array();
+        {% for item in cart.items %}
+        id.push('shopify_NZ_{{item.product.id}}_{{item.variant.id}}');
+         {% endfor %}
+
+         var google_tag_params = {
+           ecomm_prodid: id,
+           ecomm_pagetype: 'cart',
+           ecomm_totalvalue: parseFloat('{{ cart.total_price | money_without_currency | remove: ","}}')
+         };
+      </script>
+    {% elsif template contains 'search' %}
+      <script type="text/javascript">
+        var google_tag_params = {
+          ecomm_pagetype: 'searchresults'
+        };
+      </script>
+    {% elsif template contains 'index' %}
+      <script type="text/javascript">
+        var google_tag_params = {
+          ecomm_pagetype: 'home'
+        };
+      </script>
+    {% else %}
+      <script type="text/javascript">
+        var google_tag_params = {
+          ecomm_pagetype: 'other'
+        };
+      </script>
+    {% endif %}
+    <script>
+      gtag('event', 'page_view', {'send_to': 'AW-993494140',
+                                  'ecomm_prodid':window.google_tag_params.ecomm_prodid,
+                                  'ecomm_pagetype': window.google_tag_params.ecomm_pagetype,
+                                  'ecomm_totalvalue':window.google_tag_params.ecomm_totalvalue
+                                 });
+    </script>
+    {% comment %}
+      <div class="klaviyo_popup" style="display:none;">
+        <span class="icon_close">
+          <svg
+            role="img"
+            width="35"
+            height="35"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="needsclick  kl-private-reset-css-Xuajs1"
+          >
+            <title id="title-Close form 595" data-a11y-identifier="dismiss:dismiss:form">Close form 595</title><circle cx="10" cy="10" r="9.5" fill="rgba(255,255,255,1)" stroke="rgba(255,255,255,0)" data-a11y-identifier="dismiss:dismiss:form" style="cursor: pointer;"></circle><path d="M6 6L14 14M6 14L14 6L6 14Z" stroke="#373F47" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" data-a11y-identifier="dismiss:dismiss:form" style="cursor: pointer;"></path>
+          </svg>
+        </span>
+        <div class="klaviyo-form-XAH9id"></div>
+      </div>
+    {% endcomment %}
+    {% assign page_handle = page.title | handle %}    
+    {% unless page_handle contains 'magnesium-landing' or page_handle contains 'nitric-oxide-boost' or template.suffix contains 'new-static-nitric-oxide' %}
+      {% render 'klaviyo-popup' %}
+    {% endunless %}
+  </body>
+</html>
+{% comment %}
+  <script src="https://a.klaviyo.com/media/js/onsite/onsite.js"></script>
+  <script defer>
+      var klaviyo = klaviyo || [];
+      klaviyo.init({
+        account: "HNiB9L",
+        platform: "shopify"
+      });
+      klaviyo.enable("backinstock",{
+      trigger: {
+        product_page_text: "Notify Me When Available",
+        product_page_class: "btn",
+        product_page_text_align: "center",
+        product_page_margin: "0px",
+        replace_anchor: false
+      },
+      modal: {
+       headline: "{product_name}",
+       body_content: "Register to receive a notification when this item comes back in stock.",
+       email_field_label: "Email",
+       button_label: "Notify me when available",
+       subscription_success_label: "You're in! We'll let you know when it's back.",
+       footer_content: '',
+       additional_styles: "@font-face {font-family: 'Futura PT';src: url(//www.biospherenutrition.co.nz/cdn/shop/t/19/assets/FuturaPT-Medium.woff2?v=170420136063192542251678854537) format('woff2'), url(//www.biospherenutrition.co.nz/cdn/shop/t/19/assets/FuturaPT-Medium?v=119978269617425950931678854537) format('woff');font-weight: normal;font-style: normal;font-display: swap; }.submit-container button.btn-lg {font-size: 18px;letter-spacing: 1px;text-transform: uppercase;}",
+       drop_background_color: "#000",
+       background_color: "#fff",
+       text_color: "#222",
+       button_text_color: "#fff",
+       button_background_color: "#445988",
+       close_button_color: "#ccc",
+       error_background_color: "#fcd6d7",
+       error_text_color: "#C72E2F",
+       success_background_color: "#d3efcd",
+       success_text_color: "#1B9500"
+      }
+    });
+    },1000)
+  </script>
+{% endcomment %}
+<!-- Begin Shopify-Afterpay JavaScript Snippet (v1.1.5) -->
+  
+
+{% if cart.currency.iso_code == shop.currency %}
+{% unless product.handle == '7-day-magnesium-trial-7-sachets' %}
+  <script type="text/javascript">
+    // Overrides:
+    // var afterpay_min = 1.00;       // As per your Afterpay contract.
+    // var afterpay_max = 2000.00;    // As per your Afterpay contract.
+    // var afterpay_msg_size = 'sm';  // Can be 'xs', 'sm', 'md' or 'lg'.
+    // var afterpay_bold_amount = true;
+    // var afterpay_logo_theme = 'colour';  // Can be 'colour', 'black' or 'white'.
+    // var afterpay_modal_open_icon = true;
+    // var afterpay_hide_upper_limit = false;
+    // var afterpay_hide_lower_limit = true;
+    // var afterpay_show_if_outside_limits = true;
+    // var afterpay_cbt_enabled = false;
+    // var afterpay_apr_loans_available = false;
+
+    var afterpay_product_integration_enabled = true;
+    var afterpay_product_selector = 'div.price__pricing-group > div.price__regular > dd > span';
+    var afterpay_variable_price_fallback = true;
+    var afterpay_variable_price_fallback_selector = 'div.price__pricing-group > div.price__regular > dd > span';
+    var afterpay_variable_price_fallback_method = 'interval';  // Can be 'mutation' or 'interval'.
+
+    // var afterpay_cart_integration_enabled = true;
+    // var afterpay_cart_static_selector = '#cart-subtotal-selector';
+    var afterpay_variable_subtotal_fallback = true;
+    var afterpay_variable_subtotal_fallback_selector = '#shopify-section-cart-template > div > div:nth-child(1) > form > div > div > div > div.cart-subtotal';
+    var afterpay_variable_subtotal_fallback_method = 'interval'; // Can be 'mutation' or 'interval'.
+    var afterpay_cart_dynamic_integration_enabled = true;
+
+    // var afterpay_footer_logo_enabled = true;
+    // var afterpay_footer_logo_format = 'icon';  // Can be 'icon', 'stacked' or 'logo'.
+    // var afterpay_footer_logo_theme = 'colour'; // Can be 'colour', 'black' or 'white'.
+    // var afterpay_footer_logo_background = 'border';  // Can be 'border' or 'transparent'.
+    // var afterpay_footer_logo_container = 'footer ul.payment-icons';
+    // var afterpay_footer_logo_template = '<li class="payment-icon"><object data="{logo_path}" type="image/svg+xml"></object></li>';
+
+    // Non-editable fields:
+    var afterpay_js_language = {{ localization.language.iso_code | slice: 0, 2 | json }};
+    var afterpay_js_country = {{ localization.country.iso_code | json }};
+    var afterpay_shop_currency = {{ shop.currency | json }};
+    var afterpay_cart_currency = {{ cart.currency.iso_code | json }};
+    var afterpay_shop_money_format = {{ shop.money_format | json }};
+    var afterpay_shop_permanent_domain = {{ shop.permanent_domain | json }};
+    var afterpay_theme_name = {{ theme.name | json }};
+    var afterpay_product = {{ product | json }};
+    var afterpay_current_variant = {{ product.selected_or_first_available_variant | json }};
+    var afterpay_cart_total_price = {{ cart.total_price | json }};
+    var afterpay_js_snippet_version = '1.1.5';
+  </script>
+  <script type="text/javascript" src="https://static.afterpay.com/shopify-afterpay-javascript.js"></script>
+{% endunless %}  
+{% else %}
+  <!-- Afterpay disabled: {{ cart.currency.iso_code }} != {{ shop.currency }} -->
+{% endif %}
+<!-- End Shopify-Afterpay JavaScript Snippet (v1.1.5) -->

@@ -1,0 +1,155 @@
+<div class="why_choose_biosphere">
+  <div class="inner_container">
+     {% if section.settings.title != blank %}<h2 class="ttl_replenish">{{ section.settings.title }}</h2>{% endif %}
+     {% if section.settings.content != blank %}<div class="para_dv">{{ section.settings.content }}</div>{% endif %}
+     <div class="biosphere_auto_contnet">
+       {% if section.settings.biosphere_img %}<img src="{{ section.settings.biosphere_img | img_url:'master' }}" alt="{{ section.settings.biosphere_img | handle }}" title="{{ section.settings.biosphere_img | handle }}" />{% endif %}
+       {% if section.settings.biosphere_content != blank %}<div class="bio_sml_cnt">{{ section.settings.biosphere_content }}</div>{% endif %}
+       <div class="biosphere_data">
+         {% for block in section.blocks %}
+           <div class="fetured_itm">
+        <div class="inner_featured_itm">
+        {% if block.settings.bio_image %}
+          <div class="thumb_featured">
+          <img src="{{ block.settings.bio_image | img_url:'master' }}" alt="{{ block.settings.title | handle }}" title="{{ block.settings.title | handle }}" />
+        </div>
+          {% endif %}
+          {% if block.settings.title != blank %}<h3 class="ttl_ttl">{{ block.settings.title }}</h3>{% endif %}
+           {% if block.settings.bio_content != blank %}<div class="cotent_txt">{{ block.settings.bio_content }}</div>{% endif %}
+        </div>
+        </div>
+           {% endfor %}
+       </div>
+       <div class="image_certified_div">
+         <div class="inside_img">
+         {% if section.settings.image %}
+           <div class="image_div">
+           <img src="{{ section.settings.image | img_url:'master' }}" alt="{{ section.settings.image | handle }}" title="{{ section.settings.image | handle }}" />
+         </div>
+         {% endif %}
+         {% if section.settings.image_vegan %}
+         <div class="image_div">
+           <img src="{{ section.settings.image_vegan | img_url:'master' }}" alt="{{ section.settings.image_vegan | handle }}" title="{{ section.settings.image_vegan | handle }}" />
+         </div>
+         {% endif %}
+           {% if section.settings.artificial_color %}
+         <div class="image_div">
+           <img src="{{ section.settings.artificial_color | img_url:'master' }}" alt="{{ section.settings.artificial_color | handle }}" title="{{ section.settings.artificial_color | handle }}" />
+         </div>
+         {% endif %}
+          {% if section.settings.artificial_sweetness %}
+         <div class="image_div">
+           <img src="{{ section.settings.artificial_sweetness | img_url:'master' }}" alt="{{ section.settings.artificial_sweetness | handle }}" title="{{ section.settings.artificial_sweetness | handle }}" />
+         </div>
+         {% endif %}
+         {% if section.settings.image_preservative %}
+         <div class="image_div">
+           <img src="{{ section.settings.image_preservative | img_url:'master' }}" alt="{{ section.settings.image_preservative | handle }}" title="{{ section.settings.image_preservative | handle }}" />
+         </div>
+         {% endif %}
+           {% if section.settings.image_suger %}
+         <div class="image_div">
+           <img src="{{ section.settings.image_suger | img_url:'master' }}" alt="{{ section.settings.image_suger | handle }}" title="{{ section.settings.image_suger | handle }}" />
+         </div>
+         {% endif %}
+         </div>
+         {% if section.settings.btn_ttl != blank %}<a href="{{ section.settings.btn_url }}" class="btn">{{ section.settings.btn_ttl }}</a>{% endif %}
+       </div>
+     </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Why Choose Bioshere",
+    "settings": [{
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type": "header",
+      "content": "Biosphere Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "biosphere_img",
+      "label": "Biosphere Logo Image"
+    },
+    {
+      "type": "richtext",
+      "id": "biosphere_content",
+      "label": "Biosphere Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image of Good Manufacture"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_vegan",
+        "label": "Image of vegan friendly "
+    },
+    {
+      "type": "image_picker",
+      "id": "artificial_color",
+      "label": "Image of Artificial color "
+    },
+    {
+      "type": "image_picker",
+      "id": "artificial_sweetness",
+       "label": "Image of Arificial sweeteners"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_preservative",
+        "label": "Image of Preservative"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_suger",
+      "label": "Image of No suger"
+    },
+    {
+      "type": "text",
+      "id": "btn_ttl",
+      "label": "Button Title",
+      "default": "BUY NOW &amp; SAVE 20%"
+    },
+      {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button URL"
+    }],
+    "blocks": [
+      {
+        "type": "biosphere_block",
+        "name": "Biosphere Block",
+        "settings": [{
+          "type": "image_picker",
+          "id": "bio_image",
+          "label": "Biosphere Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Biosphere Title"
+        },
+        {
+          "type": "richtext",
+          "id": "bio_content",
+          "label": "Biosphere Content"
+        }]
+      }
+    ],
+    "presets": [{
+      "name": "Why Choose Bioshere",
+      "category": "text"
+    }]
+  }
+{% endschema %}

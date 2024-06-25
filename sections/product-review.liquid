@@ -1,0 +1,228 @@
+{{ 'product-review.css' | asset_url | stylesheet_tag }}
+{% assign product = section.settings.product %}
+{% if product.handle == 'magnesium' %}
+{% assign product1 = all_products['7-day-magnesium-trial-7-sachets'] %}
+{%- assign product_schema1 = product1.metafields.product_schema -%}
+  {% endif %}
+  
+{%- assign product_schema = product.metafields.product_schema -%}
+
+
+<div class="product-review">
+  <div class="page-width">
+    {% if section.settings.title != blank %} <h3 class="product-review-title text-center">{{ section.settings.title }}</h3> {% endif %}
+    {% if section.settings.sub_title != blank %}<span class="review_sub_title">{{ section.settings.sub_title }}</span>{% endif %}
+    {% assign ratingval1  = product_schema['th_ratingValue']  | times:1 %}
+    {% assign ratingval2  = product_schema1['th_ratingValue']  | times:1 %}
+
+ {% if ratingval2 !=  0 %}
+      {% assign ratingnumber  = ratingval1 | plus:ratingval2 | divided_by:2.00 | ceil %}
+       {% else %}
+      {% assign ratingnumber  = ratingval1 | ceil %}
+      {% endif %}    
+   
+    {% if section.settings.show_ratingStart %}
+      <div class="star_review text-center">
+        <div class="rating">
+          {% if section.settings.rating == 'one' or ratingnumber == 1 %}
+            <span> {% render 'active_start' %}</span><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span>
+          {% elsif section.settings.rating == 'two' or ratingnumber == 2 %}
+            <span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span
+            ><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span
+            ><span> {% render 'deactive_start' %}</span>
+          {% elsif section.settings.rating == 'three' or ratingnumber == 3 %}
+            <span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span
+            ><span> {% render 'active_start' %}</span><span> {% render 'deactive_start' %}</span
+            ><span> {% render 'deactive_start' %}</span>
+          {% elsif section.settings.rating == 'four' or ratingnumber == 4 %}
+            <span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span
+            ><span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span
+            ><span> {% render 'deactive_start' %}</span>
+          {% else %}
+            <span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span
+            ><span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span
+            ><span> {% render 'active_start' %}</span>
+          {% endif %}            
+        </div>
+         
+        {% if ratingval2 !=  0 %}
+        <p>{{ ratingval1 | plus:ratingval2 | divided_by:2.00 | round:2  }} out of 5 Stars</p>
+       {% else %}
+        <p>{{ ratingval1 }} out of 5 Stars</p>
+          {% endif %}
+      </div>
+    {% endif %}
+    <div class="review_count">
+      <h4 class="text-center">
+          {% assign rating1  = product_schema['th_ratingCount']   %}
+        {% assign rating2  = product_schema1['th_ratingCount']  | times:1 %}
+       
+        {% if template == 'page.new-magnesium' %}
+          {% if rating2 == 0 %}
+            Based on {{ rating1 | plus:80 }} customer reviews
+          {% else %}
+            Based on {{ rating1 | plus:rating2 }} customer reviews
+            {% endif %}
+        {% else %}
+           {{ rating1 | plus:rating2 }} customer ratings
+        {% endif %}
+      </h4>
+    </div>
+    <div class="product-review-wrapper">
+      {% for block in section.blocks %}
+        <div class="product-review-item">
+          <div class="product-review-item-content">
+            <div class="product-review-content text-center">
+              {{ block.settings.text }}
+            </div>
+            <div class="customer_name_wrapper text-center">
+              {% if block.settings.name != blank %} <h3 class="customer_name">{{ block.settings.name }}</h3> {% endif %}
+              <div class="rating">
+                {% if section.settings.rating == 'one' %}
+                  <span> {% render 'active_start' %}</span><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span>
+                {% elsif section.settings.rating == 'two' %}
+                  <span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span
+                  ><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span
+                  ><span> {% render 'deactive_start' %}</span>
+                {% elsif section.settings.rating == 'three' %}
+                  <span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span
+                  ><span> {% render 'active_start' %}</span><span> {% render 'deactive_start' %}</span
+                  ><span> {% render 'deactive_start' %}</span>
+                {% elsif section.settings.rating == 'four' %}
+                  <span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span
+                  ><span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span
+                  ><span> {% render 'deactive_start' %}</span>
+                {% else %}
+                  <span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span
+                  ><span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span
+                  ><span> {% render 'active_start' %}</span>
+                {% endif %}            
+              </div>
+              {% if block.settings.verified_text != blank %} <p class="verified_buyer">{{ block.settings.verified_text }}</p> {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}  
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Product Review",
+    "settings": [
+       {
+        "type":"product",
+        "id":"product",
+        "label":"select product"
+      },
+      {
+        "type":"text",
+        "id":"title",
+        "label":"Title"
+      },
+      {
+        "type" : "text",
+        "id" : "sub_title",
+        "label": "sub title"
+      },
+      {
+        "type": "select",
+        "id": "rating",
+        "label": "Star Rating",
+        "options": [
+          {
+            "value": "one",
+            "label": "One"
+          },
+          {
+            "value": "two",
+            "label": "Two"
+          },
+          {
+            "value": "three",
+            "label": "Three"
+          },
+          {
+            "value": "four",
+            "label": "Four"
+          },
+          {
+            "value": "five",
+            "label": "Five"
+          }
+        ]
+      },
+      {
+        "type" : "checkbox",
+        "id" : "show_ratingStart",
+        "label" : "Show Rating Star",
+        "default": true
+      },
+      {
+        "type" : "text",
+        "id" : "review-label",
+        "label" : "Review"
+      },
+      {
+        "type" : "text",
+        "id" : "star_count",
+        "label" : "Star Count"
+      }
+    ],
+    "blocks":[
+      {
+        "type":"review",
+        "name":"review",
+        "settings":[
+          {
+            "type":"richtext",
+            "id":"text",
+            "label":"Review Text"
+          },
+          {
+            "type":"text",
+            "id":"name",
+            "label":"Name"
+          },
+          {
+            "type": "select",
+            "id": "rating",
+            "label": "Star Rating",
+            "options": [
+              {
+                "value": "one",
+                "label": "One"
+              },
+              {
+                "value": "two",
+                "label": "Two"
+              },
+              {
+                "value": "three",
+                "label": "Three"
+              },
+              {
+                "value": "four",
+                "label": "Four"
+              },
+              {
+                "value": "five",
+                "label": "Five"
+              }
+            ]
+          },
+          {
+            "type":"text",
+            "id":"verified_text",
+            "label":"verified buyer"
+          }
+        ]
+      }
+    ],
+    "presets":[
+      {
+        "name":"Product Review"
+      }
+    ]
+  }
+{% endschema %}

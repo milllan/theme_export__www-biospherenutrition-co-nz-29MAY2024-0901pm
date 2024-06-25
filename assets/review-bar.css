@@ -1,0 +1,37 @@
+.review-bar-items-content .customer_name_wrapper .rating {display: flex;align-items: center;}
+.review-bar-items-content .customer_name_wrapper .rating span svg {width: 24px;height: 24px;display: block;}
+.review-bar-items {display: flex;flex-wrap: wrap;width: 100%;max-width: 1310px;margin: 0 auto;}
+.review-bar-items .review-image {width: 100%;max-width: 200px;}
+.review-bar-items .review-bar-items-content {width: 100%;max-width: calc(100% - 200px);padding-left: 50px;}
+.review-bar {padding: 70px 0 50px 0;}
+.review-bar-items .review-bar-items-content .review-text p {font-size: 28px;line-height: 34px;font-family: 'Figtree';}
+.review-bar-items-content .customer_name_wrapper {display: flex;align-items: center;column-gap: 30px;padding-top: 20px;}
+.review-bar-items-content span.customer_name {font-size: 30px;font-family: 'Figtree';font-weight: bold;}
+.review-bar .page-width, .custom-featured-product.page-width {max-width: 1310px;}
+ 
+/*  */
+.review-bar-wrapper .slick-dots li button:before {border: none;}
+.review-bar-wrapper .slick-dots li button {background: rgba(56,65,81,0.3);border-radius: 50%;} 
+.review-bar-wrapper .slick-dots li.slick-active button:before {background: rgba(56,65,81,1);}
+.review-bar-wrapper .slick-dots {padding-top: 20px;}
+.review-bar-wrapper .slick-dots li button:hover:before {background-color: rgba(56,65,81,1);}
+.new_review .review-bar-items .review-bar-items-content{max-width: 100%;}
+.review-text .customer_name {display: none;}
+@media screen and (max-width: 991px) {
+  .review-bar-items .review-bar-items-content .review-text p {font-size: 22px;line-height: 32px;}
+}
+@media screen and (max-width: 768px) {
+  .review-bar-items .review-bar-items-content , .review-bar-items .review-image{max-width: 100%;padding: 0;}
+  .review-bar-items-content .customer_name_wrapper {justify-content: center;}
+  .review-bar-items .review-bar-items-content .review-text p {text-align: center;}
+  .review-bar-items .review-image{display: flex;justify-content: center;}
+  .review-bar-items .review-bar-items-content {display: flex;flex-direction: column-reverse;}
+  .review-bar-items-content .customer_name_wrapper {padding-bottom: 20px;}
+  .review-bar-items-content span.customer_name {text-align: center;order: 1;width: 100%;}
+  .review-bar-items-content .customer_name_wrapper .rating {order: 0;}
+  .review-bar-items-content .customer_name_wrapper {flex-wrap: wrap;}
+  .review-bar-items-content .customer_name_wrapper .customer_name {display: none;}
+  .review-text .customer_name {display: inline-block;}
+  .review-bar-items .review-bar-items-content .review-text p {font-size: 16px;line-height: 28px;}
+   .review-bar-items-content span.customer_name {font-size: 22px;}
+}

@@ -1,0 +1,129 @@
+<div class="magnesium_max-strength no-max-strength">
+  <div class="inner_container">
+    {% if section.settings.title != blank %}<h2 class="ttl_replenish">{{ section.settings.title }}</h2>{% endif %}
+     {% if section.settings.subtitle != blank %}<span class="ttl_sub">{{ section.settings.subtitle }}</span>{% endif %}
+    {% if section.settings.content != blank %}{{ section.settings.content }}{% endif %}
+   {% if section.settings.image %} 
+    <div class="inner_content">
+    <div class="image_effeciency">
+      <img src="{{ section.settings.image | img_url:'master' }}" alt="iamge" title="image" />
+    </div>
+     <div class="text_content">
+             <div class="inner_first">
+               <figure class="arrow"><img src="{{ '1.png' | asset_url }}"></figure>
+              <h3 class="ttl_one">{{ section.settings.first_title}}</h3>
+              <div class="description">{{  section.settings.first_content }}</div>
+             </div>
+              <div class="inner_second">
+              <figure class="arrow"><img src="{{ '2.png' | asset_url }}"></figure>
+              <h3 class="ttl_two">{{ section.settings.second_title}}</h3>
+              <div class="description">{{ section.settings.second_content  }}</div>
+              </div>
+              <div class="inner_third">
+             <figure class="arrow"><img src="{{ '3.png' | asset_url }}"></figure>
+              <h3 class="ttl_three">{{ section.settings.third_title}}</h3>
+              <div class="description">{{ section.settings.third_content}}</div>
+              </div>
+              <div class="inner_four">
+               <figure class="arrow"><img src="{{ '4.png' | asset_url }}"></figure>
+                <h3 class="ttl_three">{{ section.settings.four_title}}</h3>
+                <div class="description">{{ section.settings.four_content}}</div>
+              </div>
+              <div class="inner_five">
+               <figure class="arrow"><img src="{{ '5.png' | asset_url }}"></figure>
+                <h3 class="ttl_three">{{ section.settings.five_title}}</h3>
+                <div class="description">{{ section.settings.five_content}}</div>
+              </div>
+     </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% comment %}
+<style>
+  .text_content .ttl_one, .text_content .ttl_two, .text_content .ttl_three {position:relative;}
+  .text_content .ttl_one:after{position:absolute;content:url({{'first_ttl_arrow.svg' | asset_url}});top:0%;max-width:100px;max-height:100px;}
+  
+</style>
+{% endcomment %}
+{% schema %}
+  {
+    "name": "Nitric Oxide Max Strength",
+    "settings": [{
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Sub Title"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+   {
+      "type": "text",
+      "id": "first_title",
+      "label": "First Title"
+    },
+    {
+      "type": "richtext",
+      "id": "first_content",
+      "label": "First Content"
+    },
+     {
+      "type": "text",
+      "id": "second_title",
+      "label": "Second Title"
+    },
+    {
+      "type": "richtext",
+      "id": "second_content",
+      "label": "Second Content"
+    },
+    {
+      "type": "text",
+      "id": "third_title",
+      "label": "Third Title"
+    },
+    {
+      "type": "richtext",
+      "id": "third_content",
+      "label": "Third Content"
+    },
+    {
+      "type": "text",
+      "id": "four_title",
+      "label": "Fourth Title"
+    },
+    {
+      "type": "richtext",
+      "id": "four_content",
+      "label": "Fourth Content"
+    },
+          {
+      "type": "text",
+      "id": "five_title",
+      "label": "Fifth Title"
+    },
+    {
+      "type": "richtext",
+      "id": "five_content",
+      "label": "Fifth Content"
+    }
+    
+    ],
+    "presets": [{
+       "name": "Nitric Oxide Max Strength",
+      "category": "text"
+    }]
+  }
+{% endschema %}

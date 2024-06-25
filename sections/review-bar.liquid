@@ -1,0 +1,163 @@
+{{ 'review-bar.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .review-bar{background: {{ section.settings.section_bg }};}
+  .review-bar-items .review-bar-items-content .review-text p, .review-bar-items-content span.customer_name{color:{{ section.settings.text_color }};}
+  .review-bar-items .review-bar-items-content .review-text p{text-align: {{ section.settings.banner_text_position }};}
+  .center .customer_name_wrapper{justify-content: center;}
+  .right .customer_name_wrapper{justify-content: flex-end;}
+</style>
+    {% assign position = section.settings.banner_text_position %}
+        {% assign position_class = 'center' %}
+         {% if position == 'left' %}
+          {% assign position_class = 'left' %}
+        {% elsif position == 'right' %}
+          {% assign position_class = 'right' %}
+        {% endif %}
+<div class="review-bar {% if section.settings.review_bar %}new_review{% endif %}">
+  <div class="page-width">
+    <div class="review-bar-wrapper review-bar-slider">
+      {% for block in section.blocks %}
+        <div class="review-bar-row bar-{{ block.id }}">
+          <div class="review-bar-items">
+          {% if block.settings.image != blank %}
+            <div class="review-image">
+              <img src="{{ block.settings.image | img_url: 'master' }}" />
+            </div>
+          {% endif %}  
+          <div class="review-bar-items-content {{ position_class }}">
+            {% if block.settings.review_text != blank %} <div class="review-text">{{ block.settings.review_text }} <span class="customer_name">{{ block.settings.name }}</span></div> {% endif %}
+            <div class="customer_name_wrapper">
+             {% if block.settings.name != blank %} <span class="customer_name">{{ block.settings.name }}</span> 
+              <div class="rating">
+                {% if block.settings.rating == 'one' %}
+                  <span> {% render 'active_start' %}</span><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span>
+                {% elsif block.settings.rating == 'two' %}
+                  <span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span
+                  ><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span
+                  ><span> {% render 'deactive_start' %}</span>
+                {% elsif block.settings.rating == 'three' %}
+                  <span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span
+                  ><span> {% render 'active_start' %}</span><span> {% render 'deactive_start' %}</span
+                  ><span> {% render 'deactive_start' %}</span>
+                {% elsif block.settings.rating == 'four' %}
+                  <span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span
+                  ><span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span
+                  ><span> {% render 'deactive_start' %}</span>
+                {% else %}
+                  <span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span
+                  ><span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span
+                  ><span> {% render 'active_start' %}</span>
+                {% endif %}            
+              </div>
+              {% endif %}
+            </div>  
+          </div>
+          </div>
+        </div>
+      {% endfor %}  
+    </div>
+  </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Review Bar",
+    "settings": [
+      {
+        "type": "color",
+        "id": "section_bg",
+        "label": "Background"
+    },
+      {
+        "type" : "color",
+        "id" : "text_color",
+        "label" : "Text Color"
+      },
+      {
+        "type": "checkbox",
+        "id" : "review_bar",
+        "label" : "Review Bar"
+      },
+      {
+        "type" : "select",
+        "id" : "banner_text_position",
+        "options" :[
+          {
+            "value" :"center",
+            "label" : "center"
+          },
+          {
+            "value" : "left",
+            "label": "left"
+          },
+          {
+            "value":"right",
+            "label" : "right"
+          }
+        ],
+      "default": "left",
+      "label": "Choose any possition"
+      }
+    ],
+    "blocks":[
+      {
+        "type":"review",
+        "name":"review",
+        "settings":[
+          {
+            "type":"image_picker",
+            "id":"image",
+            "label":"Image"
+          },
+          {
+            "type":"richtext",
+            "id":"review_text",
+            "label":"Review text"
+          },
+          
+          {
+            "type":"text",
+            "id":"name",
+            "label":"Review Name"
+          },
+          
+          {
+            "type": "select",
+            "id": "rating",
+            "label": "Star Rating",
+            "options": [
+              {
+                "value": "one",
+                "label": "One"
+              },
+              {
+                "value": "two",
+                "label": "Two"
+              },
+              {
+                "value": "three",
+                "label": "Three"
+              },
+              {
+                "value": "four",
+                "label": "Four"
+              },
+              {
+                "value": "five",
+                "label": "Five"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "presets":[
+      {
+        "name":"Review Bar"
+      }
+    ]
+  }
+{% endschema %}

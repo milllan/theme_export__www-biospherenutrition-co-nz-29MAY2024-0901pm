@@ -1,0 +1,224 @@
+{{ 'custom-featured-product.css' | asset_url | stylesheet_tag }}
+
+<div class="custom-featured-product">
+  <div class="page-width">
+    <div class="custom-featured-product-wrapper">
+      {% for block in section.blocks %}
+        {% assign product = block.settings.product %}
+        {%- assign current_variant = product.selected_or_first_available_variant -%}
+         {% assign dis_price =  product.first_available_variant.price | times:block.settings.discount | divided_by:100%}
+        <div class="featured-product-wrapper text-center featured--{{ forloop.index }}">
+          <div class="product-item">
+            {% if block.settings.top_badge != blank %} <div class="top-badge text-center"><span>{{ block.settings.top_badge }}</span></div> {% endif %}
+            <div class="price-off text-right"> 
+                <span>{{ block.settings.discount }} %  off</span>                    
+            </div>
+            <div class="tubs-text text-center">
+               {% if block.settings.tube_title != blank %} <h4 class="text-center">{{ block.settings.tube_title }}</h4> {% endif %}
+               {% if block.settings.saving_text != blank %} <p class="saving_text text-center">Instant Saving {{ dis_price | money}}</p> {% endif %}
+            </div>
+            {% if product.featured_image != blank %}
+              <div class="product_featured_img">
+              {% if block.settings.image != blank %}
+                <img src="{{ block.settings.image | img_url: 'master' }}" />
+              {% else %}
+                <img src="{{ product.featured_image | img_url: 'master' }}" />
+              {% endif %}  
+              </div>
+            {% endif %}
+            <div class="product__price">
+             
+              <h4 class="product_discount_price text-center">{{ product.first_available_variant.price | minus:dis_price  | money }}</h4>
+              <p class="text-center">Per Bottle</p>  
+              <span class="product_compare_price text-center">REGULARLY {{ product.first_available_variant.price | money }}</span>
+              {% if template == 'page.new-magnesium' %}
+              <fieldset>
+                <legend>Choose your flavour</legend>
+                {% endif %}
+                    <div class="variant_drp_dwn">
+                
+          
+                        {% assign colorOptionIndex = -1 %}
+                        
+                        {% for option in product.options %}
+                        {% if option contains 'Choose Flavour' or option contains 'choose flavour' %}
+                        {% assign colorOptionIndex = forloop.index0 %}
+                        {% break %}
+                        {% endif %}
+                        {% endfor %}
+              
+                        {% assign forloop_index = forloop.index %}
+                        {% for i in (1..forloop_index) %}
+                          
+                          <div class="select_box_inr" data-id="{{ product.selected_or_first_available_variant.id }}">
+                              <h6>Tub {{ i }} Flavour</h6>
+                          <select class="main_val">
+                              {% if colorOptionIndex >= 0 %}
+                              {% for variant in product.variants %}
+                              {% assign colorOptionValue = variant.options[colorOptionIndex] %}
+                              {% if colorOptionValue != blank %}
+                              <option value="{{ variant.id }}" class="{{ colorOptionValue }}" data-id="{{ colorOptionValue | handle }}">{{ colorOptionValue }}</option>
+                              {% endif %}
+                              {% endfor %}
+                              {% endif %}
+                          </select>
+                          </div>
+                        {% endfor %}
+                        </div>
+                     {% if template == 'page.new-magnesium' %}</fieldset>   {% endif %}
+            </div>
+            {% comment %}
+            <div class="custom_product_add">
+              <button class="custom_product_add_wrapper" data-variant-id="{{ product.first_available_variant.id }}" data-qty="{{ forloop.index }}">
+                <span>{% render 'icon-blue-truck' %}</span>
+                <span>
+                  {% unless current_variant.available %}
+                    {{ 'products.product.sold_out' | t }}
+                  {% else %}
+                    {{ 'products.product.add_to_cart' | t }}
+                  {% endunless %}
+                </span>
+              </button>
+            </div>
+            {% endcomment %}
+            
+            <div class="custom_product_add">
+              <button class="custom_product_add_button" data-variant-id="{{ product.first_available_variant.id }}" data-qty="{{ forloop.index }}">
+                <span>{% render 'icon-blue-truck' %}</span>
+                <span>
+                  {% unless current_variant.available %}
+                    {{ 'products.product.sold_out' | t }}
+                  {% else %}
+                    {{ 'products.product.add_to_cart' | t }}
+                  {% endunless %}
+                </span>
+              </button>
+            </div>
+            {% if block.settings.money_back_text != blank %}
+              <div class="money_back_guarantee">
+                <span>{{ block.settings.money_back_text }}</span>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}  
+    </div>
+  </div>
+</div>
+<script>
+
+$(document).ready(function() {
+    $('.main_val').change(function () {
+        var select = $(this).find(':selected').attr("data-id");
+        if (select == 'lemon-lime') {
+            $(this).css('color', "#68a037");
+        } else {
+            $(this).css('color', "#d2593e");
+        }
+    });
+});
+
+</script>
+<script>
+  $(document).ready(function() {
+
+    $('.custom_product_add_button').click(function() {
+       var dataToSend = [];
+      var tubnumber =  $(this).parents(".featured-product-wrapper").find(".variant_drp_dwn .select_box_inr").length;
+        $(this).parents(".featured-product-wrapper").find(".variant_drp_dwn .select_box_inr").each(function(){
+          var main_id = $(this).find('select').val();
+          dataToSend.push({id: main_id, qty: 1});
+        })
+
+      
+         jQuery.ajax({
+        type: 'POST',
+        url: '/cart/clear.js',
+        dataType: 'json',
+        success: function () {            
+            $.ajax({
+            type: 'POST',
+            url: '/cart/add.js',
+            data: { items: dataToSend },
+            dataType: 'json',
+            success: function(response) {
+                console.log('Success:', response);
+                if(tubnumber == 1){
+            window.location.href = '/checkout?discount=MAG20DEAL';
+        }
+      else if(tubnumber == 2 ){
+          window.location.href = '/checkout?discount=MAG25DEAL';
+      }
+  else if(tubnumber == 3){
+    window.location.href = '/checkout?discount=MAG30DEAL';
+  }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+                // Handle error response here, like showing an error message
+            }
+        });
+        }
+    });
+     
+    
+    
+      
+    });
+});
+</script>
+{% schema %}
+  {
+    "name": "Custom featured product",
+    "settings": [],
+    "blocks":[
+      {
+        "type":"product",
+        "name":"product",
+        "settings":[
+          {
+            "type":"product",
+            "id":"product",
+            "label":"Product"
+          },
+          {
+            "type":"text",
+            "id":"top_badge",
+            "label":"Top badge"
+          },
+          {
+            "type":"text",
+            "id":"tube_title",
+            "label":"Tube title"
+          },          
+          {
+            "type":"text",
+            "id":"saving_text",
+            "label":"Saving text"
+          },
+          {
+            "type":"number",
+            "id":"discount",
+            "label":"Discount percentage",
+             "default": 20
+          },
+          {
+            "type":"image_picker",
+            "id":"image",
+            "label":"Image"
+          },
+          {
+            "type":"text",
+            "id":"money_back_text",
+            "label":"Money back text"
+          }
+        ]
+      }
+    ],
+    "presets":[
+      {
+        "name":"custom-featured-product"
+      }
+    ]
+  }
+{% endschema %}

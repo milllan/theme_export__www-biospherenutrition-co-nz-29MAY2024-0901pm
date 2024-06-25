@@ -1,0 +1,206 @@
+<div class="list_grid_combined" id="list--{{ section.id }}">
+  <div class="article_container" id="blood_pressure_is_harmful">
+    <div class="list_grid_title">
+      {% if section.settings.section_title  %}
+      <h3 class="same_size_title">{{ section.settings.section_title }}</h3>
+      {% endif %}
+      {% if section.settings.section_content  %}
+      <div>{{ section.settings.section_content }}</div>
+      {% endif %}
+      {% if section.settings.section_content_second %}
+      <div>{{ section.settings.section_content_second }}</div>
+      {% endif %}
+    </div>
+    <div class="grid_list_main">
+      {% if section.settings.grid_list_title != blank %}
+      <h5 class="grid_list">{{ section.settings.grid_list_title }}</h5>
+      {% endif %}
+      <div class="list_section">
+        {% if section.settings.list_title != blank %}
+        <h5 class="grid_list_inner_title">{{ section.settings.list_title }}</h5>
+        {% endif %}
+        {% if section.settings.lsit_sub_title != blank %}
+        <div class="list_content_first">
+          <div class="list_content_first_inner">
+            {% if section.settings.lsit_sub_title  %}
+            <p class="grid_list_list_title">{{ section.settings.lsit_sub_title }}</p>
+            {% endif %}
+            <div class="row">
+              <div class="col-6">
+                {% if section.settings.list_one %}
+                <div class="cause_listing">{{ section.settings.list_one }}</div>
+                {% endif %}
+              </div>
+              <div class="col-6">
+                {% if section.settings.list_second %}
+                <div class="cause_listing">{{ section.settings.list_second }}</div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+      <div class="grid_section">
+        {% if section.settings.grid_list_type == 'list' %}
+        {% for block in section.blocks %}
+        <div class="list_view">
+        	<div class="row">
+              {% if block.settings.block_image %}
+              <div class="block_image">
+              	<img src="{{ block.settings.block_image | img_url:'master' }}"/>
+              </div>
+              {% endif %}
+              <div class="block_content">
+                {% if block.settings.block_title %}
+                <p class="block_title">{{ block.settings.block_title }}</p>
+                {% endif %}
+                {% if block.settings.block_content %}
+                <div>{{ block.settings.block_content }}</div>
+                {% endif %}
+              </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="row grid_granp_parent">
+          {% for block in section.blocks %}
+          <div class="col-6 grid_par_main">
+            <div class="grid_parent">
+              <div class="row">
+                {% if block.settings.block_image  %}
+                <div class="block_image">
+                  <img src="{{ block.settings.block_image | img_url:'master' }}"/>
+                </div>
+                {% endif %}
+                <div class="block_content">
+                  {% if block.settings.block_title %}
+                  <p class="block_title">{{ block.settings.block_title }}</p>
+                  {% endif %}
+                  {% if block.settings.block_content %}
+                  <div>{{ block.settings.block_content }}</div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  #list--{{ section.id }}{
+    background:{{section.settings.section_color}};
+  }
+  .grid_section .block_content a{
+  	text-decoration:underline;
+  }
+</style>
+{% schema %}
+  {
+    "name": "list grid combined",
+    "settings": [
+		{	
+			"type":"color",
+			"id":"section_color",
+			"label":"Choose Section Color"
+		},
+		{
+			"type":"text",
+			"id":"section_title",
+			"label":"Add title"
+		},
+		{
+			"type":"richtext",
+			"id":"section_content",
+			"label":"Add section_content"
+		},
+		{
+			"type":"richtext",
+			"id":"section_content_second",
+			"label":"Add section content"
+		},
+		{
+			"type":"header",
+			"content":"grid list section"
+		},
+		{
+			"type":"text",
+			"id":"grid_list_title",
+			"label":"Add grid list title"
+		},
+		{
+			"type":"text",
+			"id":"list_title",
+			"label":"Add list title"
+		},
+		{
+			"type":"text",
+			"id":"lsit_sub_title",
+			"label":"Add list sub title"
+		},
+		{
+			"type":"richtext",
+			"id":"list_one",
+			"label":"Add first list"
+		},
+		{
+			"type":"richtext",
+			"id":"list_second",
+			"label":"Add second list"
+		},
+		{
+			"type":"select",
+			"id":"grid_list_type",
+			"label":"Choose style",
+			"options":[
+				{
+					"value":"list",
+					"label":"List"
+				},
+				{
+					"value":"grid",
+					"label":"Grid"
+				}
+			]
+		}
+	],
+	"blocks":[
+		{
+			"type":"image_with_text",
+			"name":"grid block",
+			"settings":[
+				{
+					"type":"image_picker",
+					"id":"block_image",
+					"label":"Add image"
+				},
+				{
+					"type":"text",
+					"id":"block_title",
+					"label":"Add block title"
+				},
+				{
+					"type":"richtext",
+					"id":"block_content",
+					"label":"Add block content"
+				}
+			]
+		}
+	],
+	"presets":[
+		{
+			"name":"list grid combined"
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

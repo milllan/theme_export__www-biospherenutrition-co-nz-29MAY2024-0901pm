@@ -1,0 +1,110 @@
+<div class="wrp_quote" style="padding-top:{{ section.settings.padding_top }}px;padding-bottom:{{ section.settings.padding_bottom}}px;">
+    <div class="inner_container">
+          <h4 class="top_text" style="color:{{ section.settings.tt_color}}"> {{ section.settings.top_text }} </h4> 
+          <h4 class="bottom_text" style="color:{{ section.settings.bt_color}}">{{ section.settings.bottom_text }} </h4>
+
+    </div>
+</div>
+
+<style>
+.wrp_quote .inner_container h4 {
+        position:relative; 
+        font-family: 'DHARMA GOTHIC E';
+        font-size: 80px;
+        line-height: 90px;
+        color: #5ba2d6;
+        letter-spacing: -1px;     
+    }
+  .wrp_quote .inner_container .top_text:after {
+        position:absolute;
+        content: '';
+        background: url(https://cdn.shopify.com/s/files/1/0473/6679/9525/files/Quotes_-_1_1223.png?v=1671000580);
+        width: 50px;
+        height: 50px;
+        margin-right: 15px;
+        background-position: center center;
+        background-size: contain;
+        background-repeat: no-repeat;    
+        top: 0px;
+        left: -7%;
+        }
+    .wrp_quote .inner_container .bottom_text:after {
+        position:absolute;
+        content: '';
+        background: url(https://cdn.shopify.com/s/files/1/0473/6679/9525/files/Quotes_-_1_1223_copy1.png?v=1671000580);
+
+        width: 50px;
+        height: 50px;
+        margin-left: 15px;
+        background-position: center center;
+        background-size: contain;
+        background-repeat: no-repeat;    
+     bottom: 0px;
+    right: -7%;
+        }
+.wrp_quote .inner_container .bottom_text {text-align:right;}
+
+</style>
+
+{% schema %}
+  {
+    "name": "Sleep quote",
+    "settings": [
+        {
+          "type" : "text",
+          "id" : "top_text",
+          "label" : "First line"
+        },
+       {
+          "type" : "color_background",
+          "id" : "tt_color",
+          "label" : "First line text color"
+        },
+        {
+          "type" : "text",
+          "id" : "bottom_text",
+          "label" : "Second line"
+        },
+       {
+          "type" : "color_background",
+          "id" : "bt_color",
+          "label" : "Second line text color"
+        },
+      {
+        "type" : "header",
+        "content"  : "Spacing"
+      },
+        {
+              "type": "range",
+              "id": "padding_top",
+              "min": 10,
+              "max": 200,
+              "step": 5,
+              "unit": "px",
+              "label": "Top padding",
+              "default": 25
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom",
+            "min": 10,
+            "max": 200,
+            "step": 5,
+            "unit": "px",
+            "label": "Bottom padding",
+            "default": 25
+        }
+    ],
+    "presets" : [
+      {
+        "name" : "Sleep quote"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

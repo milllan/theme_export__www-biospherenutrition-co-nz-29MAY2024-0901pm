@@ -1,0 +1,117 @@
+{%- include 'benefite' , page: 'nitric-oxide' -%}
+{% schema %}
+  {
+    "name": "Benefit",	
+    "settings": [
+	  {
+		"type":"color",
+		"label":"Select background color",
+		"id":"bg_color",
+		"default":"#000e21"
+	  },
+	  {
+		"type":"text",
+		"label":"Enter title",
+		"id":"title",
+		"default":"Astaxanthin Benefits"
+	  },
+	  {
+		"type":"color",
+		"label":"Select title color",
+		"id":"color_t",
+		"default":"#ececec"
+	  },
+	  {
+		"type":"richtext",
+		"label":"Enter detail",
+		"id":"detail",
+		"default":"<p>Of the 700 carotenoids discovered in nature so far, Astaxanthin has proven to be one of the most powerful. The potential in human health is growing as we learn more about how antioxidants play a role in our well-being.</p>"
+	  },
+	  {
+		"type":"color",
+		"label":"select detail text color",
+		"id":"color_d",
+		"default":"#052e4b"
+	  },
+	  {
+		"type":"header",
+		"content":"Block part"
+	  },
+	  {
+		"type":"color",
+		"label":"select block title text color",
+		"id":"color_bt",
+		"default":"#00a1ae"
+	  },
+	  {
+		"type":"color",
+		"label":"select block detail text color",
+		"id":"color_bd",
+		"default":"#ffffff"
+	  },
+	  {
+		"type":"header",
+		"content":"reference Part"
+	  },
+	  {
+		"type":"richtext",
+		"id":"re_detail",
+		"label":"Enter detail"
+	  },
+	  {
+		"type":"text",
+		"id":"re_btn_title",
+		"label":"Enter button title"
+	  },
+	  {
+		"type":"url",
+		"id":"re_btn_link",
+		"label":"Provide button link"
+	  }
+	],
+	"blocks":[
+		{
+		  "type":"text",
+		  "name":"Image block",
+		  "settings":[
+			{
+			  "type":"image_picker",
+			  "label":"Upload image 142x157",
+			  "id":"image"
+			},
+			{
+			  "type":"text",
+			  "label":"Enter title",
+			  "id":"title"
+			},
+			{
+			  "type":"richtext",
+			  "label":"Enter detail",
+			  "id":"detail"
+			},
+			{
+			  "type":"url",
+			  "label":"Provide link",
+			  "id":"link"
+			}
+		  ]
+		},{
+		  "type":"text-border",
+		  "name":"Text with border block",
+		  "settings":[
+			{
+			  "type":"richtext",
+			  "label":"Enter title",
+			  "id":"title"
+			}
+		  ]
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

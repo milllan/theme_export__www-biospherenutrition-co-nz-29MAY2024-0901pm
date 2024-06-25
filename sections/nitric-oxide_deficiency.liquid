@@ -1,0 +1,252 @@
+<div class="megnesium_deficiency" style="background: url({{ section.settings.bg_image | img_url:'master' }}) no-repeat scroll center; background-size: cover;">
+  <div class="inner_megnesium_def">
+     {% if section.settings.title != blank %}<h2 class="ttl_replenish">{{ section.settings.title }}</h2>{% endif %}
+    {% if section.settings.subtitle != blank %}<span class="ttl_sub">{{ section.settings.subtitle }}</span>{% endif %}
+    {% if section.settings.content != blank %}{{ section.settings.content }}{% endif %}
+    <div class="factor_div wrp-block">
+      {% for i in (1..6) %}
+        {% capture block_title %}block_title_{{ i }}{% endcapture %}
+        {% assign title = section.settings[block_title] %}
+        {% capture block_content %}block_content_{{ i }}{% endcapture %}
+        {% assign content = section.settings[block_content] %}
+        <div class="factor_item">
+          <div class="factor_inner_div">
+            {% if title != blank %}<h3>{{ title }}</h3>{% endif %}
+        {% if content != blank %}<p>{{ content }}</p>{% endif %}
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="mineral_uses">
+      {% if section.settings.mineral_ttl != blank %}<span class="ttl_sub">{{ section.settings.mineral_ttl }}</span>{% endif %}
+       {% if section.settings.content_mineral != blank %}{{ section.settings.content_mineral }}{% endif %}
+       {% if section.settings.ttl != blank %}<span class="small_ttl">{{ section.settings.ttl }}</span>{% endif %}
+       <div class="inner_mineral_uses">  
+         {% for i in(1..9) %}
+           {% capture blc_ttl %}blc_ttl_{{ i }}{% endcapture %}
+        {% assign ttl = section.settings[blc_ttl] %}
+        {% capture blc_img %}blc_img_{{ i }}{% endcapture %}
+        {% assign img = section.settings[blc_img] %}
+         {% if ttl != blank and img != blank  %} 
+         <div class="fetured_itm">
+        <div class="inner_featured_itm">
+        {% if img %}
+          <div class="thumb_featured">
+          <img src="{{ img | img_url:'master' }}" alt="{{ ttl | handle }}" title="{{ ttl | handle }}" />
+        </div>
+          {% endif %}
+          {% if ttl != blank %}<h3 class="ttl_ttl">{{ ttl }}</h3>{% endif %}
+        </div>
+        </div>
+          {% endif %}
+           {% endfor %}
+       </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Nitric oxide Deficiency",
+    "settings": [{
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Sub Title"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type": "header",
+      "content": "Factor of Nitric oxide Deficiency"
+    },
+    {
+      "type": "text",
+      "id": "block_title_1",
+      "label": "Blcok Title 1"
+    },
+    {
+      "type": "text",
+      "id": "block_content_1",
+      "label": "Blcok Content 1"
+    },
+    {
+      "type": "text",
+      "id": "block_title_2",
+      "label": "Blcok Title 2"
+    },
+    {
+      "type": "text",
+      "id": "block_content_2",
+      "label": "Blcok Content 2"
+    },
+    {
+      "type": "text",
+      "id": "block_title_3",
+      "label": "Blcok Title 3"
+    },
+    {
+      "type": "text",
+      "id": "block_content_3",
+      "label": "Blcok Content 3"
+    },
+          {
+      "type": "text",
+      "id": "block_title_4",
+      "label": "Blcok Title 4"
+    },
+    {
+      "type": "text",
+      "id": "block_content_4",
+      "label": "Blcok Content 4"
+    },
+    {
+      "type": "text",
+      "id": "block_title_5",
+      "label": "Blcok Title 5"
+    },
+    {
+      "type": "text",
+      "id": "block_content_5",
+      "label": "Blcok Content 5"
+    },
+    {
+      "type": "text",
+      "id": "block_title_6",
+      "label": "Blcok Title 6"
+    },
+    {
+      "type": "text",
+      "id": "block_content_6",
+      "label": "Blcok Content 6"
+    },
+    {
+      "type": "header",
+      "content": "Mineral Uses"
+    },
+    {
+      "type": "text",
+      "id": "mineral_ttl",
+      "label": "Mineral uses Title"
+    },
+    {
+      "type": "richtext",
+      "id": "content_mineral",
+      "label": "Mineral uses Content"
+    },
+    {
+      "type": "header",
+      "content": "Optimal magnesium Level"
+    },
+    {
+      "type": "text",
+      "id": "ttl",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "blc_ttl_1",
+      "label": "Block Title 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "blc_img_1",
+      "label": "Block Image 1"
+    },
+    {
+      "type": "text",
+      "id": "blc_ttl_2",
+      "label": "Block Title 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "blc_img_2",
+      "label": "Block Image 2"
+    },
+    {
+      "type": "text",
+      "id": "blc_ttl_3",
+      "label": "Block Title 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "blc_img_3",
+      "label": "Block Image 3"
+    },
+    {
+      "type": "text",
+      "id": "blc_ttl_4",
+      "label": "Block Title 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "blc_img_4",
+      "label": "Block Image 4"
+    },
+    {
+      "type": "text",
+      "id": "blc_ttl_5",
+      "label": "Block Title 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "blc_img_5",
+      "label": "Block Image 5"
+    },
+    {
+      "type": "text",
+      "id": "blc_ttl_6",
+      "label": "Block Title 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "blc_img_6",
+      "label": "Block Image 6"
+    },
+    {
+      "type": "text",
+      "id": "blc_ttl_7",
+      "label": "Block Title 7"
+    },
+    {
+      "type": "image_picker",
+      "id": "blc_img_7",
+      "label": "Block Image 7"
+    },
+    {
+      "type": "text",
+      "id": "blc_ttl_8",
+      "label": "Block Title 8"
+    },
+    {
+      "type": "image_picker",
+      "id": "blc_img_8",
+      "label": "Block Image 8"
+    },
+    {
+      "type": "text",
+      "id": "blc_ttl_9",
+      "label": "Block Title 9"
+    },
+    {
+      "type": "image_picker",
+      "id": "blc_img_9",
+      "label": "Block Image 9"
+    }],
+    "presets": [{
+      "name": "Nitric oxide Deficiency",
+      "category": "text"
+    }]
+  }
+{% endschema %}

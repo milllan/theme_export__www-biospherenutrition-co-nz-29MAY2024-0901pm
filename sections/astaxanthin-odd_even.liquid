@@ -1,0 +1,95 @@
+{%- include 'as-ma-odd_even' -%}
+{% schema %}
+  {
+    "name": "Section",
+    "settings": [],
+	"blocks":[
+	  {
+		"type":"image_with_text",
+		"name":"Image and text",
+		"settings":[
+			{
+			  "type":"header",
+			  "content":"Image part"
+			},
+			{
+			  "type":"image_picker",
+			  "label":"Upload image",
+			  "id":"image"
+			},
+			{
+			  "type":"image_picker",
+			  "label":"Upload background image for above image",
+			  "id":"bg_image"
+			},
+			{
+			  "type":"checkbox",
+			  "label":"Show image overlay",
+			  "id":"bg_image_overlay"
+			},
+            {
+              "type": "range",
+              "id": "bg_image_o",
+              "label":"Background image Opacity",
+              "min": 0,
+              "max": 100,
+              "step": 1,
+              "unit": "%",
+              "default": 40
+            },
+			{
+			  "type":"header",
+			  "content":"Text part"
+			},
+			{
+			  "type":"checkbox",
+			  "id":"text_op_right",
+			  "label":"Text opsition right",
+			  "default":true
+			},				
+			{
+			  "type":"textarea",
+			  "id":"title",
+			  "label":"Enter title"
+			},
+			{
+			  "type":"richtext",
+			  "id":"description",
+			  "label":"Enter detail"
+			},
+			{
+			  "type":"text",
+			  "id":"btn_title",
+			  "label":"Enter button title"
+			},
+			{
+			  "type":"url",
+			  "id":"btn_link",
+			  "label":"provide button link"
+			},
+			{
+			  "type":"image_picker",
+			  "id":"text_image",
+			  "label":"Text background image"
+			},
+            {
+              "type": "range",
+              "id": "text_image_o",
+              "label":"Background image opacity",
+              "min": 0,
+              "max": 100,
+              "step": 1,
+              "unit": "%",
+              "default": 40
+            }
+        ]
+	  }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

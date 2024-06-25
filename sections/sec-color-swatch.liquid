@@ -1,0 +1,53 @@
+{%- if section.blocks.size > 0 -%}
+<style type="text/css">
+	{%- for block in section.blocks -%}
+  .cosw_{{ block.settings.title | handleize }} { 
+    {%- if block.settings.color != blank and block.settings.show_img != true-%}
+    background-color: {{ block.settings.color }} !important;
+    {%- endif -%}
+    {%- if block.settings.image != blank and block.settings.show_img == true-%}
+    background-image : url({{ block.settings.image | img_url:'100x' }}) !important;
+    {%- endif -%}
+  }
+	{%- endfor -%}</style>
+{%- endif -%}
+{% schema %}
+  {
+    "name": "Color Swatch",
+    "settings": [],
+	"blocks":[
+	 {
+	   "type":"image",
+	   "name":"Color Block",
+	   "settings":[
+		{
+		  "type":"text",
+		  "label":"Enter swatch name",
+		  "id":"title"		 
+		},
+		{
+		  "type":"color",
+		  "label":"Select swatch color",
+		  "id":"color"
+		},
+		{
+		  "type":"checkbox",
+		  "label":"Show swatch image",
+		  "id":"show_img"
+		},
+		{
+		  "type":"image_picker",
+		  "label":"Upload swatch image",
+		  "id":"image"
+		}
+	   ]
+	 }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

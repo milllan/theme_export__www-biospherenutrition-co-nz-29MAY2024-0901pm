@@ -1,0 +1,222 @@
+.page-new-magnesium .new_ingrid .ing-weight-box{  display: inline-flex !important; }
+.page-new-magnesium .rating-parent .star_count{ display:none;}
+.page-new-magnesium .text-overlay .page-width{      max-width: 1310px;}
+.page-new-magnesium .near-btn .product-form__item.product-form__item--submit{display: flex;align-items: center;}
+.page-new-magnesium .near-btn .pdp_benefit{margin: 0;}
+.page-new-magnesium .ttl_replenish{font-family: Futura PT, sans-serif;}
+.page-new-magnesium .inner_body_faq ul{font-weight: 500;color: #fff;line-height: 28px;margin-left: 23px;}
+.page-new-magnesium .inner_body_faq li{list-style: disc;}
+.page-new-magnesium .text-overlay-wrapper p:nth-child(9){margin-left: 214px;}
+.page-new-magnesium .btn-with-text{max-width: 985px;margin: 70px 0 0 auto;}
+.page-new-magnesium .bg_image_template--17176251465893__text_overlay_GKG4tW{background-position: bottom left;}
+.page-new-magnesium .landing-ingredients-list table tbody tr:nth-child(odd) td:nth-child(2):after{color: white;z-index: -1;background: #3d5d77;}
+.page-new-magnesium .landing-ingredients-list table tbody tr td:nth-child(2),
+.page-new-magnesium .landing-ingredients-list table tr th:nth-child(2),
+.page-new-magnesium .landing-ingredients-list table tbody tr:last-child td:nth-child(2):before{   background: #5ba2d6;}
+.product__price fieldset { background: #2c333f;   border-radius: 16px;   border: 3px solid #cccccc; flex: 1;     padding: 27.5px 10px;}
+.product__price fieldset legend{    font-size: 20px;color: #fff;margin: 0;display: block;padding: 0 8px;}
+.page-new-magnesium .main_val{background: transparent;color: #d2593e;accent-color: white;}
+.page-new-magnesium .Mango{
+      color: #d2593e;
+}
+/* .page-new-magnesium .featured--2 .select_box_inr:nth-last-child(1) select, .page-new-magnesium .featured--3 .select_box_inr:nth-last-child(2) select{color: #68a037;} */
+.page-new-magnesium span.product_compare_price.text-center{padding-bottom: 40px;}
+.page-new-magnesium .variant_drp_dwn{padding-top: 0px;display: flex;flex-direction: column;align-items: center;justify-content: center;height: 100%;}
+.page-new-magnesium .custom_product_add{margin:0;}
+.page-new-magnesium .featured-product-wrapper .product__price{flex: 1;display: flex;flex-direction: column;  }
+.page-new-magnesium  .featured-product-wrapper .tubs-text p{text-transform: uppercase;}
+.page-new-magnesium .Lemon{color:#68a037;}
+
+@media screen and (min-width: 1540px){
+    .page-new-magnesium .text-overlay-wrapper p:nth-child(8),
+    .page-new-magnesium .text-overlay-wrapper p:nth-child(9),
+    .page-new-magnesium .text-overlay-wrapper p:nth-child(7){   margin-left: 122px; }
+    .page-new-magnesium .btn-with-text{max-width: 1071px;}
+}
+
+@media screen and (max-width: 1540px){
+    .page-new-magnesium .text-overlay-wrapper p:nth-child(7){margin:0;}
+    .page-new-magnesium .text-overlay-wrapper p:nth-child(8), .page-new-magnesium .text-overlay-wrapper p:nth-child(9){margin-left: 289px;}
+    .page-new-magnesium .btn-with-text{max-width: 906px;}
+}
+
+@media screen and (max-width: 1440px){
+    .page-new-magnesium .text-overlay-wrapper p:nth-child(8){margin-left: 0px;}
+    .page-new-magnesium .text-overlay-wrapper p:nth-child(9){margin-left: 378px;  }
+    .page-new-magnesium .btn-with-text{max-width: 822px;}
+    .page-new-magnesium  .pro-desc p{  font-size: 15px;}
+}
+@media screen and (max-width: 1308px){
+    .page-new-magnesium  .custom-featured-product-wrapper {display: flex;width: 100%;}
+    .featured-product-wrapper{width: calc(33.33% - 30px* 2 / 3);}
+}
+@media screen and (max-width: 1245px){
+  .page-new-magnesium .text-overlay-wrapper p:nth-child(9){margin-left: 442px;}    
+  .page-new-magnesium .btn-with-text{ max-width: 659px;flex-wrap: wrap;align-items: center;gap: 20px;justify-content: center;}
+}
+
+@media screen and (max-width: 1200px){
+    .page-new-magnesium .ttl_replenish{font-size: 51px;}      
+    .page-new-magnesium  .custom-featured-product-wrapper {display: grid;grid-template-columns: repeat(2, 1fr);} 
+    .featured-product-wrapper {width: auto;}
+}
+
+@media screen and (max-width: 1024px){
+    .page-new-magnesium .text-overlay-title p:nth-child(6),
+    .page-new-magnesium .text-overlay-title p:nth-child(7),
+    .page-new-magnesium .text-overlay-title p:nth-child(8){ padding-left: 0px; }
+    .page-new-magnesium .btn-with-text{max-width: 383px;}
+}
+
+@media screen and (max-width: 991px) {
+    .page-new-magnesium .banner-info-wrapper-item {align-items: baseline;}
+    .page-new-magnesium .static-banner-content-main .star_review {flex-direction: column-reverse;}
+    .page-new-magnesium .rating-parent{display: flex;flex-direction: row-reverse;align-items: center;gap: 14px;}
+    .page-new-magnesium .rating-parent .star_count{display:block;}
+    .magnesium-count{display:none;}
+    .page-new-magnesium .text-overlay-wrapper .text-overlay-title {padding-bottom: 593px;}
+    .page-new-magnesium .btn-with-text{max-width: 100%;}
+    .page-new-magnesium  .static-banner-content-main .star_review{   row-gap: 7px; }
+    .page-new-magnesium .text-overlay { padding-top:50px; }
+    .page-new-magnesium  .custom-featured-product-wrapper {   grid-template-columns: repeat(1, 1fr); }
+}
+
+@media screen and (max-width: 768px) {
+    .page-new-magnesium .review-bar-items-content .review-text .customer_name,.page-new-magnesium .ingredients-section-img{ display: none; } 
+    .page-new-magnesium .review-bar-items-content .customer_name_wrapper .customer_name { display: block; }
+    .page-new-magnesium .review-bar-items .review-bar-items-content .review-text p{  text-align: center;}
+    .page-new-magnesium .text-overlay-wrapper .text-overlay-title{  padding-bottom: 398px;}
+    .page-new-magnesium .bg_image_template--17176251465893__text_overlay_GKG4tW{ background-position: bottom left;}
+    .page-new-magnesium .text-overlay-wrapper .get-btn{border-radius: 16px;font-size: 17px;background-color: #384151;}
+    .page-new-magnesium .text-overlay .btn-with-text {padding-top: 40px;}
+    .page-new-magnesium .review-image-gallery{padding-bottom: 60px;}
+    .page-new-magnesium .faq_section_blocks{padding-top: 102px!important;}
+    .page-new-magnesium .ttl_replenish{font-size: 35px;}
+    .page-new-magnesium .btn-with-text{margin: 0;}
+    .page-new-magnesium .static-banner-content-main .rating{padding: 4px 15px;}
+    .page-new-magnesium  .static-banner-content-main .rating span svg{width: 13px;height:21px;}
+    .page-new-magnesium .rating-parent .star_count{padding:0;}
+    .page-new-magnesium .text-overlay-wrapper p{font-size: 16px;line-height: 28px;}
+    .page-new-magnesium .text-overlay-wrapper p:nth-child(4),.page-new-magnesium .text-overlay-wrapper p:nth-child(5){padding-bottom: 10px;}
+    .page-new-magnesium .info-btn{display:none;}
+    .page-new-magnesium .ingredients-section{padding-bottom:0;}
+    .page-new-magnesium .plus_symbol{margin-left: 14px;}
+    .page-new-magnesium .custom-featured-product{padding-top: 285px;}
+    .page-new-magnesium .price-off span{font-size: 30px;}
+    .page-new-magnesium h4.product_discount_price.text-center,.page-new-magnesium .featured-product-wrapper .tubs-text h4{font-size: 31px;}
+    .page-new-magnesium .price-off.text-right{top: 33px;}
+    .page-new-magnesium .custom_product_add .custom_product_add_button {min-height: 61px;}
+    .template-page.page-new-magnesium .product_featured_img{margin: 37px 0 35px!important;}
+    .page-new-magnesium .featured-product-wrapper .product-item{padding: 38px 17px 20px;}
+    .page-new-magnesium .money_back_guarantee{padding: 13px 9px;}
+    .page-new-magnesium .static-banner-content-main .title-wrapper .title,.page-new-magnesium .static-banner-info-wrapper .banner-info-wrapper-item p{line-height:normal;} 
+    .page-new-magnesium .banner-info-wrapper-item svg{
+          padding-top: 6px;
+    }
+}
+@media screen and (max-width: 506px){
+      .page-new-magnesium .static-banner-info-wrapper .banner-info-wrapper-item:nth-child(1) p{    width: 382px; }
+}
+@media screen and (max-width: 575px){
+    .page-new-magnesium .pdp_benefitinr{width: 128px;}
+    .page-new-magnesium  .product-form__cart-submit{min-width: fit-content;}
+    .page-new-magnesium  .near-btn .product-form__cart-submit{padding: 11px 24px;}
+    .page-new-magnesium .ingredients-products-box{display:flex;  }
+    .page-new-magnesium .ingredients-products-content{text-align:left;}
+    .page-new-magnesium .ingredients-products-content h5:after{left: 0;transform: none;right: unset;}
+    .page-new-magnesium .product-review .star_review .rating span svg{width: 36px;height: 36px;}
+    .page-new-magnesium .ingredients-list-head h2{font-size: 37px;}
+    .page-new-magnesium .pdp_swatch{gap: 0 13.8px;}
+    .page-new-magnesium .ingredients-products-img img{height: fit-content; }
+    .page-new-magnesium .text-overlay-title h2{   font-size: 35px!important; }
+    .template-page.page-new-magnesium .featured-product-wrapper .tubs-text.text-center{  min-height: 17px!important; }
+}
+
+@media screen and (max-width: 464px) {
+    .page-new-magnesium  .feel-the-change-content h2{font-size: 33px;}
+    .page-new-magnesium .feel-the-change-content p{font-size: 15px;}
+    .page-new-magnesium  .essential-content h2{font-size: 24px;}
+    .page-new-magnesium .essentail-sub-title{font-size: 18px;}
+    .page-new-magnesium .ingredients-list-head h2{font-size: 32px;}
+    .page-new-magnesium .money-back{padding: 80px 15px 40px 15px;}
+    .page-new-magnesium .risk-free-content h2{font-size: 35px;}
+    .page-new-magnesium .free-sub-title,.page-new-magnesium .ingredients-desc{font-size: 19px;}
+    .page-new-magnesium .ttl_replenish, .page-new-magnesium .text-overlay-title h2{font-size: 28px!important;}
+    .page-new-magnesium .ingredients-quality p{font-size: 16px;}
+    .page-new-magnesium .ingredients-content h2{font-size: 25px;}
+    .page-new-magnesium .text-overlay-title h3{font-size: 18px;}
+    .page-new-magnesium .price-off span{font-size: 23px;line-height: 15px;}
+    .page-new-magnesium .price-off.text-right{top: 40px;}
+    .page-new-magnesium .featured-product-wrapper .tubs-text h4{font-size: 23px;}
+    .page-new-magnesium h4.product_discount_price.text-center {font-size: 24px;}
+}
+
+@media screen and (max-width: 450px){
+    .page-new-magnesium .banner-info-wrapper-item{justify-content: center;}
+    .page-new-magnesium .banner-info-wrapper-item p{text-align: center;}
+    .page-new-magnesium a.banner_button{line-height:normal;}
+    .page-new-magnesium .static-banner-content-main .title-wrapper .title {font-size: 23px;line-height: normal;}
+    .page-new-magnesium .static-banner-content-main .title-wrapper .title{font-size: 23px;}
+    .page-new-magnesium  .static-banner-info-wrapper .banner-info-wrapper-item span svg{width: 13px;}
+}
+@media screen and (max-width: 443px){
+  .page-new-magnesium .static-banner-info-wrapper .banner-info-wrapper-item:nth-child(3) p{
+         width: 300px;
+   }
+}
+@media screen and (max-width: 425px){
+       .page-new-magnesium .static-banner-info-wrapper .banner-info-wrapper-item:nth-child(1) p{ width: 332px; }
+   .page-new-magnesium .static-banner-info-wrapper .banner-info-wrapper-item:nth-child(3) p{
+         width: 303px;
+   }
+}
+@media screen and (max-width: 416px){
+    .page-new-magnesium .buy-now{font-size: 22px;}
+}
+@media screen and (max-width: 395px){
+  .page-new-magnesium .static-banner-info-wrapper .banner-info-wrapper-item:nth-child(1) p {
+    width: 267px;
+  }
+}
+@media screen and (max-width: 390px){
+  .page-new-magnesium .risk-free { padding-bottom: 313px; }
+ }
+
+@media screen and (max-width: 376px){
+     .page-new-magnesium .static-banner-info-wrapper .banner-info-wrapper-item:nth-child(1) p{ width: 268px; }
+    .page-new-magnesium .static-banner-info-wrapper .banner-info-wrapper-item:nth-child(4) p{   width: 271px;  }
+}
+
+@media screen and (max-width: 374px) {
+    .page-new-magnesium .rating-parent{gap: 4px;}
+    .page-new-magnesium .text-overlay-title h2,.page-new-magnesium .product-review .review_count h4{font-size: 23px!important;}
+    .page-new-magnesium .text-overlay-title h3{font-size: 18px;}
+    .page-new-magnesium .pro-desc p{font-size: 13px;}
+    .page-new-magnesium .static-banner-content-main .title-wrapper .title,.page-new-magnesium  .buy-now,.page-new-magnesium .ingredients-desc{font-size: 19px;}
+    .page-new-magnesium .near-btn .product-form__item.product-form__item--submit{gap:2px;}
+    .page-new-magnesium  .near-btn .product-form__cart-submit{padding: 11px 10px;}
+    .page-new-magnesium .product-review .star_review .rating span svg{width: 28px;}
+    .page-new-magnesium  .product-review .star_review{column-gap: 19px;}
+    .page-new-magnesium .essential-content h2{font-size: 20px;}
+    .page-new-magnesium .ingredients-list-head h2{font-size: 26px;}
+    .page-new-magnesium .money-back-logo{top: -64px;}
+    .page-new-magnesium .risk-free-content h2{font-size: 29px;}
+    .page-new-magnesium .free-sub-title{font-size: 16px;}
+    .page-new-magnesium .ttl_replenish {font-size: 24px;}
+    .page-new-magnesium  .ingredients-content h2{font-size: 27px;}
+    .page-new-magnesium .ingredients-quality p{font-size: 13px;}
+    .page-new-magnesium .product-review-title{font-size: 22px;}
+    .page-new-magnesium .ingredients-products-box{display: flex;flex-wrap: wrap;align-items: center;justify-content: center;}
+    .page-new-magnesium .static-banner-info-wrapper .banner-info-wrapper-item:nth-child(4) p{ width: 213px;}
+    .page-new-magnesium .static-banner-info-wrapper .banner-info-wrapper-item:nth-child(1) p{ width: 233px; }    
+}
+@media screen and (max-width: 361px){
+  .page-new-magnesium .static-banner-info-wrapper .banner-info-wrapper-item:nth-child(3) p{
+                 width: 246px;
+   }
+}
+@media screen and (max-width: 338px) {
+  .page-new-magnesium .variant_drp_dwn .select_box_inr{
+    flex-direction: column;
+  }
+}

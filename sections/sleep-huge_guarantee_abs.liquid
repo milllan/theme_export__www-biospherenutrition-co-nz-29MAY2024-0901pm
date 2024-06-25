@@ -1,0 +1,56 @@
+<div class="guarantee_div">
+      <div class="inner_guarantee_dv">
+        <div class="icon_gr">
+          <img src="{{ section.settings.icon_image | img_url:'master' }}" alt="{{ section.settings.icon_image | handle }}" title="{{ section.settings.icon_image | handle }}" />
+        </div>
+        <div class="shadow_ttl">
+          {% if section.settings.title_grnt != blank %}<h2 class="ttl_shd white_text">{{ section.settings.title_grnt }}</h2>{% endif %}
+          {% if section.settings.guarantee_content != blank %}<div class="content_t">{{ section.settings.guarantee_content }}</div>{% endif %}
+          {% if section.settings.cur_txt != blank %}<div class="currsiew_text">{{ section.settings.cur_txt}}</div>{% endif %}
+        </div>
+        {% if section.settings.btn_ttl != blank  %}<a href="{{ section.settings.btn_url }}" class="btn">{{ section.settings.btn_ttl }}</a>{% endif %}
+      </div>
+    </div>
+{% schema %}
+  {
+    "name": "Sleep Money Back Guarante",
+    "settings": [{
+      "type": "header",
+      "content": "Money Back Guarantee"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_image",
+      "label": "Icon Image"
+    },
+    {
+      "type": "text",
+      "id": "title_grnt",
+      "label": "Title Guarantee"
+    },
+    {
+      "type": "richtext",
+      "id": "guarantee_content",
+      "label": "Guarantee Content"
+    },
+    {
+      "type": "html",
+      "id": "cur_txt",
+      "label": "100% guarantee text"
+    },
+    {
+      "type": "text",
+      "id": "btn_ttl",
+      "label": "Button Title"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button URL"
+    }],
+    "presets": [{
+      "name": "sleep Money Back Guarantee",
+      "category": "text"
+    }]
+  }
+{% endschema %}

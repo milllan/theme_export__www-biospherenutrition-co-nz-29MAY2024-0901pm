@@ -1,0 +1,79 @@
+<div class="home-feature-section home-outline with-gradient" data-section-id="{{ section.id }}" data-section-type="home-feature-section"
+     {%- if section.settings.enadble_bg_c %} style="background: {{ section.settings.bg_c }}" {%- else %} {%- assign block_image = block.settings.bg_img %} data-bg="{{ block_image | img_url: '300x300' }}" data-bgset="{% include 'bgset', image: block_image %}" data-sizes="auto" data-parent-fit="contain" style="background-position: {{ block.settings.alignment }}; background-image: url('{{ block_image | img_url: '300x300' }}');"{%- endif -%}>
+  <div class="page-width home-feature-page-width">
+    <ul class="h_fea-grid">
+      {%- for block in section.blocks -%}
+      <li class="h_fea-item" {{ block.shopify_attributes }}>
+        <div class="h_fea-item-wrapper">
+        	<img src="{{ block.settings.image | img_url:'50x' }}" data-src="{{ block.settings.image | img_url:'208x' }}" class="lazyload one-whole" width="202px" height="226px" />
+        </div>
+      </li>{%- endfor -%}
+    </ul>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Home feature section",
+	"class":"index-section index-section--flush index-section--feature-section",
+    "settings": [
+		{
+		 "type":"image_picker",
+		 "label":"Upload background image",
+		 "id":"bg_img"
+		},
+		{
+		 "type":"checkbox",
+		 "label":"Enable bacground color",
+		 "id":"enadble_bg_c",
+		 "default":true,
+		 "info":"If you checked this option it will only the selected bg color"
+		},
+		{
+		 "type":"color",
+		 "label":"Select bacground color",
+		 "id":"bg_c",
+		 "default":"#000"
+		}
+	],
+	"blocks":[
+	 {
+		"type":"image",
+		"name":"Image Block",
+		"settings":[
+		  {
+			"type":"image_picker",
+			"label":"upload image 208x232",
+			"id":"image"
+		  }
+		]
+	 }
+	],
+  "presets": [
+    {
+      "name": "Home feature section",
+      "category": "Image",      
+      "settings": {},
+      "blocks": [
+        {
+          "type": "image"  		  
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

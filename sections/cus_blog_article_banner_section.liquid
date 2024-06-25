@@ -1,0 +1,62 @@
+<div class="main_banner_section_article">
+  <div class="main_article_image">
+    {% if section.settings.main_image %}
+  	<img src="{{ section.settings.main_image | img_url:'master' }}" alt="" />
+    {% endif %}
+    <div class="banner_content">
+      {% if section.settings.date %}
+      <p class="main_baner_date">{{ section.settings.date }}{{page.type}}</p>
+      {% endif %}
+      {% if section.settings.article_title %}
+      <h1 class="main_banner_article_title">{{ section.settings.article_title }}</h1>
+      {% endif %}
+      {% if section.settings.banner_content  %}
+      <div class="main_baner_article_content">{{ section.settings.banner_content }}</div>
+      {% endif %}
+    </div>
+  </div>
+</div>	
+
+<style>
+
+  
+</style>
+
+{% schema %}
+  {
+    "name": "blog article main banner",
+    "settings": [
+		{
+			"type":"image_picker",
+			"id":"main_image",
+			"label":"Add article image"
+		},
+		{
+			"type":"text",
+			"id":"date",
+			"label":"Add article date"
+		},
+		{
+			"type":"text",
+			"id":"article_title",
+			"label":"Add Article Title"
+		},
+		{
+			"type":"richtext",
+			"id":"banner_content",
+			"label":"Add Rrticle Content"
+		}
+	],
+	"presets":[
+		{
+			"name":"blog article main banner"
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

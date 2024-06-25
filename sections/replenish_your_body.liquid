@@ -1,0 +1,82 @@
+<div class="replenish_div">
+  <div class="container">
+    {% if section.settings.title != blank %}<h2 class="ttl_replenish">{{ section.settings.title }}</h2>{% endif %}
+    {% if section.settings.subtitle != blank %}<span class="ttl_sub italic_text">{{ section.settings.subtitle }}</span>{% endif %}
+    <div class="block_div_fetured">
+      {% for block in section.blocks %}
+        <div class="fetured_itm">
+        <div class="inner_featured_itm">
+        {% if block.settings.block_image %}
+          <div class="thumb_featured">
+          <img src="{{ block.settings.block_image | img_url:'master' }}" alt="{{ block.settings.title | handle }}" title="{{ block.settings.title | handle }}" />
+        </div>
+          {% endif %}
+          {% if block.settings.title != blank %}<h3 class="ttl_ttl">{{ block.settings.title }}</h3>{% endif %}
+        </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% if section.settings.btn_tlt != blank %}<a href="{{ section.settings.btn_url }}" class="btn">{{ section.settings.btn_tlt }}</a>{% endif %}
+    <div class="richtext_section">
+        {% if section.settings.sec_title != blank %}<h2 class="richtext_ttl">{{ section.settings.sec_title }}</h2>{% endif %}
+        {% if section.settings.content != blank %}{{ section.settings.content }}{% endif %}
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Replenish Your Body",
+    "settings": [{
+      "type": "text",
+      "id": "title",
+      "label": "Main Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Sub Title"
+    },
+    {
+      "type": "text",
+      "id": "btn_tlt",
+      "label": "Button Title"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Richtext Section"
+    },
+    {
+      "type": "text",
+      "id": "sec_title",
+      "label": "Richtext Title"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    }],
+    "blocks": [{
+      "type": "benefit_block",
+      "name": "Benefit Block",
+      "settings": [{
+        "type": "text",
+        "id": "title",
+        "label": "Block Title"
+      },
+      {
+        "type": "image_picker",
+        "id": "block_image",
+        "label": "Block Image"
+      }]
+    }],
+    "presets": [{
+      "name": "Replenish Your Body",
+      "category": "Text"
+    }]
+  }
+{% endschema %}

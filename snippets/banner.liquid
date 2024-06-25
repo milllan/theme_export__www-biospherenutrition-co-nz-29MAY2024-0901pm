@@ -1,0 +1,28 @@
+{%- assign magnesium = true -%}
+{%- if page == 'nitric-oxide' -%}{%- assign nitric_oxide = true -%}{%- endif -%}
+{% unless metafield %}
+	{% assign metafield = false %}
+{%- endunless -%}
+{%- assign color_diffe = text_color | color_difference: '#ffffff' -%}
+<div data-section-id="{{ section.id }}" data-section-type="banner-section">  
+  <div class="as_banner as_banner-NO__{{ nitric_oxide }} as_banner-{{ section.id }} {{ metafield }} lazyload{% if text_color != blank %}{% if color_diffe < 100 %} dark_bg{% endif %}{% endif %}"
+         data-bgset="{% if metafield %}{{image}}{% else %}{% include 'bgset', image: image %}{%- endif -%}" data-sizes="auto" data-parent-fit="cover"
+         style="background-position: {{ alignment }}; background-image: url({%- if metafield -%}{{ image | replace:'.jpeg','_300x300.jpeg' | replace:'.png','_300x300.png' | replace:'.jpg','_300x300.jpg' }}{%- else -%}{{ image | img_url:'300x300' }}{%- endif -%});">
+    {%- if title != blank or detail != blank or q_detail != blank -%}    
+    <div class="as_b_inner{% if text_color != blank %} has_color{% endif %}" {% if text_color != blank %} style="color:{{ text_color }};"{% endif %} >
+      {%- if title != blank -%}
+      <h2 class="no-ls h-border-bottom">{{- title -}}</h2>
+      {%- endif -%}
+      {%- if detail != blank -%}
+      <div class="text_wrapper div_rich">{{- detail | replace:'&lt;','<' | replace:'&gt;','>' -}}</div>
+      {%- endif -%}
+      {%- if q_detail != blank -%}
+      <div class="q_wrapper">
+        <svg class="icon icon--quote" aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 50"><path d="M26.65 5.943c-2.834 1.63-5.124 3.031-6.871 4.206-1.749 1.177-3.526 2.73-5.334 4.657-1.688 1.809-2.984 3.708-3.888 5.697-.904 1.99-1.537 4.552-1.898 7.686h4.34c3.736 0 6.674.923 8.814 2.767 2.139 1.846 3.21 4.552 3.21 8.12 0 2.54-.95 4.914-2.848 7.122-1.899 2.208-4.506 3.311-7.82 3.311-5.185 0-8.892-1.706-11.12-5.116-2.231-3.41-3.346-7.894-3.346-13.448 0-3.924.843-7.5 2.532-10.73 1.686-3.23 3.736-6.112 6.147-8.648 2.471-2.596 5.093-4.799 7.866-6.61A300.207 300.207 0 0 1 23.395.519zm33.451 0c-2.834 1.63-5.123 3.031-6.87 4.206-1.75 1.177-3.527 2.73-5.335 4.657-1.749 1.869-3.06 3.783-3.933 5.743-.874 1.959-1.491 4.506-1.853 7.64h4.34c3.736 0 6.674.923 8.814 2.767 2.139 1.846 3.21 4.552 3.21 8.12 0 2.54-.95 4.914-2.848 7.122-1.899 2.208-4.506 3.311-7.82 3.311-5.185 0-8.892-1.706-11.12-5.116-2.231-3.41-3.346-7.894-3.346-13.448 0-3.924.844-7.5 2.532-10.73 1.686-3.23 3.736-6.112 6.147-8.648 2.471-2.596 5.093-4.799 7.866-6.61A299.992 299.992 0 0 1 56.846.519z"/></svg>
+        {{- q_detail -}}</div>
+      {%- endif -%}
+    </div>
+  	{%- endif -%}
+  </div>
+</div><style>.as_banner-{{ section.id }}{ 
+  {%- assign image_as = image.aspect_ratio -%} min-height: {{ 100.00 | divided_by: image_as }}vw; }</style>

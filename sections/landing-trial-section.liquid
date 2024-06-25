@@ -1,0 +1,300 @@
+<section class="hero-banner">
+  <div class="mg-container">
+    <div class="hero-container">
+      <div class="hero-content">
+        {% if section.settings.hero-title!= blank %}
+        <h2>{{ section.settings.hero-title }}</h2>
+        {% endif %}
+        <ul>
+          {% if section.settings.hero-subtitle1 != blank %}
+          	<li>{{ section.settings.hero-subtitle1 }}</li>
+          {% endif %}
+          {% if section.settings.hero-subtitle2 != blank %}
+          	<li>{{ section.settings.hero-subtitle2 }}</li>
+          {% endif %}
+          {% if section.settings.hero-subtitle3 !=blank %}
+          <li>{{ section.settings.hero-subtitle3 }} </li>
+          {% endif %}
+        </ul>
+        {% if section.settings.hero-try-btn != blank %}
+        <div class="try-button">
+          <a href="{{ section.settings.hero-try-url }}" class="hero-try-btn">{{ section.settings.hero-try-btn }}</a>
+        </div>
+        {% endif %}
+      </div>
+      {% if section.settings.hero-image != blank %}
+      <div class="hero-image">
+        <img src="{{ section.settings.hero-image | img_url: 'master' }}" alt="">       
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": {
+    "da": "Diasshow",
+    "de": "Slideshow",
+    "en": "Landing Trial Section",
+    "es": "Diapositivas",
+    "fi": "Diaesitys",
+    "fr": "Diaporama",
+    "hi": "स्लाइडशो",
+    "it": "Presentazione",
+    "ja": "スライドショー",
+    "ko": "슬라이드 쇼",
+    "nb": "Lysbildefremvisning",
+    "nl": "Diavoorstelling",
+    "pt-BR": "Apresentação de slides",
+    "pt-PT": "Apresentação de diapositivos",
+    "sv": "Bildspel",
+    "th": "สไลด์โชว์",
+    "zh-CN": "幻灯片",
+    "zh-TW": "素材輪播"
+  },
+  "class": "index-section index-section--flush index-section--slideshow",
+  "settings": [
+    {
+        "type": "text",
+        "id": "hero-title",
+        "label": "Edit Banner Title",
+        "default": "7 Day Magnesium trial"
+    },
+	{
+        "type": "text",
+        "id": "hero-subtitle1",
+        "label": "Subtitle 1 description"
+    },
+	{
+        "type": "text",
+        "id": "hero-subtitle2",
+        "label": "Subtitle 2 description"
+    },
+	{
+        "type": "text",
+        "id": "hero-subtitle3",
+        "label": "Subtitle 3 description"
+    },
+	{
+		"type": "text",
+		"id": "hero-try-btn",
+		"label": "Edit Banner Button Text",
+		"default": "try 1 week of magnesium"
+	},
+	{
+		"type":"url",
+		"id":"hero-try-url",
+		"label":"Enter Try Button Action url "
+	},
+	{
+		"type":"image_picker",
+		"id":"hero-image",
+		"label":"Select Hero Image"
+	}
+],
+  "presets": [
+    {
+      "name": {
+        "da": "Diasshow",
+        "de": "Slideshow",
+        "en": "Slideshow",
+        "es": "Diapositivas",
+        "fi": "Diaesitys",
+        "fr": "Diaporama",
+        "hi": "स्लाइडशो",
+        "it": "Presentazione",
+        "ja": "スライドショー",
+        "ko": "슬라이드 쇼",
+        "nb": "Lysbildefremvisning",
+        "nl": "Diavoorstelling",
+        "pt-BR": "Apresentação de slides",
+        "pt-PT": "Apresentação de diapositivos",
+        "sv": "Bildspel",
+        "th": "สไลด์โชว์",
+        "zh-CN": "幻灯片",
+        "zh-TW": "素材輪播"
+      },
+      "category": {
+        "da": "Billede",
+        "de": "Foto",
+        "en": "Image",
+        "es": "Imagen",
+        "fi": "Kuva",
+        "fr": "Image",
+        "hi": "इमेज",
+        "it": "Immagine",
+        "ja": "画像",
+        "ko": "이미지",
+        "nb": "Bilde",
+        "nl": "Afbeelding",
+        "pt-BR": "Imagem",
+        "pt-PT": "Imagem",
+        "sv": "Bild",
+        "th": "รูปภาพ",
+        "zh-CN": "图片",
+        "zh-TW": "圖片"
+      }
+    }
+  ]
+}
+{% endschema %}
+
+<style type="text/css">
+  
+  .landing-header .site-header__logo{}
+  .landing-header .grid__item{display:inline-block;} 
+  .landing-header .s-nav{width:auto;}
+  .landing-header .grid{display:flex;align-items:center;}
+  @media (min-width: 1200px){
+    .mg-container {
+      max-width: 1475px;
+      width: 100%;
+      padding: 0 15px;
+      margin: 0 auto;
+    }
+  }
+  .hero-banner{background-color:#000E21;height:100vh;padding:185px 0 144px 0;min-height:600px;}
+  .hero-container{ display:flex; align-items:center;justify-content: space-between;}
+  .hero-content{padding-top:90px;}
+  .hero-content h2{
+  	font-size:130px;
+    line-height:156px;
+    color:#fff;
+    font-family:'Dharma Gothic E',sans-serif;
+    display: inline-block;
+    text-transform:capitalize;
+    letter-spacing:0;
+  }
+  ul{
+  	list-style-type:none;
+    margin:0;padding:0;
+  }
+  .hero-content ul li{
+    position:relative;
+  	font-size:22px;
+    line-height:28px;
+    color:#fff;
+    padding-bottom:23px;
+    padding-left:40px;
+  }
+  .hero-content ul li:before{
+    content:"";
+    position : absolute;
+	left:0;
+    top:4px;
+    bottom:0;
+    background-image:url({{'right-arow-hero.svg' | asset_url}});
+    background-size:cover;	
+    width:22px;
+    height:22px;
+  }
+  .hero-content .try-button{
+  	margin-top:34px; 
+    display: inline-block;
+  }
+  .hero-content .hero-try-btn {
+    background: #fff;
+    width: 100%;
+    max-width: 330px;
+    border-radius: 5px;
+    font-size: 22px;
+    padding: 20px 25px 19px 25px;
+    line-height: 28px;
+    text-transform: capitalize;
+    display: inline-block;
+    font-weight: 700;
+  }
+  
+  
+  @media (max-width: 1440px){
+    .hero-banner {
+      padding: 150px 0;
+    }
+    .hero-content h2 {
+      font-size: 100px;
+      line-height: 110px;
+    }
+    
+  }
+  @media (max-width: 1199px){
+    .hero-banner .mg-container{padding:0 15px;}
+    .hero-content h2 {
+      font-size: 83px;
+      line-height: 93px;
+    }
+    .hero-banner {
+      padding: 115px 0 98px;
+      height: 735px;
+      min-height: 100%;
+    }
+  }
+  @media (max-width: 991px){
+    .hero-content {
+      padding-top: 0;
+    }
+    .hero-banner {
+      padding: 160px 0 114px;
+      height: 700px;
+      min-height: 100%;
+    }
+    .hero-content h2 {
+      font-size: 60px;
+      line-height: 68px;
+    }
+    .hero-content ul li {
+      font-size: 18px;
+      line-height: 23px;
+      padding-bottom: 18px;
+      padding-left: 40px;
+    }
+    .hero-content .hero-try-btn {
+      font-size: 20px;
+      padding:15px;
+      line-height: 24px;
+    }
+  }
+  @media (max-width: 768px){
+    .hero-banner {height: 680px;}
+  }
+  @media (max-width: 767px){
+    .hero-container {
+      flex-flow: column;
+    }
+    .hero-content {
+      order: 1;
+      margin-top: 30px;
+    }
+    .hero-image {
+      order: 0;
+    }
+    .hero-banner {
+      padding: 115px 0 60px;
+      height: 100%;
+    }
+    @media (max-width: 575px){
+      .hero-container {
+        text-align: center;
+      }
+      .hero-content ul li {
+        text-align: left;
+      }
+      .hero-content h2 {
+        font-size: 44px;
+        line-height: 45px;
+        margin-bottom:25px;
+      }
+      .hero-content {
+        order: 1;
+        margin-top: 40px;
+      }
+      .hero-content .try-button {
+        margin-top: 25px;
+      }
+      .header_btn a.get-touch-btn {
+        line-height: 28px;
+      }
+    }
+  }
+</style>

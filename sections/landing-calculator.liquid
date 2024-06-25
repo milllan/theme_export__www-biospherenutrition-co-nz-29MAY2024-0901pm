@@ -1,0 +1,425 @@
+{%- assign sec = section.settings -%}
+{% assign id = section.id %}
+{% assign detail = sec.detail %}
+{% assign btn = sec.re_btn_title %}
+{% assign re_btn_link = sec.re_btn_link %}
+{% assign slider_range = sec.slider_range %}
+{% assign slider_number = sec.slider_number %}
+{% assign btn = sec.re_btn_title %}
+{% assign btn = sec.re_btn_title %}
+{% assign title = sec.title %}
+
+{% assign range_title_left = sec.range_title_left %} 
+{% assign range_title_right = sec.range_title_right %} 
+{% assign range_result_above = sec.range_result_above %} 
+{% assign range_result_below = sec.range_result_below %} 
+
+
+
+
+<div data-section-id="{{ id }}" data-section-type="magn-calculator-section" class="mag-calculator langing_wait_calc_main">
+  <div class="langing_wait_calc">
+    <div class="mg-container">
+      {% if title != blank or detail != blank %}
+        <div class="text-center section-header text-center title_part {{ magnesium }}">
+          {%- if title != blank -%}<h2 class="no-ls h-border-bottom textcenter bcolor-meg_true">{{- title -}}</h2>{%- endif -%}
+          {%- if detail != blank -%}<div class="header_detail text_wrapper div_rich fw-medium">{{- detail | replace:'&lt;','<' | replace:'&gt;','>' -}}</div>{%- endif -%}
+        </div>
+        <div class="ranger-grid">
+          <div class="range_item range_full">
+            <div class="input_range_value range_value">
+              <input type="number" class="mag_calulate_input" name="weight" placeholder="Enter Your Weight (kg)" />
+            </div>
+          </div>
+      	</div>
+      {%- endif -%}
+    </div>
+  </div>
+  <div class="meg_calc meg_calc_landing">
+    <div class="mg-container">
+      <div class="meg_inner fw-heavy">
+        <div class="ranger-grid">
+          <div class="range_item range_low">
+            {%- if range_title_left != blank -%}<div class="range-title">{{ range_title_left }}</div>{% endif %}
+            <div class="low_range_value range_value"><span class="value">0</span>mg</div>
+          </div>
+          <div class="range_item range_high">
+            {%- if range_title_right != blank -%}<div class="range-title">{{ range_title_right }}</div>{% endif %}
+            <div class="high_range_value range_value"><span class="value">0</span>mg</div>
+          </div>
+        </div>
+        <div class="range_result div_rich fw-medium">{{ range_result_above }}<br />
+          <span class="range_r_span range_low"></span><span class="verticle-middle">and</span><span class="range_r_span range_high"></span><br />
+          {{ range_result_below }}
+        </div>
+        {%- if re_btn_link != blank -%}<div class="text-center btn_vall_div">        
+        {%- if btn != blank and re_btn_link != blank -%}<a href="{{ re_btn_link }}" class="btn btn--has-shadow btn--medium btn-meg-bg btn-round_true tt-none">{{ btn }}</a>{%- endif -%}
+        </div>{%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" defer="defer">  
+  window.addEventListener('DOMContentLoaded', (event) => {
+	$('.mgc_weight').slick();    
+    $('.mgc_weight.slick-initialized .slick-center').prev().addClass('slick-font-large');
+    $('.mgc_weight.slick-initialized .slick-center').next().addClass('slick-font-large');
+    $('.mgc_weight.slick-initialized').on('swipe', function(event, slick, currentSlide, nextSlide){
+      $('.mgc_weight.slick-initialized .slick-font-large').removeClass('slick-font-large');
+      $('.mgc_weight.slick-initialized .slick-center').prev().addClass('slick-font-large');
+      $('.mgc_weight.slick-initialized .slick-center').next().addClass('slick-font-large');
+    });
+    $('.mgc_weight.slick-initialized').on('afterChange', function(event, slick, currentSlide, nextSlide){
+      $('.mgc_weight.slick-initialized .slick-font-large').removeClass('slick-font-large');
+      $('.mgc_weight.slick-initialized .slick-center').prev().addClass('slick-font-large');
+      $('.mgc_weight.slick-initialized .slick-center').next().addClass('slick-font-large');
+      var _weight = Number($('.mgc_w_number.slick-slide[data-slick-index="'+currentSlide+'"]').data('number'));
+      calculateMag(_weight);
+    });    
+    $(".mag_calulate_input").keyup($.debounce( 500, function(e){
+      if( $(this).val() != ""){
+        var _number = Number( $(this).val());
+        if( $('.mgc_w_number.slick-slide[data-number="'+$(this).val()+'"]').length ){
+          $('.mgc_weight.slick-initialized').slick('slickGoTo', (_number - 1) );	
+        }else{ calculateMag($(this).val()); }
+      }
+    }) )
+    function calculateMag(_number){      
+      var _number = Number(_number);
+      var _low = _number * 7, _high = _number * 10;      
+      _low = (String(_low)).indexOf('.') > -1 ? Number(_low.toFixed(2)) : _low ;
+      _high = (String(_high)).indexOf('.') > -1 ? _high.toFixed(2) : _high ;
+      (String(_low)).length > 5 || (String(_high)).length > 5 ? $('.ranger-grid').addClass('smallFont') : $('.ranger-grid').removeClass('smallFont');
+      $('.low_range_value .value').html( _low );
+      $('.high_range_value .value').html( _high );
+      $('.range_r_span.range_low').html( _low +"mg" );
+      $('.range_r_span.range_high').html( _high +"mg" );
+      return ;
+    }
+    
+    setTimeout(function(){ $('.mgc_weight').slick('refresh'); },150)
+  });
+</script>
+{% schema %}
+  {
+    "name": ":Magnesium Calculator 2",
+    "settings": [
+	  {
+		"type":"textarea",
+		"label":"Enter title",
+		"id":"title",
+		"default":"<span>Magnesium</span> Dose Calculator"
+	  },
+	  {
+		"type":"richtext",
+		"label":"Enter detail",
+		"id":"detail",
+		"default":"<p>The amount of magnesium your body requires on a day to day basis is heavily dependant on your size and lifestyle. Use this calculator to get an idea of how much magnesium you should look to consume each day for optimal health.</p>"
+	  },
+	  {
+		"type":"text",
+		"id":"re_btn_title",
+		"label":"Enter button title",
+		"default":" For more information check out our information on optimal magnesium dosages"
+	  },
+	  {
+		"type":"url",
+		"id":"re_btn_link",
+		"label":"Provide button link"
+	  },
+	  {
+		"type":"header",
+		"content":"Result Static Text"
+	  },
+	  {
+		"type":"text",
+		"id":"range_title_left",
+		"label":"Range Title Left",
+		"default":"LOW RANGE"
+	  },
+	  {
+		"type":"text",
+		"id":"range_title_right",
+		"label":"Range Title Right",
+		"default":"HIGH RANGE"
+	  },
+	  {
+		"type":"text",
+		"id":"range_result_above",
+		"label":"Range result above text",
+		"default":"On average, someone your weight should be consuming between"
+	  },
+	  {
+		"type":"text",
+		"id":"range_result_below",
+		"label":"Range result below text",
+		"default":"milligrams of magnesium each day to maintain optimal magnesium levels."
+	  },
+	  {
+		"type":"header",
+		"content":"Slider"
+	  },
+	  {
+		"type":"text",
+		"id":"slider_range",
+		"label":"Enter Slider Range",
+		"info":"Enter range link 1 to 100",
+		"default":"1 to 150"
+	  },
+	  {
+		"type":"text",
+		"id":"slider_number",
+		"label":"Show Slider initial number",
+		"default":"65",
+		"info":"Enter only number"
+	  }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+<style type="text/css">
+  .langing_wait_calc_main{width:100%;display: inline-block;}
+  .langing_wait_calc{
+    background: #000E21;
+    padding:32px 0 28px;
+  }
+  .section-header.text-center h2 {
+    color: #ffffff;
+    line-height: 58px;
+    font-size: 45px;
+    font-weight: 600;
+    font-family: "Futura PT",sans-serif;
+    text-transform: capitalize;
+    letter-spacing: 0;
+    margin:0 0 31px;
+    padding-bottom:0 !important;
+  }
+  .section-header.text-center p{
+    font-family: Futura PT;
+    font-weight: 450;
+    font-size: 21px;
+    line-height: 27px;
+    color: #ffffff;
+    margin-bottom:95px;
+  }
+  .langing_wait_calc .section-header {
+    margin-bottom: 0;
+  }
+  .section-header.text-center .header_detail{max-width: 984px;margin-top: 0;margin-bottom: 0;}
+  .section-header.text-center h2:after{content:none;}
+  
+  .langing_wait_calc .ranger-grid .range_item.range_full{
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    margin-bottom: 0;
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+  }
+  .langing_wait_calc .ranger-grid .range_item .input_range_value{width:100%;margin-bottom:0;}
+  .langing_wait_calc .ranger-grid .range_item .input_range_value input[type=number]{
+    padding: 20px 15px 20px 43px;
+    color: #fff;
+    text-align: left;
+    border: 1px solid #FFFFFF;
+    border-radius: 5px;
+    margin-top: 0;
+  }
+  .langing_wait_calc .ranger-grid .range_item .input_range_value input::placeholder {
+    color: #fff;
+    opacity:1;
+  }
+  .langing_wait_calc_main .meg_calc.meg_calc_landing{
+    background-color:#fff;width: 100%;display: inline-block;
+  }
+  .langing_wait_calc_main .meg_calc.meg_calc_landing .meg_inner{
+    max-width: 768px;
+    margin: 37px auto 93px;
+  }
+  .meg_calc_landing .ranger-grid .range_item{
+    /*padding: 32px 15px 75px;*/
+    padding: 30px 15px;
+    width: calc(50% - 134px);
+    margin: 0 12.5px;
+    float: left;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  .langing_wait_calc_main .meg_calc.meg_calc_landing .ranger-grid{width:100%;display:flex;justify-content: center;}
+  .meg_calc_landing .ranger-grid .range_item .range-title {
+    font-family: Futura PT;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 33px;
+    color: #000000;
+  }
+  .meg_calc_landing .ranger-grid .range_item .value,.meg_calc_landing .range_value {
+    font-family: Futura PT;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 45px;
+    line-height: 58px;
+    color: #000000;
+  }
+  .meg_calc_landing .range_result {
+    margin-top: 44px;
+    font-family: Futura PT;
+    font-weight: 450;
+    font-size: 26px;
+    line-height: 33px;
+	color: #000000;
+  }
+  .meg_calc_landing .range_result span {
+    display: inline-block;
+    vertical-align: middle;
+    background: #000E21;
+    border-radius: 20px;
+    margin: 0;
+    color: #fff;
+    padding:0;
+    font-family: Futura PT;
+    font-weight: 450;
+    font-size: 30px;
+    line-height: 38px;
+    border: none;
+    height:88px;
+    margin:64px 0 34px;
+    padding: 25px 0;
+  }
+  .meg_calc_landing .range_result span.verticle-middle {background: transparent; color: #000; text-shadow: 0px 6px 7px #00000075;}
+  .meg_calc_landing .range_result .range_low{margin-right:45px;}
+  .meg_calc_landing .range_result .range_high{margin-left:45px;}
+  .meg_calc_landing .meg_inner .btn_vall_div {
+    margin-top: 61px;
+  }
+  .meg_calc_landing .meg_inner .btn_vall_div .btn{
+    background: #00A1AE;
+    border-radius: 15px;
+    font-family: Futura PT;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 33px;
+    color: #FFFFFF;
+    box-shadow: none;
+    border: none;
+    width: 100%;
+    min-width:399px;
+    padding: 17px 0 18px;
+    letter-spacing: 0;
+    max-width:399px;
+  }
+  @media only screen and (min-width: 768px){
+    .langing_wait_calc_main.mag-calculator {
+      padding: 0 0 0;
+   	}
+  }
+  @media only screen and (max-width: 991px){
+    .langing_wait_calc .mg-container {
+      padding:0 15px;
+    }
+    .langing_wait_calc{
+      padding-left:15px;padding-right:15px;
+    }
+    .section-header.text-center p {
+      margin-bottom: 35px;
+    }
+    .langing_wait_calc_main .meg_calc.meg_calc_landing .meg_inner {
+      margin: 50px auto 50px;
+    }
+  }
+  @media only screen and (max-width: 767px){
+    .section-header.text-center h2 {
+      line-height: 44px;
+      font-size: 40px;
+      margin-bottom:30px;
+    }
+    .meg_calc_landing .mg-container {
+      padding:0 15px;
+    }
+    .meg_calc_landing .ranger-grid .range_item {
+      width: 50%;
+    }
+    .meg_calc_landing .range_result .range_high {
+      margin-left: 15px;
+    }
+    .meg_calc_landing .range_result .range_low {
+      margin-right: 15px;
+    }
+    .meg_calc_landing .range_result span {
+      height: 70px;
+      padding: 10px 0;
+    }
+  }
+   @media only screen and (max-width: 575px){
+     .section-header.text-center h2 {
+       line-height: 34px;
+       font-size: 27px;
+       margin-bottom: 20px;
+     }
+     .section-header.text-center p {
+       font-size: 16px;
+       line-height: 24px;
+     }
+     .langing_wait_calc .ranger-grid .range_item .input_range_value input[type=number] {
+       padding: 15px;
+     }
+     .meg_calc_landing .ranger-grid .range_item {
+       padding-top:20px;
+       padding-bottom:20px;
+       margin: 0 7.5px;
+     }
+     .meg_calc_landing .ranger-grid .range_item .range-title {
+       font-size: 20px;
+       line-height: 24px;
+     }
+     .meg_calc_landing .ranger-grid .range_item .value, .meg_calc_landing .range_value,.meg_calc_landing .ranger-grid .range_item .value, .meg_calc_landing .range_value {
+       font-size: 32px;
+       line-height: 36px;
+     }
+     .meg_calc_landing .range_result {
+       margin-top: 30;
+       font-size: 20px;
+       line-height: 28px;
+     }
+     .meg_calc_landing .range_result .range_low ,.meg_calc_landing .range_result .range_high{
+       margin-top:30px;margin-bottom:30px;
+     }
+     .meg_calc_landing .range_result .range_low{margin-left:0;line-height:30px;}
+     .meg_calc_landing .range_result .range_high{margin-right:0;}
+     .meg_calc_landing .range_result span {
+       height: 50px;
+     }
+     .meg_calc_landing .meg_inner .btn_vall_div .btn {
+       font-size: 22px;
+       line-height: 28px;
+       min-width: 240px;
+       padding: 13px;
+       max-width: 240px;
+     }
+     .meg_calc_landing .range_result span {
+       height: 54px;
+     }
+     .langing_wait_calc_main {
+       padding: 0;
+     }
+     .meg_calc_landing .range_result span.verticle-middle {margin: 0; padding-top: 7px; font-size: 24px;}
+  }
+  
+  
+  @media only screen and (max-width: 362px){
+    .meg_calc_landing .range_result span.verticle-middle {display: block;}
+    .meg_calc_landing .range_result .range_low {margin-right: 0; margin-bottom: 10px;}
+    .meg_calc_landing .range_result .range_high {margin-left: 0; margin-top: 10px;}
+  }
+  
+</style>

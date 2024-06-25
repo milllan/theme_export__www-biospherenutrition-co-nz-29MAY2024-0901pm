@@ -1,0 +1,91 @@
+<div class="replenish_div">
+  <div class="container">
+    {% if section.settings.title != blank %}<h2 class="ttl_replenish">{{ section.settings.title }}</h2>{% endif %}
+    {% if section.settings.subtitle != blank %}<span class="ttl_sub italic_text">{{ section.settings.subtitle }}</span>{% endif %}
+    <div class="block_div_fetured">
+      {% for block in section.blocks %}
+        <div class="fetured_itm">
+        <div class="inner_featured_itm">
+        {% if block.settings.block_image %}
+          <div class="thumb_featured">
+          <img src="{{ block.settings.block_image | img_url:'master' }}" alt="{{ block.settings.title | handle }}" title="{{ block.settings.title | handle }}" />
+        </div>
+          {% endif %}
+          {% if block.settings.title != blank %}<h3 class="ttl_ttl">{{ block.settings.title }}</h3>{% endif %}
+        </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% if section.settings.btn_tlt != blank %}<a href="{{ section.settings.btn_url }}" class="btn">{{ section.settings.btn_tlt }}</a>{% endif %}
+  </div>
+  <div class="wrp-content" {% if  section.settings.image != blank %} style="background: url({{ section.settings.image | img_url:'master' }}) no-repeat scroll center; background-size: cover;" {% endif %}>
+      <div class="richtext_section">
+        <div class="container">
+        {% if section.settings.sec_title != blank %}<div class="richtext_ttl">{{ section.settings.sec_title }}</div>{% endif %}   
+        {% if section.settings.content != blank %}<div class="inner_content"> {{ section.settings.content }} </div>{% endif %}
+        </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Sleep take back",
+    "settings": [{
+      "type": "text",
+      "id": "title",
+      "label": "Main Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Sub Title"
+    },
+    {
+      "type": "text",
+      "id": "btn_tlt",
+      "label": "Button Title"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Richtext Section"
+    },
+    {
+      "type": "richtext",
+      "id": "sec_title",
+      "label": "Richtext Title"
+    },
+     {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    }],
+    "blocks": [{
+      "type": "benefit_block",
+      "name": "Benefit Block",
+      "settings": [{
+        "type": "text",
+        "id": "title",
+        "label": "Block Title"
+      },
+      {
+        "type": "image_picker",
+        "id": "block_image",
+        "label": "Block Image"
+      }]
+    }],
+    "presets": [{
+      "name": "sleep take back",
+      "category": "Text"
+    }]
+  }
+{% endschema %}

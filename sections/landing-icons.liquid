@@ -1,0 +1,109 @@
+<div class="mg-container">
+  <div class="as_bene_grp">
+    {% for block in section.blocks %}
+    <div class="asb_grp_branch first_part odd">
+      <a class="full-width-link" href="{{block.settings.icon_url}}" title="" target="_blank" rel="noopener" aria-describedby="a11y-new-window-message"></a>
+      <div class="img_wrapper"><div class="img_wrapper_inner"><img src="{{block.settings.upload_icon | img_url:'master'}}" data-src="//cdn.shopify.com/s/files/1/0473/6679/9525/files/EXERCISE_PERFORM_ICON_eb8c74e3-50b2-4823-a136-ca132212fdee.png?v=1601027513" class=" lazyloaded" width="auto" height="auto"></div></div>
+      <div class="text_wrapper fw-medium">
+        <h3 class="fw-medium ">{{block.settings.icon_title}}</h3></div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Landing Icons",
+    "settings": [],
+    "blocks":[
+      {
+        "type":"landing-icons",
+        "name":"Icons with Name",
+        "settings":[
+        	{
+              "type":"image_picker",
+              "label":"Upload Icon",
+              "id":"upload_icon"
+            },
+            {
+              "type":"text",
+              "label":"Add name for Icon",
+              "id":"icon_title"
+            },
+            {
+              "type":"url",
+              "label":"Add URL for the Section",
+              "id":"icon_url"
+            }
+        ]
+	}
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+<style type="text/css">
+  .as_bene_grp {display: block;}
+  .asb_grp_branch .img_wrapper {
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+  .asb_grp_branch .img_wrapper img {
+    background-color: #000E21;
+    padding: 20px;
+    float: left;
+    width:100%;
+  }
+  .img_wrapper_inner {
+   	margin:20px auto 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    width:100%;
+    max-width:125px;
+    height:125px;
+  }
+  .asb_grp_branch {
+    width: 14.25%;
+    margin: 0;
+    padding: 0 15px;
+    float: left;
+    display: inline-block;
+    position: relative;
+  }
+  h3.fw-medium {
+    font-size: 18px;
+    text-align: center;
+    color:#000;
+  }
+  .as_bene_grp {
+    display: inline-block;
+    width: 100%;
+    padding:57px 0;
+  }
+  
+  
+  @media(max-width: 1199px){
+    .asb_grp_branch{width:25%;}
+    .as_bene_grp{display: flex;flex-wrap: wrap;justify-content: center;}
+    
+  }
+  @media(max-width: 767px){
+  	.asb_grp_branch{width:30%;}
+    .as_bene_grp{padding:40px 0;}
+    h3.fw-medium{font-size:16px;line-height:18px;}
+  }
+  @media(max-width: 575px){
+  	.asb_grp_branch{width:50%;}
+    .as_bene_grp{padding:20px 0;}
+  }
+    
+  
+  
+  
+  
+  
+</style>

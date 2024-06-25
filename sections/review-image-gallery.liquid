@@ -1,0 +1,63 @@
+<div class="review-image-gallery">
+  <div class="page-width">
+    <div class="review-image-gallery-wrapper">
+      {% for block in section.blocks %}
+        {% if block.settings.image != blank %}
+          <div class="review-image">
+            <img src="{{ block.settings.image | img_url: 'master' }}" />
+          </div>
+        {% endif %}  
+      {% endfor %}  
+    </div>
+  </div>
+</div>
+
+<style>
+  .review-image-gallery-wrapper {display: grid;grid-template-columns: repeat(4 , 1fr);gap: 30px;}
+  .review-image-gallery-wrapper .review-image img {border: 3px solid #e4e6e8;
+    border-radius: 30px;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    object-fit: cover;}
+  .review-image-gallery {padding-bottom: 150px;}
+  .review-image-gallery .review-image {position: relative;padding-top: 120%;}
+
+  @media screen and (max-width: 991px) {
+    .review-image-gallery-wrapper {grid-template-columns: repeat(3 , 1fr);}
+  }
+  @media screen and (max-width: 768px) {
+    .review-image-gallery-wrapper {grid-template-columns: repeat(2 , 1fr);}
+  }
+  @media screen and (max-width: 480px) {
+    .review-image-gallery-wrapper {gap: 15px;}
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Review Image Gallery",
+    "settings": [],
+    "blocks":[
+      {
+        "name":"image",
+        "type":"Image",
+        "settings":[
+          {
+            "type":"image_picker",
+            "id":"image",
+            "label":"Image"
+          }
+        ]
+      }
+    ],
+    "presets":[
+      {
+        "name":"Review Image Gallery"
+      }
+    ]
+  }
+{% endschema %}

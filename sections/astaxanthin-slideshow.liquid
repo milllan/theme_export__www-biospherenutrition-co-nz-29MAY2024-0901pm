@@ -1,0 +1,243 @@
+{%- include 'slideshow' -%}
+{% schema %}
+{
+  "name": "Banner",
+  "class": "index-section index-section--flush index-section--slideshow",  
+  "settings": [
+    {
+      "type": "select",
+      "id": "slideshow_height",
+      "label": "Slide height",
+      "default": "adapt",
+      "info": "Learn more about [slideshow guidelines](https://help.shopify.com/en/manual/using-themes/themes-by-shopify/debut#slideshow-sections-specific)",
+      "options": [
+        {
+          "label":"Adapt to image",
+          "value": "adapt"
+        },
+        {
+          "label": "Small",
+          "value": "small"
+        },
+        {
+          "label":"Medium",
+          "value": "medium"
+        },
+        {
+          "label":"Large",
+          "value": "large"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_size",
+      "label": "Text size",
+      "default": "medium",
+      "options": [
+        {
+          "label":"Medium",
+          "value": "medium"
+        },
+        {
+          "label": "Large",
+          "value": "large"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label":"Text alignment",
+      "default": "center center",
+      "options": [
+        {
+          "label": "Top left",
+          "value": "left top"
+        },
+        {
+          "label": "Top center",
+          "value": "center top"
+        },
+        {
+          "label": "Top right",
+          "value": "right top"
+        },
+        {
+          "label": "Middle left",
+          "value": "left center"
+        },
+        {
+          "label":"Middle center",
+          "value": "center center"
+        },
+        {
+          "label":"Middle right",
+          "value": "right center"
+        },
+        {
+          "label": "Bottom left",
+          "value": "left bottom"
+        },
+        {
+          "label": "Bottom center",
+          "value": "center bottom"
+        },
+        {
+          "label": "Bottom right",
+          "value": "right bottom"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "show_overlay",
+      "label": "Show overlay",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image block",
+	  "limit":1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label":"Image"
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Image position",
+          "default": "center center",
+          "options": [
+            {
+              "label": "Top left",
+              "value": "left top"
+            },
+            {
+              "label":"Top center",
+              "value": "center top"
+            },
+            {
+              "label": "Top right",
+              "value": "right top"
+            },
+            {
+              "label": "Middle left",
+              "value": "left center"
+            },
+            {
+              "label": "Middle center",
+              "value": "center center"
+            },
+            {
+              "label":"Middle right",
+              "value": "right center"
+            },
+            {
+              "label":"Bottom left",
+              "value": "left bottom"
+            },
+            {
+              "label": "Bottom center",
+              "value": "center bottom"
+            },
+            {
+              "label": "Bottom right",
+              "value": "right bottom"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "slide_title",
+          "label": "Titel",
+          "default":"Image Block"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Subheading",
+          "default": "Tell your brand's story through images"
+        },
+        {
+          "type": "richtext",
+          "id": "detail",
+          "label":"Enter detail"
+        },
+		{
+		  "type":"color",
+		  "id":"text_color",
+		  "label":"Select text color",
+		  "default":"#fff"
+		},
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label":"Button link"
+        },
+		 {
+		   "type":"checkbox",
+			"label":"Enable cricle button",
+			"id":"cricle_b",
+			"default":false
+		 },
+        {
+          "type": "header",
+          "content": "Popup"          
+        },
+		 {
+		   "type":"checkbox",
+			"label":"Enable Poup when click on button",
+			"id":"popup_b",
+			"default":false
+		 },
+        {
+          "type": "richtext",
+          "id": "popup_text",
+          "label":"Enter popup detail"
+        }
+      ]
+    },
+	{
+	  "type":"newsletter",
+	  "name":"Newsletter",
+	  "limit":1,
+	  "settings":[
+		{
+		  "type":"text",
+		  "id":"title",
+		  "label":"Enter title",
+		  "default":"Join the Bioshepere blog newsletter"
+		},
+		{
+		  "type":"textarea",
+		  "id":"detail",
+		  "label":"Enter detail",
+		  "default":"Articles, recipes, Tips, Healthy Hacks... And many more"
+		},
+		{
+		  "type":"color",
+		  "id":"bg_color",
+		  "label":"Select background color",
+		  "default":"#00a1ae"
+		},
+		{
+		  "type":"color",
+		  "id":"text_color",
+		  "label":"Select text color",
+		  "default":"#fff"
+		}
+	  ]
+	}
+  ]
+}
+{% endschema %}

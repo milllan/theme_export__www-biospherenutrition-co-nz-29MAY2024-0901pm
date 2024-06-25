@@ -1,0 +1,158 @@
+{% comment %}
+  The contents of the product.liquid template can be found in /sections/product-template.liquid
+{% endcomment %}
+
+{% section 'sleep-product-template' %}
+{% section 'product-recommendations' %}
+{%- comment -%}
+  {%- if collection -%}
+    <div class="text-center return-link-wrapper page-width">
+      <a href="{{ collection.url }}" class="btn btn--secondary btn--has-icon-before return-link">
+        {% include 'icon-arrow-left' %}
+        {{ 'products.product.back_to_collection' | t: title: collection.title }}
+      </a>
+    </div>
+  {%- endif -%}
+{%- endcomment -%}
+
+<script defer>
+  // Override default values of shop.strings for each template.
+  // Alternate product templates can change values of
+  // add to cart button, sold out, and unavailable states here.
+  theme.productStrings = {
+    addToCart: {{ 'products.product.add_to_cart' | t | json }},
+    soldOut: {{ 'products.product.sold_out' | t | json }},
+    unavailable: {{ 'products.product.unavailable' | t | json }}
+  }
+
+  var selectCallBack = function(variant){
+    if (variant) {
+      var form = jQuery('#' + selector.domIdPrefix).closest('form');
+      for (var i=0,length=variant.options.length; i<length; i++) {
+        var radioButton = form.find('.swatch[data-option-index="' + i + '"] :radio[value="' + variant.options[i] +'"]');
+        if (radioButton.size()) {
+          radioButton.get().checked = true;
+        }
+      }
+    }
+  }
+  $(document).ready(function(){
+    jQuery(function() {
+      $(document).on('change','.swatch :radio',function(){
+        var optionIndex = jQuery(this).closest('.swatch').attr('data-option-index');
+        var optionValue = jQuery(this).val();
+        jQuery(this)
+        .closest('form')
+        .find('.single-option-selector')
+        .eq(optionIndex)
+        .val(optionValue)
+        .trigger('change');
+      });
+    });
+  });
+
+   $(document).ready(function(){
+     setTimeout(function(){
+       if($('.swatch-element.60-serving-tub label').length > 0){
+       $('.swatch-element.60-serving-tub label')[0].click();
+       }
+     }, 3000);
+  });
+</script>
+{% comment %}
+  {% assign current_variant = product.selected_or_first_available_variant %}
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org/",
+    "@type": "Product",
+    "name": {{ product.title | json }},
+    "url": {{ shop.url | append: product.url | json }},
+    {%- if product.featured_media -%}
+      {%- assign media_size = product.featured_media.preview_image.width | append: 'x' -%}
+      "image": [
+        {{ product.featured_media | img_url: media_size | prepend: "https:" | json }}
+      ],
+    {%- endif -%}
+    "description": {{ product.description | strip_html | json }},
+    {%- if current_variant.sku != blank -%}
+      "sku": {{ current_variant.sku | json }},
+    {%- endif -%}
+    "brand": {
+      "@type": "Thing",
+      "name": "Bioshere Nutrition"
+    },
+    "offers": [
+    	{% if product.options.size > 1 %}
+      {%- for variant in product.variants -%}
+        {
+          "@type" : "Offer",
+          {%- if variant.sku != blank -%}
+            "sku": {{ variant.sku | json }},
+          {%- endif -%}
+          "availability" : "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+          "price" : {{ variant.price | divided_by: 100.00 | json }},
+          "priceCurrency" : {{ cart.currency.iso_code | json }},
+          "url" : {{ shop.url | append: variant.url | json }}
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+      {% else %}
+       {
+       	"@type" : "Offer",
+        	"sku": {{ product.sku | json }},
+      	"availability" : "http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+          "price" : {{ product.price | divided_by: 100.00 | json }},
+          "priceCurrency" : {{ cart.currency.iso_code | json }},
+          "url" : {{ shop.url | append: variant.url | json }}
+       }
+      {% endif %}
+    ]
+  }
+  </script>
+{% endcomment %}
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+       "offers": {
+        "@type": "Offer",
+       "url": {{ shop.url | append: product.url | json }},
+        "priceCurrency": {{ cart.currency.iso_code | json }},
+        "price": "{{product.price  | divided_by: 100.00  }}",
+        "priceValidUntil": "2020-11-05",
+        "itemCondition": "https://schema.org/NewCondition",
+        "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+        "seller": {
+          "@type": "Organization",
+          "name": "{{product.vendor}}"
+        }
+      },
+      "name": "{{product.title}}",
+      "releaseDate": "{{product.created_at |  date:'%Y-%d-%m'}}",
+      "description": "{{product.description | strip_html}}",
+      "brand": {
+      "@type": "Thing",
+      "name": {{ product.vendor | json }}
+      },
+      "image":"{{product.featured_image | img_url:'master'}}",
+      "sku":"{% if product.sku %}{{product.selected_or_first_available_variant.sku}}{% else %}EMPTY{% endif %}",
+      "identifier":"{{product.barcode}}",
+       "review": {
+  "@type": "Review",
+  "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": "5",
+    "bestRating": "5"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "{{shop.name}}"
+  }
+   },
+       "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "{{product.metafields.product_schema.th_ratingValue}}",
+          "bestRating": "5.0",
+          "ratingCount": "{{product.metafields.product_schema.th_ratingCount}}"
+        }
+    }
+</script>

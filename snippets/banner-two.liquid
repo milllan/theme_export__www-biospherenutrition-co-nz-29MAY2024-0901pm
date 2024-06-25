@@ -1,0 +1,57 @@
+{%- assign magnesium = false -%}
+{%- if page == 'magnesium' -%}
+{%- assign magnesium = true -%}
+{%- endif -%}
+{%- assign nitric_oxide = false -%}
+{%- if page == 'nitric-oxide' -%}
+{%- assign nitric_oxide = true -%}
+{%- endif -%}
+<div data-section-id="{{ section.id }}" data-section-type="banner-section">  
+  <div class="as_banner_two {{ magnesium }} lazyload{% if section.settings.title == blank or section.settings.description == blank %} hide{% endif %}" {% if section.settings.image != blank %}data-bg="{{ section.settings.image | img_url: '300x300' }}"
+       data-bgset="{% include 'bgset', image: section.settings.image %}" data-sizes="auto" data-parent-fit="cover" {% endif %}
+       style="{% if section.settings.bg_color != blank %} background-color:{{ section.settings.bg_color }}; {% endif %}{% if section.settings.image != blank %} background-position: {{ section.settings.alignment }}; background-image: url({{ section.settings.image | img_url: '1x1' }});{% endif %}">
+    {%- assign sec = section.settings -%}
+    <div class="page-width text-center">
+    	{%- if sec.title != blank -%}
+      	<h2 class="no-ls h-border-bottom textcenter">{{ sec.title }}</h2>
+      	{%- endif -%}
+       {%- if sec.description != blank -%}<div class="header_detail text_wrapper div_rich div_rich_large fw-medium">{{ sec.description }}</div>{%- endif -%}
+      {%- if section.blocks.size > 0 -%}
+      <div class="asb_block_grid grid--uniform fw-medium">
+      	{%- for block in section.blocks -%}
+        <div class="grid__item asb_block_item medium-up--one-third" {{ block.shopify_attributes }}>
+          {%- assign img_url = block.settings.image  | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+          <div class="iw"><img src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="{{ img_url }}" data-aspectratio="{{ block.settings.image.aspect_ratio }}" data-widths="[99,157]" data-sizes="auto" class="lazyload" width="auto" height="auto" /></div>
+          <div class="asb_title">{{- block.settings.title -}}</div>
+        </div>
+      	{%- endfor -%}
+      </div>
+      {%- endif -%}
+      {%- if sec.bl != blank and sec.bt != blank -%}
+      <div class="one-whole text-center btn_vall_div">
+        <a href="{{ sec.bl }}" class="btn {% if magnesium %}btn--tertiary {% endif %}btn-round_true tt-none" title="">{{ sec.bt }}</a>
+      </div>{%- endif -%}
+    </div>
+  </div>  
+  {%- if sec.image_2 != blank or sec.title_2 != blank or sec.description_2 != blank -%}
+  <div class="as_banner_two as_banner_two_t {{ magnesium }} lazyload" {% if section.settings.image_2 != blank %}data-bg="{{ section.settings.image_2 | img_url: '300x300' }}"
+       data-bgset="{% include 'bgset', image: section.settings.image_2 %}" data-sizes="auto" data-parent-fit="cover" {% endif %}
+       style="{% if section.settings.bg_color_2 != blank %} background-color:{{ section.settings.bg_color_2 }}; {% endif %}{% if section.settings.image_2 != blank %} background-position: {{ section.settings.alignment_2 }}; background-image: url({{ section.settings.image_2 | img_url: '1x1' }});{% endif %}">
+     <div class="page-width text-{{ sec.alig_2 | split:'_' | first }}">
+       <div class="as_banner_two_wrapper text-{{ sec.alig_2 | split:'_' | last }}">
+         {%- if sec.title_2 != blank -%}
+         <h2 class="no-ls h-border-bottom bcolor-niox_{{ nitric_oxide }} text{{ sec.alig_2 | split:'_' | last }}">{{ sec.title_2 }}</h2>
+         {%- endif -%}
+         {%- if sec.description_2 != blank -%}<div class="rte magnesium_{{magnesium}} header_detail text_wrapper div_rich div_rich_m fw-medium{% if nitric_oxide %} nitric_ox-color{% endif %}">{{ sec.description_2 | replace:'&lt;','<' | replace:'&gt;','>' }}</div>{%- endif -%}      
+         {%- if sec.bl_2 != blank and sec.bt_2 != blank -%}
+         <div class="one-whole text-{{ sec.alig_2 | split:'_' | last }} btn_vall_div">
+           <a href="{{ sec.bl_2 }}" class="btn {% if magnesium or nitric_oxide %}btn--tertiary {% endif %}btn-round_true tt-none" title="">{{ sec.bt_2 }}</a>
+         </div>{%- endif -%}
+       </div>
+    </div>
+  </div>
+  <style>
+    @media(max-width:767px){ #shopify-section-{{ section.id }} .as_banner_two_t::before{ background-color: {{ section.settings.bg_color_2 }}; }  }
+  </style>
+  {%- endif -%}  
+</div>

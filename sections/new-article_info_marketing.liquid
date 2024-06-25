@@ -1,0 +1,109 @@
+<div class="article_info_marketing" id="How-do-i-get-better-sleep">
+  <div class="article_container">
+    <div class="info_richtext" id="should_my_blood_pressure">
+      {% if section.settings.title %}
+      <h4 class="sameasallsize">{{ section.settings.title }}</h4>
+      {% endif %}
+      {% if section.settings.section_content %}
+      <div>{{ section.settings.section_content }}</div>
+      {% endif %}
+    </div>
+  </div>
+    <div class="marketing_img">    	
+      {% if section.settings.marketing_image %}
+    	<img src="{{ section.settings.marketing_image | img_url:'master' }}"/>
+      {% endif %}
+      <div class="markting_content">
+        <div class="article_container">
+          <h1 class="heading-font">
+            {{ section.settings.title_first }}
+            <span>{{ section.settings.title_second }}</span>
+          </h1>
+          {% if section.settings.marketing_content %}
+          <div class="marketing_inner_content">{{ section.settings.marketing_content }}</div>
+          {% endif %}
+          {% if section.settings.button_link %}
+          <a href="{{ section.settings.button_link }}" class="marketing_button">
+            {{ section.settings.button_text }}
+          </a>
+          {% endif %}
+          {% if section.settings.discount_txt %}
+          <P class="discount_txt">{{ section.settings.discount_txt }}</P>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+</div>
+<style>
+  #info--marketing--{{section.id}}{
+    background:{{ section.settings.section_color }}
+  }
+</style>
+{% schema %}
+  {
+    "name": "Article info marketing",
+    "settings": [
+		{
+			"type":"color",
+			"id":"section_color",
+			"label":"choose section color"
+		},
+		{
+			"type":"text",
+			"id":"title",
+			"label":"Add title"
+		},
+		{
+			"type":"richtext",
+			"id":"section_content",
+			"label":"Add Content"
+		},
+		{
+			"type":"image_picker",
+			"id":"marketing_image",
+			"label":"Add main image"
+		},
+		{
+			"type":"header",
+			"content":"marketing_content"
+		},
+		{
+			"type":"text",
+			"id":"title_first",
+			"label":"Add first word title"
+		},
+		{
+			"type":"text",
+			"id":"title_second",
+			"label":"Add second word title"
+		},
+		{
+			"type":"richtext",
+			"id":"marketing_content",
+			"label":"Add marketing content"
+		},
+		{
+			"type":"text",
+			"id":"button_text",	
+			"label":"Add button text"
+		},
+		{
+			"type":"url",
+			"id":"button_link",
+			"label":"Add button link"
+		},
+		{
+			"type":"text",
+			"id":"discount_txt",
+			"label":"use Discount Text"
+		}
+	],
+	"presets":[
+		{
+			"name":"new article info marketing"
+		}
+	]
+  }
+{% endschema %}
+
+

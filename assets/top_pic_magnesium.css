@@ -1,0 +1,27 @@
+.img-fluid{max-width:100%;display:block;height:auto;}
+.top_pic_text .images_mobile,.page-top-pick-magnesium .breadcrumbs{display:none;}
+.top_pic_magnesium .page-width{max-width:878px;}
+.top_pic_magnesium{padding:50px 0;}
+.top_pic_heading h2{letter-spacing:0;font-size:44px;line-height:47px;font-weight:900;text-transform:none;font-family:"Figtree", sans-serif;color:#000;font-weight:800;}
+.top_pic_heading p{margin:23px 0 60px;letter-spacing:-0.02em;font-size:18px;line-height:27px;font-family:"Figtree", sans-serif;color:#000;font-weight:400;}
+.top_pic_magnesium{padding:50px 0;}
+.top_pic_text{max-width:411px;margin-left:30px;}
+.top_pic_heading p{margin:23px 0 60px;letter-spacing:-0.02em;font-size:18px;line-height:27px;}
+.top_pic_content{display:flex;align-items:center;justify-content:space-between;margin-bottom:50px;}
+.top_pic_image img{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;object-fit:cover;border-radius:15px;}
+.top_pic_image{position:relative;width:100%;height:auto;padding-bottom:40%;display:inline-block;max-width:308px;min-width:308px;}
+.top_pic_text{max-width:411px;}
+.top_pic_text h3{letter-spacing:-0.05rem;font-size:28px;line-height:33px;font-family:"Figtree", sans-serif;color:#000;font-weight:800;}
+.top_pic_text p{letter-spacing:-0.02em;font-size:18px;line-height:27px;font-family:"Figtree", sans-serif;color:#000;font-weight:400;}
+.top_pic_bottom{text-align:center;}
+.top_pic_bottom p{font-size:28px;line-height:1.14;max-width:580px;margin:0 auto 20px;font-weight:900;color:#00a3ae;font-family:"Figtree", sans-serif;font-weight:400;}
+.top_pic_bottom a{display:inline-block;width:100%;padding:13px 20px;background-color:#00a3ae;box-shadow:0 3px 7px #00000029;font-size:18px;line-height:1.39;color:#fff;text-transform:uppercase;max-width:378px;font-weight:900;cursor:pointer;font-family:"Figtree", sans-serif;font-weight:800;}
+@media only screen and(max-width:767px){
+  .top_pic_image{display:none;}
+  .top_pic_magnesium .page-width{max-width:600px;}
+  .top_pic_text .images_mobile{display:block;margin-bottom:30px;}
+  .top_pic_text .images_mobile{border-radius:15px;}
+  .top_pic_text{max-width:100%;margin-left:0;}
+  .top_pic_heading h2{font-size:28px;line-height:36px;}
+  .top_pic_text h3,.top_pic_bottom p{font-size:24px;line-height:28px;}
+}

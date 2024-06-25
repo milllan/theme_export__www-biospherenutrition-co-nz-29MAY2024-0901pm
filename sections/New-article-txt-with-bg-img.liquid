@@ -1,0 +1,50 @@
+<style>
+.wrp-bg-img-{{ section.id }} {
+        background: url("{{ section.settings.bg_img | img_url: 'master' }}");
+        background-repeat: no-repeat;
+        background-size: cover;
+}
+
+  
+</style>
+
+<div class="wrp-bgi-txt wrp-bg-img-{{ section.id }}" id="Install-a-blue-light-filter">
+    <div class="article_container">
+   {% if section.settings.title != blank %}   <h4 class="sameasallsize"> {{ section.settings.title }}  </h4> {% endif %}
+          {% if  section.settings.description != blank %}
+          <div class="inside-description">
+            {{ section.settings.description }}
+          </div>
+            {% endif %}
+    </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Article BG img with text",
+    "settings": [
+      {
+        "type" : "image_picker",
+        "id" : "bg_img",
+        "label" : "BG image"
+      },
+      {
+        "type" : "text",
+        "id" : "title",
+        "label" : "Title"
+      },
+      {
+        "type" : "richtext",
+        "id" : "description",
+        "label" : "Description"
+      }
+    ],
+    "presets" : [
+      {
+        "name" : "Article BG img with text"
+      }
+    ]
+  }
+{% endschema %}
+

@@ -1,0 +1,101 @@
+{{ 'top_pic_magnesium.css' | asset_url | stylesheet_tag }}
+<div class="top_pic_magnesium">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+    <div class="top_pic_heading">
+      <h2>{{ section.settings.title }}</h2>
+      {% if section.settings.text != blank %}
+      {{ section.settings.text }}
+      {% endif %}
+    </div>
+    {% endif %}
+    <div class="top_pic_block">
+      {% for block in section.blocks %}
+        {% if block.settings.pick_img != blank %}
+        <div class="top_pic_content">
+          <div class="top_pic_image">
+            <img class="img-fluid images_desktop" src="{{ block.settings.pick_img | img_url: 'master' }}" alt="{{ block.settings.title }}">
+          </div>
+          {% if block.settings.title != blank %}
+          <div class="top_pic_text">
+            <h3>{{ block.settings.title }}</h3>
+            <img class="img-fluid images_mobile" src="{{ block.settings.pick_img | img_url: 'master' }}" alt="{{ block.settings.title }}">
+            {% if block.settings.text != blank %}
+            {{ block.settings.text }}
+            {% endif %}  
+          </div>
+          {% endif %}
+        </div>
+        {% endif %}
+      {% endfor %} 
+    </div>
+    <div class="top_pic_bottom">
+      {% if section.settings.text_bottom != blank %}
+      {{ section.settings.text_bottom }}
+      {% endif %}
+      {% if  section.settings.text_Button != blank %}
+      <a {% if section.settings.url_Button != blank %} href="{{ section.settings.url_Button }}" {% endif %} class="button_item">{{ section.settings.text_Button }}</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Top Pick Magnesium",
+    "settings": [
+      {
+        "type":"text",
+        "id":"title",
+        "label":"Heading"
+      },
+      {
+        "type":"richtext",
+        "id":"text",
+        "label":"Summary"
+      },
+      {
+        "type":"richtext",
+        "id":"text_bottom",
+        "label":"Bottom Text"
+      },
+      {
+        "type":"text",
+        "id":"text_Button",
+        "label":"Button Text"
+      },
+      {
+        "type":"url",
+        "id":"url_Button",
+        "label":"Button Url"
+      }
+    ],
+    "blocks":[
+      {
+        "name":"Image Text",
+        "type":"images",
+        "settings":[
+          {
+            "type":"image_picker",
+            "id":"pick_img",
+            "label":"Image"
+          },
+          {
+            "type":"text",
+            "id":"title",
+            "label":"Title"
+          },
+          {
+            "type":"richtext",
+            "id":"text",
+            "label":"Text"
+          }
+        ]
+      }
+    ],
+    "presets":[
+      {
+        "name": "Top Pick Magnesium"
+      }
+    ]
+  }
+{% endschema %}

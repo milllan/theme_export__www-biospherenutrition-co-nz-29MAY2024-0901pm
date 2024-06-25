@@ -1,0 +1,133 @@
+.text-overlay-title h2 {
+    font-size: 48px;
+    color: #384151;
+    font-weight: 800;
+    letter-spacing: 0.01px;
+    text-transform: inherit;
+    margin: 0;
+    font-family: 'Figtree';
+}
+.text-overlay-title h3 {
+    font-size: 30px;
+    color: #384151;
+    font-weight: 800;
+    opacity: 0.702;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    font-family: 'Figtree';
+    position: relative;
+}
+.text-overlay-title h3:after {
+    content: '';
+    position: absolute;
+    opacity: 0.502;
+    background-color: rgba(56,65,81,0.5019607843137255);
+    height: 4px;
+    width: 100px;
+    bottom: -4px;
+    left: 0;
+}
+.text-overlay-wrapper p {
+    font-size: 26px;
+    font-weight: 400;
+    color: #384151;
+    font-family: Figtree !important;
+}
+.text-overlay-title {
+    max-width: 1351px;
+    width: 100%;
+    margin: 0 auto;
+}
+.text-overlay-wrapper .btn-text a.get-btn:hover, .btn-with-text a.get-btn:hover{color: #fff;}
+.get-btn {font-size: 30px;text-transform: uppercase;color: #ffffff;font-weight: 800;font-family: "Figtree";border-radius: 16px;background-color: #384151;padding: 16px 0;max-width: 490px;width: 100%;display: inline-block;text-align: center;}
+.pro-desc {display: flex;align-items: center;}
+.pro-desc p {opacity: 0.702;font-size: 20px;letter-spacing: 1px;text-transform: uppercase;color: #384151;font-weight: 600;}
+.pro-desc span {line-height: 0;margin-right: 8px;}
+.btn-with-text {display: flex;align-items: center;justify-content: space-between;max-width: 930px;margin: 70px auto 0;}
+.mob-content{display: none;}
+.new-text-overlay .content_desc_text {position: relative;}
+
+
+@media screen and (max-width: 1440px) {
+  .new-text-overlay .right_side {max-width: 350px;object-fit: contain;}
+}
+@media screen and (max-width: 1250px) {
+  .new-text-overlay .content_desc_text {max-width: 700px}
+}
+@media screen and (max-width: 1024px) {
+  .text-overlay-title p:nth-child(6) {padding-left: 50px;}
+  .text-overlay-title p:nth-child(7) {padding-left: 50px;}
+  .text-overlay-title p:nth-child(8) {padding-left: 100px;}
+  .text-overlay-title p:nth-child(9) {padding-left: 100px;}
+  .btn-with-text {flex-wrap: wrap;justify-content: center;row-gap: 20px;}
+  .pro-desc {width: 100%;justify-content: center;}
+}
+
+@media screen and (max-width: 992px) {
+  .desc-content{
+    display: none;
+  }
+  .mob-content{
+    display: block;
+  }
+  .text-overlay-title h2 {
+    font-size: 42px;
+  }
+  .text-overlay-title h3 {
+    font-size: 26px;
+    line-height: 30px;
+  }
+  .text-overlay-wrapper p {
+    font-size: 22px;
+    font-weight: 400;
+    color: #384151;
+    margin-bottom: 0;
+  }
+  .text-overlay-title p:nth-child(6) {
+    padding-left: 0;
+  }
+  .text-overlay-title p:nth-child(7) {
+      padding-left: 0;
+  }
+  .text-overlay-title p:nth-child(8) {
+      padding-left: 0;
+  }
+  .text-overlay-title p:nth-child(9) {
+      padding-left: 0;
+  }
+  .pro-desc p {
+    font-size: 15px;
+  }
+}
+@media screen and (max-width: 991px) {
+  /* .text-overlay-title .content_desc_text p:not(:last-child) {padding-bottom: 15px;}   */
+}
+@media screen and (max-width: 767px) {
+  .page-new_prebiotic_product .get-btn{
+    font-size: 18px;  max-width: 100%;   font-weight: 900; padding: 20px 28px!important;  display: block;  width: 100%;  border-radius: 70px;   background-color: #299646;  color: #fff;  box-shadow: 0 3px 1px #c1c1c1; text-align: center;
+  line-height:normal;
+  }
+  .btn-with-text{
+    margin:0 auto;
+  }
+ .get-btn{  font-size: 18px;  max-width: 100%;   font-weight: 900; padding: 20px 28px!important;  display: block;  width: 100%;  border-radius: 70px;   background-color: red;  color: #fff;  box-shadow: 0 3px 1px #c1c1c1; text-align: center;
+  }
+  .text-overlay .page-width,.text-overlay .btn-with-text{
+    padding-left:7px;
+    padding-right:7px;
+  }
+
+}
+@media screen and (max-width: 480px) {
+  .text-overlay{padding-top: 50px !important;}
+  .text-overlay-title h2 {font-size: 29px;padding-bottom: 7px;}
+  .text-overlay-title h3 {font-size: 21px;line-height: 27px;}
+  .page-new-static-nitric-oxide .get-btn{  font-size: 18px;  max-width: 100%;   font-weight: 900; padding: 20px 28px;  display: block;  width: 100%;  border-radius: 70px;   background-color: red;  color: #fff;  box-shadow: 0 3px 1px #c1c1c1; text-align: center;
+  }
+}
+.new-text-overlay{position:relative;}
+.new-text-overlay .left_img{position: absolute;bottom: 10%;left: -11%;}
+.new-text-overlay .right_side{position: absolute;bottom: 14%;right:0;}
+
+.new-text-overlay .btn-with-text{flex-direction: column !important;}
+.new-text-overlay .pro-desc{margin-top: 15px;}

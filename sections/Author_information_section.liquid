@@ -1,0 +1,69 @@
+<div class="author_information">
+  <div class="article_container">
+    <div class="author_info_inner">
+      {% if section.settings.author_img %}
+    	<img src="{{ section.settings.author_img | img_url:'master' }}" alt=""/>
+      {% endif %}
+      {% if section.settings.author_name %}
+      <h5 class="author_name">Author : <span>{{ section.settings.author_name }}</span></h5>
+      {% endif %}
+      {% if section.settings.author_qualification %}
+      <p class="qualifi">{{ section.settings.author_qualification }}</p>
+      {% endif %}
+      {% if section.settings.author_content %}
+      <div class="author_content">{{ section.settings.author_content }}</div>
+      {% endif %}
+      {% if section.settings.link_url %}
+      <a href="{{ section.settings.link_url }}" class="author_link">{{ section.settings.link_text }}</a>
+      {% endif %}
+    </div>
+  </div>
+</div>	
+{% schema %}
+  {
+    "name": "Author information",
+    "settings": [
+		{		
+			"type":"image_picker",
+			"id":"author_img",
+			"label":"Add Aythor image"
+		},
+		{
+			"type":"text",
+			"id":"author_name",
+			"label":"Add Author's Name"
+		},
+		{
+			"type":"text",
+			"id":"author_qualification",
+			"label":"Add author qualifications"
+		},
+		{
+			"type":"richtext",
+			"id":"author_content",
+			"label":"Add author content"
+		},
+		{
+			"type":"text",
+			"id":"link_text",
+			"label":"Add link text"
+		},
+		{		
+			"type":"url",
+			"id":"link_url",
+			"label":"Add link url"
+		}
+	],
+	"presets":[
+		{
+			"name":"Author information"
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

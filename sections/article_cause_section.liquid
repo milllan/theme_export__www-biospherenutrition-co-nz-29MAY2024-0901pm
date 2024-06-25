@@ -1,0 +1,109 @@
+<div class="article_cause" id="article_cause">
+  <div class="article_container">
+    <div class="cause_main_section">
+      {% if section.settings.cause_title %}
+      <h3 class="same_size_title">{{ section.settings.cause_title }}</h3>
+      {% endif %}
+      {% if section.settings.cause_content %}
+      <div>{{ section.settings.cause_content }}</div>
+      {% endif %}
+    </div>
+    <div class="cause_list_section">
+      {% if section.settings.list_title %}
+      <p class="liset_title">{{ section.settings.list_title  }}</p>
+      {% endif %}
+      <div class="row main_row_cause">
+        <div class="col-6 main_col">
+          <div class="row">
+            <div class="col-6">
+              {% if section.settings.list_one %}
+            	 <div class="cause_listing">{{ section.settings.list_one }}</div>
+              {% endif %}
+            </div>
+            <div class="col-6">
+              {% if section.settings.list_two %}
+            	 <div class="cause_listing">{{ section.settings.list_two }}</div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="col-6 main_col">
+          {% if section.settings.sub_title %}
+          <p class="list_sub_main">{{ section.settings.sub_title }}</p>
+          {% endif %}
+          <div class="row">
+          <div class="col-6">
+            {% if section.settings.list_three %}
+            <div class="cause_listing">{{ section.settings.list_three }}</div>
+            {% endif %}
+          </div>
+          <div class="col-6">
+            {% if section.settings.list_four  %}
+            <div class="cause_listing">{{ section.settings.list_four }}</div>
+            {% endif %}
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+	
+{% schema %}
+  {
+    "name": "article cause section",
+    "settings": [
+		{
+			"type":"text",
+			"id":"cause_title",
+			"label":"Add Title"
+		},
+		{
+			"type":"richtext",
+			"id":"cause_content",
+			"label":"Add Content"
+		},
+		{
+			"type":"text",
+			"id":"list_title",
+			"label":"Add list title"
+		},
+		{
+			"type":"richtext",
+			"id":"list_one",
+			"label":"Add first risk factor"
+		},
+		{
+			"type":"richtext",
+			"id":"list_two",
+			"label":"Add first risk factor"
+		},
+		{	
+			"type":"text",
+			"id":"sub_title",
+			"label":"Add sub title"
+		},
+		{
+			"type":"richtext",
+			"id":"list_three",
+			"label":"Add first risk factor"
+		},
+		{
+			"type":"richtext",
+			"id":"list_four",
+			"label":"Add first risk factor"
+		}
+	],
+	"presets":[
+		{
+			"name":"article cause section"
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

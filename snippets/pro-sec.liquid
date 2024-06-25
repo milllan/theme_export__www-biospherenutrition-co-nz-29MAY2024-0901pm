@@ -1,0 +1,58 @@
+{%- assign magnesium = false -%}
+{%- if page == 'magnesium' -%}
+{%- assign magnesium = true -%}
+{%- endif -%}
+{%- assign nitric_oxide = false -%}
+{%- if page == 'nitric-oxide' -%}
+{%- assign nitric_oxide = true -%}
+{%- endif -%}
+<div data-section-id="{{ section.id }}" data-section-type="as-pro-section">{%- assign sec = section.settings -%}
+  <div class="as_bene as_bene_pro{% if sec.bg_color != blank %} with-gradient{% endif %}" {% if sec.bg_color != blank %} style="background-color: {{sec.bg_color}};" {% endif %}>
+    <div class="page-width">
+      {% if sec.title != blank or sec.detail != blank %}<div class="text-center title_part">
+      {%- if sec.title != blank -%}<h2 class="h1-large no-ls h-border-bottom textcenter hb-bottom-d-color bcolor-meg_{{magnesium}} bcolor-niox_{{nitric_oxide}}">{{- sec.title -}}</h2>{%- endif -%}
+      {%- if sec.detail != blank -%}<div class="text_wrapper div_rich fw-medium">{{- sec.detail -}}</div>{%- endif -%}
+      </div>{%- endif -%}
+      {%- assign product = all_products[section.settings.product] -%}
+      {%- if product -%}
+      <div class="pro_img text-center">
+        {%- assign pro_image = section.settings.pro_image | default : product.featured_image -%}
+        {%- assign img_url = pro_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      	<img class="pro_image lazyload" src="{{ pro_image | img_url:'300x300' }}" data-src="{{ img_url }}" width="auto" height="auto" alt="" data-widths="[180, 360, 470, 600, 770, 970, 1060, 1280, 1512, 1728, 2048]" data-sizes="auto" />
+        <div class="one-whole btn_vall_div">
+          <a class="btn btn-{% if magnesium %}meg{% elsif nitric_oxide %}niox{% else %}con{% endif %}-bg tt-none btn-round_true btn--has-icon-before btn--large" href="{{ product.url }}" title="{{ section.settings.btn_title }}">
+            <span data-add-to-cart-text>
+              <i class="fa fa-cart-plus" aria-hidden="true"></i> {{ section.settings.btn_title }}
+            </span>          
+          </a>
+        </div>
+        <div class="pro_detail">
+          <h2 class="no-ls h1-large h-border-bottom textcenter bcolor-niox_{{nitric_oxide}}">{{section.settings.pro_title }}</h2>
+          {%- if section.settings.show_review -%}
+          <div class="pro_review_badge "><div class="wc_product_review_badge" data-handle="{{ product.handle }}" data-product_id="{{ product.id }}"></div></div>
+          {%- endif -%}{%- if section.settings.pro_de -%}
+          <div class="tw div_rich">{{ section.settings.pro_de }}</div>
+          {%- endif -%}
+          {%- if section.settings.pro_btn != blank -%}
+          <a href="{{ product.url }}#wc_review_section" class="btn btn-{% if magnesium %}meg{% elsif nitric_oxide %}niox{% else %}con{% endif %}-bg tt-none btn-round_true">{{ section.settings.pro_btn }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+      {%- endif -%}      
+    </div>
+  </div>
+</div>
+<style type="text/css">
+  {%- if sec.color_t != blank -%}
+  #shopify-section-{{ section.id }} .title_part h2{ color: {{ sec.color_t }};  }
+  {%- endif -%}
+  {%- if sec.color_t != blank -%}
+  #shopify-section-{{ section.id }} .title_part .text_wrapper p{ color: {{ sec.color_d }};  }
+  {%- endif -%}
+  {%- if sec.color_bt != blank -%}
+  #shopify-section-{{ section.id }} .asb_tree_branch h3{ color: {{ sec.color_bt }}; }
+  {%- endif -%}
+  {%- if sec.color_bd != blank -%}
+  #shopify-section-{{ section.id }} .asb_tree_branch .text_wrapper p, #shopify-section-{{ section.id }} .refe_part .text-wrapper p{ color: {{ sec.color_bd }}; }
+  {%- endif -%}
+</style>

@@ -1,0 +1,102 @@
+{%- include 'banner-two' -%}
+{% schema %}
+  {
+    "name": "Free radical",
+    "settings": [
+	 {
+		"type":"image_picker",
+		"label":"Upload image",
+		"id":"image"
+	 },
+     {
+      "type": "select",
+      "id": "alignment",
+      "label": "Image position",
+      "default": "center center",
+      "options": [
+      {
+      "label": "Top left",
+      "value": "left top"
+      },
+      {
+      "label":"Top center",
+      "value": "center top"
+      },
+      {
+      "label": "Top right",
+      "value": "right top"
+      },
+      {
+      "label": "Middle left",
+      "value": "left center"
+      },
+      {
+      "label": "Middle center",
+      "value": "center center"
+      },
+      {
+      "label":"Middle right",
+      "value": "right center"
+      },
+      {
+      "label":"Bottom left",
+      "value": "left bottom"
+      },
+      {
+      "label": "Bottom center",
+      "value": "center bottom"
+      },
+      {
+      "label": "Bottom right",
+      "value": "right bottom"
+      }
+      ]
+     },
+      {
+		"type":"text",
+		"label":"Enter section title",
+		"id":"title"
+      },
+      {
+		"type":"richtext",
+		"label":"Enter detail",
+		"id":"description"
+      },
+      {
+		"type":"text",
+		"label":"Enter button title",
+		"id":"bt"
+      },
+      {
+		"type":"url",
+		"label":"Provide button link",
+		"id":"bl"
+      }
+	],
+	"blocks":[
+	  {
+		"type":"block",
+		"name":"Block",
+		"settings":[
+		  {
+			"type":"image_picker",
+			"label":"Upload image 142x157",
+			"id":"image"
+		  },
+		  {
+			"type":"text",
+			"label":"Enter title",
+			"id":"title",
+			"default":"Lorem ipsum dolor sit amet consectetur"
+		  }
+		]
+	  }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

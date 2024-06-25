@@ -1,0 +1,58 @@
+<div class="dark_combined_richtext" id="risk_factors">
+  <div class="article_container">
+    <div class="dark_combined_richtext_one">
+      {% if  section.settings.richtext_title_one  %}
+      <h3 class="same_size_title">{{ section.settings.richtext_title_one }}</h3>
+      {% endif %}
+      {% if section.settings.richtext_content_one %}
+      <div>{{ section.settings.richtext_content_one }}</div>
+      {% endif %}
+    </div>
+    <div class="dark_combined_richtext_two">
+      {% if section.settings.richtext_title_two  %}
+      <h4 class="sameasallsize">{{ section.settings.richtext_title_two }}</h4>
+      {% endif %}
+      {% if section.settings.richtext_content_two %}
+      <div>{{ section.settings.richtext_content_two }}</div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "dark combined richtext",
+    "settings": [
+      {
+        "type":"text",
+        "id":"richtext_title_one",
+        "label":"Add first title"
+      },
+      {
+      	"type":"richtext",
+      	"id":"richtext_content_one",
+      	"label":"Add first content"
+      },
+      {
+      	"type":"text",
+      	"id":"richtext_title_two",
+      	"label":"Add second title"
+      },
+      {
+     	"type":"richtext",
+      	"id":"richtext_content_two",
+      	"label":"Add second content"
+      }
+	],
+	"presets":[
+		{
+			"name":"dark combined richtext"
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

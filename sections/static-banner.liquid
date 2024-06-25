@@ -1,0 +1,237 @@
+{{ 'static-banner.css' | asset_url | stylesheet_tag }}
+{% style %}
+  {% if section.settings.bg_image != blank %}
+    .bg_color_{{ section.id }} {
+      background-image: url({{ section.settings.bg_image | img_url: 'master' }});
+      background-repeat: no-repeat;
+     background-size: cover;
+      background-position: top right;
+    }
+     .page-new-static-nitric-oxide .static-banner{
+        background-position: bottom right;
+    } 
+    .page-new_prebiotic_product .static-banner{
+      background-position: bottom left;
+    }
+  {% endif %}
+{% endstyle %}
+
+<div class="static-banner bg_color_{{ section.id }}">
+  <div class="page-width">
+    <div class="static-banner-wrapper">
+      {% if section.settings.mobile_image != blank %}
+        <div class="mobile_image">
+          <img src="{{ section.settings.mobile_image | img_url: 'master' }}">
+        </div>
+      {% endif %}
+      <div class="static-banner-content-main">
+        {% if section.settings.title != blank %}
+          <div class="title-wrapper">
+            <h2 class="title">{{ section.settings.title }} 
+              {% if template == 'page.new_prebiotic_product' %}
+                <span class="hide-green">:</span>  <span class="green-title hide-green" style="color:{{ section.settings.text-color }}">
+                    {{ section.settings['green-title'] }}
+                  </span>
+              {% endif %}
+            </h2>
+             
+            {% if section.settings['green-title'] != blank %}
+              <h2 class="green-title   {% if template == 'page.new_prebiotic_product' %} green-prebiotic {% endif %}" style="color:{{ section.settings.text-color }}">
+                {{ section.settings['green-title'] }}
+              </h2>
+            {% endif %}
+             {% if template == 'page.new_prebiotic_product' %} 
+               <div class="green-line">
+               </div>
+                {% endif %}
+            {% if section.settings.sub_title != blank %}
+              <span class="sub_title">{{ section.settings.sub_title }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
+        {% if section.settings.show_ratingStart %}
+          <div class="star_review">
+            <div class="rating-parent">
+                  <div class="rating">
+                    {% if section.settings.rating == 'one' %}
+                      <span> {% render 'active_start' %}</span><span> {% render 'deactive_start' %}</span
+                      ><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span
+                      ><span> {% render 'deactive_start' %}</span>
+                    {% elsif section.settings.rating == 'two' %}
+                      <span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span
+                      ><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span
+                      ><span> {% render 'deactive_start' %}</span>
+                    {% elsif section.settings.rating == 'three' %}
+                      <span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span
+                      ><span> {% render 'active_start' %}</span><span> {% render 'deactive_start' %}</span
+                      ><span> {% render 'deactive_start' %}</span>
+                    {% elsif section.settings.rating == 'four' %}
+                      <span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span
+                      ><span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span
+                      ><span> {% render 'deactive_start' %}</span>
+                    {% else %}
+                      <span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span
+                      ><span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span
+                      ><span> {% render 'active_start' %}</span>
+                    {% endif %}
+                  </div>
+                {% if template == 'page.new-magnesium' %}
+                  <p class="star_count">{{ section.settings.star_count }}</p>
+                {% endif %}
+              </div>
+            {% if section.settings['review-label'] != blank %}
+              <p>{{ section.settings['review-label'] }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+        {% if section.settings.star_count != blank %}
+          <p class="star_count magnesium-count">{{ section.settings.star_count }}</p>
+        {% endif %}
+        <div class="static-banner-info-wrapper">
+          {% for block in section.blocks %}
+            {% if block.settings.content != blank %}
+              <div class="banner-info-wrapper-item">
+                <span>{{ section.settings['true-svg'] }}</span>
+                <p>{{ block.settings.content }}</p>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <div class="bottom_button_wrappper">
+          {% if section.settings.button_label != blank %}
+            <a
+              href="{{ section.settings.button_url }}"
+              class="banner_button trigger_click_btn"
+              style="background-color:{{ section.settings.btn-color }}"
+            >
+              {{- section.settings.button_label -}}
+            </a>
+          {% endif %}
+          {% if section.settings.guarantee_text != blank %}
+            <p class="money_back_text">{{ section.settings.guarantee_text }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Static Banner",
+  "settings": [
+    {
+      "type":"image_picker",
+      "id":"bg_image",
+      "label":"Background Image"
+    },
+    {
+      "type":"image_picker",
+      "id":"mobile_image",
+      "label":"Mobile Image"
+    },
+    {
+      "type":"text",
+      "id":"title",
+      "label":"Title"
+    },
+    {
+      "type": "text",
+      "id": "green-title",
+      "label": "green-title"
+    },{
+      "type": "color",
+      "id": "text-color",
+      "label": "text-color"
+    },
+    {
+      "type":"text",
+      "id":"sub_title",
+      "label":"Sub Title"
+    },
+    {
+      "type": "select",
+      "id": "rating",
+      "label": "Star Rating",
+      "options": [
+        {
+          "value": "one",
+          "label": "One"
+        },
+        {
+          "value": "two",
+          "label": "Two"
+        },
+        {
+          "value": "three",
+          "label": "Three"
+        },
+        {
+          "value": "four",
+          "label": "Four"
+        },
+        {
+          "value": "five",
+          "label": "Five"
+        }
+      ]
+    },
+    {
+      "type" : "text",
+      "id" : "review-label",
+      "label" : "Review"
+    },
+    {
+      "type" : "text",
+      "id" : "star_count",
+      "label" : "Star Count"
+    },
+    {
+      "type" : "checkbox",
+      "id" : "show_ratingStart",
+      "label" : "Show Rating Star"
+    },
+    {
+      "type":"text",
+      "id":"button_label",
+      "label":"Button Label"
+    },
+    {
+      "type":"url",
+      "id":"button_url",
+      "label":"Button Url"
+    },{
+      "type": "color",
+      "id": "btn-color",
+      "label": "btn-color"
+    },
+    {
+      "type":"inline_richtext",
+      "id":"guarantee_text",
+      "label":"Button Bottom Text"
+    } ,{
+          "type": "html",
+          "id":"true-svg",
+          "label": "true-svg"
+        }
+  ],
+  "blocks":[
+    {
+      "type":"text",
+      "name":"Text",
+      "settings":[
+        {
+          "type":"inline_richtext",
+          "id":"content",
+          "label":"Content"
+        }
+      ]
+    }
+  ],
+  "presets":[
+    {
+      "name":"Static Banner"
+    }
+  ]
+}
+{% endschema %}

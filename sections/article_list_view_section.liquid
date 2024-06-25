@@ -1,0 +1,57 @@
+<div class="article_list_view">
+  <div class="article_container">
+    <div class="list_view_content">
+      {% if section.settings.title %}
+      <h4>{{ section.settings.title }}</h4>
+      {% endif %}
+      <div class="list_view_content_width">
+        <div class="row">
+          <div class="col-6">
+            {% if section.settings.list_view %}
+            <div class="list_view_content_inner ls-content">{{ section.settings.list_view }}</div>
+            {% endif %}
+          </div>
+          <div class="col-6">
+            {% if section.settings.list_view_two %}
+            <div class="list_view_content_inner rs-content"> {{ section.settings.list_view_two }} </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Article list view",
+    "settings": [
+		{
+			"type":"text",
+			"id":"title",
+			"label":"Add title"
+		},
+		{
+			"type":"html",
+			"id":"list_view",
+			"label":"Add content list"
+		},
+		{
+			"type":"html",
+			"id":"list_view_two",
+			"label":"Add content list"
+		}
+	],
+	"presets":[
+		{
+			"name":"Article list view"
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

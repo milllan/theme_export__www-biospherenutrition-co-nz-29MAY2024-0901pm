@@ -1,0 +1,136 @@
+.static-banner-content-main {padding-left: 75px;padding-top: 100px;padding-bottom: 70px;max-width: 990px;}
+.static-banner-content-main .title-wrapper .title {font-size: 58px;letter-spacing: normal;color: #384151;font-family: 'Figtree';font-weight: 900;}
+.static-banner-content-main .rating {display: flex;align-items: center;column-gap: 3px;width: max-content;background: #384151;padding: 15px 30px;border-radius: 30px;}
+.static-banner-content-main .rating span svg {width: 25px;height: 25px;display: block;}
+.static-banner-content-main .star_review p {font-size: 22px;line-height: normal;letter-spacing: normal;font-weight: 600;font-family: 'Figtree';}
+.static-banner-content-main .star_review {display: flex;align-items: center;column-gap: 30px;}
+p.star_count {font-size: 14px;padding-left: 50px;padding-top: 10px;font-weight: 600;font-family: 'Figtree';}
+.static-banner-info-wrapper .banner-info-wrapper-item span svg {width: 24px; height: 24px;display: block;}
+.banner-info-wrapper-item {display: flex;align-items: center;column-gap: 20px;}
+.banner-info-wrapper-item p {font-size: 30px;line-height: 54px;font-family: 'Figtree';} 
+a.banner_button {font-size: 30px;font-weight: 900;line-height: 44.26px;padding: 20px 30px;display: block;width: 100%;border-radius: 70px;color: #ffffff;box-shadow: 0 3px 1px #c1c1c1;text-align: center;font-family: 'Figtree';}
+.green-title{    font-weight: 900; font-size: 53px;     letter-spacing: normal !important;}
+.bottom_button_wrappper {max-width: 570px;}
+.static-banner-info-wrapper {padding: 35px 0;}
+.bottom_button_wrappper p.money_back_text {max-width: 430px;margin: 0 auto;text-align: center;font-size: 18px;margin-top: 5px;padding: 6px 0;border-radius: 0 0 10px 10px;background: #e6e8e8;font-family: 'Figtree';}
+.static-banner-wrapper .mobile_image {display: none;}
+.banner-info-wrapper-item p strong {font-weight: bold;}
+.static-banner-content-main .title-wrapper .title {font-size: 53px;}
+.prebiotic .static-banner-content-main .title-wrapper .title ,.prebiotic  .green-title{font-size: 43px;}
+.green-prebiotic{
+  display:none;
+}
+.green-line{
+      height: 8px;
+    width: 141px;
+      margin-bottom: 17px;
+    background-color: #299646;
+}
+
+@media screen and (min-width: 991px){
+  .page-new_prebiotic_product .static-banner-wrapper{
+    display: flex;
+    align-items: end;
+    justify-content: end;
+  }
+   .page-new_prebiotic_product .static-banner-content-main .title-wrapper .title{
+     max-width:100%;
+   }
+  .page-new_prebiotic_product .static-banner-content-main{
+    padding-left: 0px;
+  }
+}
+
+
+
+@media screen and (min-width: 991px) and (max-width: 1200px) {
+  .static-banner-content-main .star_review {column-gap: 10px;}
+  .static-banner-content-main .title-wrapper .title,.prebiotic .static-banner-content-main .title-wrapper .title ,.prebiotic  .green-title {font-size: 38px;max-width: 600px;}
+}
+@media screen and (max-width: 1440px) {
+  .static-banner-content-main {padding-left: 0px;}
+  .static-banner-info-wrapper {max-width: 750px;}
+  .banner-info-wrapper-item p {font-size: 20px;}
+}
+@media screen and (min-width: 991px) and (max-width: 1120px) {
+  .static-banner-info-wrapper {max-width: 470px;}
+  .banner-info-wrapper-item p {line-height: 30px;}
+}
+@media screen and (max-width: 991px) {
+  .static-banner-info-wrapper {max-width: 100%;}
+  .static-banner .page-width {padding: 0;}
+  .static-banner-wrapper .mobile_image {display: block;width: 100%;}
+  .static-banner-wrapper .mobile_image img {width: 100%;display: block;}
+  .static-banner {background: none!important;}
+  .static-banner-content-main .title-wrapper {text-align: center;}
+  .static-banner-content-main .title-wrapper .title,.prebiotic .static-banner-content-main .title-wrapper .title ,.prebiotic  .green-title {font-size: 36px;text-align: center;line-height: 44.26px;}
+  .static-banner-content-main .star_review {flex-direction: column;row-gap: 20px;}
+  .static-banner-content-main .rating {order: 1;}
+  .static-banner-content-main .star_review p {order: 0;text-align: center;}
+  p.star_count {text-align: center;padding-left: 0;}
+  .banner-info-wrapper-item {justify-content: center;}
+  .bottom_button_wrappper {margin: 0 auto;}
+  .static-banner-content-main {padding-left: 22px;padding-right: 22px;}
+  .bottom_button_wrappper p.money_back_text {font-size: 14px;}
+  a.banner_button {font-size: 22px;padding: 12px 40px;}
+  .static-banner-info-wrapper .banner-info-wrapper-item span svg {width: 18px;height: 18px;display: block;}
+  .banner-info-wrapper-item p {font-size: 18px;line-height: 44px;text-align: center;}  
+  .hide-green,.green-line{
+    display:none;
+  }
+  .green-prebiotic{
+    display:block;
+  }
+}
+@media screen and (max-width: 768px) {
+  .banner-info-wrapper-item p {line-height: 30px;font-size: 15px;}
+  .static-banner-content-main {padding-top: 20px;}
+  .static-banner-content-main .star_review p {font-size: 14px;}
+  .banner-info-wrapper-item {padding-bottom: 10px;column-gap: 10px;}
+  a.banner_button {font-size: 18px;padding: 12px 15px;}
+  .bottom_button_wrappper p.money_back_text {max-width: 300px;}
+  .prebiotic .static-banner-content-main .title-wrapper .title ,.prebiotic  .green-title {font-size: 22px;line-height: 34px;}
+  .static-banner-content-main .title-wrapper .sub_title {text-align: center;display: inline-block;padding-bottom: 15px;}
+    .static-banner-content-main .title-wrapper .title{font-size: 29px;}
+}
+@media screen and (max-width: 660px){
+  .green-title{
+      font-size: 26px;
+  }
+}
+@media screen and (max-width: 656px){
+  .green-title{
+      font-size: 26px;
+  }
+}
+@media (max-width: 479px){
+   .template-new_prebiotic_product .faq-bottom-text a.bottom_text{
+             background-color: #299646;
+   }
+}
+@media screen and (max-width: 450px) {
+  .banner-info-wrapper-item p {text-align: left;line-height: 22px;}
+  .banner-info-wrapper-item {justify-content: start;align-items: self-start;}
+  .banner-info-wrapper-item span{
+        padding-top: 3px;
+    display: flex;
+  }
+}
+@media screen and (max-width: 464px) {
+  .static-banner-content-main .title-wrapper .title{
+          font-size: 29px;
+  }
+   .green-title {font-size: 22px;}
+  .template-new_prebiotic_product .static-banner-content-main .title-wrapper span.sub_title{
+        font-size: 21px;
+        line-height: normal;
+  }
+  .certified_con_wrapper p{
+    font-size:16px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .static-banner-content-main .title-wrapper .title {font-size: 25px;line-height: 30px;}
+  a.banner_button {font-size: 15px;padding: 12px 15px;}
+}

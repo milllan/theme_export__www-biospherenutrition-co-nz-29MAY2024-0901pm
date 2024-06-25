@@ -1,0 +1,253 @@
+<div class="article_dark_blocks" id="dark--blocks--{{section.id}}">
+  <div class="article_container">
+    <div class="article_dark_section">
+      {% if section.settings.title != blank %}
+      <h3>{{ section.settings.title}}</h3>
+      {% endif %}
+      {% if section.settings.subtitle != blank %}
+      <h5>{{ section.settings.subtitle}}</h5>
+      {% endif %}
+      {% if section.settings.sub_sub_title != blank %}
+      <p class="sub_sub_title">{{ section.settings.sub_sub_title}}</p>
+      {% endif %}
+      {% if section.settings.main_content != blank %}
+      <div class="article_dark_content">{{ section.settings.main_content }}</div>
+      {% endif %}
+      {% if section.settings.main_image != blank %}
+      <div class="main_adrk_image">
+      	<img src="{{ section.settings.main_image | img_url:'master'}}" />
+      </div>
+      {% endif %}
+      {% if section.settings.btn_url != blank and section.settings.btn_text != blank %}
+      <a class="btn" href="{{ section.settings.btn_url }}">{{ section.settings.btn_text }}</a>
+      {% endif %}
+    </div>
+    {% for block in section.blocks %}
+    <div class="block_contents">
+      <div class="block_contents_inner">
+        {% if block.settings.block_title %}
+        <p class="block_titile">{{ block.settings.block_title }}</p>
+        {% endif %}
+        {% if block.settings.block_content %}
+        <div>{{ block.settings.block_content }}</div>
+        {% endif %}
+        {% if block.settings.block_list_one != blank %}
+        <div class="row block_listing">
+          <div class="col-4">
+            {% if block.settings.block_list_one %}
+            <div class="cause_listing">{{ block.settings.block_list_one }}</div>
+            {% endif %}
+          </div>
+          <div class="col-4">
+          	{% if block.settings.block_list_two %}
+            <div class="cause_listing">{{ block.settings.block_list_two }}</div>
+            {% endif %}
+          </div>
+          <div class="col-4">
+          	{% if block.settings.block_list_three %}
+            <div class="cause_listing">{{ block.settings.block_list_three }}</div>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>	
+    {% endfor %}
+  </div>
+</div>
+<style>
+
+  #dark--blocks--{{section.id}}{
+    background:{{ section.settings.section_color }}
+  }
+  #dark--blocks--{{section.id}} .article_dark_section h3,#dark--blocks--{{section.id}} .article_dark_section h5,#dark--blocks--{{section.id}} .article_dark_section p.sub_sub_title{color:{{ section.settings.title_color }};}
+  #dark--blocks--{{section.id}} .article_dark_section h3{
+    font-size:{{ section.settings.title_font_size }}px;
+    line-height:{{ section.settings.title_line_height }}px;
+  }
+  .article_dark_section{
+  	text-align:center;
+  }
+  .article_dark_content{
+  	max-width:1250px;
+    margin:40px auto 0;
+  }
+
+ #dark--blocks--{{section.id}} .article_dark_section  p{
+   color:{{ section.settings.paragraph_color }};
+  }
+  #dark--blocks--{{section.id}} .article_dark_section h5{
+    {% if section.settings.underline == true %}
+    text-decoration:underline;
+    {% endif %}
+    font-size:37.33px;
+    line-height:100%;
+    margin-bottom:0;
+    padding-bottom:20px;
+  }
+    .sub_sub_title{
+  	font-size:35px!important;
+    line-height:58px!important;
+  }
+  .main_adrk_image{
+  	margin-top:130px;
+  }
+  .block_titile{
+  	font-size:21px;font-weight:bold;
+    line-height:auto;
+    text-transform:uppercase;
+  }
+  .block_contents{
+  	border: 1px solid #444444;
+    border-radius: 7px;
+    padding: 75px 0;
+    margin:30px 0;
+  }
+   #dark--blocks--{{section.id}} .block_titile{
+  	color:{{ section.settings.title_color }}!important;
+  }
+   #dark--blocks--{{section.id}} .block_contents p{
+  	color:{{ section.settings.paragraph_color }};
+  }
+  .block_contents_inner{
+  	max-width:790px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .block_listing{
+  	margin-top:60px;
+  }
+   #dark--blocks--{{section.id}}.article_dark_blocks a{
+  	text-decoration:underline;
+    color:{{ section.settings.paragraph_color }}!important;
+  }
+</style>
+<script>
+  $(document).ready(function(){
+    	$('.dark_border:first').addClass('border-botom');
+  });
+</script>
+{% schema %}
+  {
+    "name": "article dark blocks",
+	"class":"dark_border",
+    "settings": [
+		{
+			"type":"color",
+			"id":"section_color",
+			"label":"Choose Section Color"
+		},
+		{
+			"type":"color",
+			"id":"paragraph_color",
+			"label":"Choose paragraph color",
+			"default":"#cdcdcd"
+		},
+		{
+			"type":"color",
+			"id":"title_color",
+			"label":"choose title color"
+		},
+		{
+			"type":"text",
+			"id":"title",
+			"label":"Add title"
+		},
+		{
+			"type":"range",
+			"id":"title_font_size",
+			"min":55,
+			"max":75,
+			"label":"select Font size of title",
+			"default":56
+		},
+		{
+			"type":"range",
+			"id":"title_line_height",
+			"min":66,
+			"max":91,
+			"label":"select line heigth of title",
+			"default":66
+		},
+		{
+			"type":"text",
+			"id":"subtitle",
+			"label":"Add Sub-title"
+		},
+		{
+			"type":"checkbox",
+			"id":"underline",
+			"label":"Subtitle Underline"
+		},
+		{
+			"type":"text",
+			"id":"sub_sub_title",
+			"label":"Add sub-sub title"
+		},
+		{
+			"type":"richtext",
+			"id":"main_content",
+			"label":"Add main content"
+		},
+		{
+			"type":"image_picker",
+			"id":"main_image",
+			"label":"Add main image"
+		},
+        {
+            "type":"text",
+            "id":"btn_text",
+            "label":"enter button text"
+        },
+        {
+            "type":"url",
+            "id":"btn_url",
+            "label":"Enter Button URL"
+        }
+	],
+	"blocks":[
+		{
+			"type":"text",
+			"name":"information content",
+			"settings":[
+				{
+					"type":"text",
+					"id":"block_title",
+					"label":"Add Block Title"
+				},
+				{
+					"type":"richtext",
+					"id":"block_content",
+					"label":"Add block content"
+				},
+				{
+					"type":"richtext",
+					"id":"block_list_one",
+					"label":"Add block list"
+				},
+				{
+					"type":"richtext",
+					"id":"block_list_two",
+					"label":"Add block list"
+				},
+				{
+					"type":"richtext",
+					"id":"block_list_three",
+					"label":"Add block list"
+				}
+			]
+		}	
+	],
+	"presets":[
+		{
+			"name":"article dark blocks"
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,82 @@
+{% assign images = page.metafields.rec-pro.image %}
+{% assign loop_size = images | size %}
+{%- if loop_size > 0 -%}
+<div data-section-id="{{ section.id }}" data-section-type="author-section">
+  <div class="page-width author-sec author-sec-top-z ">
+    <div class="wwr_grid">    
+      {%- for i in (1..loop_size)  -%} {%- assign index = i | minus : 1 -%}
+      <div class="wwr_grid__item" >
+        <div class="wwr_card text-center">
+          {%- if page.metafields.rec-pro.image[index] != blank -%}<div class="wwr_img_wrapper">
+          {%- assign image = page.metafields.rec-pro.image[index] -%}
+          {% if image contains '.png' %}
+          {%- assign image = image | replace:'.png','_50x.png' -%}
+          {% elsif image contains '.jpg' %}
+          {%- assign image = image | replace:'.jpg','_50x.jpg' -%}
+          {% elsif image contains '.jpeg' %}
+          {%- assign image = image | replace:'.jpeg','_50x.jpeg' -%}
+          {% endif %}
+          <div class="border_img">
+            <img class="lazyload bi-1 one-whole" src="{{ 'biosphere-border_img.png' | asset_img_url:'50x' }}" data-src="{{ 'biosphere-border_img.png' | asset_url }}" width="auto" height="auto" />
+            <img class="lazyload bi-1-hover" data-src="{{ 'biosphere-border_img_hover.png' | asset_url }}" width="auto" height="auto" />        
+            <div class="main_img">              
+              <img class="lazyload" src="{{ image }}" data-src="{{ page.metafields.rec-pro.image[index] }}" width="auto" height="auto" />
+            </div>
+          </div>
+          </div>{%- endif -%}
+          <div class="wwr_d_wrapper fw-medium">
+            {%- if page.metafields.rec-pro.title[index] != blank -%}
+            <h3 class="fw-semi-bold">{%- if page.metafields.rec-pro.title[index] contains ':' -%}<span>{{ page.metafields.rec-pro.title[index] | split:':' | first }} :</span>{{ page.metafields.rec-pro.title[index] | split:':' | last }}{%- else -%}{{ page.metafields.rec-pro.title[index] }}{%- endif -%}</h4>
+            {%- endif -%}{%- if page.metafields.rec-pro.subtitle[index] != blank -%}
+            <div class="wwr_subtitle">{{ page.metafields.rec-pro.subtitle[index] }}</div>
+            {%- endif -%}            
+          </div>          
+        </div>
+        {%- if page.metafields.rec-pro.detail[index] != blank -%}
+        <div class="about_au rte text-center">
+          {{ page.metafields.rec-pro.detail[index] }}
+        </div>
+        {%- endif -%}
+        {%- if page.metafields.rec-pro.btn_link[index] != blank -%}
+        <div class="text-center btn-vall_div">
+          <a href="{{ page.metafields.rec-pro.btn_link[index] }}" class="btn btn--has-shadow btn--medium btn-con-bg btn-round_true tt-none">{{ page.metafields.rec-pro.btn_title[index] }}</a>
+        </div>
+        {%- endif -%}
+        {%- if page.metafields.rec-pro.reference[index] != blank -%}
+        <div class="reference">
+          <div class="refe_title"><i class="icon"></i><span>{{ page.metafields.rec-pro.reference_title[index] | default:'References' }}</span></div>
+          <div class="refe_content rte active">{{ page.metafields.rec-pro.reference[index] }}</div>
+        </div>
+        {%- endif -%}        
+      </div>   
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+{%- endif -%}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Dr Ronald Goedeke",
+    "jobTitle": "Doctor",
+    "gender": "Male",
+    "nationality": "New Zealand",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Appearance Medicine & Wellness Clinic",
+      "url": "https://www.appearancemedicine.co.nz",
+      "sameAs": [
+        "https://www.facebook.com/AppearanceMedicine",
+        "https://www.instagram.com/AppearanceMedicine",
+        "https://www.linkedin.com/company/AppearanceMedicine"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "New Zealand"
+      },
+      "founder": "Dr Ronald Goedeke",
+      "description": "Appearance Medicine & Wellness Clinic, founded by Dr Ronald Goedeke, specialises in anti-aging and longevity treatments."
+    }
+  }
+</script>

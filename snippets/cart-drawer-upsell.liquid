@@ -1,0 +1,81 @@
+{% assign cart_recommendation = settings.cart_recommendation_collection %}
+{%- assign rec_count = false -%}
+{%- assign upsellProIdcheck = '' -%}
+{%- for item in cart.items -%}
+  {%- assign prod_id = item.product.id | append:',' -%}
+  {%- assign newprod_id = newprod_id | append:prod_id -%}
+  {% assign upsellProd = item.product.metafields.custom.upsell_products.value %}
+  {% for uProd in upsellProd %}
+    {% assign dynProd = uProd %}
+    {%- assign list_id = dynProd.id -%}
+    {%- unless newprod_id contains list_id -%}
+      {%- unless upsellProIdcheck contains list_id -%}
+        {% if dynProd.available %}
+          {% assign rec_count = true %}
+          {%- assign upsellProIdcheck = upsellProIdcheck | append: list_id | append: ',' -%}
+        {% endif %}
+      {%- endunless -%}
+    {%- endunless -%}
+  {% endfor %}
+{%- endfor -%}
+{% if rec_count %}
+  <div class="wrap-cart-recommendation">
+    <div class="header-cart-recommendation">
+      <h2>{{ settings.cart_recommendation_title }}</h2>
+    </div>
+    <div class="scroller">
+      <div class="scroller__inner">
+        <div class="inner-cart-recommendation carousel">
+          {%- for item in cart.items -%} 
+            {%- assign proid = item.product.id | append:',' -%}
+            {%- assign newproid = newproid | append:proid -%}
+          {%- endfor -%}
+          {%- assign upsellProIdList = '' -%}
+          {%- for item in cart.items -%}
+            {% assign upsellPro = item.product.metafields.custom.upsell_products.value %}
+            {% for uPro in upsellPro %}
+              {% assign dynPro = uPro %}
+              {%- assign listproid = dynPro.id -%}
+              {%- unless newproid contains listproid -%}
+                {%- unless upsellProIdList contains listproid -%}
+                  {% if dynPro.available %}
+                    <div class="item-recommendation carousel-cell" data-id="{{dynPro.id}}" data-list="{{ upsellProIdList }}">
+                      <div class="wrap-item-recommendation">
+                        <div class="rec-prd-image">
+                          {%- if dynPro.featured_media != blank -%}
+                            <a href="{{ dynPro.url }}">
+                              <img class="recommendation__image"
+                              src="{{ dynPro.featured_media | image_url: width: 78 }}"
+                              alt="{{ dynPro.featured_media.alt }}"
+                              width="78" height="{{ 78 | divided_by: dynPro.featured_media.preview_image.aspect_ratio }}">
+                            </a>
+                          {%- endif -%}
+                        </div>
+                        <div class="rec-prd-details">
+                          <div class="wrap-prd-details">
+                            <h3>{{ dynPro.title }}</h3>
+                            <div class="wrap-price-atc">
+                              {% render 'price', product: dynPro, use_variant: true, show_badges: false %}
+                              <a href="javascript:void(0)" class="recommendation-atc" data-vid="{{ dynPro.first_available_variant.id }}" {% if dynPro.selected_or_first_available_variant.available == false %} disabled{% endif %}>
+                                {%- if dynPro.selected_or_first_available_variant.available -%}
+                                  Add
+                                {%- else -%}
+                                  Sold
+                                {%- endif -%}
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {%- assign upsellProIdList = upsellProIdList | append: listproid | append: ',' -%}
+                  {%- endif -%}
+                {%- endunless -%}
+              {%- endunless -%}
+            {%- endfor -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

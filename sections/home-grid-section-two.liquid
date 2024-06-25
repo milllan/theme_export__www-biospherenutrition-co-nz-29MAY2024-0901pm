@@ -1,0 +1,252 @@
+<div data-section-id="{{ section.id }}" data-section-type="home-grid-section-two">
+  <div class="grid grid--no-gutters">
+  	{%- for block in section.blocks -%}
+    <div class="gs_item gs_item-two gs_item--{{ block.id }} grid__item medium-up--one-half po_relative"
+         style="background-color:{{ block.settings.bg_color }};">
+      <div class="gs_img_wrapper">
+        {%- assign block_image = block.settings.image -%}
+        <div class="gs_img__grid" {{ block.shopify_attributes }}>
+          {%- assign min_aspect_ratio = block_image.aspect_ratio -%}
+          <img data-src="{{ block_image | img_url:'' }}" class="lazyload" data-parent-fit="contain" data-widths="auto" width="auto" height="auto" data-width="{{ block_image.width }}" data-min-aspect-ratio="{{ min_aspect_ratio }}" />
+        </div>
+      </div>
+      <div class="gs_wrapper {{ block.settings.image_po }}"{% if block.settings.color_text != blank %} style="color:{{ block.settings.color_text }};" {%- endif -%}>
+        <div class="div_top">
+          {%- if block.settings.subtitle != blank -%}
+          <h3 class="">{{block.settings.subtitle}}</h3>
+          {%- endif -%}
+          {%- if block.settings.title != blank -%}
+          <h2 class="{{ block.settings.font_family }} {{ block.settings.font_size }}">{{block.settings.title}}</h2>
+          {%- endif -%}{%- if block.settings.detail != blank -%}
+          {%- assign text_size = block.settings.detail | size -%}          
+          <div class="text-wrapper fw-medium{% if text_size > 70 %} true{% endif %}"{% if block.settings.color_text_d != blank %} style="color:{{ block.settings.color_text_d }};" {%- endif -%}>
+            {{ block.settings.detail }}
+          </div>{%- endif -%}
+        </div>{%- if block.settings.btn_title != blank and block.settings.btn_link != blank -%}<div class="div_bottom {{ block.settings.btn_position }}">
+        <a href="{{ block.settings.btn_link }}" class="btn btn--link {{ block.settings.btn_size }}" title="{{ block.settings.btn_link | split:'/' | last | replace:'-',' ' | capitalize }}">{{ block.settings.btn_title }} {%- include 'icon-right-triple' -%}</a>
+        </div>{%- endif -%}
+      </div>
+      {%- if block.settings.btn_link != blank and block.settings.banner_clickable -%}
+      <a class="full-width-link" href="{{ block.settings.btn_link }}" title="{{ block.settings.btn_link | split:'/' | last | replace:'-',' ' | capitalize }}"></a>
+      {%- endif -%}
+    </div>
+    {%- endfor -%}  
+  </div>
+</div>
+
+<style type="text/css">{%- for block in section.blocks -%}	
+    .gs_item--{{ block.id }} .btn{ 
+    {%- if block.settings.btn_color_text != blank -%}
+    color: {{ block.settings.btn_color_text }};
+    {%- endif -%}
+    {%- if block.settings.btn_color_bg != blank -%}
+	background-color:{{ block.settings.btn_color_bg }};
+    {%- endif -%}
+    } 	
+  .gs_item--{{ block.id }} .gs_img_wrapper img{ {% if block.settings.e_right %}right{% else %}left{% endif %}: {% if block.settings.reverse %}-{% endif %}{{ block.settings.img_po_left }}%;
+    top: {{ block.settings.img_po_top }}%
+  }
+{%- endfor -%}</style>
+{% schema %}
+  {
+    "name": "Grid Section Two",
+	"max_blocks":2,
+  	"class": "index-section index-section--flush index-section--grid-section-two",
+    "settings": [],
+	"blocks":[
+	 {
+		"type":"image",
+		"name":"Image Block",
+		"settings":[
+			{
+			  "type":"color",
+			  "label":"Select Block background color",
+			  "id":"bg_color",
+			  "default":"#000"
+			},
+			{
+			  "type":"image_picker",
+			  "label":"Upload image",
+			  "id":"image"
+			},
+			{
+			  "type":"range",
+			  "label":"Select image position from top",
+			  "id":"img_po_top",
+			  "min":0,
+			  "max":100,
+			  "default":10,
+			  "unit":"%",
+			  "step":1
+			},
+			{
+			  "type":"range",
+			  "label":"Select image position from left",
+			  "id":"img_po_left",
+			  "min":0,
+			  "max":100,
+			  "default":10,
+			  "unit":"%",
+			  "step":1
+			},
+			{
+			  "type":"checkbox",
+			  "label":"Enable postioning from right",
+			  "id":"e_right",
+			  "default": false,
+			  "info":"In you checked this option above option work for image positioning from right"
+			},
+			{
+			  "type":"checkbox",
+			  "label":"Enable reverse value",
+			  "id":"reverse",
+			  "default": true,
+			  "info":"In you checked this option image positioning value go in reverse side. This option apply only for left and right positioning"
+			},
+			{
+			  "type":"select",
+			  "label":"Select text alignment",
+			  "id":"image_po",
+			  "options":[
+				{
+				  "value":"left",
+				  "label":"Left"
+				},
+				{
+				  "value":"right",
+				  "label":"Right"
+				}
+			  ]
+			},
+			{
+			  "type":"text",
+			  "label":"Enter subtitle",
+			  "id":"subtitle",
+  			  "default":"Sub title"
+			},
+			{
+			  "type":"text",
+			  "label":"Enter title",
+			  "id":"title",
+  			  "default":"Title"
+			},
+			{
+			  "type":"color",
+			  "label":"Select title color",
+			  "id":"color_text"
+			},
+            {
+              "type": "select",
+              "id": "font_size",
+              "label":"Select font size fot title",
+              "default": "large",
+              "options": [
+                {
+                  "label": "Large",
+                  "value": "large"
+                },
+                {
+                  "label": "Medium",
+                  "value": "medium"
+                },
+                {
+                  "label": "Normal",
+                  "value": "normal"
+                }
+              ]
+            },
+            {
+              "type": "select",
+              "id": "font_family",
+              "label":"Select font family for title",
+              "default": "heading-font",
+              "options": [
+                {
+                  "label": "Futura PT",
+                  "value": " "
+                },
+                {
+                  "label": "Dharma Gothic E",
+                  "value": "heading-font"
+                }
+              ]
+            },
+			{
+			  "type":"text",
+			  "label":"Enter button title",
+			  "id":"btn_title"
+			},
+			{
+			  "type":"url",
+			  "label":"Provide button url",
+			  "id":"btn_link"
+			},
+			{
+			  "type":"checkbox",
+			  "label":"Make whole banner clickable",
+			  "id":"banner_clickable"
+			},
+            {
+              "type": "select",
+              "id": "btn_position",
+              "label":"Select Button alignment",
+              "default": "",
+              "options": [
+                {
+                  "label": "Default",
+                  "value": ""
+                },
+                {
+                  "label": "Left Side",
+                  "value": "left"
+                },
+                {
+                  "label": "Right Side",
+                  "value": "right"
+                }
+              ]
+            },
+            {
+              "type": "checkbox",
+              "id": "btn_size",
+              "label":"Enable default font size"
+			}
+		]
+	 }
+	],
+  "presets": [
+    {
+      "name": "Grid Section Two",
+      "category": "Image",      
+      "settings": {},
+      "blocks": [
+        {
+          "type": "image",
+		  "settings":{
+			"reverse":true,
+			"image_po":"left",
+			"subtitle":"EVERYTHING YOU NEED TO KNOW",
+			"title":"MAGNESIUM"
+		  }
+        },
+        {
+          "type": "image",
+		  "settings":{
+			"e_right":true,
+			"reverse":true,
+			"image_po":"left",		
+			"subtitle":"EVERYTHING YOU NEED TO KNOW",
+			"title":"ASTAXANTHIN"
+		  }
+        }
+      ]
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

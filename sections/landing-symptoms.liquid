@@ -1,0 +1,188 @@
+<div class="landing-page-symptoms">
+  <div class="landing-symptoms-title">
+    {% if section.settings.landing-title != blank%}
+    	<h2 class="no-ls"> {{ section.settings.landing-title }}</h2>
+    {% endif%}
+  </div>
+  <div class="landing-symptoms-description">
+    {% if section.settings.landing-desc != blank%}
+    <p>{{ section.settings.landing-desc }}</p>
+    {% endif%}
+  </div>
+  <div class="landing-syptoms-images">
+    <ul>
+      {% for block in section.blocks %}
+      <li>
+        <div class="image-wrapper">
+          <div class="image-wrapper-inner">
+            <img src="{{ block.settings.landing-image | img_url: 'master' }}" >
+          </div>
+        </div>
+        <div class="title-wrapper">
+          <h4>{{ block.settings.landing-text }}</h4>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="landing-symptoms-description2">
+    {% if section.settings.landing-desc != blank%}
+    <p>{{ section.settings.landing-sub-desc }}</p>
+    {% endif %}
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Landing Symptoms",
+    "settings": [
+		{
+			"type": "text",
+			"id": "landing-title",
+			"label":"Title" 
+		},
+		{
+			"type": "textarea",
+			"id": "landing-desc",
+			"label":"Description" 
+		},
+		{
+			"type": "textarea",
+			"id": "landing-sub-desc",
+			"label":"Sub Description" 
+		}
+	],
+	"blocks": [
+		{
+		 "name": "Landing symptoms",
+		 "type": "landingsymptoms",
+		 "limit": 6,
+		 "settings":[
+			{
+              "type": "image_picker",
+              "id": "landing-image",
+              "label": "Select Landing Symptoms Image"
+			},
+			{
+              "type": "text",
+              "id": "landing-text",
+              "label": "Enter Landing Symptoms Title"
+			}
+		  ]
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+<style type="text/css">
+  .landing-page-symptoms{
+    padding: 44px 0 54px 0;
+    background: #EDEDED;
+  }
+  .landing-symptoms-title{text-align:center;}
+  .landing-symptoms-title h2{
+    font-size: 45px;
+    line-height: 58px;
+    font-family: "Futura PT",sans-serif;
+    font-weight: 600;
+    color: #000;
+    text-transform: capitalize;
+    margin-bottom: 36px;
+  }
+  .landing-symptoms-description{
+    text-align: center;
+    max-width: 1078px;
+    margin: 0 auto;
+    
+  }
+  .landing-symptoms-description p{
+    font-size: 19px;
+    line-height: 27px;
+    font-family: "Futura PT",sans-serif;
+    padding-bottom: 70px;
+    color:#000;
+    font-weight: 600;
+  }
+  .landing-syptoms-images ul{
+	display:flex;
+    width:100%;
+    max-width:1140px;
+    margin:0 auto;
+  }
+  .landing-syptoms-images ul li{
+    width: 16.66%;
+    text-align: center;
+    padding: 0 10px;
+  }
+  .landing-syptoms-images ul li:first-child{
+  	padding-left:0;
+  }
+  .image-wrapper-inner{
+    width: 125px;
+    height: 125px;
+    display: inline-block;
+    overflow: hidden;
+  }
+  .image-wrapper-inner img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+  }
+  .title-wrapper{ margin-top:9px;text-align: center;}
+  .title-wrapper h4{
+    font-size: 16px;
+    line-height: 27px;
+    color: #000;
+    font-weight: 600;
+    margin:0;
+  }
+  .landing-syptoms-images{
+  	margin-bottom:64px;
+  }
+  .landing-symptoms-description2{
+    max-width: 802px;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%; 
+ }
+ .landing-symptoms-description2 p {
+   font-size: 17px;
+   line-height: 27px;
+   font-weight: 600;
+   color: #000;
+   font-family: "Futura PT",sans-serif;
+  }
+  
+  @media(max-width: 1199px){
+    .landing-page-symptoms{padding: 40px 0;}
+    .landing-symptoms-title h2{font-size:40px;line-height: 44px; margin-bottom: 30px;}
+    .landing-symptoms-description{max-width: 970px;}
+    .landing-symptoms-description p{padding-bottom: 60px;}
+    .landing-syptoms-images{margin-bottom:60px;}
+    
+  }
+  @media(max-width: 992px){
+    .landing-syptoms-images ul{flex-wrap:wrap;}
+    .landing-syptoms-images ul li{width: 33.33%;margin: 15px 0;}
+    .landing-page-symptoms{padding:30px 0;}
+    .landing-symptoms-title{padding: 0 15px;}
+    .landing-symptoms-title h2{font-size: 35px;line-height: 40px;margin-bottom: 25px;}
+    .landing-symptoms-description p {padding:0 15px 40px;font-size:17px;line-height:25px;}
+    .landing-syptoms-images{margin-bottom:40px;padding: 0 15px;}
+    .landing-symptoms-description2 p{padding: 0 15px;}
+  }
+  @media(max-width: 575px){
+    .landing-page-symptoms{padding: 20px 0;}
+    .landing-symptoms-title h2 {font-size: 22px;line-height: 26px;margin-bottom: 15px;}
+    .landing-symptoms-description p{padding: 0 15px 30px;font-size: 14px;line-height: 25px;}
+    .landing-syptoms-images ul li{width:50%;}
+    .landing-symptoms-description2 p{font-size: 14px;line-height: 25px;}
+    .landing-syptoms-images{margin-bottom:20px;}
+    .title-wrapper h4{font-size:14px;line-height:25px;}
+</style>

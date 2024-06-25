@@ -1,0 +1,279 @@
+<div class="landing-ingredients">
+  <div class="mg-container">
+	<div class="ingredient-container">
+      
+      	 
+      <div class="ingredient-left">
+        {% for block in section.blocks %}
+            {% case block.type %}
+            	{% when 'image' %}
+                  {% if block.settings.image != blank %}
+                    <figure>
+                      {% if block.settings.image_link != blank %}<a href="{{ section.settings.image_link }}">{% endif %}
+                      <img src="{{ block.settings.image | img_url:'master' }}" alt="{{ shop.name }}">   
+                      {% if block.settings.image_link != blank %}</a>{% endif %}
+                    </figure>
+                  {% endif %}
+      
+            {% endcase %}
+        {% endfor %}
+      </div>
+      <div class="ingredient-right">
+        <ul>
+          
+          {% for block in section.blocks %}
+              {% case block.type %}
+
+                  {% when 'text' %}
+          
+          			<li>
+                      {% if block.settings.icon_link != blank %}
+                      <a class="full-width-link" href="{{ block.settings.icon_link }}" title="" target="_blank" rel="noopener" aria-describedby="a11y-new-window-message"></a>
+                      {% endif %}
+                      
+                      {% if block.settings.icon_img != blank %}
+                      <div class="ingredient-img-wrapper">
+                          <img src="{{ block.settings.icon_img | img_url:'master' }}" alt="{{ shop.name }}">
+                      </div>
+                      {% endif %}
+                      
+                      {% if block.settings.title != blank %}
+                        <div class="ingredient-title-wrapper">
+                          <h4>{{ block.settings.title }}</h4>
+                        </div>
+                      {% endif %}
+                    </li>
+
+              {% endcase %}
+          {% endfor %}
+          
+        </ul>
+      </div>
+    </div>
+    
+  </div>
+  <div class="land-ingredient-black">
+    <div class="mg-container">
+      <div class="ingredients-black">
+        
+        {% if section.settings.title != blank %}
+          <h4>{{ section.settings.title }}</h4>
+        {% endif %}
+
+        {% if section.settings.text != blank %}
+          <p>{{ section.settings.text }}</p>
+        {% endif %}	
+
+        {% if section.settings.text_sec != blank %}
+		  <p>{{ section.settings.text_sec }}</p>
+        {% endif %}	
+        
+      </div>
+    </div>
+  </div>
+  <div class="start-trial-div">
+    {% if section.settings.btn_link != blank %}
+    	<a href="{{ section.settings.btn_link }}" class="start-trial-btn">{{ section.settings.btn_text }}</a>
+    {% endif %}
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Landing Ingredients",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Talk about your brand"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Text",
+		"info": "Use <br> tag for new line."
+      },
+      {
+        "type": "textarea",
+        "id": "text_sec",
+        "label": "Text",
+		"info": "Use <br> tag for new line."
+      },
+      {
+        "type": "url",
+        "id": "btn_link",
+        "label": "Button Link"
+      },
+      {
+        "type": "text",
+        "id": "btn_text",
+        "label": "Button text",
+        "default": "Click Here"
+      }
+	],
+	"blocks": [
+      {
+        "type": "text",
+        "name": "Icon with text",
+        "settings": [
+		  {
+            "type":"image_picker",
+            "label":"Select Icon",
+            "id":"icon_img"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Talk about your brand"
+          },
+          {
+            "type": "url",
+            "id": "icon_link",
+            "label": "Icon Link"
+          }
+        ]
+      },
+	  {
+        "type": "image",
+        "name": "Left Image",
+		"limit": 1,
+        "settings": [
+		  {
+            "type":"image_picker",
+            "label":"Select Image",
+            "id":"image"
+          },
+          {
+            "type": "url",
+            "id": "image_link",
+            "label": "Link for Image",
+            "info": "Optional"
+          }
+        ]
+      }
+	]
+  }
+{% endschema %}
+
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+<style type="text/css">
+  .ingredient-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1357px;
+    margin: 0 auto;
+    padding:70px 0 107px 0;
+  }
+  .ingredient-right ul{
+    display:flex;
+    max-width: 688px;
+    margin-left: auto;
+  }
+  .ingredient-right ul li{
+    width:25%;
+    padding: 0 15px;
+    float: left;
+    display: inline-block;
+    position:relative;
+  }
+  .ingredient-img-wrapper{
+  	border-radius: 50%;
+    overflow: hidden;
+    width: 100%;
+    max-width: 125px;
+    height: 125px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .ingredient-img-wrapper img{
+  	background-color: #000E21;
+    padding: 20px;
+    width:100%;
+    height:100%;
+    object-fit: cover;
+  }
+  .ingredient-title-wrapper h4{
+    font-size: 17px;
+    line-height: 27px;
+    color: #000;
+    font-weight: 600;
+    font-family: "Futura PT",sans-serif;
+  }
+  .ingredient-right ul{}
+  .ingredient-left{width:40%;}
+  .ingredient-right{width:60%;}
+  .ingredient-title-wrapper{margin-top:16px;text-align:center;}
+  .land-ingredient-black{background:#000E21;;}
+  .ingredients-black{padding:34px 0 52px 0;}
+  .ingredients-black  h4{
+    color:#fff;
+  	font-size:35px;
+    line-height:45px;
+    font-weight:600;
+    font-family: "Futura PT",sans-serif;
+    margin-bottom:28px;
+  }
+  .ingredients-black p{
+    font-size: 18px;
+    line-height: 27px;
+    color: #fff;
+    font-weight: 400;
+    margin: 0;
+    padding-bottom: 34px;
+  }
+  .ingredients-black p:last-child{
+  	padding-bottom:0;
+  }
+  .start-trial-div{padding:35px 0 44px 0;text-align:center;}
+  .start-trial-btn{
+    font-size: 26px;
+    line-height: 34px;
+    font-weight: 600;
+    font-family: "Futura PT",sans-serif;
+    color: #fff;
+    background: #00A1AE;
+    border-radius: 15px;
+    padding: 17px 0;
+    width: 100%;
+    max-width: 399px;
+    display: inline-block;
+    text-align: center;
+  }
+  
+  @media(max-width: 1199px){
+    .ingredients-black{padding:34px 15px 52px 15px;}
+    .ingredient-container{padding:50px 0;}
+    .start-trial-btn{font-size:22px;line-height:28px;max-width: 330px;}
+  }
+  @media(max-width: 991px){
+    .ingredient-left{width:100%;order:1; padding: 0 15px;}
+    .ingredient-right{width:100%;order:2;padding: 0 15px;}
+    .ingredient-container{flex-wrap:wrap;text-align:center;padding: 30px 0;}
+    .ingredient-left figure{margin: 0 0 25px 0;}
+    .ingredient-title-wrapper h4{font-size: 16px;line-height: 18px;}
+    .ingredients-black{padding: 15px 15px 20px 15px;}
+    .ingredients-black h4{font-size: 27px;line-height: 35px;margin-bottom:15px;}
+    .ingredients-black p{font-size: 16px;line-height: 24px;padding-bottom:15px;}
+    .start-trial-div{padding:20px 0;}
+    .start-trial-btn {font-size: 20px;line-height: 24px;max-width: 300px;}
+    .ingredient-right ul{margin: 0 auto;}
+  }
+  @media(max-width: 575px){
+    .ingredient-right ul{flex-wrap:wrap;}
+    .ingredient-right ul li{width:50%;}
+    .ingredient-container{padding:0 20px;}
+    .ingredient-title-wrapper{margin-top:8px;}
+    .ingredient-title-wrapper h4{line-height:16px;}
+    .start-trial-btn {font-size: 18px;line-height: 20px;max-width: 200px;}
+  }
+</style>

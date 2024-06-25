@@ -1,0 +1,87 @@
+{%- include 'pro-sec',page :'nitric-oxide' -%}
+{% schema %}
+  {
+    "name": "Product Section",
+    "settings": [{
+		"type":"color",
+		"label":"Select background color",
+		"id":"bg_color",
+		"default":"#000e21"
+	  },
+	  {
+		"type":"text",
+		"label":"Enter title",
+		"id":"title",
+		"default":"Astaxanthin Supplements"
+	  },
+	  {
+		"type":"color",
+		"label":"Select title color",
+		"id":"color_t",
+		"default":"#ececec"
+	  },
+	  {
+		"type":"richtext",
+		"label":"Enter detail",
+		"id":"detail",
+		"default":"<p>We’ve created an astaxanthin supplement containing 6mg of astaxanthin per softgel. To learn more about our astaxanthin, check out the product page here.</p>"
+	  },
+	  {
+		"type":"color",
+		"label":"select detail text color",
+		"id":"color_d",
+		"default":"#d5d5d5"
+	  },
+	  {
+		"type":"header",
+		"content":"Prodcut part"
+	  },
+	  {
+		"type":"product",
+		"id":"product",
+		"label":"Select prodcut"
+	  },
+	  {
+		"type":"image_picker",
+		"id":"pro_image",
+		"label":"Select prodcut image"
+	  },
+	  {
+		"type":"text",
+		"id":"btn_title",
+		"label":"Enter button title",
+		"default":"Buy Astaxanthin"
+	  },
+	  {
+		"type":"text",
+		"id":"pro_title",
+		"label":"Enter product title",
+		"default":"Astaxanthin Reviews"
+	  },
+	  {
+		"type":"checkbox",
+		"id":"show_review",
+		"label":"Show review start",
+		"default":true
+	  },
+	  {
+		"type":"richtext",
+		"id":"pro_de",
+		"label":"Enter detail",
+		"default":"<p>To check out the reviews for our Biosphere Astaxanthin and to find out what people are saying about Astaxanthin, visit the product page here.</p>"
+	  },
+	  {
+		"type":"text",
+		"id":"pro_btn",
+		"label":"Enter button title",
+		"default":"Astaxanthin Reviews"
+	  }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

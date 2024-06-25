@@ -1,0 +1,101 @@
+<div class="about-pro-section page-width text-center">
+  {%- if section.settings.title != blank -%}<div class="section-header">
+    <h2 class="fw-semi-bold h2-large no-ls">{{ section.settings.title }}</h2>
+  </div>{%- endif -%}
+  {%- if section.settings.detail != blank -%}
+  <div class="aps_detail rte">
+    {{ section.settings.detail }}</div>{%- endif -%}
+  {%- if section.settings.title_1 != blank -%}<div class="section-header">
+    <h2 class="fw-semi-bold h2-large no-ls">{{ section.settings.title_1 }}</h2>
+  </div>{%- endif -%}
+  {%- if section.settings.detail_1 != blank -%}
+  <div class="aps_detail rte">
+    {{ section.settings.detail_1 }}</div>{%- endif -%}
+  {%- if section.settings.bage_img != blank -%}<div class="aps_badge text-center">   
+  <img class="lazyload" data-src="{{ section.settings.bage_img | img_url:'115x' }}" width="auto" height="auto" />
+  </div>{% endif %}
+  {%- if section.blocks.size > 0 -%}  
+  <div class="aps_grid">
+    {%- for block in section.blocks -%}
+      {%- if block.settings.title != blank or block.settings.detail != blank -%}
+      <div class="aps_grid__item text-center{% if forloop.last %} last{% endif %}" {{ block.shopify_attributes }} >
+        {%- if block.settings.title != blank -%}
+        <h3>{{ block.settings.title }}</h3>
+        {%- endif -%}
+        {%- if block.settings.detail != blank -%}
+        <div class="aps_grid__item_wrapper">
+          {{ block.settings.detail }}
+        </div>{%- endif -%}
+      </div>
+      {%- endif -%}
+    {%- endfor -%}
+    </div>
+    {%- endif -%}  
+</div>
+{% schema %}
+  {
+    "name": "About section",
+	"class":"thick-border-top",
+    "settings": [
+      {
+		"type":"richtext",
+		"id":"title",
+		"label":"Enter title",
+		"default":"<p><strong>OUR</strong> PRODUCTS</p>"
+      },
+	  {
+		"type":"richtext",
+		"id":"detail",
+		"label":"Enter detail",
+		"default":"<p>At Biosphere Nutrition, we provide you with the best ingredients the nutritional industry has to offer to enable you to live stronger and healthier. Leveraging our passion and innovative dietary supplements expertise, we focus on finding the cleanest, purest, and naturally sourced ingredients to offer safe and high functional quality products to our customers.</p><p>What set us apart from others is; our commitment – avoiding cheap, harmful, synthetic or poorly absorbed forms of ingredients yet provide you with great products at affordable prices. We believe everyone deserves to live a normal and healthy life. Whether you’re a professional, athlete, work at home parent, or student, our products offer a nutritional edge in all daily works of life.</p>"
+	  },
+	  {
+		"type":"header",
+		"content":"Second title and detail"
+	  },
+      {
+		"type":"richtext",
+		"id":"title_1",
+		"label":"Enter title",
+		"default":"<p><strong>PROFESSIONALLY</strong> FORMULATED SUPPLEMENTS</p>"
+      },
+	  {
+		"type":"richtext",
+		"id":"detail_1",
+		"label":"Enter detail",
+		"default":"<p>When formulating our products, we start by working out what most people need. We then put together a handful of ingredients and research each form they may be available in as not all supplements are created equal. Bioavailable is our promise which is why we seek out the ingredients that have been proven to be best absorbed by the human body.</p><p>Aiming for naturally sourced ingredients allows us to create a clean, healthy supplement while also offering the best absorption. We combine the knowledge of professionals that are regularly educating themselves in an ever-expanding field to create a product range that really works.</p>"
+	  },
+	  {	
+		"type":"image_picker",
+		"label":"Upload image 115x",
+		"id":"bage_img"
+	  }
+	],
+"blocks":[
+  {
+	"type":"text",
+	"name":"Text block",
+	"settings":[
+      {
+		"type":"text",
+	    "label":"Enter Title",
+		"id":"title",
+		"default":"Product Ingredients"
+      },
+      {
+		"type":"richtext",
+	    "label":"Enter detail",
+		"id":"detail",
+		"default":"<p>We only use the best researched and absorbable forms of our ingredients to ensure you’re getting a safe product that actually works. We never include any artificial sweeteners, colours, flavours, or preservatives. All our flavouring profile comes from plants.</p>"
+      }
+	]
+  }
+]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

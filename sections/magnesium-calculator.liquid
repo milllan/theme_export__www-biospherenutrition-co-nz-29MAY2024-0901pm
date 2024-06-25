@@ -1,0 +1,57 @@
+{%- assign sec = section.settings -%}
+{%- include 'magnesium-calculator' ,id:section.id, title: sec.title, detail: sec.detail,
+	btn : sec.re_btn_title, re_btn_link : sec.re_btn_link, slider_range : sec.slider_range, slider_number:sec.sec.slider_number  -%}
+{% schema %}
+  {
+    "name": "Magnesium Calculator",
+    "settings": [
+	  {
+		"type":"textarea",
+		"label":"Enter title",
+		"id":"title",
+		"default":"<span>Magnesium</span> Dose Calculator"
+	  },
+	  {
+		"type":"richtext",
+		"label":"Enter detail",
+		"id":"detail",
+		"default":"<p>The amount of magnesium your body requires on a day to day basis is heavily dependant on your size and lifestyle. Use this calculator to get an idea of how much magnesium you should look to consume each day for optimal health.</p>"
+	  },
+	  {
+		"type":"text",
+		"id":"re_btn_title",
+		"label":"Enter button title",
+		"default":" For more information check out our information on optimal magnesium dosages"
+	  },
+	  {
+		"type":"url",
+		"id":"re_btn_link",
+		"label":"Provide button link"
+	  },
+	  {
+		"type":"header",
+		"content":"Slider"
+	  },
+	  {
+		"type":"text",
+		"id":"slider_range",
+		"label":"Enter Slider Range",
+		"info":"Enter range link 1 to 100",
+		"default":"1 to 150"
+	  },
+	  {
+		"type":"text",
+		"id":"slider_number",
+		"label":"Show Slider initial number",
+		"default":"65",
+		"info":"Enter only number"
+	  }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

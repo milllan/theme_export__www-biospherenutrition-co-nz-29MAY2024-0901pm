@@ -1,0 +1,114 @@
+<div class="page-width"><div class="section-header text-center"><h1 class="h-border-bottom textcenter border-color_d">{{ page.title }}</h1></div></div>
+{%- if page.metafields.bioB.vedio_link != blank -%}
+<div class="shopify-section index--padding-b">
+  <div class="page-width" data-section-id="{{ section.id }}" data-section-type="video-section">
+    {%- if page.metafields.bioB.vedio_link != blank -%}
+    <div class="video-section-wrapper
+                video-section-wrapper--medium
+                video-section-wrapper--min-height                
+                video-section-wrapper--{{ section.id }}"
+         data-desktop-height="650"
+         data-mobile-height="270">
+      <div class="video__overlay"></div>
+      <button type="button"
+              class="text-link video-control__close-wrapper"
+              data-controls="Video-{{ section.id }}">
+        <span class="video-control video-control__close">
+          {% include 'icon-close' %}
+          <span class="icon__fallback-text">{{ 'sections.video.close' | t: video_title: '[video_title]' }}</span>
+        </span>
+      </button>
+      {%- if page.metafields.bioB.vedio_link != blank -%}
+      {%- assign video_id = page.metafields.bioB.vedio_link | split:'?v=' | last -%}
+      <div id="Video-{{ section.id }}"
+           class="video video--image_with_play"
+           data-id="{{ video_id }}"
+           data-type="image_with_play"></div>
+      {%- endif -%}
+      <div class="video__image box ratio-container lazyload js"
+           data-bgset="http://i3.ytimg.com/vi/{{ video_id }}/maxresdefault.jpg"
+           data-sizes="auto"
+           data-parent-fit="contain"
+           style="background-position: {{ section.settings.image_position }};
+                  background-image: url('http://i3.ytimg.com/vi/{{ video_id }}/hqdefault.jpg');">
+      </div>
+      <noscript>
+        <div class="video__image"{% if section.settings.image %} style="background-image: url('{{ section.settings.image | img_url: '2048x' }}'); background-position: {{ section.settings.image_position }};"{% endif %}>
+          {%- if section.settings.image == blank -%}
+          <div class="placeholder-background">
+            {% capture current %}{% cycle 1, 2 %}{% endcapture %}
+            {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+          {%- endif -%}
+        </div>
+      </noscript>
+
+      <div class="video__text-content text-center">
+        <div class="page-width">
+          {%- unless page.metafields.bioB.title == blank -%}
+          <h2 class="h4-large no-ls mega-title video__title">
+            {{ page.metafields.bioB.title | escape }}
+          </h2>
+          {%- endunless -%}          
+          <div class="video-control__play-wrapper{% if page.metafields.bioB.title != blank %} video-control__play-wrapper--with-text{% endif %}">
+            {%- if page.metafields.bioB.vedio_link != blank -%}
+            <div class="video-play-loader"></div>
+            {%- endif -%}
+            <button type="button" class="btn video-control video-control__play" data-controls="Video-{{ section.id }}">
+              {% include 'icon-play' %}
+              <span class="icon__fallback-text">{{ 'sections.video.play' | t: video_title: '[video_title]' }}</span>
+            </button>
+          </div>          
+        </div>
+      </div>
+
+      <div class="video-control__play-wrapper-mobile">
+        {%- if page.metafields.bioB.vedio_link != blank -%}
+        <div class="video-play-loader"></div>
+        {%- endif -%}
+        <button type="button" class="btn video-control video-control__play" data-controls="Video-{{ section.id }}">
+          {% include 'icon-play' %}
+          <span class="icon__fallback-text">{{ 'sections.video.play' | t: video_title: '[video_title]' }}</span>
+        </button>
+      </div>
+
+      <button type="button" class="video__pause visually-hidden" tabindex="-1" data-id="{{ section.id }}" aria-live="polite" aria-pressed="false" data-controls="Video-{{ section.id }}">
+        <span class="video__pause-stop">
+          {% include 'icon-pause' %}
+          <span class="icon__fallback-text">{{ 'sections.video.pause' | t: video_title: '[video_title]' }}</span>
+        </span>
+        <span class="video__pause-resume">
+          {% include 'icon-play' %}
+          <span class="icon__fallback-text">{{ 'sections.video.resume' | t: video_title: '[video_title]' }}</span>
+        </span>
+      </button>
+    </div>
+    {%- else -%}
+    <div class="placeholder-noblocks">
+      {{ 'homepage.onboarding.no_content' | t }}
+    </div>
+    {%- endif -%}
+  </div>
+</div>
+{%- endif -%}
+{%- if page.metafields.bio-b-2.image != blank and page.metafields.bio-b-2.title != blank or page.metafields.bio-b-2.detail != blank -%}
+<div class="shopify-section index--padding-b">
+  {%- include 'banner' metafield: true, image: page.metafields.bio-b-2.image ,
+alignment: page.metafields.bio-b-2.alignment, 
+  title : page.metafields.bio-b-2.title, detail : page.metafields.bio-b-2.detail,
+  q_detail : '', text_color : page.metafields.bio-b-2.text_color,metafield: true -%}
+</div>
+{%- endif -%}
+{%- if page.metafields.bio-b-3.title != blank and page.metafields.bio-b-3.detail != blank -%}
+<div class="page-width">
+  <h3 class="h2 no-ls h-border-bottom">{{ page.metafields.bio-b-3.title }}</h3>
+  <div class="div_rich biosphere_detail rte">{{ page.metafields.bio-b-3.detail }}</div>
+  {%- if page.metafields.bio-b-3.reference != blank -%}
+            <div class="reference">
+              <div class="refe_title"><i class="icon"></i><span>References</span></div>
+              <div class="refe_content rte active">{{ page.metafields.bio-b-3.reference }}</div>
+            </div>
+            {%- endif -%}
+</div>
+{%- endif -%}
+

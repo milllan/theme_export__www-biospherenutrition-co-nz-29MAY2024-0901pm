@@ -1,0 +1,123 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+<div class="custom-subscription fw-bold">
+  {% if product.selling_plan_group == null %}
+    <input type="hidden" name="selling_plan" value="" />
+  <div class="c-sub-item c-sub_one-disc">
+    <div class="c-sub_ad_tic{% unless select_subscription_first %} checked{% endunless %}">
+      <div class="wrapper">
+        <svg  class="icon icon--full-color" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><clipPath id="ngt4a"><path d="M2 0h20a2 2 0 0 1 2 2v20a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/></clipPath></defs><path fill="none" stroke-miterlimit="20" stroke-width="4" d="M2 0h20a2 2 0 0 1 2 2v20a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" clip-path="url(&quot;#ngt4a&quot;)" stroke="#e7e7e7"/><path class="svg-ticmark" fill="#00a1ae" d="M20.011 8.3l-9.821 9.702-2.219-2.287-2.959-3.048 2.267-2.24 2.958 3.05 7.555-7.463z"/></svg>
+        <div class="label">one-time purchase{% comment %}{{ label_onetime }}{% endcomment %}</div>
+      </div>      
+    </div>
+  </div>
+
+  <div class="c-sub-item c-sub_auto-disc">
+    <div class="c-sub_ad_tic{% if select_subscription_first %} checked{% endif %}">
+      <div class="wrapper">
+        <svg  class="icon icon--full-color" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><clipPath id="ngt4a"><path d="M2 0h20a2 2 0 0 1 2 2v20a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/></clipPath></defs><path fill="none" stroke-miterlimit="20" stroke-width="4" d="M2 0h20a2 2 0 0 1 2 2v20a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" clip-path="url(&quot;#ngt4a&quot;)" stroke="#e7e7e7"/><path class="svg-ticmark" fill="#00a1ae" d="M20.011 8.3l-9.821 9.702-2.219-2.287-2.959-3.048 2.267-2.24 2.958 3.05 7.555-7.463z"/></svg>
+   
+    {% assign dis_price = current_variant.price | times:0.15 %}
+  
+          <div class="label">AUTOSHIP & SAVE {% comment %}{{ discount_percentage }}{% endcomment %}15% WITH FREE SHIPPING (<span class="product_save_price">{{ current_variant.price | minus:dis_price | money }}</span>)</div>
+      </div>
+      <a href="#btn_popup_div_{{ section.id }}" target="_blank" aria-label="Learn more about ReCharge Payments" class="btn--link btn--popup" data-popup-overflow="true" title="Learn more about ReCharge Payments">LEARN MORE {%- render 'icon-right-triple' -%}</a>
+    </div>
+  </div>
+    {% endif %}
+  <div class="c-sub-item c-sub_select{% unless select_subscription_first %} hide{% endunless %}">
+    <div class="c-sub-select">
+      <select class="c-sub-select-f">
+        <option {% for frequency in shipping_interval_frequency limit:1 %}value="{{ frequency }}"{% endfor %} >Frequency</option>
+        {% for frequency in shipping_interval_frequency %}
+        <option value="{{ frequency }}">
+          {{ frequency }}
+          {% if frequency == "1" and label_unit_type_legacy != 'Days' %}
+          {% if label_unit_type_singular %}
+          {{ label_unit_type_singular }}
+          {% else %}
+          {{ label_unit_type_legacy | remove: 's' }}
+          {% endif %}
+          {% else %}
+          {% if label_unit_type_plural %}
+          {{ label_unit_type_plural }}
+          {% else %}
+          {{ label_unit_type_legacy }}
+          {% endif %}
+          {% endif %}
+        </option>
+        {% endfor %}
+        {% for plan in product.selling_plan_groups[0].selling_plans %}
+        <option value="{{ plan.id }}">{{ plan.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <div class="cs-text one-whole">Check this box and you’ll automatically save 15% on all subscription purchases,CANCEL ANYTIME.</div>
+</div>
+<script defer="defer" type="text/javascript">
+  $(document).ready(function(){
+    console.log("I am Here!");
+    $(document).on('click','.c-sub_ad_tic .wrapper',function(){
+      var checked = $(this).parent().hasClass('checked');
+      $(this).parent().addClass('checked');
+      if($(this).closest('.c-sub_one-disc').length){      
+        $(this).closest('form').find('.rc_block__type__onetime label').trigger('click');
+        $(this).closest('.custom-subscription').find('.c-sub_select').addClass('hide');
+      }
+      else{
+        $(this).closest('form').find('.rc_block__type__autodeliver label').trigger('click');          
+        $(this).closest('.custom-subscription').find('.c-sub_select').removeClass('hide');
+      }
+        $(this).closest('.c-sub-item').siblings().find('.checked').removeClass('checked');
+    });
+    $('.c-sub-select-f').on('change',function(){
+      var checked = $(this).val();
+      if(checked != ""){
+        $(this).closest('form').find('[name="properties[shipping_interval_frequency]"]').val(checked).change();        
+      }else{
+      
+      }
+    })
+  });
+  $(document).on('click','.c-sub_ad_tic .wrapper',function(){
+ 
+    var timeout = setTimeout(function() {
+      runCode();
+    }, 1000);
+
+    function runCode() {
+      clearTimeout(timeout);
+      if($('.c-sub_auto-disc .c-sub_ad_tic').hasClass('checked')){
+        var get_id =  $(".c-sub-select-f").prop("selectedIndex", 1).val();
+        $("input[name='selling_plan']").val(get_id)
+      }else{
+      	$("input[name='selling_plan']").val("")
+      }
+    }
+  });
+  $('.c-sub-select-f').on('change', function() {
+    $("input[name='selling_plan']").val(this.value);
+  });
+  
+</script>
+<div class="modal block_img--popup" id="btn_popup_div_{{ section.id }}">
+  <div class="modal__close"><i class="fa fa-times" aria-hidden="true"></i></div>
+  <div class="modal__inner">      
+    <div class="text-warapper modal__centered text-center">
+      {%- capture recurreing_detail -%}
+      {%- if settings.recurring_title != blank -%}<h3>{{ settings.recurring_title }}</h3>{%- endif -%}
+      {%- if settings.recurring_detail -%}<div class="div_rich">{{ settings.recurring_detail }}</div>{%- endif -%}
+      {%- endcapture -%}      
+      {%- unless settings.show_de_recurring_dtail -%}
+      {{ recurreing_detail }}      
+      {%- else -%}
+      <div class="div_rich"> 
+        {{ how_it_works_text }}
+        {% if show_learnmore %}
+      </div>
+        <a href="{{ learnmore_url }}" target="_blank" class="btn btn--small" aria-label="Learn more about ReCharge Payments">{{ learnmore_link }}</a>
+        {% endif %}      
+      {%- endunless -%}
+    </div>
+  </div>
+</div>

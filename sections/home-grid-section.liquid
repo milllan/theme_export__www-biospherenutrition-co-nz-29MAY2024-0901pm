@@ -1,0 +1,374 @@
+<style type="text/css">
+  {%- for block in section.blocks -%}
+
+  .gs_item--{{ block.id }} .btn{
+  {%- if block.settings.btn_color_text != blank -%}
+  color: {{ block.settings.btn_color_text }};
+  {%- endif -%}
+  {%- if block.settings.btn_color_bg != blank -%}
+  background-color:{{ block.settings.btn_color_bg }};
+  {%- endif -%}
+  }
+  {%- endfor -%}
+
+  @media only screen and (max-width: 767px)  {
+  {% if section.settings.mob_heading != blank %}
+  .home-grid_{{ section.id }} .grid  {display:none;}
+  {% endif %}
+  }
+</style>
+
+<div
+  data-section-id="{{ section.id }}"
+  data-section-type="home-grid-section"
+  class="wrp-home-grid home-grid_{{ section.id }}"
+>
+  <div class="grid grid--no-gutters">
+    {%- for block in section.blocks -%}
+      <div class="gs_item gs_item--{{ block.id }} grid__item medium-up--one-half po_relative">
+        <div class="gs_img_wrapper">
+          {%- assign block_image = block.settings.image -%}
+          <div class="gs_img__grid" {{ block.shopify_attributes }}>
+            {% if block_image == blank %}
+              <div class="placeholder-background">
+                {% capture current %}{% cycle 1, 2 %}{% endcapture %}
+                {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
+            {% else %}
+              <div
+                class="gs-bg-img lazyload"
+                data-bg="{{ block_image | img_url: '300x300' }}"
+                data-bgset="{% include 'bgset', image: block_image %}"
+                data-sizes="auto"
+                data-parent-fit="contain"
+                style="
+                  background-position: {{ block.settings.alignment }};
+                  background-image: url('{{ block_image | img_url: '300x300' }}');
+                "
+              ></div>
+            {%- endif -%}
+          </div>
+        </div>
+        <div
+          class="gs_wrapper {{ block.settings.image_po }}"
+          {% if block.settings.color_text != blank %}
+            style="color:{{ block.settings.color_text }};"
+          {%- endif -%}
+        >
+          <div class="div_top">
+            {%- if block.settings.title != blank -%}
+              <h2 class="{{ block.settings.font_family }} {{ block.settings.font_size }}">
+                {{ block.settings.title }}
+              </h2>
+            {%- endif -%}
+            {%- if block.settings.detail != blank -%}
+              {%- assign text_size = block.settings.detail | size -%}
+              <div
+                class="text-wrapper fw-medium{% if text_size > 70 %} true{% endif %}"
+                {% if block.settings.color_text_d != blank %}
+                  style="color:{{ block.settings.color_text_d }};"
+                {%- endif -%}
+              >
+                {{ block.settings.detail }}
+              </div>
+            {%- endif -%}
+          </div>
+          {%- if block.settings.btn_title != blank and block.settings.btn_link != blank -%}
+            <div class="div_bottom {{ block.settings.btn_position }}">
+              <a
+                href="{{ block.settings.btn_link }}"
+                class="{{ block.settings.btn_style }} {{ block.settings.btn_size }}"
+                title="{{ block.settings.btn_link | split:'/' | last | replace:'-',' ' | capitalize }}"
+              >
+                {{- block.settings.btn_title -}}
+              </a>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+  {% if section.settings.mob_heading != blank and section.settings.products %}
+    <div class="wrp-products">
+      {% if section.settings.mob_heading != blank %}
+        <h2>{{ section.settings.mob_heading }}</h2>
+      {% endif %}
+      {% if section.settings.products != blank %}
+        <div class="wrp_inner_list">
+          <ul>
+            {% for product in section.settings.products %}
+              <li class="grid__item grid__item--{{section.id}}">
+                {% include 'menubar-product-card-grid',
+                  max_height: max_height,
+                  product: product,
+                  show_vendor: section.settings.show_vendor
+                %}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+      <div class="inner_bottom">
+        {% if section.settings['btn-label'] != blank %}
+          <a href="{{ section.settings.btn-link }}" class="btn">{{ section.settings['btn-label'] }}</a>
+        {% endif %}
+        {% if section.settings['sub-description'] != blank %}
+          <div class="sub_des">
+            {{ section.settings['sub-description'] }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+ {
+   "name": "Grid Section",
+"max_blocks":2,
+ 	"class": "index-section index-section--flush index-section--grid-section",
+   "settings": [
+    {
+      "type" : "header",
+      "content" : "Option for mobile"
+    },
+     {
+       "type" : "text",
+         "id" : "mob_heading",
+       "label" : "Mobile heading"
+     },
+      {
+        "type": "product_list",
+        "id": "products",
+        "label": "Products"
+      },
+     {
+       "type" : "text",
+       "id" : "btn-label",
+       "label" : "Mobile button label"
+     },
+     {
+       "type" : "url",
+       "id" : "btn-link",
+       "label" : "Mobile button link"
+     },
+     {
+       "type" : "richtext",
+       "id" : "sub-description",
+       "label" : "Sub description"
+     }
+   ],
+"blocks":[
+ {
+	"type":"image",
+	"name":"Image Block",
+	"settings":[
+		{
+		  "type":"image_picker",
+		  "label":"Upload image 840x480",
+		  "id":"image"
+		},
+           {
+             "type": "select",
+             "id": "alignment",
+             "label":"Image position",
+             "default": "center center",
+             "options": [
+               {
+                 "label": "Top left",
+                 "value": "left top"
+               },
+               {
+                 "label": "Top center",
+                 "value": "center top"
+               },
+               {
+                 "label": "Top right",
+                 "value": "right top"
+               },
+               {
+                 "label": "Middle left",
+                 "value": "left center"
+               },
+               {
+                 "label": "Middle center",
+                 "value": "center center"
+               },
+               {
+                 "label": "Middle right",
+                 "value": "right center"
+               },
+               {
+                 "label": "Bottom left",
+                 "value": "left bottom"
+               },
+               {
+                 "label":"Bottom center",
+                 "value": "center bottom"
+               },
+               {
+                 "label":"Bottom right",
+                 "value": "right bottom"
+               }
+             ]
+           },
+		{
+		  "type":"select",
+		  "label":"Select text alignment",
+		  "id":"image_po",
+		  "options":[
+			{
+			  "value":"left",
+			  "label":"Left"
+			},
+			{
+			  "value":"right",
+			  "label":"Right"
+			}
+		  ]
+		},
+		{
+		  "type":"text",
+		  "label":"Enter title",
+		  "id":"title",
+ 			  "default":"Title"
+		},
+		{
+		  "type":"color",
+		  "label":"Select title color",
+		  "id":"color_text"
+		},
+           {
+             "type": "select",
+             "id": "font_size",
+             "label":"Select font size fot title",
+             "default": "large",
+             "options": [
+               {
+                 "label": "Large",
+                 "value": "large"
+               },
+               {
+                 "label": "Medium",
+                 "value": "medium"
+               },
+               {
+                 "label": "Normal",
+                 "value": "normal"
+               }
+             ]
+           },
+           {
+             "type": "select",
+             "id": "font_family",
+             "label":"Select font family for title",
+             "default": "heading-font",
+             "options": [
+               {
+                 "label": "Futura PT",
+                 "value": " "
+               },
+               {
+                 "label": "Dharma Gothic E",
+                 "value": "heading-font"
+               }
+             ]
+           },
+		{
+		  "type":"richtext",
+		  "label":"Enter detail",
+		  "id":"detail",
+ 			  "default":"<p>Detail</p>"
+		},
+		{
+		  "type":"color",
+		  "label":"Select detail color",
+		  "id":"color_text_d"
+		},
+		{
+		  "type":"text",
+		  "label":"Enter button title",
+		  "id":"btn_title"
+		},
+		{
+		  "type":"url",
+		  "label":"Provide button url",
+		  "id":"btn_link"
+		},
+		{
+		  "type":"color",
+		  "label":"Select button bg color",
+		  "id":"btn_color_bg"
+		},
+		{
+		  "type":"color",
+		  "label":"Select button text color",
+		  "id":"btn_color_text"
+		},
+           {
+             "type": "select",
+             "id": "btn_style",
+             "label":"Select button style",
+             "default": "btn",
+             "options": [
+               {
+                 "label": "Primary",
+                 "value": "btn"
+               },
+               {
+                 "label": "Secondary",
+                 "value": "btn btn--tertiary"
+               }
+             ]
+           },
+           {
+             "type": "select",
+             "id": "btn_position",
+             "label":"Select Button alignment",
+             "default": "",
+             "options": [
+               {
+                 "label": "Default",
+                 "value": ""
+               },
+               {
+                 "label": "Left Side",
+                 "value": "left"
+               },
+               {
+                 "label": "Right Side",
+                 "value": "right"
+               }
+             ]
+           },
+           {
+             "type": "checkbox",
+             "id": "btn_size",
+             "label":"Enable default font size"
+		}
+	]
+ }
+],
+ "presets": [
+   {
+     "name": "Grid Section",
+     "category": "Image",
+     "settings": {},
+     "blocks": [
+       {
+         "type": "image"
+       },
+       {
+         "type": "image"
+       }
+     ]
+   }
+ ]
+ }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

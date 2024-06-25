@@ -1,0 +1,105 @@
+<div class="what_other_say">
+  <div class="container_what_say">
+    {% if section.settings.title != blank %}<h2 class="ttl_replenish">{{ section.settings.title }}</h2>{% endif %}
+     {% if section.settings.subtitle != blank %}<span class="ttl_sub">{{ section.settings.subtitle }}</span>{% endif %}
+     <div class="reciew_block">
+     {% for block in section.blocks %}
+       <div class="inner_dv_rv">
+         <div class="inner_rv">
+           {% if block.settings.body != blank %}{{ block.settings.body }}{% endif %}
+       {% if block.settings.name != blank %}
+         <div class="inside_content">
+           <h3>{{ block.settings.name }} </h3>
+           <div class="rating">
+              {% if block.settings.rating == "one" %}
+              <span> {% render 'active_start' %}</span><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span>
+              {% elsif  block.settings.rating == "two" %}
+              <span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span>  
+              {% elsif  block.settings.rating == "three" %}
+              <span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span>
+              {% elsif  block.settings.rating == "four" %}
+              <span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span><span> {% render 'deactive_start' %}</span>      
+              {% else %}
+              <span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span>                
+              {% endif %}   
+           </div>
+         <img src="{{ 'quote.png' | asset_url }}" alt="quote" title="quote" />
+           </div>
+         {% endif %}
+         </div>
+       </div>
+       {% endfor %}
+       </div>
+    {% if section.settings.text_star_review != blank %}
+    <div class="text_review_dv">
+      {{ section.settings.text_star_review }}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "What Other Say",
+    "settings": [{
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "SubTitle"
+    },
+    {
+        "type": "richtext",
+        "id": "text_star_review",
+        "label": "Star Review Text"
+      }],
+    "blocks": [{
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [{
+        "type": "richtext",
+        "id": "body",
+        "label": "Testimonial Review"
+      },
+      {
+        "type": "text",
+        "id": "name",
+        "label": "Name"
+      },
+      {
+        "type": "select",
+        "id": "rating",
+        "label": "Star Rating",
+        "options": [
+        {
+        "value": "one",
+        "label": "One"
+        },
+        {
+        "value": "two",
+        "label": "Two"
+        },
+        {
+        "value": "three",
+        "label": "Three"
+        },
+        {
+        "value": "four",
+        "label": "Four"
+        },
+        {
+        "value": "five",
+        "label": "Five"
+        }
+        ]
+      }
+      ]
+    }],
+    "presets": [{
+      "name": "What Other Say",
+      "category": "text"
+    }]
+  }
+{% endschema %}

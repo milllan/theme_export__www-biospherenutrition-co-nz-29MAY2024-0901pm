@@ -1,0 +1,227 @@
+{{ 'text-overlay.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+    .text-overlay{padding-top: {{ section.settings.padding_top }}px;padding-bottom: {{ section.settings.padding_bottom }}px;}
+    .text-overlay-title.center{text-align: center;}
+    .text-overlay-title.left{text-align: left;}
+    .text-overlay-title.right{text-align: right;}
+    .page-new-static-nitric-oxide .text-overlay-title h3:after{left:48px;}
+    .page-new-static-nitric-oxide .text-overlay-wrapper p, .page-nitric-oxide-20-percent-off .text-overlay-wrapper p{    max-width: 900px;}
+    .content_desc_text h4{padding-bottom: 4px;
+      display: inline-block;
+      margin-bottom: 27px;
+      border-bottom: 2px solid #f00;}
+    .content_desc_text span{display: block;
+      margin-bottom: 40px;}
+
+
+    @media screen and (min-width: 992px) {
+       .page-new-static-nitric-oxide .text-overlay-title h3:after{left:0px;}
+    {% if section.settings.image != blank %}
+      .bg_image_{{ section.id }} {
+       /* {% if section.settings.mobile_image != blank %} background-image: url({{section.settings.image | img_url: 'master'}}); {% endif %}} */
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+      }
+    {% endif %}
+    }
+    @media screen and (max-width: 992px) {
+       .bg_image_{{ section.id }} {
+       /* {% if section.settings.mobile_image != blank %} background-image: url({{section.settings.mobile_image | img_url: 'master'}}); {% endif %}} */
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+      }
+       /* .text-overlay {
+        padding-bottom: 365px;
+      }    */
+    }
+  @media screen and (max-width: 480px)
+    {
+      .get-btn{font-size: 18px;padding: 10px 0;}
+      .content_desc_text h4{font-size: 17px;}
+      .page-new-static-nitric-oxide .text-overlay-title h3:after{left: 0 !important;}
+      .text-overlay-wrapper p {font-size: 16px; padding:0!important;}
+
+    }
+{% endstyle %}
+{% assign position = section.settings.text_position %}
+{% assign position_class = 'center' %}
+{% if position == 'left' %}
+  {% assign position_class = 'left' %}
+{% elsif position == 'right' %}
+  {% assign position_class = 'right' %}
+{% endif %}
+<div class="new-text-overlay overlay_new text-overlay bg_image_{{ section.id }} desc-content">
+  {% if section.settings.left_image != blank %}
+    {{ section.settings.left_image | image_url: width: 600 | image_tag: class: 'left_img', loading: 'lazy' }}
+  {% endif %}
+  {% if section.settings.right_image != blank %}
+    {{ section.settings.right_image | image_url: width: 600 | image_tag: class: 'right_side', loading: 'lazy' }}
+  {% endif %}
+  <div class="page-width">
+    <div class="text-overlay-wrapper desktop">
+      <div class="text-overlay-title {{ position_class }}">
+        <h2>{{ section.settings.title }}</h2>
+        <h3>{{ section.settings.sub_title }}</h3>
+        <div class="content_desc_text">
+          {% for block in section.blocks %}
+            <h4>{{ block.settings.content_title }}</h4>
+            <span>{{ block.settings['detail-text'] }}</span>
+          {% endfor %}
+        </div>
+        <div class="btn-text">
+          <a href="{{ section.settings.link }}" class="get-btn trigger_click_btn">
+            {{- section.settings['btn-txt'] }}
+            {{ section.settings['btn-svg-icon'] -}}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="text-overlay bg_image_{{ section.id }} mob-content">
+  <div>
+    <div class="page-width">
+    <div class="text-overlay-wrapper desktop">
+      <div class="text-overlay-title">
+        <h2>{{ section.settings.title }}</h2>
+        <h3>{{ section.settings.sub_title }}</h3>
+        <div class="content_desc_text">
+          {% for block in section.blocks %}
+            <h4>{{ block.settings.content_title }}</h4>
+            <span>{{ block.settings['detail-text'] }}</span>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+   <div class="btn-with-text">
+          <a href="{{ section.settings.link }}" class="get-btn trigger_click_btn">
+            {{- section.settings['btn-txt'] }}
+            {{ section.settings['btn-svg-icon'] -}}
+          </a>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "New Text overlay",
+  "settings": [
+    {
+      "type":"image_picker",
+      "id":"left_image",
+      "label":"Left Image"
+    },
+    {
+      "type":"image_picker",
+      "id":"right_image",
+      "label":"Right Image"
+    },
+
+    {
+      "type":"text",
+      "id":"title",
+      "label":"Title"
+    },
+    {
+      "type" : "text",
+      "id" : "sub_title",
+      "label" : "Add Sub Title"
+    },
+    {
+      "type" : "select",
+      "id" : "text_position",
+      "options" :[
+        {
+          "value" :"center",
+          "label" : "center"
+        },
+        {
+          "value" : "left",
+          "label": "left"
+        },
+        {
+          "value":"right",
+          "label" : "right"
+        }
+      ],
+    "default": "left",
+    "label": "Choose any possition"
+    },
+
+    {
+      "type": "text",
+      "id": "btn-txt",
+      "label": "BUtton Label"
+    },
+    {
+      "type": "html",
+      "id": "btn-svg-icon",
+      "label": "SVG icon"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Button Link"
+    },
+    {
+      "type": "html",
+      "id": "svg-icon",
+      "label": "SVG icon"
+    },
+    {
+      "type": "text",
+      "id": "pro-text",
+      "label": "Text"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Nitric_Oxide_content",
+      "name": "Nitric Oxide Content",
+      "settings": [
+        {
+          "type" : "text",
+          "id" : "content_title",
+          "label" : "Add Title"
+        },
+        {
+          "type": "richtext",
+          "id": "detail-text",
+          "label": "Details Text"
+        }
+
+      ]
+    }
+  ],
+
+  "presets":[
+    {
+      "name":"new-text-overlay"
+    }
+  ]
+}
+{% endschema %}

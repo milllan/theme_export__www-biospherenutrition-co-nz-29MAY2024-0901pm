@@ -1,0 +1,109 @@
+<div class="faq_section_blocks {% if section.settings.image != blank %}bg_img{% endif %}" style="padding-top:{{ section.settings.padding_top }}px;padding-bottom:{{ section.settings.padding_bottom }}px;" >
+  <div class="inner_faq_section_blocks">
+     {% if section.settings.title != blank %}<h2 class="ttl_replenish after_border" style="color:{{ section.settings.title_color}}">{{ section.settings.title }}</h2>{% endif %}
+     <div class="inner_div_faq">
+       <ul class="faq_items_div">
+         {% for block in section.blocks %}
+           <li class="faq_items">
+             <div class="faq_ttl">
+               {% if block.settings.title != blank %}<h3 class='acc_ttl'><span class="plus_symbol"><img src="{{ 'purple.png' | asset_url }}" alt="plus" title="plus" /></span><span class="ttl_dv">{{ block.settings.title }}</span></h3>{% endif %}
+             </div>
+             <div class="body_faq">
+               {% if block.settings.content != blank %}
+                 <div class="inner_body_faq">
+                 {{ block.settings.content }}
+               </div>
+                 {% endif %}
+             </div>
+           </li>
+           {% endfor %}
+       </ul>
+     </div>
+          {% if section.settings.btn_ttl != blank and section.settings.btn_url != blank %}<div class="faq_btn"><a href="{{ section.settings.btn_url }}" class="btn">{{ section.settings.btn_ttl }}</a></div>{% endif %}
+  </div>
+</div>
+<style>
+    .bg_img{background: url({{ section.settings.image | img_url:'master' }}) no-repeat scroll 0 0; background-size: cover;} 
+    .faq_btn {padding-top: 30px;}
+    .faq_btn .btn {font-size: 36px;line-height: 56px;letter-spacing: .3px;background: linear-gradient(180deg,#00aeee 0%,#008be5 6%,#0072dc 45%);border-radius: 20px;padding: 19px 25px;min-width: 598px;  } 
+    @media(max-width: 1199px){
+    .faq_btn .btn{padding: 10px 25px;min-width: 498px;font-size: 30px;line-height: 50px;}
+    }
+    @media (max-width: 767px){
+    .faq_btn .btn{min-width: 298px;font-size: 22px;line-height: 34px;}
+    }
+    @media (max-width: 479px) {
+    .faq_btn .btn { min-width: auto;font-size: 18px;line-height: 25px;border-radius: 11px;}
+    }
+</style>
+{% schema %}
+  {
+    "name": "Sleep Faq Block",
+    "settings": [
+   {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+      {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color"
+    },
+      {
+      "type": "text",
+      "id": "btn_ttl",
+      "label": "Button Title",
+      "default": "BUY NOW &amp; SAVE 20%"
+    },
+      {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button URL"
+    },
+    {
+        "type": "range",
+        "id": "padding_top",
+        "min": 25,
+        "max": 500,
+        "step": 5,
+        "unit": "px",
+        "label": "padding top",
+        "default": 25 
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 25,
+      "max": 500,
+      "step": 5,
+      "unit": "px",
+      "label": "padding bottom",
+      "default": 25
+    }
+    ],
+    "blocks": [{
+        "type": "faq_section",
+      "name":"Faq Section",
+      "settings": [{
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "content",
+        "label": "Faq Content"
+      }]
+    }],
+    "presets": [{
+      "name": "sleep Faq Block",
+      "category": "text"
+    }]
+  }
+{% endschema %}

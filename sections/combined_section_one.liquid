@@ -1,0 +1,259 @@
+<div class="cumbined_section_one">
+    <div class="combined_title_with_content" id="define_high_blood_pressure">
+      <div class="article_container">
+        <div class="row">
+          <div class="col-6">
+            {% if section.settings.title_with_text_title %}
+            <h3 class="same_size_title">
+              {{ section.settings.title_with_text_title }}
+            </h3>
+            {% endif %}
+          </div>
+          <div class="col-6">
+            {% if section.settings.title_with_text_first %}
+            <div class="content_first">{{ section.settings.title_with_text_first }}</div>
+            {% endif %}
+            {% if  section.settings.title_with_text_second %}
+            <div class="content_second">{{ section.settings.title_with_text_second }}</div>
+            {% endif %}
+          </div>
+        </div>	
+      </div>
+    </div>
+    <div class="combined_text_with_image" id="Understanding_Blood_Pressure">
+      <div class="article_container">
+        <div class="combined_text_with_image_inner">
+          {% if section.settings.combined_text_with_image_title %}
+          <h3 class="same_size_title">{{ section.settings.combined_text_with_image_title }}</h3>
+          {% endif %}
+          {% if section.settings.combined_text_with_image_conent %}
+          <div>{{ section.settings.combined_text_with_image_conent }}</div>
+          {% endif %}
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="combined_text_with_image_inner_content">
+              {% if section.settings.combined_image_with_text_content %}
+              <div>{{ section.settings.combined_image_with_text_content }}</div>
+              {% endif %}
+              {% if section.settings.combined_image_with_text_content_second %}
+              <div>{{ section.settings.combined_image_with_text_content_second }}</div>
+              {% endif %}
+              {% if section.settings.combined_image_with_text_content_third %}
+              <div>{{ section.settings.combined_image_with_text_content_third }}</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="combined_text_with_image_image">
+              {% if section.settings.combined_image %}
+              <img src="{{ section.settings.combined_image | img_url:'master' }}" alt=""/>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="article_container">
+    <div class="combined_richtext" id="Diagnosing_High_Blood_Pressure">
+      <div class="combined_richtext_inner">
+        <div class="combined_richtext_one">
+          {% if  section.settings.richtext_title_one  %}
+          <h3 class="same_size_title">{{ section.settings.richtext_title_one }}</h3>
+          {% endif %}
+          {% if section.settings.richtext_content_one %}
+          <div>{{ section.settings.richtext_content_one }}</div>
+          {% endif %}
+        </div>
+        <div class="combined_richtext_two">
+          {% if section.settings.richtext_title_two  %}
+          <h4 class="sameasallsize">{{ section.settings.richtext_title_two }}</h4>
+          {% endif %}
+          {% if section.settings.richtext_content_two %}
+          <div>{{ section.settings.richtext_content_two }}</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="combined_grid">
+      <div class="row">
+        <div class="col-4">
+          <div class="combined_grid_inner">
+            <figure>
+              <img src="{{ section.settings.first_grid_image | img_url:'master'}}" alt="" />
+            </figure>
+            <h5 class="all_grid_size">{{ section.settings.first_grid_title }}</h5>
+            <div>{{ section.settings.first_grid_content }}</div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="combined_grid_inner">
+            <figure>
+              <img src="{{ section.settings.second_grid_image | img_url:'master'}}" alt="" />
+            </figure>
+            <h5 class="all_grid_size">{{ section.settings.second_grid_title }}</h5>
+            <div>{{ section.settings.second_grid_content }}</div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="combined_grid_inner">
+            <figure>
+              <img src="{{ section.settings.third_grid_image | img_url:'master'}}" alt="" />
+            </figure>
+            <h5 class="all_grid_size">{{ section.settings.third_grid_title }}</h5>
+            <div>{{ section.settings.third_grid_content }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .cumbined_section_one a{
+  	text-decoration:underline;
+  }
+</style>
+{% schema %}
+  {
+    "name": "combined section one",
+    "settings": [
+      {	
+      	"type":"header",
+     	"content":"title with text"
+      },
+      {
+        "type":"text",
+        "id":"title_with_text_title",
+        "label":"Add title"
+      },
+      {
+		"type":"richtext",
+		"id":"title_with_text_first",
+		"label":"Add title section's content"
+      },
+      {
+        "type":"richtext",
+        "id":"title_with_text_second",
+        "label":"Add title section's content"
+      },
+      {
+		"type":"header",
+		"content":"combined text with image"
+      },
+      {
+      	"type":"text",
+      	"id":"combined_text_with_image_title",
+      	"label":"Add title here"
+      },
+      {
+      	"type":"richtext",
+      	"id":"combined_text_with_image_conent",
+      	"label":"Add below Title content here"
+      },
+      {
+        "type":"image_picker",
+        "id":"combined_image",
+        "label":"Add Image here"
+      },
+      {
+        "type":"richtext",
+        "id":"combined_image_with_text_content",
+        "label":"Add content here"
+      },
+      {
+	    "type":"richtext",
+    	"id":"combined_image_with_text_content_second",
+      	"label":"Add content here"
+      },
+      {
+     	"type":"richtext",
+      	"id":"combined_image_with_text_content_third",
+      	"label":"Add content here"
+      },
+      {
+		"type":"header",
+		"content":"combined richtext"
+      },
+      {
+		"type":"text",
+		"id":"richtext_title_one",
+		"label":"Add first title"
+      },
+      {
+      	"type":"richtext",
+      	"id":"richtext_content_one",
+      	"label":"Add first content"
+      },
+      {
+      	"type":"text",
+      	"id":"richtext_title_two",
+      	"label":"Add second title"
+      },
+      {
+     	"type":"richtext",
+      	"id":"richtext_content_two",
+      	"label":"Add second content"
+      },
+      {
+      	"type":"header",
+      	"content":"image text grid"
+      },
+      {
+      	"type":"image_picker",
+      	"id":"first_grid_image",
+      	"label":"Add image"
+      },
+      {
+      	"type":"text",
+      	"id":"first_grid_title",
+      	"label":"Add title"
+      },
+      {
+      	"type":"richtext",
+      	"id":"first_grid_content",
+      	"label":"Add content"
+      },
+      {
+      	"type":"image_picker",
+      	"id":"second_grid_image",
+      	"label":"Add image"
+      },
+      {
+      	"type":"text",
+     	"id":"second_grid_title",
+      	"label":"Add title"
+      },
+      {
+      	"type":"richtext",
+      	"id":"second_grid_content",
+      	"label":"Add content"
+      },
+      {
+      	"type":"image_picker",
+      	"id":"third_grid_image",
+      	"label":"Add image"
+      },
+      {
+      	"type":"text",
+      	"id":"third_grid_title",
+      	"label":"Add title"
+      },
+      {
+      	"type":"richtext",
+      	"id":"third_grid_content",
+      	"label":"Add content"
+      }
+	],
+	"presets":[
+		{
+			"name":"combined section one"
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

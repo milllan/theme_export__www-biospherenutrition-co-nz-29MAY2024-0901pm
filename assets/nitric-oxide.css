@@ -1,0 +1,144 @@
+.main_title p{font-family:Dharma Gothic E,sans-serif;font-size:130px;line-height:86px;color:#fff;margin:0 0 16px;letter-spacing:-1px;}
+.label_ttl:after{background:#ef423b;}
+.main_title p strong{color:#ef423b;}
+.ttl_sub.italic_text{color:#ef423b;}
+/* ========================================== */
+.replenish_div .btn{background:linear-gradient(180deg,#ef423b 0%,#ef423b 6%,#ef423b 45%);}
+.replenish_div .wrp-content{margin-top:50px;}
+.replenish_div .richtext_section{margin:0px;padding:100px 0px;}
+.replenish_div .richtext_section .richtext_ttl p{font-size:70px;color:#fff;line-height:80px;letter-spacing:0px!important;text-transform:capitalize!important;font-family:DHARMA GOTHIC E;font-weight:400;}
+.replenish_div{padding:100px 0px;}
+.replenish_div .richtext_section .inner_content{padding-top:25px;}
+.replenish_div .richtext_section .inner_content p{color:#fff;}
+/*===============================No review section =========================================  */
+.inner_review_dv .inside_content{display:flex;justify-content:space-between;}
+.inner_review_dv .inside_content .rating span{padding:0 2px;}
+.inner_review_dv .inside_content .rating span svg{width:25px;height:25px;}
+.inner_review_dv .inside_content img{margin:0px;}
+/*==========================================  */
+.wrp-block{grid-row-gap:30px;}
+.inner_megnesium_def .ttl_replenish{color:#ef423b;}
+.wrp-block .factor_inner_div{background:#820d08;}
+.mineral_uses .inner_mineral_uses{display:flex;flex-wrap:wrap;justify-content:center;}
+.mineral_uses .inner_mineral_uses .fetured_itm{flex:0 0 33.33%;}
+/* ====================================Why Choose Bioshere======================================= */
+.why_choose_biosphere .inner_container .ttl__replenish p{font-family:Dharma Gothic E,sans-serif;font-size:104px;line-height:80px;color:#404040;letter-spacing:-1px!important;text-transform:capitalize!important;margin-bottom:30px;}
+.ttl__replenish p strong{color:#ef423b;}
+.image_certified_div .btn{background:linear-gradient(180deg,#ef423b 0%,#ef423b 6%,#ef423b 45%);}
+/* =========================================Review Section=============================================== */
+.inner_review_section .review_itm{border: 2px solid #ef423b;}
+.inner_review_section .inner_review_dv h3{color:#ef423b;}
+/* ============================================== no-max-strength section========================================================= */
+.no-max-strength .text_content .inner_first,.no-max-strength .text_content .inner_second,.no-max-strength .text_content .inner_third,.no-max-strength .text_content .inner_four,.no-max-strength .text_content .inner_five{position:relative;}
+.no-max-strength .ttl_sub{color:#ef423b;}
+.no-max-strength  .inner_first .arrow{position:absolute;top:90%;}
+.no-max-strength  .inner_second .arrow{position:absolute;top:65%;}
+.no-max-strength  .inner_third .arrow{top:50%;position:absolute;}
+.no-max-strength  .inner_four .arrow{position:absolute; position: absolute;left: -29%;margin: 0;top: 12%;}
+.no-max-strength  .inner_five .arrow{position:absolute;left:-29%;margin:0px;top:-60%;} 
+/* ====================How To Use================================ */
+.inner_how_to{position:relative;}
+.inner_how_to .ls-img{position:absolute;top:50%;left:-1%;transform:translateY(-50%);}
+.inner_how_to .ls-img figure{margin:0px;}
+.inner_how_to .rs-img{position:absolute;top:50%;right:-6%;transform:translateY(-50%);}
+.inner_how_to .rs-img figure{margin:0px;}
+.use_items .number_dv,.inner_how_to_dv .ttl_replenish{color:#ef423b;}
+.inner_rec_dos{display:block;margin-top:25px;}
+.inner_rec_itm_dv h4{color:#ef423b;font-family: Futura PT,sans-serif;letter-spacing: -1px;}
+/* ================================== Testimonial =================================== */
+.what_other_say span.ttl_sub{color:#ef423b;}
+/*========================================== Money back guarantee =============================================  */
+.inner_guarantee_dv{background:#ef423b;}
+.red_text{color:#ef423b;}
+.ttl_shd{background: linear-gradient(to bottom, #ef423b, #ef453b);}
+/* ============================================== FAQ section  ============================= */
+.after_border::after,.inner_body_faq{background:#ef423b;}
+/* ========================================= Science behind nutrition ============================================ */
+.the-science .biosphere_data .fetured_itm{flex:0 0 auto;width:25%;padding:0 10px;}
+.the-science .biosphere_auto_contnet{margin-left:-10px;margin-right:-10px;}
+.the-science .biosphere_data .fetured_itm .sub_title h3{font-size: 36px;line-height: 42px;text-transform: uppercase;font-weight: 900;color: #404040;margin: 0;font-family: Dharma Gothic E,sans-serif;}
+.the-science .fetured_itm .block_title .dark-title{margin-bottom:0px;font-family: Dharma Gothic E,sans-serif;font-size:75px;line-height:80px;font-weight:900;text-transform: uppercase;}
+.the-science .fetured_itm .block_title .color-title{color:#ef423b;font-family: Dharma Gothic E,sans-serif;font-size:65px;line-height:70px;font-weight:300;text-transform: uppercase;position:relative;display:block;}
+.the-science .fetured_itm .block_title .color-title:after{content:"";left:0;right:0;width:25%;height:4px;background:#4c4c4e;bottom:0px;position:absolute;margin:auto;}
+.the-science{margin:100px 0px;}
+/* ======================================Responsive ====================================== */
+@media(max-width:1699px){
+  .inner_how_to .ls-img figure img,.inner_how_to .rs-img figure img{max-width:75%;}
+  .inner_how_to .rs-img{right:-10%;}
+}
+@media(max-width:1499px){
+   .inner_how_to .ls-img figure img,.inner_how_to .rs-img figure img{display:none;}
+/* .inner_how_to .ls-img figure img,.inner_how_to .rs-img figure img {max-width:50%;} 
+  .inner_how_to .rs-img{right:-10%;} */
+  .the-science .biosphere_data .fetured_itm .sub_title h3{font-size:26px ;line-height:32px}
+  .the-science .fetured_itm .block_title .dark-title{font-size:60px;line-height:65px;}
+  .the-science .fetured_itm .block_title .color-title{font-size:55px;line-height:60px;}
+  .inner_review_dv .inside_content .rating span svg{width:20px;height:20px;}
+}
+@media(max-width:1199px){
+  .inner_landing_banner .description .main_title p{font-size:100px;line-height:82px;}
+  .replenish_div .richtext_section .richtext_ttl p{font-size:52px;line-height:70px;}
+  .why_choose_biosphere .inner_container .ttl__replenish p{font-size:88px;margin-bottom:15px;}
+  .inner_review_dv .inside_content .rating span svg{width:15px;height:15px;}
+  .no-max-strength  .inner_first .arrow,.no-max-strength  .inner_second .arrow,.no-max-strength  .inner_third .arrow,.no-max-strength  .inner_four .arrow,.no-max-strength  .inner_five .arrow{width:80px;left:-18%;}
+}
+@media(max-width:992px){
+  .no-max-strength .inner_content .inner_four h3,.no-max-strength .inner_content  .inner_five h3{text-align:center;}
+}
+@media(max-width:991px){
+  .replenish_div .richtext_section .richtext_ttl p{font-size:44px;line-height:56px;}
+  .why_choose_biosphere .inner_container .ttl__replenish p{font-size:74px;margin-bottom:10px;}
+  .no-max-strength .text_content .inner_first,.no-max-strength .text_content .inner_second,.no-max-strength .text_content .inner_third,.no-max-strength .text_content .inner_four,.no-max-strength .text_content .inner_five {padding:20px 0px;}
+  .inner_review_dv .inside_content .rating span svg{width:10px;height:10px;}
+  .no-max-strength  .inner_first .arrow,.no-max-strength  .inner_second .arrow,.no-max-strength  .inner_third .arrow,.no-max-strength  .inner_four .arrow,.no-max-strength  .inner_five .arrow{display:none;}
+}
+@media(max-width:767px){
+  .inner_landing_banner .description .main_title p{font-size:60px;line-height:42px;}
+  .replenish_div .richtext_section .richtext_ttl p{font-size:38px;line-height:40px;}
+  .why_choose_biosphere .inner_container .ttl__replenish p{font-size:58px;line-height:60px;}
+  .the-science .biosphere_data .fetured_itm{width:50%}
+  .replenish_div{padding:50px 0px;}
+  .the-science{margin:50px 0px;}
+  .mineral_uses .inner_mineral_uses .fetured_itm{flex:0 0 50%;padding:0 5px;}
+  .the-science .biosphere_data .fetured_itm .sub_title h3{font-size:22px ;line-height:26px}
+  .the-science .fetured_itm .block_title .dark-title{font-size:50px;line-height:55px;}
+  .the-science .fetured_itm .block_title .color-title{font-size:40px;line-height:45px;}
+  .biosphere_data .thumb_featured img{max-width:100%;width:40%;}
+  .inner_review_dv .inside_content .rating span svg{width:15px;height:15px;}
+}
+@media(max-width:479px){
+  .inner_landing_banner .description .main_title p{font-size:44px;margin-bottom:10px;}
+  .why_choose_biosphere .inner_container .ttl__replenish p{font-size:48px;line-height:52px;}
+}
+/*===============================  nitric-oxide-deal landing page changes 14-04-2023==============================================================================================================  */
+.page-nitric-oxide-landing span.label_ttl b,.replenish_div .richtext_section .richtext_ttl p strong{color:#fab428;}
+.page-nitric-oxide-landing .center_div{margin:-145px 44px -83px 44px;} 
+.page-nitric-oxide-landing .count_text{display:inline-block;}
+.page-nitric-oxide-landing .left_div .count_text{padding-right:25px;}
+.page-nitric-oxide-landing .iner_rv_container span.count_text_text{display:block;}
+.page-nitric-oxide-landing .right_div h2.count_text{padding-left:25px;}
+.page-nitric-oxide-landing  .count_text::after{background:#c8232c;}
+.page-nitric-oxide-landing .iner_rv_container .left_div span.count_text_text{text-align:right;}
+.page-nitric-oxide-landing .iner_rv_container .right_div span.count_text_text{text-align:left;}
+.page-nitric-oxide-landing .left_div{text-align:right;flex:0 0 auto;width:10%;}
+.biosphere_data .cotent_txt p{font-size:24px;line-height:normal;}
+.page-nitric-oxide-landing  .right_div{flex:0 0 auto;width:10%;text-align:left;}
+.page-nitric-oxide-landing .center_div{flex:0 0 auto;width:40%;}
+/* ============================= Responsive ===================== */
+@media(max-width:1199px){
+  .page-nitric-oxide-landing .biosphere_data .cotent_txt p,.page-nitric-oxide-landing .inner_container .para_dv p{font-size:16px;} 
+}
+@media(max-width:991px){
+  .page-nitric-oxide-landing .center_div{margin:-145px 10px -83px;}
+}
+@media(max-width:479px){
+  .page-nitric-oxide-landing .center_div{margin:-50px 10px 0px;width:100%;}
+  .page-nitric-oxide-landing  .center_div img{width:100%;max-width:70%;}
+  .review_slider .iner_rv_container .left_div{flex:0 0 auto;width:33%;transform:translate(0);bottom:0;right:auto;left:15%;}
+  .review_slider .iner_rv_container .right_div{flex:0 0 auto;transform:translate(0);width:33%;left:auto;right:15%;top:auto;bottom:0;}
+  .page-nitric-oxide-landing .left_div,.review_slider .iner_rv_container .right_div{text-align:center;}
+  .page-nitric-oxide-landing .iner_rv_container .left_div span.count_text_text,.page-nitric-oxide-landing .iner_rv_container .right_div span.count_text_text{text-align:center;}
+  .page-nitric-oxide-landing .iner_rv_container span.count_text_text{/*text-align: center;*/font-size:12px;color:#000;line-height:normal;}
+  .page-nitric-oxide-landing .left_div .count_text{padding:0;}
+  .page-nitric-oxide-landing .right_div h2.count_text{padding:0;}
+}

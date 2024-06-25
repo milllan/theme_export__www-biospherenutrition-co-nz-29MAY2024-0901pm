@@ -1,0 +1,29 @@
+{%- assign magnesium = false -%}
+{%- if page == 'magnesium' -%}
+{%- assign magnesium = true -%}
+{%- endif -%}
+{%- assign nitric_oxide = false -%}
+{%- if page == 'nitric-oxide' -%}
+{%- assign nitric_oxide = true -%}
+{%- endif -%}
+<div data-section-id="{{ section.id }}" data-section-type="faq-section">
+  <div class="as_faq lazyload" {% if section.settings.image != blank %} data-bg="{{ section.settings.image | img_url: '300x300' }}" data-bgset="{% include 'bgset', image: section.settings.image %}" data-sizes="auto" data-parent-fit="cover"
+       style="background-position: {{ section.settings.alignment }}; background-image: url({{ section.settings.image | img_url: '1x1' }});" {% endif %}>
+    <div class="page-width">
+      {%- if section.settings.title != blank -%}<div class="pd-header">
+      <h2 class="pd_header_{{ nitric_oxide }}">{{ section.settings.title }}</h2>
+      </div>{%- endif -%}
+      {%- if section.blocks.size > 0 -%}
+      <ul class="faq-block">      
+        {%- for block in section.blocks -%}            
+        <li class="faq-li{% if forloop.first %} active{% endif %}" {{block.shopify_attributes}}>
+          <h4 class="faq-que meg_color_{{magnesium}} NO_color_{{ nitric_oxide }}">{{ block.settings.title }}<span class="faq-plunus"></span></h4>
+          <div class="faq-ans meg_color_{{magnesium}} NO_color_{{ nitric_oxide }}"><div class="inner-ans">{{ block.settings.ans }}</div></div>
+        </li>
+        {%- endfor -%}              
+      </ul>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+{%- include 'faq-script' -%}

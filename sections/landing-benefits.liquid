@@ -1,0 +1,324 @@
+<div class="supplement-benefits">
+  <div class="megnesium_supplement_one col col1">
+    <div class="megnesium_content">
+      {% if section.settings.title != blank %}
+      	<h3>{{ section.settings.title }}</h3>
+      {% endif %}
+      
+      {% if section.settings.text != blank %}
+      <div class="p-content">
+        <p>{{ section.settings.text }}</p>
+      </div>
+      {% endif %}	
+
+      {% if section.settings.text_sec != blank %}
+      	<p>{{ section.settings.text_sec }}</p>
+      {% endif %}	
+     
+    </div>
+  </div>
+  
+  <div class="megnesium_supplement_two col col2">
+    <div class="megnesium_benifits">
+      	{% for block in section.blocks %}
+            {% case block.type %}
+
+            	{% when 'text' %}
+                  <div class="benefits_main">
+                    
+                    {% if block.settings.icon_img != blank %}
+                    <figure>
+                        <img src="{{ block.settings.icon_img | img_url:'master' }}" alt="{{ shop.name }}">  
+                    </figure>
+                    {% endif %}
+                    
+              
+                    <div class="benefits_icon_content">
+                      {% if block.settings.title != blank %}
+                      	<h5>{{ block.settings.title }}</h5> 
+                      {% endif %}
+
+                      {% if block.settings.text != blank %}
+                      	<p>{{ block.settings.text }}</p>
+                      {% endif %}	
+                    </div>
+                  </div>
+                  
+            {% endcase %}
+        {% endfor %}
+ 	
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Landing Benefits",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Talk about your brand"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Text",
+		"info": "Use <br> tag for new line."
+      },
+      {
+        "type": "textarea",
+        "id": "text_sec",
+        "label": "Text",
+		"info": "Use <br> tag for new line."
+      }
+	],
+	"blocks": [
+      {
+        "type": "text",
+        "name": "Icon with text",
+        "settings": [
+		  {
+            "type":"image_picker",
+            "label":"Select Icon",
+            "id":"icon_img"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Talk about your brand"
+          },
+          {
+            "type": "textarea",
+            "id": "text",
+            "label": "Text",
+			"info": "Use <br> tag for new line."
+          }
+        ]
+      }
+	]
+  }
+{% endschema %}
+
+
+{% stylesheet %}
+
+{% endstylesheet %}
+<style>
+  .supplement-benefits {
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+  .supplement-benefits .col{
+    ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .megnesium_supplement_one{
+    background: #000E21;
+  }
+  .megnesium_supplement_one h3,.megnesium_supplement_one p{color:#fff;font-family: Futura PT;margin-bottom:20px;}
+  .megnesium_supplement_one h3{
+    font-family: Futura PT;
+	max-width:400px;
+    font-weight: 600;
+    font-size: 35px;
+    line-height: 45px;
+  }
+  .megnesium_supplement_one p{
+    font-weight: 450;
+    font-size: 17px;
+    line-height: 27px;
+    margin-bottom:0;
+  }
+  .benefits_main {
+    float: left;
+    width: 50%;
+    padding-bottom: 80px;
+    text-align:left;
+  }
+  .megnesium_content{max-width: 557px;margin: 84px auto 125px;}
+  .megnesium_supplement_one p:last-child{margin-bottom: 0}
+  .megnesium_supplement_one .p-content p{margin-bottom:27px;}
+  .benefits_icon_content h5 ,.benefits_icon_content p{font-family: Futura PT;text-align: left;color: #000000;font-weight: 450;}
+  .benefits_icon_content h5 {
+    margin-bottom: 0;
+    font-size: 22px;
+    line-height: 28px;
+  }
+  .benefits_icon_content p{
+    font-size: 17px;
+    line-height: 27px;
+    max-width: 201px;
+  }
+  .benefits_main figure {
+    margin: 0;
+    line-height: 0;
+    display: inline-block;
+  }
+  .megnesium_benifits {
+    max-width: 710px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-flow: wrap;
+  }
+  .megnesium_supplement_two{text-align:center;}
+  .benefits_icon_content {
+    margin-left: 30px;
+    display: inline-block;  
+  }
+  .benefits_main:last-child,.benefits_main:nth-last-child(2){padding-bottom: 0;}
+  .benefits_main:nth-child(2n){padding-left: 30px;}
+  
+  @media only screen and (max-width: 1480px){
+    .benefits_main:nth-child(2n) {
+      padding-left: 15px;
+    }
+    .benefits_icon_content {
+      margin-left: 15px;
+    }
+    .megnesium_benifits {
+      max-width: 665px;
+    }
+  }
+  @media only screen and (max-width: 1439px){
+    .benefits_icon_content h5 {
+      margin-bottom: 0;
+      font-size: 18px;
+      line-height: 22px;
+    }
+    .benefits_icon_content p {
+      font-size: 16px;
+      line-height: 24px;
+    }
+    .benefits_main {
+      text-align: left;
+      display: flex;
+      align-items: center;
+    }
+    .megnesium_benifits {
+      max-width: 575px;
+    }
+  }
+  @media only screen and (max-width: 1199px){
+    .benefits_main figure {
+      max-width: 40px;
+    }
+    .megnesium_content {
+      margin: 50px auto 50px;
+      padding: 0 15px;
+    }
+    .megnesium_benifits {
+      max-width: 520px;
+    }
+    .supplement-benefits .col1 {
+      ms-flex: 0 0 45%;
+      flex: 0 0 45%;
+      max-width: 45%;
+    }
+    .supplement-benefits .col2 {
+      ms-flex: 0 0 55%;
+      flex: 0 0 55%;
+      max-width: 55%;
+    }
+  }
+  @media only screen and (max-width: 991px){
+    .supplement-benefits .col{
+      ms-flex: 0 0 100%;
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+    .supplement-benefits {
+      flex-wrap: wrap;
+    }
+    .megnesium_benifits {
+      padding: 50px 0;
+    }
+    .benefits_main {
+      padding-bottom: 32px;
+    }
+    .benefits_main figure {
+      max-width: inherit;
+    }
+    .benefits_icon_content {
+      margin-left: 20px;
+    }
+    .benefits_main:nth-child(2n) {
+      padding-left: 20px;
+    }
+  }
+  @media only screen and (max-width: 767px){
+    .benefits_main figure {
+      max-width: 40px;
+    }
+    .benefits_icon_content {
+      margin-left: 15px;
+    }
+    .benefits_main:nth-child(2n) {
+      padding-left: 15px;
+    }
+  }
+  @media only screen and (max-width: 575px){
+    .megnesium_benifits{flex-flow: column;padding-left:15px;padding-right:15px;}
+    .benefits_main figure {
+      max-width: 100%;
+    }
+    .benefits_icon_content {
+      margin-left: 20px;
+    }
+    .benefits_main:nth-child(2n) {
+      padding-left: 0;
+    }
+    .benefits_main {
+      width: 100%;
+    }
+    .benefits_icon_content h5 {
+      font-size: 22px;
+      line-height: 28px;
+    }
+    .benefits_icon_content p {
+      font-size: 16px;
+      line-height: 24px;
+    }
+    .benefits_main:last-child, .benefits_main:nth-last-child(2) {
+      padding-bottom: 50px;
+    }
+    .megnesium_supplement_one h3 {
+      font-size: 27px;
+      line-height: 34px;
+      text-align:center;
+    }
+    .megnesium_supplement_one p {
+      margin-bottom:24px;
+    }
+    .megnesium_supplement_one p {
+      font-size: 16px;
+      line-height: 24px;
+    }
+    .megnesium_benifits{
+    	padding:20px 15px;
+    }
+  }
+  @media only screen and (max-width: 374px){
+    .benefits_main figure {
+      max-width: 40px;
+    }
+    .benefits_icon_content {
+      margin-left: 15px;
+    }
+    .benefits_icon_content h5 {
+      font-size: 18px;
+      line-height: 24px;
+    }
+  }
+</style>
+{% javascript %}
+{% endjavascript %}
+<style type="text/css">
+  
+</style>

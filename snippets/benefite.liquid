@@ -1,0 +1,64 @@
+{%- assign magnesium = false -%}
+{%- if page == 'magnesium' -%}
+{%- assign magnesium = true -%}
+{%- endif -%}
+{%- assign nitric_oxide = false -%}
+{%- if page == 'nitric-oxide' -%}
+{%- assign nitric_oxide = true -%}
+{%- endif -%}
+<div data-section-id="{{ section.id }}" data-section-type="benefite-section">{%- assign sec = section.settings -%}
+  <div class="as_bene{% if sec.bg_color != blank %} with-gradient{% endif %}" {% if sec.bg_color != blank %} style="background-color: {{sec.bg_color}};" {% endif %}>
+    <div class="page-width">
+      {% if sec.title != blank or sec.detail != blank %}<div class="text-center title_part {{ magnesium }}">
+      {%- if sec.title != blank -%}<h2 class="h1-large no-ls h-border-bottom textcenter hb-bottom-d-color bcolor-meg_{{magnesium}}">{{- sec.title -}}</h2>{%- endif -%}
+      {%- if sec.detail != blank -%}<div class="text_wrapper div_rich fw-medium{% unless magnesium %} with_bg{% endunless %} {{magnesium}}">{{- sec.detail | replace:'&lt;','<' | replace:'&gt;','>' -}}</div>{%- endif -%}
+      </div>{%- endif -%}
+      {%- if section.blocks.size > 0 -%}
+      {%- if magnesium -%}<div class="as_bene_bb fw-medium">
+      {%- for block in section.blocks -%}
+      {%- if block.type == "text-border" -%}
+      <div class="asb_bb_item" {{ block.shopify_attributes }}>
+        <div class="tw div_rich">{{ block.settings.title }}</div>
+      </div>
+      {%- endif -%}
+      {%- endfor -%}
+      </div>{%- endif -%}
+      <div class="as_bene_{% if magnesium %}grp{% elsif nitric_oxide %}odev{% else %}tree{% endif %}">{% assign for_index =  0 %}
+        {%- for block in section.blocks -%}
+        {%- if block.type == "text" -%}
+        {% assign for_index =  for_index | plus:1 %}
+        {% assign _modulo =  for_index | modulo:2 %}
+        <div {{ block.shopify_attributes }} class="asb_{% if magnesium %}grp{% elsif nitric_oxide %}odev_i{% else %}tree{% endif %}_branch{% if for_index == 1 %} first_part{% elsif for_index > 1 and for_index < 4 %} second_part{% elsif for_index > 3 and for_index < 6 %} third_part{% else %} forth_part{% endif %}{% if _modulo == 0 %} even{% else %} odd{% endif %}">
+          {% if block.settings.link != blank %}<a class="full-width-link" href="{{ block.settings.link }}" title="" target="_blank" ></a>{% endif %}
+          <div class="img_wrapper"><img src="{{ block.settings.image | img_url:'20x' }}" data-src="{{ block.settings.image | img_url:'' }}"  class="lazyload" width="auto" height="auto" /></div>
+          <div class="text_wrapper fw-medium">
+            <h3 class="fw-medium {% unless magnesium %}h-border-bottom{% endunless %}">{{ block.settings.title }}</h3>            
+            {%- if block.settings.detail != blank -%}<div class="tw">{{ block.settings.detail }}</div>{%- endif -%}
+          </div>
+        </div>{%- endif -%}
+        {%- endfor -%}
+      </div>
+      {%- endif -%}
+      {%- if sec.re_detail != blank or sec.re_btn_link != blank -%}<div class="text-center refe_part">
+      {%- if sec.re_detail != blank -%}<div class="text-wrapper">{{ sec.re_detail }}</div>{%- endif -%}
+      {%- if sec.re_btn_title != blank and sec.re_btn_link != blank -%}<a href="{{ sec.re_btn_link }}" class="btn btn--NO__{{ nitric_oxide }} {{ magnesium }} btn-round_true tt-none text-transform-none">{{ sec.re_btn_title }}</a>{%- endif -%}
+      </div>{%- endif -%}
+    </div>
+  </div>
+</div>
+<style type="text/css">
+  {%- if sec.color_t != blank -%}
+  #shopify-section-{{ section.id }} .title_part h2{ color: {{ sec.color_t }};  }
+  {%- endif -%}
+  {%- if sec.color_t != blank -%}
+  #shopify-section-{{ section.id }} .title_part .text_wrapper p{ color: {{ sec.color_d }};  }
+  {%- endif -%}
+  {%- if sec.color_bt != blank -%}
+  {%- if magnesium  -%} #shopify-section-{{ section.id }} .as_bene .asb_bb_item .tw p strong, #shopify-section-{{ section.id }} .as_bene .asb_bb_item .tw p a, {% endif -%}
+  #shopify-section-{{ section.id }} .asb_{% if magnesium %}grp{% elsif nitric_oxide %}odev_i{% else %}tree{% endif %}_branch h3{ color: {{ sec.color_bt }}; }
+  {%- endif -%}
+  {%- if sec.color_bd != blank -%}
+  {%- if magnesium  -%} #shopify-section-{{ section.id }} .as_bene .asb_bb_item .tw p, {% endif -%}
+  #shopify-section-{{ section.id }} .asb_{% if magnesium %}grp{% elsif nitric_oxide %}odev_i{% else %}tree{% endif %}_branch .text_wrapper p, #shopify-section-{{ section.id }} .refe_part .text-wrapper p{ color: {{ sec.color_bd }}; }
+  {%- endif -%}
+</style>

@@ -1,0 +1,50 @@
+<div class="cerified_wrapper">
+  {% if section.settings.background-img != blank %}
+  <img src="{{ section.settings.background-img | img_url : 'master' }}" width="{{ section.settings.background-img.width }}" height="{{ section.settings.background-img.height }}" alt="{{ section.settings.background-img.alt }}">
+  {% endif %}
+    <div class="page-width">
+     <div class="certified_con">
+       {% if section.settings.title != blank or section.settings.sub-title != blank or section.settings.content != blank or  section.settings.logo-img != blank  %}
+           <div class="certified_con_wrapper">
+              <h2>{{ section.settings.title }}</h2>
+              <span>{{ section.settings.sub-title }}</span>
+              <p>{{ section.settings.content }}</p>
+              <img class="certified-logo" src="{{ section.settings.logo-img | img_url : 'master' }}" width="{{ section.settings.logo-img.width }}" height="{{ section.settings.logo-img.height }}" alt="{{ section.settings.logo-img.alt }}">
+          </div>
+        {% endif %}
+     </div>
+  </div>
+</div>
+ 
+{% schema %}
+  {
+    "name": "certified",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "background-img",
+        "label": "background-img"
+      },{
+        "type": "text",
+        "id": "title",
+        "label": "title"
+      },{
+        "type": "text",
+        "id": "sub-title",
+        "label": "sub-title"
+      },{
+        "type": "richtext",
+        "id": "content",
+        "label": "content"
+      },{
+        "type": "image_picker",
+        "id": "logo-img",
+        "label": "logo-img"
+      }
+    ],
+    "presets": [{
+      "name": "certified"
+    }]
+  }
+{% endschema %}
+

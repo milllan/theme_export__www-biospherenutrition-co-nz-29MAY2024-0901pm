@@ -1,0 +1,202 @@
+{%- capture article_tag -%}
+{%- for tag in article.tags -%}{%- if tag contains 'author_' -%}
+{{tag}}{%- break -%}{%- endif -%}{%- endfor -%}
+{%- endcapture -%}
+{%- assign show_pro = false -%}
+{%- assign article_tag = article_tag | strip | strip_newlines -%}
+{%- assign show_pro_count = 0 -%}
+
+{%- for block in section.blocks -%}
+  {%- if show_pro_count > 0 -%}{%- break -%}{%- endif -%}
+  {%- if block.type == 'sleep' -%}
+    {%- for tag in article.tags -%}
+      {%- if block.settings.sleep_tag == tag -%}
+        {%- assign pro_tag = block.settings.sleep_tag -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endfor -%}  
+
+{{ 'article_other_sleep.css' | asset_url | stylesheet_tag }}  
+
+<div class="article_other_sleep">
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'sleep' and pro_tag == block.settings.sleep_tag -%}
+      <div
+        class="arti_pro_sleep arti_pro lazyload"
+        {% if block.settings.image != blank %}
+          data-bgset="{{ block.settings.image | img_url:'' }}"
+        {% endif %}
+      >
+        <div class="page-width">
+          <div class="grid">
+            <div class="grid__item medium-up--five-sixths grid--table">
+              <div class="grid__item col_one medium-up--one-half">
+                <div class="vc_column-inner">
+                  <div class="wpb_wrapper">
+                    {%- if block.settings.title != blank -%}
+                      <h2 class="h1 no-ls vc_custom_heading review-header">{{ block.settings.title }}</h2>
+                    {%- endif -%}
+                    {%- if block.settings.detail != blank -%}
+                      <div class="mk-text-block">
+                        {{ block.settings.detail }}
+                      </div>
+                    {%- endif -%}
+                    {%- if block.settings.btn_link != blank and block.settings.btn_title != blank -%}
+                      <a href="{{ block.settings.btn_link }}" target="_self" class="btn">
+                        <i class="mk-button--icon">
+                          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path d="M464 0h-416c-26.4 0-48 21.6-48 48v288c0 26.4 21.6 48 48 48h80v128l153.6-128h182.4c26.4 0 48-21.6 48-48v-288c0-26.4-21.6-48-48-48zm-108 342l-100-82.098-100 82.098 36.372-117.326-96.372-64.799h120.676l39.324-125.027 39.324 125.027h120.676l-96.372 64.799 36.372 117.326z"></path>
+                          </svg></i
+                        ><span class="mk-button--text">{{ block.settings.btn_title }}</span>
+                      </a>
+                    {%- endif -%}
+                    {%- assign product = all_products[block.settings.product] -%}
+
+                    <h2 class="h1 no-ls vc_custom_heading review-header">
+                      {% if block.settings.product_title != blank %}
+                        {{ block.settings.product_title }}
+                      {% else %}
+                        {{ product.title }}
+                      {% endif %}
+                    </h2>
+                    <div class="pro_review_badge">
+                      <div
+                        class="wc_product_review_badge"
+                        data-handle="{{ product.handle }}"
+                        data-product_id="{{ product.id }}"
+                      ></div>
+                    </div>
+                    {%- if block.settings.pro_detail != blank -%}
+                      <div class="mk-text-block">
+                        {{ block.settings.pro_detail }}
+                      </div>
+                    {%- endif -%}
+                    <a
+                      href="{% if block.settings.custoum_url != blank %}{{block.settings.custoum_url}}{% else %}{{ product.url }}{% endif %}"
+                      rel="nofollow"
+                      target="_self"
+                      class="btn"
+                    >
+                      <i class="mk-button--icon">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                          <path d="M416.265 306.366c14.002-14.002 78.637-108.456 81.388-112.472 11.495-16.814 12.492-38.904 2.598-57.646-9.686-18.363-27.635-29.322-47.998-29.322h-329.568v-47.088c0-1.088-.107-2.146-.322-3.17-1.617-15.802-14.845-28.218-31.069-28.218h-54.933c-17.312 0-31.39 14.083-31.39 31.39v15.695c0 17.313 14.079 31.39 31.39 31.39h54.933v219.668c0 34.617 28.164 62.781 62.781 62.781h290.361c8.668 0 15.695-7.028 15.695-15.695s-7.028-15.695-15.695-15.695h-290.361c-17.289 0-31.344-14.043-31.383-31.325h243.422c27.719 0 38.272-8.41 50.151-20.293zm35.988-168.049c12.27 0 18.24 8.798 20.233 12.577 3.487 6.602 5.111 16.707-.751 25.283-31.529 46.12-70.192 100.524-77.664 107.996-8.078 8.074-11.097 11.097-27.957 11.097h-243.429v-156.953h329.568zm-415.892-62.781v-15.695h54.933v15.695h-54.933zm149.067 313.843c-25.958 0-47.079 21.121-47.079 47.086s21.121 47.086 47.079 47.086c25.965 0 47.093-21.121 47.093-47.086s-21.129-47.086-47.093-47.086zm0 62.78c-8.653 0-15.688-7.039-15.688-15.695 0-8.652 7.035-15.695 15.688-15.695 8.66 0 15.702 7.043 15.702 15.695 0 8.657-7.043 15.695-15.702 15.695zm204.007-62.78c-25.958 0-47.079 21.121-47.079 47.086s21.121 47.086 47.079 47.086c25.964 0 47.093-21.121 47.093-47.086s-21.13-47.086-47.093-47.086zm0 62.78c-8.653 0-15.688-7.039-15.688-15.695 0-8.652 7.035-15.695 15.688-15.695 8.66 0 15.702 7.043 15.702 15.695 0 8.657-7.043 15.695-15.702 15.695z"></path>
+                        </svg>
+                      </i>
+                      <span class="mk-button--text"> {{ block.settings.pro_btn_title | default: 'Buy Now' }} </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="grid__item col_two medium-up--one-half">
+                {%- assign image = block.settings.image_1 -%}
+                {%- assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+                {%- if block.settings.image_1 == blank and block.settings.image == blank -%}
+                  {%- assign image = product.featured_image -%}
+                  {%- assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+                {%- endif -%}
+                {%- if image != blank and block.settings.image == blank -%}
+                  <img
+                    class="lazyload"
+                    data-src="{{ img_url }}"
+                    data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                    data-aspectratio="{{ block.settings.image_1.aspect_ratio }}"
+                    data-sizes="auto"
+                    alt=""
+                  >
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {%- if block.settings.bg_color != blank or block.settings.text_color != blank -%}
+        <style type="text/css">
+          .arti_pro{
+            {%- if block.settings.bg_color != blank -%} background-color : {{ block.settings.bg_color }}; {%- endif -%}
+            {%- if block.settings.text_color != blank -%} color:{{ block.settings.text_color }}; {%- endif -%}
+          }
+        .arti_pro_sleep{
+          {%- if block.settings.bg_color_sleep != blank -%} background-color : {{ block.settings.bg_color_sleep }}; {%- endif -%}
+        }
+        {%- if block.settings.text_color != blank -%} .arti_pro_sleep{ color:{{ block.settings.text_color }};  } {%- endif -%}
+          {%- if block.settings.text_color != blank -%} .arti_pro .pro_review_badge .wc_product_review_badge .wc_product_review_title{ color:{{ block.settings.text_color }};  } {%- endif -%}
+        </style>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+</div>  
+
+ 
+
+{% schema %}
+  {
+    "name": "Sleep Product Add Section",
+    "settings": [],
+    "blocks":[
+    {
+	  "type":"sleep",
+	  "name":"sleep",
+	  "settings":[
+		{
+		  "type":"text",
+		  "id":"sleep_tag",
+		  "label":"Enter Sleep tag to show product in article"
+		},
+		{
+		  "type":"image_picker",
+		  "id":"image",
+		  "label":"Upload background image"
+		},
+		{
+		  "type":"color",
+		  "id":"bg_color_sleep",
+		  "label":"Select background color"
+		},
+		{
+		  "type":"color",
+		  "id":"text_color",
+		  "label":"Select text color"
+		},
+		{
+		  "type":"image_picker",
+		  "id":"image_1",
+		  "label":"Upload product image",
+		  "info":"if you upload above image this image not gone a visible"
+		},
+		{
+		  "type":"product",
+		  "id":"product",
+		  "label":"Select product"
+		},
+        {
+        	"type":"text",
+        	"id":"product_title",
+        	"label":"Add product title"
+        },
+		{
+		  "type":"richtext",
+		  "id":"pro_detail",
+		  "label":"Enter detail"
+		},
+		{
+		  "type":"text",
+		  "id":"pro_btn_title",
+		  "label":"Enter button title"
+		},
+		{
+			"type":"url",
+			"id":"custoum_url",
+			"label":"Add buton url"
+		}
+	  ]
+	}
+  ],
+   "presets" :  [
+       {
+         "name" : "Sleep Product Add Section"
+       }
+    ] 
+  }
+{% endschema %}

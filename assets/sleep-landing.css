@@ -1,0 +1,357 @@
+.main_title p {
+    font-family: Dharma Gothic E,sans-serif;
+    font-size: 130px;
+    line-height: 86px;
+    color: #fff;
+    margin: 0 0 16px;
+    letter-spacing: -1px;
+}
+.label_ttl:after{background:#7b549e;}
+.main_title p strong{color:#7b549e;}
+.ttl_sub.italic_text {color:#7b549e;}
+/* ========================================== */
+.replenish_div .container .richtext_ttl {
+    max-width: 80%;
+    margin: 0 auto;
+    width: 100%;
+}
+.replenish_div .btn {
+  background: linear-gradient(180deg,#7b549e 0%,#7b549e 6%,#7b549e 45%);
+}
+.replenish_div .wrp-content {margin-top:50px;}
+.replenish_div .richtext_section {
+  margin:0px;padding:50px 0px;
+}
+.replenish_div .richtext_section .richtext_ttl p {
+    font-size: 70px;color:#000;
+    line-height: 80px;
+    letter-spacing: 0px!important;
+    text-transform: none!important;
+    font-family: DHARMA GOTHIC E;
+    font-weight: 400;
+}
+.replenish_div {padding:100px 0px; }
+.replenish_div .richtext_section .richtext_ttl p strong{color:#7b549e;display:inline-flex;}
+.replenish_div .richtext_section .inner_content{padding-top:25px;}
+.replenish_div .richtext_section .inner_content p {color:#000;}
+/* .inner_megnesium_def p {margin:0px;padding:25px 0px;} */
+.inner_megnesium_def .inline-title p{
+      font-family: 'DHARMA GOTHIC E';
+      font-size: 80px;
+      line-height: 100px;
+      color: #fff;
+      letter-spacing: -1px;
+      margin:0px;
+}
+.inner_megnesium_def .inline-title p strong{color:#7b549e}
+/*===============================No review section =========================================  */
+.inner_review_dv .inside_content{display:flex;justify-content:space-between;}
+.inner_review_dv .inside_content .rating span{padding:0 2px;}
+.inner_review_dv .inside_content .rating span svg{width:25px;height:25px;}
+.inner_review_dv .inside_content img{margin:0px;}
+
+
+
+/*==========================================  */
+.wrp-block {grid-row-gap: 30px;}
+.inner_megnesium_def .ttl_replenish{color:#7b549e;}
+.wrp-block .factor_inner_div {background: #3d1a5c;justify-content:flex-start;}
+.mineral_uses .inner_mineral_uses{display:flex;flex-wrap:wrap;justify-content:center;}
+.mineral_uses .inner_mineral_uses .fetured_itm {
+        flex: 0 0 33.33%;
+        padding:0 10px;
+}
+.inner_megnesium_def .mineral_uses .inline-content p {
+    padding: 25px 0;margin:0px;
+}
+.inner_megnesium_def .inside_title{padding:25px 0px;}
+.inner_megnesium_def .inside_title p {margin:0px;
+    font-family: Dharma Gothic E,sans-serif;
+    font-size: 50px;
+    line-height: 60px;
+    letter-spacing: 1px!important;
+    text-transform: capitalize!important;}
+.inner_megnesium_def .inside_sub_ttl p {margin:0px;font-style:italic;font-size:24px;line-height:28px;}
+.mineral_uses .inner_mineral_uses .fetured_itm .inner_featured_itm {max-width:100%;}
+.inner_mineral_uses .ttl_ttl {position:relative;text-align:left;padding-left:20px;}
+.inner_mineral_uses .ttl_ttl:after{
+  position:absolute;content:"";
+  background:#fff;
+  width:5px;height:5px;border-radius:50%;left:0px;top:50%;transform:translate(-50%;)
+}
+.factor_div {
+    grid-template-columns: repeat(4,minmax(0,1fr));
+    width: 60%;padding-top:50px;
+}
+.inner_megnesium_def p {
+    padding: 5px 0px;
+}
+/* ====================================Why Choose Bioshere======================================= */
+.why_choose_biosphere .inner_container .ttl__replenish p {   
+    font-family: Dharma Gothic E,sans-serif;
+    font-size: 104px;
+    line-height: 80px;
+    color: #404040;
+    letter-spacing: -1px!important;
+    text-transform: capitalize!important;
+    margin-bottom: 30px;}
+.ttl__replenish p strong{color:#ef423b;}
+.image_certified_div .btn{
+    background: linear-gradient(180deg,#7b549e 0%,#7b549e 6%,#7b549e 45%);
+}
+/* =========================================Review Section=============================================== */
+.inner_review_section .review_itm{border: 2px solid #ef423b;}
+.inner_review_section .inner_review_dv h3 {color:#ef423b;}
+
+/* ====================How To Use================================ */
+.inner_how_to {
+    position: relative;
+}
+
+.inner_how_to .ls-img {
+    position: absolute;
+    top: 50%;
+    left: -1%;
+    transform: translateY(-50%);
+}
+
+.inner_how_to .ls-img figure {
+    margin: 0px;
+}
+
+.inner_how_to .rs-img {
+    position: absolute;
+    top: 85%;
+    right: -1%;
+    transform: translateY(-50%);
+    z-index: 9999;
+}
+
+.inner_how_to .rs-img figure {
+    margin: 0px;
+}
+ .inner_how_to .inner_how_to_dv {z-index: 9;position: relative;}
+ .use_items .number_dv, .inner_how_to_dv .ttl_replenish {color: #7b549e;}
+.inner_rec_dos{display:block;margin-top:25px;}
+.how_to_use_feature .inner_use_itm {
+    background: #482568;
+}
+.recommdate_doese .inner_rec_dos {margin-top:80px;}
+.inner_rec_itm_dv h4{color:#fff;font-family: Futura PT,sans-serif;letter-spacing: -1px;font-weight:400;}
+/* ================================== Testimonial =================================== */
+.what_other_say span.ttl_sub{color:#ef423b;}
+/*========================================== Money back guarantee =============================================  */
+.inner_guarantee_dv{background:#7b549e;}
+.huge_container .purple_text{color:#7b549e;}
+.huge_container .dark_text {color:#404040;}
+.ttl_shd{background: linear-gradient(to bottom, #7b549e, #7b549e);}
+/* ============================================== FAQ section  ============================= */
+.after_border::after, .inner_body_faq{background:#7b549e;}
+/* =================================================== */
+.replenish_div.rpt-icn-txt {
+    padding: 50px 0px;
+}
+.rpt-icn-txt .ttl_replenish {margin-bottom:30px;}
+.rpt-icn-txt .ttl_replenish p {
+  font-family: Dharma Gothic E,sans-serif;
+  font-size: 80px;
+  line-height: 100px;
+  color: #404040;
+  letter-spacing: -1px !important;
+  text-transform: capitalize !important;
+}
+.rpt-icn-txt .ttl_replenish p strong {color:#7b549e} 
+.rpt-icn-txt .ttl_sub p {
+  font-family: Futura PT,sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  color: #4c4c4e;
+  line-height: 1.5;
+  font-size: 18px;
+  }
+.why_choose_biosphere.sleep-cirtificate {
+    margin: 100px 0px;
+}
+/*=================================  */
+.sleep_max {text-align:center;padding:100px 0px 50px;} 
+.sleep_max .block_grid .inner_block .description p {
+  color: #fff;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 300;
+  margin: 0;
+}
+.sleep_max .block_grid .inner_block img {
+  box-shadow: 0 10px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+.sleep_max .block_grid .inner_block h5 {
+  color: #fff;
+  padding-top: 30px;
+  font-size: 18px;
+  line-height: 20px;
+}
+.sleep_max  .ttl_replenish {color:#7b549e}
+.sleep_max .ttl_sub p {
+  font-family: 'DHARMA GOTHIC E';
+  font-size: 80px;
+  line-height: 80px;
+  letter-spacing: -1px;
+  color :#fff;
+}
+.sleep_max  .inner_txt p {color:#fff;margin-top:25px;font-size:18px;line-height:22px; }
+.sleep_max .block_grid{display:flex;flex-wrap:wrap;margin-left:-10px;margin-right:-10px;justify-content:center;padding:50px 0px;  }
+.sleep_max .block_grid  .inner_block {
+    flex:0 0 auto;
+    width:20%;
+    padding-left:10px;padding-right:10px;margin:15px 0px;
+}
+/*=================================================  */
+  .wrp_sleep-day {padding:100px 0px;}
+  .wrp_sleep-day .row{display:flex;flex-wrap:wrap;justify-content:center;margin-left:-10px;margin-right:-10px;}
+  .wrp_sleep-day .row .col {flex: 0 0 auto; width:33.33%;padding-left:10px;padding-right:10px;margin:25px 0px;text-align:center; }
+   .wrp_sleep-day .wrp_img {position: relative;}
+  .wrp_sleep-day .wrp_img:after {
+      position: absolute;
+      content: '';
+      background: url(https://cdn.shopify.com/s/files/1/0473/6679/9525/files/Shape_1_copy.png?v=1671012198);
+      width: 75%;
+      height: 4px;
+      background-position: center center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      top: 75%;
+      right: -45%;
+      transform: translateY(-75%);
+  }
+  .wrp_sleep-day .row .col:last-child .wrp_img:after {
+    content: none;
+  }
+  .wrp_sleep-day .row .col h4{color:#fff; position:relative;font-size:24px;line-height:30px;}
+  .wrp_sleep-day .row .col h4:after {
+      content: "";
+      left: 0;
+      right: 0;
+      width: 15%;
+      height: 2px;
+      background: #fff;
+      position: absolute;
+      bottom: -15px;
+      margin: auto; 
+  }
+  .wrp_sleep-day .row .col .des{padding-top:25px}
+  .wrp_sleep-day .row .col .des p {
+      color: #ee84f1;font-size:18px;line-height:22px;
+  }
+.site-footer {
+    margin-top: 0px;
+}
+
+/* ======================================Responsive ====================================== */
+@media (max-width: 1699px){
+  .inner_how_to .ls-img figure img, .inner_how_to .rs-img figure img {max-width: 75%;} 
+  .inner_how_to .rs-img{right:-10%;}
+}
+@media (max-width: 1499px){
+    .inner_how_to .ls-img figure img, .inner_how_to .rs-img figure img{display:none;}
+   .inner_review_dv .inside_content .rating span svg {width: 20px;height: 20px;}
+    .inner_megnesium_def .wrp-block {  grid-row-gap: 25px; grid-column-gap: 25px;}
+        .wrp-block .factor_inner_div {
+          padding: 20px 25px;
+      }
+  .factor_inner_div h3 {
+    font-size: 18px;
+    line-height: 20px;}
+  .inner_megnesium_def {padding:100px 0px;}
+}
+@media (max-width: 1199px) {
+  .inner_landing_banner .description .main_title p{font-size: 100px;line-height: 82px;}
+  .replenish_div .richtext_section .richtext_ttl p {font-size: 52px;line-height: 70px;}
+  .why_choose_biosphere .inner_container .ttl__replenish p{font-size: 88px;margin-bottom: 15px;}
+  .inner_review_dv .inside_content .rating span svg {width: 15px;height: 15px;}
+  .no-max-strength  .inner_first .arrow, .no-max-strength  .inner_second .arrow, .no-max-strength  .inner_third .arrow,  .no-max-strength  .inner_four .arrow , .no-max-strength  .inner_five .arrow {width:80px;left:-18%;}
+  .inner_megnesium_def .wrp-block {grid-template-columns: repeat(2,minmax(0,1fr));width: 50%;}
+  .wrp_quote .inner_container h4{font-size:65px !important;line-height:75px !important;}
+  .wrp_quote .inner_container .top_text{padding-left:10%;margin-bottom:0px;}
+  .wrp_quote .inner_container .top_text:after{left:2%!important;}
+  .wrp_quote .inner_container .bottom_text{padding-right:10%;margin-bottom:0px;}
+  .wrp_quote .inner_container .bottom_text:after{right:2%!important;}
+  .use_items:first-child .number_dv{margin-left:0px;width:auto;}
+}
+@media(max-width:992px){ 
+  .no-max-strength .inner_content .inner_four h3,.no-max-strength .inner_content  .inner_five h3{text-align:center;}
+  .sleep_max .block_grid{margin:0px;}
+}
+@media(max-width:991px){
+  .replenish_div .richtext_section .richtext_ttl p{font-size:44px;line-height:56px;}
+  .why_choose_biosphere .inner_container .ttl__replenish p{font-size:74px;margin-bottom:10px;}
+  .no-max-strength .text_content .inner_first,.no-max-strength .text_content .inner_second,.no-max-strength .text_content .inner_third,.no-max-strength .text_content .inner_four,.no-max-strength .text_content .inner_five {padding:20px 0px;}
+  .inner_review_dv .inside_content .rating span svg{width:10px;height:10px;}
+  /* =================================   */
+  .wrp_sleep-day .row{margin:0px;}
+  .wrp_sleep-day .wrp_img:after{width:45%;right:-40%;}
+  .sleep_max .block_grid .inner_block{width:25%;}
+  .inner_megnesium_def .inline-title p,.sleep_max .ttl_sub p{font-size:52px;line-height:60px;}  
+  /*   .wrp_quote .inner_container h4{font-size:65px;line-height:75px;} */
+  .rpt-icn-txt .ttl_replenish p{font-size: 74px;line-height: 80px;}
+  .wrp_quote .inner_container h4{font-size:52px !important;line-height:65px !important;}
+  .wrp_quote .inner_container .top_text:after,.wrp_quote .inner_container .bottom_text:after {width:25px !important;height:25px !important;}
+  .inner_megnesium_def .inner_content,.mineral_uses .inner_mineral_uses,.inner_megnesium_def .mineral_uses .inline-content,.inner_megnesium_def .inside_title,.inside_sub_ttl{padding:0px 15px;}
+  .replenish_div .container .richtext_ttl{max-width:100%} 
+  .inner_block .description p{padding:0px;}
+}
+@media(max-width:767px){
+  .inner_landing_banner .description .main_title p{font-size:60px;line-height:42px;}
+  .replenish_div .richtext_section .richtext_ttl p{font-size:38px;line-height:40px;}
+  .why_choose_biosphere .inner_container .ttl__replenish p{font-size:58px;line-height:60px;}
+  .the-science .biosphere_data .fetured_itm{width:50%}
+  .replenish_div{padding:50px 0px;}
+  .the-science{margin:50px 0px;}
+  .mineral_uses .inner_mineral_uses .fetured_itm{flex:0 0 50%;padding:0 5px;}
+  .the-science .biosphere_data .fetured_itm .sub_title h3{font-size:22px;line-height:26px}
+  .the-science .fetured_itm .block_title .dark-title{font-size:50px;line-height:55px;}
+  .the-science .fetured_itm .block_title .color-title{font-size:40px;line-height:45px;}
+  .biosphere_data .thumb_featured img{max-width:100%;width:40%;}
+  .inner_review_dv .inside_content .rating span svg{width:15px;height:15px;}
+  /*  =================================================  */
+  .wrp_sleep-day .row .col h4{font-size:20px}
+  .wrp_sleep-day .wrp_img:after{content:none;}
+  .inner_megnesium_def .wrp-block{grid-template-columns:repeat(1,minmax(0,1fr));width:75%;}
+  .sleep_max .block_grid .inner_block{width:50%;}
+  .wrp_sleep-day .row .col{width:100%;}
+  .wrp_quote .inner_container h4{font-size:40px!important;line-height:55px!important;}
+  .sleep_max .block_grid .inner_block img{max-width:75%;margin:0 auto;}
+  .wrp_quote{padding:50px 0px!important;}
+  .huge_guarantee{padding-top:50px!important;}
+  .image_div{margin-bottom:25px;}
+  .wrp_sleep-day .wrp_img .ineer_img{max-width:75%;}
+  .inner_megnesium_def .inside_sub_ttl p{font-size:18px;line-height:22px;}
+  .site-header-contact._index .sh_con_detail, nav.breadcrumbs{display:none;}
+  a.site-header__icon.site-header__cart{margin-right:15px;}
+}
+@media(max-width:479px){
+  .inner_landing_banner .description .main_title p{font-size:44px;margin-bottom:10px;}
+  .why_choose_biosphere .inner_container .ttl__replenish p{font-size:48px;line-height:52px;}
+  /* =============================   */
+  .review_slider .iner_rv_container .center_div{margin-bottom:20px;}
+  .sleep_max .block_grid .inner_block{width:100%;}
+  .ttl_replenish,.inner_megnesium_def .inside_title p,.inner_megnesium_def .inline-title p,.sleep_max .ttl_sub p,.rpt-icn-txt .ttl_replenish p{font-size:44px;line-height:50px;}
+  .wrp_quote .inner_container .top_text{padding-left:12%;}
+  .wrp_quote .inner_container .bottom_text{padding-right:12%;}
+  .ttl_sub.italic_text,.sleep_max .ttl_sub p{font-size:34px;line-height:40px;letter-spacing:0px;}
+  .main_title p strong{font-size:44px;line-height:46px;}
+  .factor_item .factor_inner_div h3{padding:0px;margin:0px;}
+  .inner_megnesium_def .wrp-block{width: 90%;}
+  .number_dv{font-size: 50px;line-height: 40px;}
+  .replenish_div .richtext_section{padding-bottom:0px;}
+  .inner_megnesium_def{padding:50px 0;}
+  .block_div_fetured{margin:25px 0px 10px;}
+  .wrp_sleep-day{padding:50px 0;}
+  .recommdate_doese .inner_rec_dos{margin-top:25px;}
+  .why_choose_biosphere.sleep-cirtificate{margin:50px 0;}
+  .sleep_max .block_grid{padding:25px 0px;}
+  .sleep_max{padding:50px 0 25px;}
+  .factor_item .factor_inner_div p{margin:0px!important;}
+  .wrp_quote .inner_container h4{font-size:21px!important;line-height:30px!important;letter-spacing:0.4px!important;}
+  .wrp_quote .inner_container .top_text:after,.wrp_quote .inner_container .bottom_text:after{width:15px!important;height:15px!important;}
+  .wrp_sleep-day .wrp_img .ineer_img{max-width:65%;}
+}

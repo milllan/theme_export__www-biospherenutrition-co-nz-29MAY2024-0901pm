@@ -1,0 +1,21 @@
+<div class="cart-side-panel">
+  {% if settings.cd_announce_label != blank %}
+  <div class="cartDrawer-header-top">
+    {{ settings.cd_announce_label }}
+  </div>
+  {% endif %}
+  <div class="block-cart-header">
+    <a href="javascript:void(0)" class="cart-close">{% render 'icon-close' %}</a>
+    <div class="cart-container">
+      {% comment %}<h4>YOUR CART</h4>{% endcomment %}
+      <img class="cd_logo_image" src="{{ settings.cd_logo_image | img_url:"" }}" alt="{{ settings.cd_logo_image.alt }}" />
+    </div>
+    <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+  </div>
+  <div class="cartDrawer-header-bottom">
+    <h4>Shopping Cart (<span class="cart_qty_cls">{{ cart.item_count }}</span>)</h4>
+
+    <a href="{{ settings.cd_cs_link }}" class="text-link text-link--accent"> Continue Shopping </a>
+  </div>
+  <div class="subToggle WFwrap" id="cart_container_id"></div>
+</div>

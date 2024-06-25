@@ -1,0 +1,336 @@
+<style>
+            .wrp-sticy-atc{display:none;}
+            @media(max-width: 767px){
+            .wrp-sticy-atc {
+            display:block;
+            position: fixed;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            z-index: 888;
+            transition: all 0.3s ease;
+            }
+            .wrp-sticy-atc.cart_fixed {
+            bottom: 0%;
+            }
+            .wrp-sticy-atc .sticky-atc form {
+            display: flex;
+            align-items: center;margin: 0 -11px;
+            }
+            .sticky-atc .product-form__cart-submit {
+            min-width: auto;
+            margin-bottom: 0px;
+            }
+            .wrp-sticy-atc .sticky-atc form .product-form__controls-group {
+            padding: 0 11px;
+            margin: 0px;
+            }
+            .wrp-sticy-atc .sticky-atc form select {
+            background: #042443;
+            border: none;
+            background-image: url(https://cdn.shopify.com/s/files/1/0473/6679/9525/files/Vector_5.png?v=1679481695);
+            webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-position: right center;
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            line-height: 1.2;
+            padding-right: 28px;
+            text-indent: 0.01px;
+            text-overflow: '';
+            cursor: pointer;
+            padding-top: 8px;
+            padding-left: 15px;
+            color: #fff;
+            padding-bottom: 8px;
+            }
+            .wrp-sticy-atc .sticky-atc {
+            background: #001A33;
+            padding: 15px;
+
+            }
+            .wrp-sticy-atc .sticky-atc select {
+            display: none;
+            }
+            .wrp-sticy-atc .sticky-atc h4 {
+            font-size: 25px;
+            line-height: normal;
+            color: #fff;
+            }
+
+
+            .wrp-sticy-atc .select li {
+            display: none;
+            cursor: pointer;
+            padding: 5px 10px;
+          /*   border-top: 1px solid black; */
+            color:#fff;
+            }
+
+      /*       .wrp-sticy-atc  .select li:first-child {
+            display: block;
+            border-top: 0px;
+            } */
+
+            .wrp-sticy-atc .select {
+            display: inline-block;
+            padding: 0;
+            border: none;
+            border-radius: 20px;
+            background: #042443;
+            position: relative;
+            width: 100%;
+            margin: 4px 0px;
+            }
+        .wrp-sticy-atc .select li {
+            display: none;
+        }
+
+        .wrp-sticy-atc .select li.selected {display: block;}
+            .wrp-sticy-atc .select li:hover {
+            background-color: #ddd;
+            }
+
+            .wrp-sticy-atc  .select li:first-child:hover {
+            background-color: transparent;
+            }
+
+            .wrp-sticy-atc .select.open li {
+            display: block;
+            }
+            .wrp-sticy-atc .wrp-variant-list {
+            flex: 0 0 auto;
+            width: 50%;
+            padding: 0 11px;
+            }
+            .wrp-sticy-atc .select li .swatch-color:before {
+            opacity: 0;
+            }
+
+            .wrp-sticy-atc .select li .swatch-color {
+            border: none;
+            padding: 5px;
+            margin-right: 0;
+            position: absolute;
+            transform: translateY(-50%);
+            left: 7px;
+            top: 50%;
+            }
+
+            .wrp-sticy-atc .select li {
+            position: relative;
+            padding-left: 25px;
+            }
+            .wrp-sticy-atc .select.open span.icon {display:none;}
+            .wrp-sticy-atc .select span.icon{display:unset;}
+            .wrp-sticy-atc .select span.icon:before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 10px;
+            height: 7px;
+            right: 10%;
+            border: none;
+            background-image: url(https://cdn.shopify.com/s/files/1/0473/6679/9525/files/Vector_5.png?v=1679481695);
+            webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            /* background-position: right center; */
+            background-repeat: no-repeat;
+            /* background-position: right 10px center; */
+            transform: translateY(-50%);
+            }
+    .inner-sticky-atc {
+        display: flex;
+        flex-wrap: wrap;justify-content: center;
+        align-items: center;margin:0 -11px;
+    }
+
+    .inner-sticky-atc .product-form__controls-group {
+        width: 50%;padding:0 11px;
+    }
+
+            }
+            @media(max-width: 375px){
+            .wrp-sticy-atc .select li {
+            padding-left: 22px;
+            font-size: 14px;
+            line-height: normal;
+            }
+              .wrp-sticy-atc button.custom_atc_btn {
+      font-size: 12px;
+      line-height: normal;
+  }
+            }
+</style>
+
+<div class="sticky-atc">
+  <h4 class="product-single__title">{{ product.title }}</h4>
+  <div class="inner-sticky-atc">
+    {% if product.variants.size > 1 %}
+      <div class="wrp-variant-list">
+        {% for option in product.options_with_values %}
+          <ul class="variant-selector {{option.name}} select select-{{forloop.index}}" data-var="{{forloop.index}}">
+            {% if product.available %}
+              {% for values in option.values %}
+                <li
+                  value="{{values}}"
+                  class="{% if product.selected_or_first_available_variant.title contains values %}selected{% endif %}"
+                >
+                  {% if option.name contains 'Flavor' %}
+                    <span
+                      class="swatch-color cosw_{{ values | handle }}"
+                      ><i class="fa fa-check" aria-hidden="true"></i
+                    ></span>
+                  {% endif %}
+                  {{ values }}
+                </li>
+              {% endfor %}
+              <span class="icon"> </span>
+            {% endif %}
+          </ul>
+          <script>
+               $( document ).ready(function() {
+              $(".select-{{forloop.index}}").click(function() {
+
+              var is_open = $(".select-{{forloop.index}}").hasClass("open");
+              if (is_open) {
+              $(".select-{{forloop.index}}").removeClass("open");
+              } else {
+              $(".select-{{forloop.index}}").addClass("open");
+              }
+              });
+
+              $(".select-{{forloop.index}} li").each(function( index ) {
+               var is_selected = $(this).hasClass("selected");
+                console.log( "is_selected" ,  is_selected);
+                if (is_selected) {
+                  console.log($(this));
+                    var value = $(this).attr("value");
+                    $(".wrp-swatch-element input[type=radio]").each(function( index ) {
+                      var radiovalue = $(this).val();
+                      if (radiovalue == value) {
+                        $(this).prop("checked",true).change();
+                      }
+                    });
+                }
+
+            });
+
+
+              $(".select-{{forloop.index}} li").click(function() {
+                  $(this).addClass("selected").siblings().removeClass("selected");
+
+                  // var selected_li = $(this).html();
+                  // var first_li = $(".select-{{forloop.index}} li:first-child").html();
+
+                  //  $(".select-{{forloop.index}} li:first-child").html(selected_li);
+                  //  $(this).html(first_li);
+
+                     var value = $(this).attr("value");
+                     console.log("value",  value)
+                     $(".wrp-swatch-element input[type=radio]").each(function( index ) {
+                         var radiovalue = $(this).val();
+                         if (radiovalue == value) {
+                           $(this).prop("checked",true).change();
+                         }
+                     });
+              });
+
+              $(document).mouseup(function(event) {
+
+              var target = event.target;
+              var select = $(".variant-selector .select-{{forloop.index}}");
+
+              if (!select.is(target) && select.has(target).length === 0) {
+              select.removeClass("open");
+              }
+
+              });
+                      });
+          </script>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="product-form__controls-group product-form__controls-group--submit">
+      <div
+        class="
+          product-form__item product-form__item--submit
+          {%- if section.settings.enable_payment_button %} product-form__item--payment-button {%- endif -%}
+          {%- if product.has_only_default_variant %} product-form__item--no-variants {%- endif -%}
+        "
+      >
+        <button
+          {% unless current_variant.available %}
+            aria-disabled="true"
+          {% endunless %}
+          aria-label="{% unless current_variant.available %}{{ 'products.product.sold_out' | t }}{% else %}{{ 'products.product.add_to_cart' | t }}{% endunless %}"
+          class="custom_atc_btn btn product-form__cart-submit{% if section.settings.enable_payment_button %} btn--secondary-accent{% endif %}"
+          {% if settings.enable_ajax %}
+            aria-haspopup="dialog"
+          {% endif %}
+          data-add-to-cart
+        >
+          <span data-add-to-cart-text>
+            {% unless current_variant.available %}
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i> {{ 'products.product.sold_out' | t }}
+            {% else %}
+              {% comment %}
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+              {% endcomment %}
+
+              {{ 'products.product.add_to_cart' | t }}
+            {% endunless %}
+          </span>
+          <span class="hide" data-loader>
+            {% include 'icon-spinner' %}
+          </span>
+        </button>
+        {% comment %}
+          {% if section.settings.enable_payment_button %}
+            {{ form | payment_button }}
+          {% endif %}
+        {% endcomment %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $( document ).ready(function() {
+
+
+
+    $(window).scroll(function(){
+        var sticky_cart = $('.wrp-sticy-atc');
+        var scroll_section = $(window).scrollTop();
+        var section_height = $('.pro-border-bg li:first-child').height();
+        if (scroll_section >= section_height) {
+            sticky_cart.addClass('cart_fixed');
+            $("body").addClass("cart_fixed");
+        }
+        else {
+            sticky_cart.removeClass('cart_fixed');
+            $("body").removeClass("cart_fixed");
+        }
+    });
+
+    $(".sticky-atc .single-option-selector").change(function(){
+      var value = $(this).val();
+      $( ".wrp-swatch-element input[type=radio]" ).each(function( index ) {
+        var radiovalue = $(this).val();
+        if (radiovalue == value) {
+          $(this).prop("checked",true).change();
+        }
+      });
+
+    });
+
+    $(document).on("click",".custom_atc_btn", function() {
+        $(".main_atc_btn").trigger("click");
+    });
+
+  });
+</script>

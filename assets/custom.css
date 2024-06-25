@@ -1,0 +1,247 @@
+@font-face {
+    font-family: 'Figtree';
+    src: url('https://cdn.shopify.com/s/files/1/0473/6679/9525/files/Figtree-Black.woff2?v=1706245136') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0473/6679/9525/files/Figtree-Black.woff?v=1706245136') format('woff'),
+        url('https://cdn.shopify.com/s/files/1/0473/6679/9525/files/Figtree-Black.ttf?v=1706245136') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Figtree';
+    src: url('https://cdn.shopify.com/s/files/1/0473/6679/9525/files/Figtree-Medium.woff2?v=1706245223') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0473/6679/9525/files/Figtree-Medium.woff?v=1706245224') format('woff'),
+        url('https://cdn.shopify.com/s/files/1/0473/6679/9525/files/Figtree-Medium.ttf?v=1706245223') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Figtree';
+    src: url('https://cdn.shopify.com/s/files/1/0473/6679/9525/files/Figtree-Regular.woff2?v=1706245249') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0473/6679/9525/files/Figtree-Regular.woff?v=1706245248') format('woff'),
+        url('https://cdn.shopify.com/s/files/1/0473/6679/9525/files/Figtree-Regular.ttf?v=1706245248') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Figtree';
+    src: url('https://cdn.shopify.com/s/files/1/0473/6679/9525/files/Figtree-ExtraBold.woff2?v=1706245175') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0473/6679/9525/files/Figtree-ExtraBold.woff?v=1706245175') format('woff'),
+        url('https://cdn.shopify.com/s/files/1/0473/6679/9525/files/Figtree-ExtraBold.ttf?v=1706245175') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Dharma Gothic E ExBold';
+    src: url('https://cdn.shopify.com/s/files/1/0473/6679/9525/files/DharmaGothicE-ExBold_1a0f47a2-8c3d-42f6-95ff-f8ac01758627.woff2?v=1706873823') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0473/6679/9525/files/DharmaGothicE-ExBold_63051f17-2946-443f-94f5-6aa3d8005d67.woff?v=1706873823') format('woff'),
+        url('https://cdn.shopify.com/s/files/1/0473/6679/9525/files/DharmaGothicE-ExBold_91db4ff7-5dda-4525-9c4f-de96e5c1858c.ttf?v=1706873823') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+.page-new-static-page,
+.page-new-static-page p ,
+.page-new-static-page h1,
+.page-new-static-page h2 ,
+.page-new-static-page h3 ,
+.page-new-static-page h4,
+.page-new-static-page h5 ,
+.page-new-static-page h6,
+.page-new-static-page a,
+.page-new-static-page span ,
+.page-new-static-page ul li ,
+.page-nitric-oxide-20-percent-off,
+.page-nitric-oxide-20-percent-off p ,
+.page-nitric-oxide-20-percent-off h1,
+.page-nitric-oxide-20-percent-off h2 ,
+.page-nitric-oxide-20-percent-off h3 ,
+.page-nitric-oxide-20-percent-off h4,
+.page-nitric-oxide-20-percent-off h5 ,
+.page-nitric-oxide-20-percent-off h6,
+.page-nitric-oxide-20-percent-off a,
+.page-nitric-oxide-20-percent-off span ,
+.page-nitric-oxide-20-percent-off ul li ,
+.page-new-static-nitric-oxide,
+.page-new-static-nitric-oxide p ,
+.page-new-static-nitric-oxide h1,
+.page-new-static-nitric-oxide h2 ,
+.page-new-static-nitric-oxide h3 ,
+.page-new-static-nitric-oxide h4,
+.page-new-static-nitric-oxide h5 ,
+.page-new-static-nitric-oxide h6,
+.page-new-static-nitric-oxide a,
+.page-new-static-nitric-oxide span ,
+.page-new-static-nitric-oxide ul li {font-family: 'Figtree' !important;}
+
+.page-new-static-page .site-header-statick span , 
+.page-new-static-nitric-oxide .site-header-statick span ,
+.page-new-static-nitric-oxide .site-header-statick span , 
+.page-new-static-nitric-oxide .site-header-statick span {font-family: Futura PT,sans-serif !important;}
+
+h2.inner_faq_section_blocks{font-size: 48px;}
+/*  */
+.custom-featured-product .product-single__meta .product-single__title,
+.custom-featured-product .pro_subtitle, 
+.custom-featured-product .pdp_swatch  .swatch .header, 
+.custom-featured-product .product-single__meta .price-item,
+.custom-featured-product .swatch_label,
+.custom-featured-product .product-form__cart-submit{font-family: Figtree !important;}
+.custom-featured-product .pro_subtitle {color: #5ba2d6;}
+.custom-featured-product .product-form__cart-submit {background-color: #5ba2d6;}
+.page-new-static-page .price__pricing-group {margin-left: unset !important;}
+.page-new-static-page .product-single__meta .product-form__item--submit {display: flex;align-items: center;column-gap: 36px;}
+.page-new-static-page .product-single__meta .product-form__item--submit .pdp_benefit {margin: 0;}
+.page-new-static-page .product-single__meta .product-form__item--submit .pdp_benefit span{font-size: 16px;}
+
+.page-new-static-page s.price-item, 
+.page-new-static-nitric-oxide .featured-product__price s.price-item, 
+.page-nitric-oxide-20-percent-off .featured-product__price s.price-item ,
+.page-new_prebiotic_product .featured-product__price s.price-item ,.page-new-magnesium .featured-product__price s.price-item  { color: #a1a1a6;}
+
+.page-new_prebiotic_product .header{display:none;}
+.page-new-static-page .product-single__meta .product-single__title {font-size: 72px;}
+.page-new-static-nitric-oxide .featured-product__price .price, .page-nitric-oxide-20-percent-off .featured-product__price .price ,.page-new-magnesium .featured-product__price .price{display: block;}
+.page-new_prebiotic_product .featured-product__price .price {display: block;}
+.page-new-static-page .swatch_item .swatch_30-sachet-box {display: none;}
+.fix_discount_img {position: absolute;top: 0px;right: 10px;z-index: 999;width: 100%;max-width: 170px;}
+.page-new-static-page .inner_faq_section_blocks .after_border::after {background: #9ba0a8 !important;}
+.near-btn .pdp_benefit{margin-top: 30px; }
+.near-btn .product-form__item.product-form__item--submit{display: block;gap: 30px;align-items: center;}
+.near-btn .product-form__cart-submit{margin:0;}
+.custom_righ_image{position: absolute;right: 3%;}
+.near-btn .swatch input:not(.is_color_input):checked + label .swatch_icon{border: 4px solid #d1d1d1;}
+.page-new-static-nitric-oxide > div > .needsclick.kl-private-reset-css-Xuajs1{display:none!important;}
+.page-nitric-oxide-20-percent-off > div > .needsclick.kl-private-reset-css-Xuajs1{display:none!important;}
+
+.free_trial_text {padding: 20px 0;}
+.template-sleep-product-layout .button_mobile_price .price--on-sale .price-item--regular {display: none;}
+.template-sleep-product-layout .button_mobile_price {display: none;}
+.page-new-static-nitric-oxide .pdp_benefitinr span {font-family: Futura PT, sans-serif;}
+.page-nitric-oxide-20-percent-off .pdp_benefit .pdp_benefitinr:first-child {display: none;} 
+
+/* various updates  */
+.template-new_prebiotic_product .ingredients-products{flex-direction: column;}
+.template-new_prebiotic_product .ingredients-products .ingredients-products-box{ width: 100%;}
+.template-new_prebiotic_product .ingredients-products-img img{border-radius: 22px;}
+.template-new_prebiotic_product .quality-text{ align-items: flex-start;}
+.template-new_prebiotic_product .essentail-img img{     border-radius: 35px;   max-width: 590px;width: 100%; height: 365px;}
+
+.template-new_prebiotic_product .landing-ingredients-list table tr th:nth-child(2),
+.template-new_prebiotic_product .landing-ingredients-list table tbody tr td:nth-child(2), 
+.template-new_prebiotic_product .landing-ingredients-list table tbody tr:last-child td:nth-child(2):before{ background: #299646;}
+
+.template-new_prebiotic_product .money-back-logo{width: 260px; height: 262px;}
+.template-new_prebiotic_product .ttl_replenish{ font-family: Figtree !important;}
+.cerified_wrapper{ background-repeat: no-repeat;  background-size: cover; background-position: right; position: relative;overflow:hidden;}
+.cerified_wrapper>img {height: auto;position: absolute;bottom: 0;left: 0;max-height: 100%;max-width: 100%;width: auto;}
+.certified_con_wrapper{padding: 40px 0px;position:relative; display: flex;text-align: center;align-items: center;flex-direction: column;justify-content: center; max-width:900px;}
+.certified_con_wrapper h2{font-size: 48px;   color: #384151; font-weight: 800; letter-spacing: .01px; text-transform: inherit; margin: 0; font-family: Figtree;}
+.certified_con_wrapper span{font-size: 30px;font-weight: 800;  text-align: center;opacity: 0.702;  padding-bottom: 20px; font-family: Figtree;  text-transform: capitalize;}
+.certified_con_wrapper{font-size: 22px; color: #384151;}
+.certified-logo{  width: 300px;height: auto;}
+.certified_con_wrapper p{ margin:0;}
+.certified_con{ display: flex; width: 100%; justify-content: center;}
+.template-new_prebiotic_product .content_desc_text h4{ border-bottom: 2px solid #299646;}
+.template-new_prebiotic_product .new-text-overlay .content_desc_text{  width: 928px;}
+.template-new_prebiotic_product .static-banner-content-main .title-wrapper span.sub_title { text-align: center;   display: inline-block; font-family: Figtree !important;  font-size: 28px; color: #384151;  opacity: 0.600;font-weight: 600; letter-spacing: normal;}
+
+.template-new_prebiotic_product .new-text-overlay .content_desc_text p,
+.template-new_prebiotic_product .ingredients-products-content p,
+.template-new_prebiotic_product .essentail-img-desc p,
+.template-new_prebiotic_product .essentail-lst-desc, 
+.template-new_prebiotic_product .free-desc p,
+.template-new_prebiotic_product .essentail-desc,
+.certified_con_wrapper p, 
+.template-new_prebiotic_product .acc_ttl .ttl_dv,
+.template-new_prebiotic_product .sub_title,.green-title ,
+.template-new_prebiotic_product .content_desc_text h4,
+.template-new_prebiotic_product .feel-the-change-content p,
+.template-new_prebiotic_product .feel-the-change-content h2,
+.template-new_prebiotic_product .quality-text,.template-new_prebiotic_product .ingredients-desc,
+.template-new_prebiotic_product .ingredients-desc .ingredients-head h2 ,
+.template-new_prebiotic_product .ingredients-products-content h5,
+.template-new_prebiotic_product .nutrition h5,
+.template-new_prebiotic_product .nutrition p,
+.essential-content h2,.essential-content p,
+.template-new_prebiotic_product .ingredients-list-head h2,
+.template-new_prebiotic_product .risk-free-content h2,
+.template-new_prebiotic_product .risk-free-content p,
+.template-new_prebiotic_product .money-back h4,
+.template-new_prebiotic_product .money-back h5,
+.template-new_prebiotic_product .money-back a,
+.template-new_prebiotic_product .money-back p,
+.inner_body_faq p {font-family: Figtree !important;}
+
+.prebiotic  .near-btn .swatch input:not(.is_color_input):checked+label .swatch_icon {  border: 4px solid #5ca2d6;}
+.near-btn .swatch input:not(.is_color_input):checked+label .swatch_icon { border: 4px solid #5ca2d6;}
+.pre_content {max-width: 1080px;margin: 50px auto 0px;text-align: center;font-size: 20px;}
+.template-new_prebiotic_product a.banner_button{      max-width: 570px;}
+.template-new_prebiotic_product .content_desc_text span p:first-child{  margin:0;}
+
+@media screen and (min-width: 992px){
+  .template-new_prebiotic_product .static-banner-info-wrapper{max-width: 100%;align-items: center;display: flex;flex-direction: column;}
+  .template-new_prebiotic_product .bottom_button_wrappper{text-align: center;max-width: 100%;display: flex;flex-direction: column;align-items: center;}
+}
+
+@media screen and (max-width: 992px){
+  .template-new_prebiotic_product .money-back-logo{ width: 171px;  height:154px; }
+  .template-new_prebiotic_product .essentail-img img{ max-width: 100%;width: 100%;height: 528px; }
+}
+
+@media screen and (min-width: 768px){
+   .template-new_prebiotic_product .product-single__media-group{width:50%;}
+   .template-new_prebiotic_product .near-btn{width: 404px;}
+   .template-new_prebiotic_product  .swatch_icon svg{width: 58px;}
+  .template-new_prebiotic_product .product-single{width: 100%;display: flex;justify-content: center;}
+}
+
+@media screen and (max-width: 767px) {  
+  .index-section--featured-product .price__pricing-group{margin-left: 0;}
+  .custom-featured-product .pro_subtitle{display:none;}
+  .custom_righ_image { right: 0%; width: 41%;height: auto;}
+  .product-single__meta .price-item {font-size: 23px;line-height: 22px;}
+  .product-form {padding-top: 9px;}
+  .pdp_swatch .swatch {margin: 0 0 0px;}
+  .pdp_benefitinr {gap: 8px;}
+  .pdp_benefitinr span {font-size: 14px;}
+  .pdp_benefitinr svg {width: 30px;}
+  .ingredients-section {padding-top: 50px;padding-bottom: 50px;}
+  .ingredients-content h2 {font-size: 32px;}
+  .ingredients-section {padding-top: 50px;padding-bottom: 50px;}
+  .page-new-static-nitric-oxide .product-form__item--submit .product-form__cart-submit{width: 100%;max-width: 90%;}
+  .page-new-static-nitric-oxide .product-form__controls-group--submit {max-width: 90%;}
+  .template-new_prebiotic_product .essentail-img img{ height:auto; }
+  .big-svg{width: 266px!important;}
+}
+
+@media screen and (max-width: 640px) {
+  .fix_discount_img {max-width: 100px;}
+  .near-btn .product-form__cart-submit {font-size: 14px;padding: 11px 11px;}
+  .custom-featured-product .near-btn {position: relative;}
+  .custom_righ_image {top: 25%;transform: translateY(-50%);width: 45%;}
+}
+
+@media screen and (max-width: 575px) {
+  .template-sleep-product-layout .button_mobile_price {display: inline-block;}
+  .template-sleep-product-layout .pdp_btn_wrap .product-form__cart-submit  {justify-content: space-between;align-items: center;}
+  .template-sleep-product-layout .pdp_btn_wrap .product-form__cart-submit {padding-left: 10px;padding-right: 10px;}
+  .template-sleep-product-layout .pdp_swatch {padding-bottom: 10px;}
+  .template-sleep-product-layout .inline-ttl-price span.price-item--regular {display: none;}
+  .pdp_benefitinr span {font-size: 12px;}
+}
+
+@media screen and (max-width: 480px) {
+  .custom_righ_image {top: 30%;}  
+}
+
+@media screen and (max-width: 374px) {
+  .template-sleep-product-layout .QuantityBox li.input-box {width: 100%;}
+  .template-new_prebiotic_product .feel-the-change-content p{font-size: 24px;}
+}
+

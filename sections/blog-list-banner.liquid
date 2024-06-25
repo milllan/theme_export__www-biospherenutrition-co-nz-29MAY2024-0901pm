@@ -1,0 +1,110 @@
+<style>
+  .bl_bannerinr{
+    {% if section.settings.mb_banner_img != blank %}
+    background-image:url({{ section.settings.mb_banner_img | img_url:'' }})
+    {% else %}
+    background-image:url({{ section.settings.banner_img | img_url:'' }})
+    {% endif %}
+  }
+  @media(min-width:768px){
+    .bl_bannerinr{background-image:url({{ section.settings.banner_img | img_url:'' }})}
+  }
+</style>
+<div class="bl_banner">
+  <div class="bl_bannerinr">
+    <div class="bl_banner_cont">
+      <div class="bl_banner_continr">
+        {%- if section.settings.title != blank -%}<div class="bl_conttitle">{{ section.settings.title }}</div>{%- endif -%}
+        <div class="bl_list">
+        {%- for block in section.blocks -%}
+          <div class="bl_listinr">
+            {%- assign blog = block.settings.blog -%}
+            <a href="{% if blog.handle == 'prebiotics' %}#{% else %}{{ blog.url }}{% endif %}"><span>{{ blog.title }}</span></a>
+          </div>
+        {%- endfor -%}
+        </div>
+        {%- if section.settings.desc != blank -%}<div class="bl_contdesc">{{ section.settings.desc }}</div>{%- endif -%}
+      </div>
+      {%- if section.settings.product_img != blank or section.settings.mb_product_img != blank -%}
+      <div class="bl_prod_img">
+        {%- if section.settings.product_img != blank -%}
+          <img data-src="{{ section.settings.product_img | img_url:'' }}" class="lazyload{% if section.settings.mb_product_img != blank %} bl_prod_desk{% endif %}" width="auto" height="auto" />
+        {%- endif -%}
+        {%- if section.settings.mb_product_img != blank -%}
+          <img data-src="{{ section.settings.mb_product_img | img_url:'' }}" class="lazyload bl_prod_mb" width="auto" height="auto" />
+        {%- endif -%}
+      </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Blog List Banner",
+    "settings": [
+      {
+        "type":"header",
+        "content":"Desktop"
+      },
+      {
+        "type":"image_picker",
+        "id":"banner_img",
+        "label":"Banner Image"
+      },
+      {
+        "type":"image_picker",
+        "id":"product_img",
+        "label":"Product Image"
+      },
+      {
+        "type":"header",
+        "content":"Mobile"
+      },
+      {
+        "type":"image_picker",
+        "id":"mb_banner_img",
+        "label":"Banner Image"
+      },
+      {
+        "type":"image_picker",
+        "id":"mb_product_img",
+        "label":"Product Image"
+      },
+      {
+        "type":"richtext",
+        "id":"title",
+        "label":"Heading"
+      },
+      {
+        "type":"richtext",
+        "id":"desc",
+        "label":"Description"
+      }
+    ],
+    "blocks":[
+      {
+        "name":"Blog",
+        "type":"blog",
+        "settings":[
+          {
+            "type":"blog",
+            "id":"blog",
+            "label":"Blog"
+          }
+        ]
+      }
+    ],
+    "presets":[
+      {
+        "name": "Blog List Banner"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

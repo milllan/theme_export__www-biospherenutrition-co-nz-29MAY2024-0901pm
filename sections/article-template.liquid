@@ -1,0 +1,860 @@
+<div class="page-width">
+  {% if article.image %}
+    <div class="fature-img">
+      {% capture img_id %}ArticleImage-{{ article.image.id }}{% endcapture %}
+      {% capture img_wrapper_id %}ArticleImageWrapper-{{ article.image.id }}{% endcapture %}
+      {%- assign img_url = article.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+      {% comment %}  {% include 'image-style' with image: article.image, small_style: true, width: 345, height: 345, wrapper_id: img_wrapper_id, img_id: img_id %} {% endcomment %}
+      <div id="{{ img_wrapper_id }}" class="article__grid-image-wrapper js">
+        <div
+          class="article__grid-image-container"
+          {% comment %}
+            style="padding-top:{{ 1 | divided_by: article.image.aspect_ratio | times: 100 }}%;"
+          {% endcomment %}
+        >
+          <img
+           
+            id="{{ img_id }}"
+            class="article__grid-image "
+            src="{{ article.image | img_url: 'master' }}"
+            
+            alt="article image"
+            height="1420px" width="500px"
+          >
+        </div>
+      </div>
+      <noscript>
+        <div class="article__grid-image-wrapper">
+          {{ article | img_url: '345x345', scale: 2 | img_tag: article.title, 'article__grid-image' }}
+        </div>
+      </noscript>
+    </div>
+  {% endif %}
+  <div class="grid">
+    <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+      <div class="section-header text-center">
+        <h1 class="article__title" id="title-0">{{ article.title }}</h1>
+        {%- assign has_author_tag = false -%}
+        {%- assign author_tag = '' -%}
+        {% for tag in article.tags %}
+          {%- unless tag contains 'author_' -%}
+            {%- assign tag_size = tag_size | plus: 1 -%}
+          {%- else -%}
+            {%- assign has_author_tag = true -%}
+            {%- assign author_tag = tag -%}
+          {%- endunless -%}
+        {%- endfor -%}
+        {% if section.settings.blog_show_author %}
+          <span class="article__author">
+            {%- if has_author_tag %}
+              {%- assign author_tag = author_tag | split: '_' | last -%}
+              {{ 'blogs.article.by_author' | t: author: author_tag }}
+            {% else -%}
+              {{- 'blogs.article.by_author' | t: author: article.author -}}
+            {%- endif -%}
+          </span>
+        {% endif %}
+        {% comment %}
+          {% if section.settings.blog_show_date %}
+            <span class="article__date">
+              {{ article.published_at | time_tag: format: 'date' }}
+            </span>
+          {% endif %}
+        {% endcomment %}
+      </div>
+      <div class="rte">
+        {%- if template.suffix == 'mag_calc' -%}
+          {%- capture mag_calc -%}
+        {%- assign sec = settings -%}
+        <div id="shopify-section-magnesium-calculator-{{ section.id }}" class="shopify-section">
+        {%- include 'magnesium-calculator' ,id:section.id, title: sec.title, detail: sec.detail,
+			btn : sec.re_btn_title, re_btn_link : sec.re_btn_link, slider_range : sec.slider_range, slider_number:sec.sec.slider_number  -%}</div>
+        {%- endcapture -%}
+          {%- if article.content contains '<p>[magnesium_calculator]</p>' -%}
+            {{ article.content | replace: '<p>[magnesium_calculator]</p>', mag_calc }}
+          {%- elsif article.content contains '<span>[magnesium_calculator]</span>' -%}
+            {{ article.content | replace: '<span>[magnesium_calculator]</span>', mag_calc }}
+          {%- elsif article.content contains '[magnesium_calculator]' -%}
+            {{ article.content | replace: '[magnesium_calculator]', mag_calc }}
+          {%- else -%}
+            {{ article.content }}
+          {%- endif -%}
+        {% else %}
+          {{ article.content }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{%- capture article_tag -%}
+{%- for tag in article.tags -%}{%- if tag contains 'author_' -%}
+{{tag}}{%- break -%}{%- endif -%}{%- endfor -%}
+{%- endcapture -%}
+{%- assign show_pro = false -%}
+{%- assign article_tag = article_tag | strip | strip_newlines -%}
+{%- assign show_pro_count = 0 -%}
+{%- for block in section.blocks -%}
+  {%- if show_pro_count > 0 -%}{%- break -%}{%- endif -%}
+  {%- if block.type == 'product' -%}
+    {%- for tag in article.tags -%}
+      {%- if block.settings.tag == tag -%}
+        {%- assign pro_tag = block.settings.tag -%}
+        {%- assign show_pro_count = show_pro_count | plus: 1 -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- for block in section.blocks -%}
+  {%- if show_pro_count > 0 -%}{%- break -%}{%- endif -%}
+  {%- if block.type == 'sleep' -%}
+    {%- for tag in article.tags -%}
+      {%- if block.settings.sleep_tag == tag -%}
+        {%- assign pro_tag = block.settings.sleep_tag -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endfor -%}  
+<div class="article_other_sleep">  
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'sleep' and pro_tag == block.settings.sleep_tag -%}
+      <div
+        class="arti_pro_sleep arti_pro lazyload" loading="lazy"
+        {% if block.settings.image != blank %}
+          data-bgset="{{ block.settings.image | img_url:'' }}"
+        {% endif %}
+      >
+        <div class="page-width">
+          <div class="grid">
+            <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth grid grid--table">
+              <div class="grid__item medium-up--one-half">
+                <div class="vc_column-inner">
+                  <div class="wpb_wrapper">
+                    {%- if block.settings.title != blank -%}
+                      <h2 class="h1 no-ls vc_custom_heading review-header">{{ block.settings.title }}</h2>
+                    {%- endif -%}
+                    {%- if block.settings.detail != blank -%}
+                      <div class="mk-text-block">
+                        {{ block.settings.detail }}
+                      </div>
+                    {%- endif -%}
+                    {%- if block.settings.btn_link != blank and block.settings.btn_title != blank -%}
+                      <a href="{{ block.settings.btn_link }}" target="_self" class="btn">
+                        <i class="mk-button--icon">
+                          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path d="M464 0h-416c-26.4 0-48 21.6-48 48v288c0 26.4 21.6 48 48 48h80v128l153.6-128h182.4c26.4 0 48-21.6 48-48v-288c0-26.4-21.6-48-48-48zm-108 342l-100-82.098-100 82.098 36.372-117.326-96.372-64.799h120.676l39.324-125.027 39.324 125.027h120.676l-96.372 64.799 36.372 117.326z"></path>
+                          </svg></i
+                        ><span class="mk-button--text">{{ block.settings.btn_title }}</span>
+                      </a>
+                    {%- endif -%}
+                    {%- assign product = all_products[block.settings.product] -%}
+
+                    <h2 class="h1 no-ls vc_custom_heading review-header">
+                      {% if block.settings.product_title != blank %}
+                        {{ block.settings.product_title }}
+                      {% else %}
+                        {{ product.title }}
+                      {% endif %}
+                    </h2>
+                    <div class="pro_review_badge">
+                      <div
+                        class="wc_product_review_badge" style="min-height:46px"
+                        data-handle="{{ product.handle }}"
+                        data-product_id="{{ product.id }}"
+                      ></div>
+                    </div>
+                    {%- if block.settings.pro_detail != blank -%}
+                      <div class="mk-text-block">
+                        {{ block.settings.pro_detail }}
+                      </div>
+                    {%- endif -%}
+                    <a
+                      href="{% if block.settings.custoum_url != blank %}{{block.settings.custoum_url}}{% else %}{{ product.url }}{% endif %}"
+                      rel="nofollow"
+                      target="_self"
+                      class="btn"
+                    >
+                      <i class="mk-button--icon">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                          <path d="M416.265 306.366c14.002-14.002 78.637-108.456 81.388-112.472 11.495-16.814 12.492-38.904 2.598-57.646-9.686-18.363-27.635-29.322-47.998-29.322h-329.568v-47.088c0-1.088-.107-2.146-.322-3.17-1.617-15.802-14.845-28.218-31.069-28.218h-54.933c-17.312 0-31.39 14.083-31.39 31.39v15.695c0 17.313 14.079 31.39 31.39 31.39h54.933v219.668c0 34.617 28.164 62.781 62.781 62.781h290.361c8.668 0 15.695-7.028 15.695-15.695s-7.028-15.695-15.695-15.695h-290.361c-17.289 0-31.344-14.043-31.383-31.325h243.422c27.719 0 38.272-8.41 50.151-20.293zm35.988-168.049c12.27 0 18.24 8.798 20.233 12.577 3.487 6.602 5.111 16.707-.751 25.283-31.529 46.12-70.192 100.524-77.664 107.996-8.078 8.074-11.097 11.097-27.957 11.097h-243.429v-156.953h329.568zm-415.892-62.781v-15.695h54.933v15.695h-54.933zm149.067 313.843c-25.958 0-47.079 21.121-47.079 47.086s21.121 47.086 47.079 47.086c25.965 0 47.093-21.121 47.093-47.086s-21.129-47.086-47.093-47.086zm0 62.78c-8.653 0-15.688-7.039-15.688-15.695 0-8.652 7.035-15.695 15.688-15.695 8.66 0 15.702 7.043 15.702 15.695 0 8.657-7.043 15.695-15.702 15.695zm204.007-62.78c-25.958 0-47.079 21.121-47.079 47.086s21.121 47.086 47.079 47.086c25.964 0 47.093-21.121 47.093-47.086s-21.13-47.086-47.093-47.086zm0 62.78c-8.653 0-15.688-7.039-15.688-15.695 0-8.652 7.035-15.695 15.688-15.695 8.66 0 15.702 7.043 15.702 15.695 0 8.657-7.043 15.695-15.702 15.695z"></path>
+                        </svg>
+                      </i>
+                      <span class="mk-button--text"> {{ block.settings.pro_btn_title | default: 'Buy Now' }} </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="grid__item medium-up--one-half">
+                {%- assign image = block.settings.image_1 -%}
+                {%- assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+                {%- if block.settings.image_1 == blank and block.settings.image == blank -%}
+                  {%- assign image = product.featured_image -%}
+                  {%- assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+                {%- endif -%}
+                {%- if image != blank and block.settings.image == blank -%}
+                  <img
+                    class="lazyload" loading="lazy"
+                    data-src="{{ img_url }}"
+                    data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                    data-aspectratio="{{ block.settings.image_1.aspect_ratio }}"
+                    data-sizes="auto"
+                    alt="" 
+                  >
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {%- if block.settings.bg_color != blank or block.settings.text_color != blank -%}
+        <style type="text/css">
+          .arti_pro{
+            {%- if block.settings.bg_color != blank -%} background-color : {{ block.settings.bg_color }}; {%- endif -%}
+            {%- if block.settings.text_color != blank -%} color:{{ block.settings.text_color }}; {%- endif -%}
+          }
+        .arti_pro_sleep{
+          {%- if block.settings.bg_color_sleep != blank -%} background-color : {{ block.settings.bg_color_sleep }}; {%- endif -%}
+        }
+        {%- if block.settings.text_color != blank -%} .arti_pro_sleep{ color:{{ block.settings.text_color }};  } {%- endif -%}
+          {%- if block.settings.text_color != blank -%} .arti_pro .pro_review_badge .wc_product_review_badge .wc_product_review_title{ color:{{ block.settings.text_color }};  } {%- endif -%}
+        </style>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+</div>  
+
+<div class="article_other_content">
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'product' and pro_tag == block.settings.tag -%}
+      <div
+        class="arti_pro lazyload" loading="lazy"
+        {% if block.settings.image != blank %}
+          data-bgset="{{ block.settings.image | img_url:'' }}"
+        {% endif %}
+      >
+        <div class="page-width">
+          {% comment %}
+            <div class="article-feature-img">
+              {% if article.image %}
+                {% capture img_id %}ArticleImage-{{ article.image.id }}{% endcapture %}
+                {% capture img_wrapper_id %}ArticleImageWrapper-{{ article.image.id }}{% endcapture %}
+                {%- assign img_url = article.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+                {% include 'image-style' with image: article.image, small_style: true, width: 345, height: 345, wrapper_id: img_wrapper_id, img_id: img_id %}
+                <div id="{{ img_wrapper_id }}" class="article__grid-image-wrapper js">
+                  <div
+                    class="article__grid-image-container"
+                    style="padding-top:{{ 1 | divided_by: article.image.aspect_ratio | times: 100 }}%;"
+                  >
+                    <img
+                      id="{{ img_id }}"
+                      class="article__grid-image lazyload"
+                      src="{{ article.image | img_url: '300x300' }}"
+                      data-src="{{ img_url }}"
+                      data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                      data-aspectratio="{{ article.image.aspect_ratio }}"
+                      data-sizes="auto"
+                      alt=""
+                    >
+                  </div>
+                </div>
+                <noscript>
+                  <div class="article__grid-image-wrapper">
+                    {{ article | img_url: '345x345', scale: 2 | img_tag: article.title, 'article__grid-image' }}
+                  </div>
+                </noscript>
+              {% endif %}
+            </div>
+          {% endcomment %}
+          <div class="grid">
+            <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth grid grid--table">
+              <div class="grid__item medium-up--one-half">
+                <div class="vc_column-inner">
+                  <div class="wpb_wrapper">
+                    {% if blogs.tags contains 'prebiotic' %}  
+                      {%- if block.settings.title != blank -%}
+                        <h2 class="h1 no-ls vc_custom_heading review-header">{{ block.settings.prebiotic-title }}</h2>
+                      {%- endif -%}
+                    {% else %}  
+                      {%- if block.settings.title != blank -%}
+                        <h2 class="h1 no-ls vc_custom_heading review-header">{{ block.settings.title }}</h2>
+                      {%- endif -%}
+                     {% endif %} 
+                    {%- if block.settings.detail != blank -%}
+                      {% if blogs.tags contains 'prebiotic' %}
+                        <div class="mk-text-block prebiotic-desc">
+                          {{ block.settings.prebiotic-detail }}
+                        </div>
+                      {% else %}  
+                        <div class="mk-text-block">
+                          {{ block.settings.detail }}
+                        </div>
+                      {% endif %}  
+                    {%- endif -%}
+                    {% if blogs.tags contains 'prebiotic' %}
+                      {%- if block.settings.prebiotic-btn_link != blank and block.settings.prebiotic-btn_title != blank -%}
+                        <a href="{{ block.settings.prebiotic-btn_link }}" target="_self" class="btn">
+                          <i class="mk-button--icon">
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                              <path d="M464 0h-416c-26.4 0-48 21.6-48 48v288c0 26.4 21.6 48 48 48h80v128l153.6-128h182.4c26.4 0 48-21.6 48-48v-288c0-26.4-21.6-48-48-48zm-108 342l-100-82.098-100 82.098 36.372-117.326-96.372-64.799h120.676l39.324-125.027 39.324 125.027h120.676l-96.372 64.799 36.372 117.326z"></path>
+                            </svg></i
+                          ><span class="mk-button--text">{{ block.settings.prebiotic-btn_title }}</span>
+                        </a>
+                      {%- endif -%}
+                    {% else %}  
+                      {%- if block.settings.btn_link != blank and block.settings.btn_title != blank -%}
+                        <a href="{{ block.settings.btn_link }}" target="_self" class="btn">
+                          <i class="mk-button--icon">
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                              <path d="M464 0h-416c-26.4 0-48 21.6-48 48v288c0 26.4 21.6 48 48 48h80v128l153.6-128h182.4c26.4 0 48-21.6 48-48v-288c0-26.4-21.6-48-48-48zm-108 342l-100-82.098-100 82.098 36.372-117.326-96.372-64.799h120.676l39.324-125.027 39.324 125.027h120.676l-96.372 64.799 36.372 117.326z"></path>
+                            </svg></i
+                          ><span class="mk-button--text">{{ block.settings.btn_title }}</span>
+                        </a>
+                      {%- endif -%}
+                    {% endif %}  
+                    {%- assign product = all_products[block.settings.product] -%}
+
+                    <h2 class="h1 no-ls vc_custom_heading review-header">
+                      {% if block.settings.product_title != blank %}
+                        {{ block.settings.product_title }}
+                      {% else %}
+                        {{ product.title }}
+                      {% endif %}
+                    </h2>
+                    <div class="pro_review_badge">
+                      <div
+                        class="wc_product_review_badge"
+                        data-handle="{{ product.handle }}"
+                        data-product_id="{{ product.id }}"
+                      ></div>
+                    </div>
+
+                    {% if blogs.tags contains 'prebiotic' %}
+                      {%- if block.settings.prebiotic-pro_detail != blank -%}
+                        <div class="mk-text-block">
+                          {{ block.settings.prebiotic-pro_detail }}
+                        </div>
+                      {%- endif -%}
+                    {% else %}  
+                      {%- if block.settings.pro_detail != blank -%}
+                        <div class="mk-text-block">
+                          {{ block.settings.pro_detail }}
+                        </div>
+                      {%- endif -%}
+                    {% endif %}  
+                    <a
+                      href="{% if block.settings.custoum_url != blank %}{{block.settings.custoum_url}}{% else %}{{ product.url }}{% endif %}"
+                      rel="nofollow"
+                      target="_self"
+                      class="btn"
+                    >
+                      <i class="mk-button--icon">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                          <path d="M416.265 306.366c14.002-14.002 78.637-108.456 81.388-112.472 11.495-16.814 12.492-38.904 2.598-57.646-9.686-18.363-27.635-29.322-47.998-29.322h-329.568v-47.088c0-1.088-.107-2.146-.322-3.17-1.617-15.802-14.845-28.218-31.069-28.218h-54.933c-17.312 0-31.39 14.083-31.39 31.39v15.695c0 17.313 14.079 31.39 31.39 31.39h54.933v219.668c0 34.617 28.164 62.781 62.781 62.781h290.361c8.668 0 15.695-7.028 15.695-15.695s-7.028-15.695-15.695-15.695h-290.361c-17.289 0-31.344-14.043-31.383-31.325h243.422c27.719 0 38.272-8.41 50.151-20.293zm35.988-168.049c12.27 0 18.24 8.798 20.233 12.577 3.487 6.602 5.111 16.707-.751 25.283-31.529 46.12-70.192 100.524-77.664 107.996-8.078 8.074-11.097 11.097-27.957 11.097h-243.429v-156.953h329.568zm-415.892-62.781v-15.695h54.933v15.695h-54.933zm149.067 313.843c-25.958 0-47.079 21.121-47.079 47.086s21.121 47.086 47.079 47.086c25.965 0 47.093-21.121 47.093-47.086s-21.129-47.086-47.093-47.086zm0 62.78c-8.653 0-15.688-7.039-15.688-15.695 0-8.652 7.035-15.695 15.688-15.695 8.66 0 15.702 7.043 15.702 15.695 0 8.657-7.043 15.695-15.702 15.695zm204.007-62.78c-25.958 0-47.079 21.121-47.079 47.086s21.121 47.086 47.079 47.086c25.964 0 47.093-21.121 47.093-47.086s-21.13-47.086-47.093-47.086zm0 62.78c-8.653 0-15.688-7.039-15.688-15.695 0-8.652 7.035-15.695 15.688-15.695 8.66 0 15.702 7.043 15.702 15.695 0 8.657-7.043 15.695-15.702 15.695z"></path>
+                        </svg>
+                      </i>
+                      {% if blogs.tags contains 'prebiotic' %}
+                      <span class="mk-button--text"> {{ block.settings.prebiotic-pro_btn_title | default: 'Buy Now' }} </span>
+                       {% else %} 
+                      <span class="mk-button--text"> {{ block.settings.pro_btn_title | default: 'Buy Now' }} </span>
+                      {% endif %}
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="grid__item medium-up--one-half">
+                {%- assign image = block.settings.image_1 -%}
+                {%- assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+                {%- if block.settings.image_1 == blank and block.settings.image == blank -%}
+                  {%- assign image = product.featured_image -%}
+                  {%- assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+                {%- endif -%}
+                {%- if image != blank and block.settings.image == blank -%}
+                  <img
+                    class="lazyload" loading="lazy"
+                    height="316" width="316"
+                    data-src="{{ img_url }}"
+                    data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                    data-aspectratio="{{ block.settings.image_1.aspect_ratio }}"
+                    data-sizes="auto"
+                    alt=""
+                  
+                  >
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {%- if block.settings.bg_color != blank or block.settings.text_color != blank -%}
+        <style type="text/css">
+          .arti_pro{
+            {%- if block.settings.bg_color != blank -%} background-color : {{ block.settings.bg_color }}; {%- endif -%}
+            {%- if block.settings.text_color != blank -%} color:{{ block.settings.text_color }}; {%- endif -%}
+          }
+          {%- if block.settings.text_color != blank -%} .arti_pro .pro_review_badge .wc_product_review_badge .wc_product_review_title{ color:{{ block.settings.text_color }};  } {%- endif -%}
+        </style>
+      {%- endif -%}
+    {%- endif -%}
+    {% comment %}
+      {%- if block.type == "related_articles" -%}
+
+      <div class="article_other_content">
+          <div class="page-width">
+             {% include 'pro-blogger.snippet.related-articles' %}
+
+        </div>
+
+      </div>
+
+      {%- endif -%}
+        {%- if block.type == "related_products" -%}
+
+      <div class="article_other_content">
+          <div class="page-width">
+             {% include 'pro-blogger.snippet.related-products' %}
+
+        </div>
+
+      </div>
+
+      {%- endif -%}
+    {% endcomment %}
+    {%- if block.type == 'author' and block.settings.tag == article_tag -%}
+      <div class="author_div">
+        <div class="page-width">
+          {% include 'pro-blogger.snippet.related-articles' %}
+          <div class="grid">
+            <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+              
+             
+              {%- if article.metafields.article.show_author -%}
+                <div class="inner_author grid">
+                  <div class="grid__item medium-up--two-eighths ">
+                    <div class="author_image">
+                      {%- if block.settings.image != blank -%}
+                        <img
+                          data-src="{{ block.settings.image | img_url:'200x' }}"
+                          class="lazyload"
+                          width="200px"
+                          height="200px"
+                          alt=""
+                        >
+                      {%- endif -%}
+                    </div>
+                  </div>
+                  <div class="grid__item medium-up--six-eighths">
+                    <div class="author_detail rte">
+                      {%- if block.settings.detail != blank -%}
+                        <p>
+                          <strong><em>Author</em></strong>
+                        </p>
+                        {{ block.settings.detail }}
+                      {%- endif -%}
+                    </div>
+                  </div>
+                </div>
+              {%- endif -%}
+              {%- if article.metafields.article.reference != blank or article.metafields.article.show_disclaimer -%}
+                <div class="refe_dis">
+                  {%- if article.metafields.article.reference != blank -%}
+                    <div class="reference">
+                      <div class="refe_title"><i class="icon"></i><span>References</span></div>
+                      <div class="refe_content rte active">{{ article.metafields.article.reference }}</div>
+                    </div>
+                  {%- endif -%}
+                  {%- if article.metafields.article.show_disclaimer -%}
+                    <div class="disclaimer">
+                      {{- article.metafields.article.disclaimer | default: block.settings.disclaimer -}}
+                    </div>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+</div>
+  
+{%- capture article_tag -%}
+{%- for tag in article.tags -%}{%- if tag contains 'author_' -%}
+{{tag}}{%- break -%}{%- endif -%}{%- endfor -%}
+{%- endcapture -%}
+{%- assign show_pro = false -%}
+{%- assign article_tag = article_tag | strip | strip_newlines -%}
+{%- assign show_pro_count = 0 -%}
+
+
+<div class="page-width">
+  <div class="grid">
+    <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+      {% if section.settings.show_share_buttons %}
+        {% include 'social-sharing',
+          share_title: article.title,
+          share_permalink: article.url,
+          share_image: article.image
+        %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% style %}
+ /*** Arteicle css *********/
+ .article_other_sleep .arti_pro_sleep .grid__item + .grid__item{
+    position: relative;
+    padding-bottom: 70%;
+    display: inline-block;
+    width: 100%;
+  }
+  .article__grid-image-wrapper .article__grid-image-container {
+      padding-bottom: 35% ;
+  }
+  .fature-img .article__grid-image-wrapper img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    object-fit: cover;
+    transform: translate(-50% , -50%);
+  }
+  .article_other_sleep .arti_pro_sleep  .grid__item + .grid__item  img{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    object-fit: cover;
+  }
+  .article_other_sleep {margin-bottom: 40px;}
+  @media only screen and (max-width: 767px){
+    .article_other_sleep .arti_pro_sleep .grid__item + .grid__item {margin-left: 22px;}
+  }
+{%endstyle%}
+<script>
+  $(document).ready(function(){
+  	// $('.pb-text-wrapper').matchHeight();
+  });
+</script>
+
+{% schema %}
+{
+  "name": {
+    "da": "Opslag",
+    "de": "Posts",
+    "en": "Posts",
+    "es": "Publicaciones",
+    "fi": "Julkaisut",
+    "fr": "Articles",
+    "hi": "पोस्ट",
+    "it": "Articoli",
+    "ja": "投稿",
+    "ko": "게시물",
+    "nb": "Innlegg",
+    "nl": "Berichten",
+    "pt-BR": "Posts",
+    "pt-PT": "Publicações",
+    "sv": "Inlägg",
+    "th": "โพสต์",
+    "zh-CN": "文章",
+    "zh-TW": "貼文"
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "blog_show_author",
+      "label": {
+        "da": "Vis forfatter",
+        "de": "Autor anzeigen",
+        "en": "Show author",
+        "es": "Mostrar autor",
+        "fi": "Näytä tekijä",
+        "fr": "Afficher l'auteur",
+        "hi": "लेखक दिखाएं",
+        "it": "Mostra autore",
+        "ja": "執筆者を表示する",
+        "ko": "작성자 표시",
+        "nb": "Vis forfatter",
+        "nl": "Auteur weergeven",
+        "pt-BR": "Exibir autor",
+        "pt-PT": "Mostrar autor",
+        "sv": "Visa författare",
+        "th": "แสดงผู้เขียน",
+        "zh-CN": "显示作者",
+        "zh-TW": "顯示作者"
+      },
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_show_date",
+      "label": {
+        "da": "Vis dato",
+        "de": "Datum anzeigen",
+        "en": "Show date",
+        "es": "Mostrar fecha",
+        "fi": "Näytä päivämäärä",
+        "fr": "Afficher la date",
+        "hi": "दिनांक दिखाएं",
+        "it": "Mostra data",
+        "ja": "日付を表示する",
+        "ko": "날짜 표시",
+        "nb": "Vis dato",
+        "nl": "Datum weergeven",
+        "pt-BR": "Exibir data",
+        "pt-PT": "Mostrar data",
+        "sv": "Visa datum",
+        "th": "แสดงวันที่",
+        "zh-CN": "显示日期",
+        "zh-TW": "顯示日期"
+      },
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_share_buttons",
+      "label": {
+        "da": "Vis knapper til deling på sociale medier",
+        "de": "Buttons für Social Media anzeigen",
+        "en": "Show social sharing buttons",
+        "es": "Mostrar botones para compartir en redes sociales",
+        "fi": "Näytä sosiaalisen median jakamispainikkeet",
+        "fr": "Afficher les boutons de partage sur les médias sociaux",
+        "hi": "सोशल शेयरिंग बटन दिखाएं",
+        "it": "Mostra i pulsanti per la condivisione sui social",
+        "ja": "ソーシャルメディアでの共有ボタンを表示する",
+        "ko": "소셜 공유 버튼 표시",
+        "nb": "Vis knapper for deling på sosiale medier",
+        "nl": "Knoppen voor sociaal delen weergeven",
+        "pt-BR": "Exibir botões de compartilhamento em redes sociais",
+        "pt-PT": "Mostrar botões de partilha nas redes sociais",
+        "sv": "Visa knappar för delning i sociala medier",
+        "th": "แสดงปุ่มสำหรับแชร์ลงโซเชียล",
+        "zh-CN": "显示社交分享按钮",
+        "zh-TW": "顯示社群分享按鈕"
+      },
+      "default": true
+    }
+  ],
+  "blocks":[
+	{
+	  "type":"product",
+	  "name":"Product",
+	  "settings":[
+		{
+		  "type":"text",
+		  "id":"tag",
+		  "label":"Enter tag to show product in article"
+		},
+		{
+		  "type":"image_picker",
+		  "id":"image",
+		  "label":"Upload background image"
+		},
+		{
+		  "type":"color",
+		  "id":"bg_color",
+		  "label":"Select background color"
+		},
+		{
+		  "type":"color",
+		  "id":"text_color",
+		  "label":"Select text color"
+		},
+		{
+		  "type":"image_picker",
+		  "id":"image_1",
+		  "label":"Upload product image",
+		  "info":"if you upload above image this image not gone a visible"
+		},
+		{
+		  "type":"text",
+		  "id":"title",
+		  "label":"Enter title"
+		},
+		{
+		  "type":"text",
+		  "id":"prebiotic-title",
+		  "label":"Enter prebiotic title"
+		},
+		{
+		  "type":"richtext",
+		  "id":"detail",
+		  "label":"Enter detail"
+		},
+		{
+		  "type":"richtext",
+		  "id":"prebiotic-detail",
+		  "label":"Enter prebiotic detail"
+		},
+		{
+		  "type":"text",
+		  "id":"btn_title",
+		  "label":"Enter button title"
+		},
+		{
+		  "type":"text",
+		  "id":"prebiotic-btn_title",
+		  "label":"Enter prebiotic button title"
+		},
+		{
+		  "type":"url",
+		  "id":"btn_link",
+		  "label":"Provide button link"
+		},
+		{
+		  "type":"url",
+		  "id":"prebiotic-btn_link",
+		  "label":"Provide prebiotic button link"
+		},
+		{
+		  "type":"product",
+		  "id":"product",
+		  "label":"Select product"
+		},
+        {
+        	"type":"text",
+        	"id":"product_title",
+        	"label":"Add product title"
+        },
+		{
+		  "type":"richtext",
+		  "id":"pro_detail",
+		  "label":"Enter detail"
+		},
+		{
+		  "type":"richtext",
+		  "id":"prebiotic-pro_detail",
+		  "label":"prebiotic Enter detail"
+		},
+		{
+		  "type":"text",
+		  "id":"pro_btn_title",
+		  "label":"Enter button title"
+		},
+		{
+		  "type":"text",
+		  "id":"prebiotic-pro_btn_title",
+		  "label":"Enter button title"
+		},
+		{
+			"type":"url",
+			"id":"custoum_url",
+			"label":"Add buton url"
+		}
+	  ]
+	},
+    {
+	  "type":"sleep",
+	  "name":"Sleep",
+	  "settings":[
+		{
+		  "type":"text",
+		  "id":"sleep_tag",
+		  "label":"Enter Sleep tag to show product in article"
+		},
+		{
+		  "type":"image_picker",
+		  "id":"image",
+		  "label":"Upload background image"
+		},
+		{
+		  "type":"color",
+		  "id":"bg_color",
+		  "label":"Select background color"
+		},
+		{
+		  "type":"color",
+		  "id":"text_color",
+		  "label":"Select text color"
+		},
+		{
+		  "type":"image_picker",
+		  "id":"image_1",
+		  "label":"Upload product image",
+		  "info":"if you upload above image this image not gone a visible"
+		},
+		{
+		  "type":"product",
+		  "id":"product",
+		  "label":"Select product"
+		},
+        {
+        	"type":"text",
+        	"id":"product_title",
+        	"label":"Add product title"
+        },
+		{
+		  "type":"richtext",
+		  "id":"pro_detail",
+		  "label":"Enter detail"
+		},
+		{
+		  "type":"text",
+		  "id":"pro_btn_title",
+		  "label":"Enter button title"
+		},
+		{
+			"type":"url",
+			"id":"custoum_url",
+			"label":"Add buton url"
+		}
+	  ]
+	},
+    {
+        "name": "Related Articles",
+           "type": "related_articles"
+    },
+    {
+        "name": "Related Products",
+           "type": "related_products"
+    },
+	{
+	  "type":"author",
+	  "name":"Author block",
+	  "settings":[
+		{
+		  "type":"text",
+		  "id":"tag",
+		  "label":"Enter tag to show author in article"
+		},
+		{
+		  "type":"image_picker",
+		  "id":"image",
+		  "label":"Upload background image"
+		},
+		{
+		  "type":"text",
+		  "id":"title",
+		  "label":"Enter author name"
+		},
+		{
+		  "type":"richtext",
+		  "id":"detail",
+		  "label":"Enter detail"
+		},
+		{
+		  "type":"header",
+		  "content":"Disclaimer"
+		},
+		{
+		  "type":"richtext",
+		  "id":"disclaimer",
+		  "label":"Enter detail"
+		}
+
+	  ]
+	}
+
+  ]
+}
+{% endschema %}

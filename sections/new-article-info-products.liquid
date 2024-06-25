@@ -1,0 +1,134 @@
+<div class="wrp-article-info">
+<div class="article_info_marketing" id="info--marketing--{{section.id}}">
+  <div class="marketing_img">
+    {% if section.settings.marketing_image %}
+      <img src="{{ section.settings.marketing_image | img_url:'master' }}" class="img-fluid desktop-show" />
+    {% endif %}
+    {% if section.settings.small_marketing_image %}
+      <img src="{{ section.settings.small_marketing_image | img_url:'master' }}" class="img-fluid mobile-show" />
+    {% endif %}
+
+    <div class="markting_content">
+              <div class="article_container desktop-show">
+                <h1 class="heading-font">
+                  {{ section.settings.title_first }}
+                  <span>{{ section.settings.title_second }}</span>
+                </h1>
+                {% if section.settings.marketing_content %}
+                  <div class="marketing_inner_content">{{ section.settings.marketing_content }}</div>
+                {% endif %}
+                {% if section.settings.button_link %}
+                  <a href="{{ section.settings.button_link }}" class="marketing_button">
+                    {{ section.settings.button_text }}
+                  </a>
+                {% endif %}
+                {% if section.settings.discount_txt %}
+                  <P class="discount_txt">{{ section.settings.discount_txt }}</P>
+                {% endif %}
+              </div>
+    </div>
+      <div class="article_container mobile-show" style="background:{{ section.settings.bg-color}}">
+                  {% if section.settings.title_first != blank %}
+                  <h1 class="heading-font">
+                  {{ section.settings.title_first }} <span>{{ section.settings.title_second }}</span>
+                  </h1>
+                  {% endif %}
+           
+                  {% if section.settings.marketing_content %}
+                  <div class="marketing_inner_content">{{ section.settings.marketing_content }}</div>
+                  {% endif %}
+               
+                {% if section.settings.discount_txt %}
+                <div class="{% comment %} markting_content{% endcomment %} content-text ">
+                <P class="discount_txt">{{ section.settings.discount_txt }}</P>
+                </div>
+                {% endif %}
+                <div class="mob_btn mobile-show">      
+                {% if section.settings.button_link_mob %}
+                <a href="{{ section.settings.button_link_mob }}" class="btn marketing_button">
+                {{ section.settings.button_text_mob }}
+                </a>
+                {% endif %}
+                </div>
+       </div>
+
+ </div>
+ </div>
+</div>
+{% schema %}
+  {
+    "name": "New article info Product",
+    "settings": [
+      {
+          "type":"image_picker",
+          "id":"marketing_image",
+          "label":"Add main image"
+      },
+      {
+          "type":"image_picker",
+          "id":"small_marketing_image",
+          "label":"Mobile main image"
+      },
+      {
+          "type":"color_background",
+          "id":"bg-color",
+          "label":"Back ground color for mobile text"
+      },
+      {
+          "type":"header",
+          "content":"marketing_content"
+      },
+      {
+          "type":"text",
+          "id":"title_first",
+          "label":"Add first word title"
+      },
+      {
+          "type":"text",
+          "id":"title_second",
+          "label":"Add second word title"
+      },
+      {
+          "type":"richtext",
+          "id":"marketing_content",
+          "label":"Add marketing content"
+      },
+      {
+          "type":"text",
+          "id":"button_text",	
+          "label":"Add button text"
+      },
+      {
+          "type":"url",
+          "id":"button_link",
+          "label":"Add button link"
+      },
+       {
+          "type":"text",
+          "id":"button_text_mob",	
+          "label":"Add mobile button text"
+      },
+      {
+          "type":"url",
+          "id":"button_link_mob",
+          "label":"Add mobile button link"
+      },
+      {
+          "type":"text",
+          "id":"discount_txt",
+          "label":"use Discount Text"
+      }
+    ],
+	"presets":[
+		{
+			"name":"New Article info Product"
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,135 @@
+{% comment %}
+  Set the extension of your color files below. Use 'png', 'jpeg', 'jpg' or 'gif'.
+{% endcomment %}
+
+{% assign file_extension = 'png' %}
+
+{% if swatch == blank %}
+  <div class="swatch error">
+    <p>You must include the snippet swatch.liquid with the name of a product option.</p>
+    <p>
+      Use: <code>{% raw %}{% include 'swatch' with 'name of your product option here' %}{% endraw %}</code>
+    </p>
+    <p>
+      Example: <code>{% raw %}{% include 'swatch' with 'Color' %}{% endraw %}</code>
+    </p>
+  </div>
+{% else %}
+  {% assign found_option = false %}
+  {% assign is_color = false %}
+  {% assign option_index = 0 %}
+
+  {% for option in product.options %}
+    {% if option == swatch %}
+      {% assign found_option = true %}
+      {% assign option_index = forloop.index0 %}
+      <style>
+        label[for="product-select-option-{{ option_index }}"] { display: none; }
+        #product-select-option-{{ option_index }} { display: none; }
+        #product-select-option-{{ option_index }} + .custom-style-select-box { display: none !important; }
+      </style>
+      <script defer>
+              $(document).ready(function(){
+               $('.selector-wrapper:eq({{ option_index }})').hide();
+              })
+        //      window.addEventListener('load', (event) => { debugger; $('.selector-wrapper:eq({{ option_index }})').hide(); });
+      </script>
+      {% assign downcased_option = swatch | downcase %}
+      {% if downcased_option contains 'color'
+        or downcased_option contains 'colour'
+        or downcased_option contains 'flavour'
+      %}
+        {% assign is_color = true %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {% unless found_option %}
+    <div class="swatch error">
+      <p>
+        You included the snippet swatch.liquid with the name of a product option — <code>'{{ swatch }}'</code> — that
+        does not belong to your product.
+      </p>
+      <p>
+        Use <code>{% raw %}{% include 'swatch' with 'name of your product option here' %}{% endraw %}</code>
+      </p>
+      <p>
+        Example: <code>{% raw %}{% include 'swatch' with 'Color' %}{% endraw %}</code>
+      </p>
+      <p>
+        <strong>This is case-sensitive!</strong> Do not put in <code>'color'</code> if your product option name is
+        <code>'Color'</code>.
+      </p>
+    </div>
+  {% else %}
+    {%- assign color_swatch = false -%}
+    {%- if swatch contains 'flavor'
+      or swatch contains 'Flavor'
+      or swatch contains 'colour'
+      or swatch contains 'Colour'
+      or swatch contains 'color'
+      or swatch contains 'Color'
+    -%}
+      {%- assign color_swatch = true -%}
+    {%- endif -%}
+    <div
+      class="swatch {% if color_swatch %}color{% endif %} clearfix"
+      data-option-index="{{ option_index }}"
+      data-option-name="{{ swatch }}"
+    >
+      {% if product.handle != 'nitric-oxide' and product.handle != 'sleep' %}
+        <div class="header">{{ swatch }} :</div>
+      {% endif %}
+      {% assign values = '' %}
+      <div class="swatch_item">
+        {% for variant in product.variants %}
+          {% assign value = variant.options[option_index] %}
+          {% unless values contains value %}
+            {% assign values = values | join: ',' %}
+            {% assign values = values | append: ',' | append: value %}
+            {% assign values = values | split: ',' %}
+            <div class="wrp-swatch-element swatch_{{ value | handle }} ">
+              <div
+                data-value="{{ value | escape }}"
+                class="swatch-element {{ value | handle }} {% if variant.available %}available{% endif %}"
+              >
+                <input
+                  id="swatch-{{ option_index }}-{{ value | handle }}"
+                  type="radio"
+                  name="option-{{ option_index }}"
+                  value="{{ value | escape }}"
+                  {% if forloop.first %}
+                    checked
+                  {% endif %}
+                >
+                <label for="swatch-{{ option_index }}-{{ value | handle }}">
+                  {%- for i in (1..6) -%}
+                    {%- capture swatchs -%}variant_title_{{i}}{%- endcapture -%}
+                    {%- assign metaSwatch = product.metafields.custom[swatchs] -%}
+                    {%- capture images -%}variant_image_{{i}}{%- endcapture -%}
+                    {%- assign image = product.metafields.custom[images] -%}
+                    {%- if metaSwatch == value -%}
+                      {%- if image != blank -%}
+                        <span class="swatch_icon">{{ image }}</span>
+                      {%- endif -%}
+                      <span class="swatch_label">{{ value }}</span>
+                    {%- endif -%}
+                  {%- endfor -%}
+                  <img class="crossed-out" src="{{ 'soldout.png' | asset_url }}">
+                </label>
+              </div>
+            </div>
+          {% endunless %}
+
+          {% if variant.available %}
+            <script defer>
+              window.addEventListener('load', (event) => {
+                jQuery('.swatch[data-option-index="{{ option_index }}"] .{{ value | handle }}').removeClass('soldout').addClass('available').find(':radio').removeAttr('disabled');
+              });
+            </script>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endunless %}
+{% endif %}

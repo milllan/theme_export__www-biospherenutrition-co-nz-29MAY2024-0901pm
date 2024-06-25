@@ -1,0 +1,164 @@
+{%- assign wholesaler = false -%}
+{%- if page.handle == 'become-a-wholesaler' or page.handle contains 'wholesaler' -%}
+  {%- assign wholesaler = true -%}
+{%- endif -%}
+{%- if wholesaler -%}
+  {%- assign wholesaler_img = settings.wholesaler_img -%}
+  <div
+    class="wholesaler-banner lazyload"
+    {% if wholesaler_img != blank %}
+      data-bg="{{ wholesaler_img | img_url: '1x1' }}" data-bgset="{% include 'bgset', image: wholesaler_img %}"
+      data-sizes="auto" data-parent-fit="cover"
+      style="background-position: center center; background-image: url({{ wholesaler_img | img_url: '300x300' }});"
+    {% endif %}
+  >
+{%- endif -%}
+<div class="page-width">
+  <div class="grid{% unless wholesaler %} grid_contact{% endunless %}">
+    <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+      {%- unless wholesaler -%}
+        <div class="grid">
+          <div class="grid__item medium-up--one-half grid_item--contact">
+      {%- endunless -%}
+      <div class="section-header text-{% if wholesaler %}center{% else %}left section-header--contact{% endif %}">
+        <h1
+          {% if wholesaler %}
+            class="h-border-bottom textcenter border-color_d"
+          {% endif %}
+        >
+          {{ page.title }}
+        </h1>
+      </div>
+
+      {%- if wholesaler -%}
+        <div class="inner">
+      {%- endif -%}
+      {% if page.content.size > 0 %}
+        <div class="rte div_rich{% if wholesaler %} text-center{% endif %}">
+          {{ page.content }}
+        </div>
+      {% endif %}
+
+      <div class="contact-form form-vertical{% unless wholesaler %} div_rich{% endunless %}">
+        {%- assign formId = 'ContactForm' -%}
+        {%- if wholesaler -%}
+          {%- assign formId = 'ContactFormWholesaler' -%}
+        {% endif %}
+        {% form 'contact', id: formId %}
+          {% include 'form-status', form: form, form_id: formId %}
+
+          {%- if wholesaler -%}
+            <input type="hidden" id="{{ formId }}-location" name="contact[Form]" value="Requst for wholesaler account">
+          {% endif %}
+          <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half">
+              <label for="{{ formId }}-name">
+                {{- 'contact.form.name' | t -}}
+                {%- if wholesaler %}
+                  <span aria-hidden="true">*</span>
+                {%- endif -%}
+              </label>
+              <input
+                type="text"
+                id="{{ formId }}-name"
+                name="contact[{{ 'contact.form.name' | t }}]"
+                value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}"
+              >
+            </div>
+            <div class="grid__item medium-up--one-half">
+              <label for="{{ formId }}-email">
+                {{- 'contact.form.email' | t }}
+                <span aria-hidden="true">*</span></label
+              >
+              <input
+                type="email"
+                id="{{ formId }}-email"
+                name="contact[email]"
+                autocorrect="off"
+                autocapitalize="off"
+                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                aria-required="true"
+                {%- if form.errors contains 'email' -%}
+                  class="input--error"
+                  aria-invalid="true"
+                  aria-describedby="{{ formId }}-email-error"
+                {%- endif -%}
+              >
+              {%- if form.errors contains 'email' -%}
+                <span id="{{ formId}}-email-error" class="input-error-message">
+                  <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                  {% include 'icon-error' %}
+                  <span>
+                    {{- form.errors.translated_fields.email | capitalize }}
+                    {{ form.errors.messages.email }}.</span
+                  >
+                </span>
+              {%- endif -%}
+            </div>
+          </div>
+
+          {% if wholesaler %}
+            <label for="{{ formId }}-phone">Store Name & Location</label>
+            <input type="text" id="{{ formId }}-location" name="contact[store_name_location]" value="">
+          {% else %}
+            <label for="{{ formId }}-phone">{{ 'contact.form.phone' | t }}</label>
+            <input
+              type="tel"
+              id="{{ formId }}-phone"
+              name="contact[{{ 'contact.form.phone' | t }}]"
+              pattern="[0-9\-]*"
+              value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+            >
+          {% endif %}
+          <label for="{{ formId }}-message">{{ 'contact.form.message' | t }}</label>
+          <textarea
+            rows="{%- if wholesaler -%}10{%- else -%}6{%- endif -%}"
+            id="{{ formId }}-message"
+            name="contact[{{ 'contact.form.message' | t }}]"
+          >{% if form.body %}{{ form.body }}{% endif %}</textarea>
+
+          <input type="submit" class="btn btn-con-bg" value="{{ 'contact.form.submit' | t }}">
+        {% endform %}
+      </div>
+      {%- if wholesaler -%}
+        </div>
+      {%- endif -%}
+      {%- unless wholesaler -%}
+        </div>
+        <div class="grid__item medium-up--one-half">
+          {%- if settings.contact_map != blank -%}
+            <div class="contact_map">{{ settings.contact_map }}</div>
+          {%- endif -%}
+          <div class="contact_detail div_rich rte">
+            {%- if settings.contact_address != blank -%}
+              <div class="">
+                <i class="fa fa-home" aria-hidden="true"></i><span class="span">{{ settings.contact_address }}</span>
+              </div>
+            {%- endif -%}
+            {%- if settings.contact_number != blank -%}
+              <div class="">
+                <i class="fa fa-phone" aria-hidden="true"></i
+                ><a class="span" href="tel:{{ settings.contact_number }}">{{ settings.contact_number }}</a>
+              </div>
+            {%- endif -%}
+            {%- if settings.contact_email != blank -%}
+              <div class="">
+                <i class="fa fa-envelope" aria-hidden="true"></i
+                ><a class="span" href="mailto:{{ settings.contact_email }}">{{ settings.contact_email }}</a>
+              </div>
+            {%- endif -%}
+            {%- if settings.contact_time != blank -%}
+              <div class="">
+                <i class="fa fa-clock-o" aria-hidden="true"></i><span class="span">{{ settings.contact_time }}</span>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+        </div>
+      {%- endunless -%}
+    </div>
+  </div>
+</div>
+{%- if wholesaler -%}
+  </div>
+{%- endif -%}

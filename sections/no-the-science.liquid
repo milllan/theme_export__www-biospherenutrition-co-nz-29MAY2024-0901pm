@@ -1,0 +1,90 @@
+<div class="why_choose_biosphere the-science">
+  <div class="inner_container">
+     {% if section.settings.title != blank %}<div class="ttl__replenish">{{ section.settings.title }}</div>{% endif %}
+     {% if section.settings.content != blank %}<div class="">{{ section.settings.content }}</div>{% endif %}
+     <div class="biosphere_auto_contnet">
+       <div class="biosphere_data">
+         {% for block in section.blocks %}
+           <div class="fetured_itm">
+        <div class="inner_featured_itm">
+        {% if block.settings.bio_image %}
+          <div class="thumb_featured">
+          <img src="{{ block.settings.bio_image | img_url:'master' }}" alt="{{ block.settings.title | handle }}" title="{{ block.settings.title | handle }}" />
+        </div>
+          {% endif %}
+            <div class="block_title">
+          {% if block.settings.dark_title != blank %}    <h3 class="dark-title">{{ block.settings.dark_title }}</h3> {% endif %}
+                {% if block.settings.color_title != blank %}    <h3 class="color-title"> {{  block.settings.color_title }} </h3> {% endif %}
+            </div>
+          <div class="sub_title">
+            {% if block.settings.sub_title %} <h3> {{ block.settings.sub_title }}</h3> {% endif %}
+          </div>
+        </div>
+        </div>
+           {% endfor %}
+       </div>
+       <div class="image_certified_div">
+         {% if section.settings.btn_ttl != blank %}<a href="{{ section.settings.btn_url }}" class="btn">{{ section.settings.btn_ttl }}</a>{% endif %}
+       </div>
+     </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Science behind nutrition",
+    "settings": [{
+      "type": "richtext",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type": "text",
+      "id": "btn_ttl",
+      "label": "Button Title",
+      "default": "BUY NOW &amp; SAVE 20%"
+    },
+      {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button URL"
+    }],
+    "blocks": [
+      {
+        "type": "biosphere_block",
+        "name": "Biosphere Block",
+        "settings": [
+        {
+          "type": "image_picker",
+          "id": "bio_image",
+          "label": "Biosphere Image"
+        },
+        {
+          "type": "text",
+          "id": "dark_title",
+          "label": "Biosphere Title"
+        },
+        {
+          "type": "text",
+          "id": "color_title",
+          "label": "Biosphere Title"
+        },
+        {
+          "type": "text",
+          "id": "sub_title",
+          "label": "Sub title"
+        }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "Science behind nutrition",
+      "category": "text"
+    }]
+  }
+{% endschema %}

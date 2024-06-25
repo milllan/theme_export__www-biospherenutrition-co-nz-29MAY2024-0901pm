@@ -1,0 +1,94 @@
+<style>
+.wrp-{{ section.id }} {
+        background: url("{{ section.settings.bg_image | img_url: 'master' }}");
+        background-repeat: no-repeat;
+        background-size: cover;
+}
+
+  
+</style>
+
+<div class="wrp-wc-img-txt {% if section.settings.bg_image != blank %} wrp-{{ section.id }} {% endif %}" id="Get-sun-exposure">
+    <div class="article_container">
+    {% if section.settings.text != blank %} <h4 class="sameasallsize">{{ section.settings.text  }}</h4> {% endif %}
+        <div class="row">
+             <div class="col-25">
+                {% if section.settings.top_img  != blank %}
+                <div class="inner_img">
+                  <img src="{{  section.settings.top_img   |img_url: 'master' }}" class="lazyloaded">
+                </div>
+                {% endif %}
+              </div>
+              <div class="col-75">
+               {% if section.settings.top_content != blank %} 
+                 <div class="inner-content">
+                  {{ section.settings.top_content }}
+                </div>
+                {% endif %}
+              </div>
+
+        </div>
+        <div class="row">
+            <div class="col-75">
+                  {% if section.settings.bottom_content != blank %}
+                  <div class="inner-content">
+                  {{ section.settings.bottom_content }}
+                  </div>
+                  {% endif %}
+            </div>          
+            <div class="col-25">
+              {% if section.settings.bottom_img != blank %}
+                  <div class="inner_img">
+                    <img src="{{ section.settings.bottom_img  |img_url: 'master' }}" class="lazyloaded">
+                  </div>
+                {% endif %}
+              </div>
+
+            </div>
+        </div>        
+    </div>
+
+
+
+{% schema %}
+  {
+    "name": "Art bg img with text-img",
+    "settings": [
+      {
+        "type" : "image_picker",
+        "id" : "bg_image",
+        "label" : "Background image"
+      },
+      {
+        "type" : "text",
+        "id" : "text",
+        "label" : "Title"
+      },
+      {
+        "type" : "richtext",
+        "id" : "top_content",
+        "label" : "Top row description"
+      },
+      {
+        "type" : "image_picker",
+        "id" : "top_img",
+        "label" : "Top row image"
+      },
+      {
+        "type" : "richtext",
+        "id" : "bottom_content",
+        "label" : "Bottom row description"
+      },
+      {
+        "type" : "image_picker",
+        "id" : "bottom_img",
+        "label" : "Bottom row image"
+      }
+    ],
+     "presets" :  [
+       {
+         "name" : "Article BG image with txt-img third"
+       }
+     ]
+  }
+{% endschema %}

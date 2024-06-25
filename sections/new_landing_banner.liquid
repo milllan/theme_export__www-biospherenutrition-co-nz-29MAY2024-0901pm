@@ -1,0 +1,147 @@
+<div class="landing_banner new_landing_banner" style="background: url({{ section.settings.image | img_url:'master' }}) no-repeat scroll center; background-size: cover;">
+  <div class="container">
+    <div class="inner_landing_banner">
+      <div class="description">
+        {% if section.settings.title != blank %}<h1 class="main_title">{{ section.settings.title }}</h1>{% endif %}
+        {% if section.settings.subttl != blank %}<span class="label_ttl">{{ section.settings.subttl }}</span>{% endif %}
+        {% if section.settings.content != blank %}{{ section.settings.content }}{% endif %}
+        <div class="review_slider">
+          <div class="review_view">
+            <div class="iner_rv_container">
+              <div class="left_div">
+                {% if section.settings.customer_review != blank %}<h2 class="count_text">{{ section.settings.customer_review }}</h2>{% endif %}
+                {% if section.settings.customer_review_text != blank %}<span class="count_text_text">{{ section.settings.customer_review_text }}</span>{% endif %}
+              </div>
+              <div class="center_div">
+                <img src="{{ section.settings.reviewimage | img_url:'master' }}" alt="{{ section.settings.reviewimage | handle }}" title="{{ section.settings.reviewimage | handle }}" />
+              </div>
+              <div class="right_div">
+                {% if section.settings.avg_rating_count != blank %}<h2 class="count_text">{{ section.settings.avg_rating_count }}</h2>{% endif %}
+                {% if section.settings.avg_rating_text != blank %}<span class="count_text_text">{{ section.settings.avg_rating_text }}</span>{% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% if section.settings.straimage %}
+        <div class="star_image_div">
+        <img src="{{ section.settings.straimage | img_url:'master' }}" alt="{{ section.settings.straimage | handle }}" title="{{ section.settings.straimage | handle }}" />
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.new_landing_banner .description h1.main_title {position: relative;padding-bottom: 25px;}
+.new_landing_banner .description  h1.main_title:after {content: "";left: 0;right: 0;width: 290px;height: 2px;background: #0075ba;position: absolute;bottom: -10px;margin: auto;}
+.new_landing_banner .description p{margin:19px 0px;}
+.new_landing_banner .iner_rv_container .left_div { margin-right: 70px;}
+.new_landing_banner .iner_rv_container .center_div{order:3; margin: -145px 0px -250px 45px;}
+.new_landing_banner .iner_rv_container .center_div img {max-width:600px;} 
+.new_landing_banner .iner_rv_container .left_div .count_text{padding-left:30px;}
+.new_landing_banner .iner_rv_container .left_div .count_text:after{left:0px}
+.new_landing_banner .star_image_div {text-align: start;margin-left:25%;padding-top: 50px;}
+/*=============================== Responsive====================================================================== */
+   @media (max-width:1440px ) {
+  .new_landing_banner .star_image_div{margin-left:20%}
+
+  }
+  @media (max-width:1366px) {
+  .new_landing_banner .star_image_div{margin-left:15%}
+
+  }
+ @media (max-width:1199px) {
+  .new_landing_banner .star_image_div{margin-left:10%}
+
+  }
+
+  @media (max-width:991px) {
+      .new_landing_banner .star_image_div{max-width:350px;margin:0 auto;padding-top:80px;}
+      .new_landing_banner .iner_rv_container .center_div img {max-width: 350px;}
+    .new_landing_banner .iner_rv_container{padding:50px 15px 35px;}
+      .new_landing_banner .iner_rv_container .center_div{ line-height:0px;   margin: -200px 0px -250px 45px;}
+  }
+  @media (max-width:767px) {
+      .new_landing_banner .star_image_div{padding-top:25px;}
+      .new_landing_banner .iner_rv_container { padding: 50px 30px;position: relative;}    
+      .new_landing_banner .iner_rv_container .left_div{position: absolute;top: 50%;left: 10%;order: 1;transform: translate(0%, -50%);}
+      .new_landing_banner .iner_rv_container .center_div{order:2;}
+      .new_landing_banner .iner_rv_container  .right_div {order: 3;position: absolute;top: 50%;right: 10%;transform: translate(0%, -50%);}
+      .new_landing_banner .star_image_div {padding-top: 40px;text-align: center;}
+  }
+   @media (max-width:479px) {
+.new_landing_banner .iner_rv_container{padding: 50px 30px 50%;margin-top:35%;}
+     .new_landing_banner .iner_rv_container .left_div{left: -25%;transform: translate(0%, 115%);}
+     .new_landing_banner .iner_rv_container .right_div{right: -25%;transform: translate(0%, 115%);}
+
+  }
+
+   @media (max-width:375px) {
+     .new_landing_banner .iner_rv_container{padding: 50px 30px 60%}
+   }
+</style>
+
+{% schema %}
+  {
+    "name": "Landing Banner",
+    "settings": [{
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subttl",
+      "label": "SubTitle"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "straimage",
+      "label": "Review Star Image"
+    },
+    {
+      "type": "header",
+      "content": "Review Slider"
+    },
+    {
+      "type": "image_picker",
+      "id": "reviewimage",
+      "label": "Product review Image"
+    },
+    {
+      "type": "text",
+      "id": "customer_review",
+      "label": "Customer Reviews Count"
+    },
+    {
+      "type": "text",
+      "id": "customer_review_text",
+      "label": "Customer Reviews Text"
+    },
+    {
+      "type": "text",
+      "id": "avg_rating_count",
+      "label": "Average Rating Count"
+    },
+    {
+      "type": "text",
+      "id": "avg_rating_text",
+      "label": "Average Rating Text"
+    }],
+    "presets": [{
+      "name": "New Landing Banner",
+      "category": "text"
+    }]
+  }
+{% endschema %}

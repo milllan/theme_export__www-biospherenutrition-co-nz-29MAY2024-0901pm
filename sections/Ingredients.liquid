@@ -1,0 +1,531 @@
+<div class="ingredients-section" style="background-image: url({{ section.settings.bg_img | img_url: 'master' }});">
+  <div class="page-width">
+    <div class="ingredients-content {% if section.settings.new_ingridt %}new_ingrid{% endif %}">
+      <div class="ingredients-head">
+        <h2>{{ section.settings.title }}</h2>
+        <p class="ingredients-desc">{{ section.settings.desc }}</p>
+      </div>
+      <div class="ingredients-quality">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'quality' %}
+              <div class="quality-text">
+                <span>{{ block.settings['svg-icon'] }}</span>
+                <p>{{ block.settings['qua-txt'] }}</p>
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+      {% if section.settings['sec-img'] != blank %}
+        <div class="ingredients-section-img">
+          <img src="{{ section.settings.sec-img | img_url: 'master' }}">
+        </div>
+      {% endif %}
+      <div class="ingredients-testimonial">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'testimonial' %}
+              <div class="ingredients-testimonial-box">
+                {% if block.settings.testi_img != blank %}
+                  <img src="{{ block.settings.testi_img | img_url: 'master' }}">
+                {% endif %}
+                <h3>{{ block.settings['testimonial-tital'] }}</h3>
+                <p>{{ block.settings['testimonial-desc'] }}</p>
+                <div class="ing-weight-box">
+                  {% if block.settings['ing-weight'] != blank %}
+                    <p class="ing-weight">{{ block.settings['ing-weight'] }}</p>
+                  {% endif %}
+                  {% if block.settings['ing-unit'] != blank %}{{ block.settings['ing-unit'] }}{% endif %}
+                </div>
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+      <div class="ingredients-products">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'Products' %}
+              <div class="ingredients-products-box">
+                {% if block.settings.pro_img != blank %}
+                  <div class="ingredients-products-img">
+                    <img src="{{ block.settings.pro_img | img_url: 'master' }}">
+                  </div>
+                {% endif %}
+                <div class="ingredients-products-content">
+                  <h5>{{ block.settings['pro-title'] }}</h5>
+                  <p>{{ block.settings['pro-desc'] }}</p>
+                </div>
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+      <div class="info-btn">
+        <span>
+          {{ section.settings['btn-svg'] }}
+        </span>
+        <div class="nutrition">
+          <h5>{{ section.settings['btn-txt'] }}</h5>
+          <p>{{ section.settings['txt-btn'] }}</p>
+        </div>
+      </div>
+      <div class="ingre_table_overlay" style="display: none;"></div>
+      <div class="ingredient_modal" style="display: none;">
+        <img src="{{ section.settings.ing-popup | img_url: 'master' }}" alt="ingredient table">
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+    .ingredients-section{
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+    .ingredients-section .page-width {
+      max-width: 1310px;
+  }
+    .ingredients-content {
+      text-align: center;
+  }
+    .ingredients-content h2 {
+      font-size: 48px;
+      color: #ffffff;
+      font-weight: 800;
+      letter-spacing: 0.01px;
+      text-transform: inherit;
+      margin-bottom: 10px;
+  }
+    .ingredients-desc {
+      font-size: 24px;
+      color: #ffffff;
+      font-weight: 400;
+      max-width: 910px;
+      width: 100%;
+      margin: 0 auto;
+      position: relative;
+      padding-bottom: 40px;
+  }
+    .ingredients-desc:after{content: "";
+      position: absolute;
+      height: 4px;
+      width: 100px;
+      background-color: rgba(255,255,255,0.5019607843137255);
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);}
+    .quality-text span {
+      line-height: 0;
+  }
+    .ingredients-quality p {
+      font-size: 22px;
+      color: #ffffff;
+      font-weight: 700;
+      margin-left: 7px;
+  }
+    .quality-text {
+      display: flex;
+      align-items: center;
+  }
+    .ingredients-quality {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 70px;
+  }
+    .ingredients-head {
+      margin-bottom: 50px;
+  }
+    .ingredients-testimonial-box {
+      border-radius: 25px;
+      background-color: #ffffff;
+      padding: 25px 22px 40px;
+      position: relative;
+  }
+    .ingredients-testimonial {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 50px;
+  }
+    .ingredients-testimonial-box p {
+      font-size: 24px;
+      color: #384151;
+      font-family: Figtree !important;
+  }
+    .ingredients-testimonial-box h3 {
+      font-size: 26px;
+      color: #384151;
+      font-weight: 800;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+      position: relative;
+  }
+    .new_ingrid .ing-weight-box {display:none}
+    .ing-weight-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      background-color: #384151;
+      border: 3px solid #ffffff;
+      font-size: 20px;
+      letter-spacing: 0px;
+      text-transform: uppercase;
+      color: #ffffff;
+      font-weight: 800;
+      padding: 3px 3px;
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+  }
+    .ing-weight {
+      font-size: 26px;
+      color: #384151;
+      font-weight: 900;
+      border-radius: 16px;
+      background-color: #ffffff;
+      line-height: 25px;
+      padding: 3.5px 19px;
+      margin-right: 3px;
+  }
+    .ingredients-section-img {
+      margin-bottom: 25px;
+  }
+    .ingredients-testimonial-box h3:after {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 4px;
+      background-color: #384151;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+  }
+    .ingredients-products-box {
+      display: flex;
+      width: calc(50% - 15px);
+      border-radius: 32px;
+      background-color: #ffffff;
+      text-align: start;
+      padding: 30px 30px 30px 22px;
+  }
+    .ingredients-products-img img {
+      max-width: 202px;
+  }
+    .ingredients-products-content h5 {
+      font-size: 26px;
+      color: #384151;
+      font-weight: 800;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 13px;
+  }
+    .ingredients-products-content h5:after{content: '';
+      position: absolute;
+      width: 50px;
+      height: 4px;
+      background-color: #384151;
+      bottom: 0;
+      left: 0%;
+      }
+    .ingredients-products-content p {
+      font-size: 24px;
+      color: #384151;
+      /* font-weight: 600; */
+      font-family: Figtree !important;
+  }
+    .ingredients-products {
+      display: flex;
+      flex-wrap: wrap;
+      height: 100%;
+      gap: 30px;
+      margin-bottom: 100px;
+  }
+    .ingredients-products-content {
+      margin-left: 25px;
+  }
+    .info-btn {
+      border-radius: 40px;
+      background-color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 50px 8px 8px;
+      cursor: pointer;
+  }
+    .info-btn span {
+      line-height: 0;
+  }
+    .nutrition h5 {
+      font-size: 26px;
+      line-height: 30px;
+      text-transform: uppercase;
+      color: #384151;
+      font-weight: 900;
+      margin-bottom: 0;
+  }
+    .nutrition p {
+      opacity: 0.541;
+      font-size: 18px;
+      line-height: 30px;
+      text-transform: uppercase;
+      color: #384151;
+      font-weight: 600;
+  }
+    .nutrition {
+      margin-left: 20px;
+  }
+   .ingre_table_overlay {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: black;
+      opacity: 0.5;
+      z-index: 2;
+      display: none;
+  }
+   .ingredient_modal {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(100% - 25px);
+      max-width: 50%;
+      z-index: 2;
+      display: none;
+  }
+    .ingredient_modal img {
+      width: 100%;
+      max-width: 800px;
+  }
+    .ingredients-desc{}
+
+    @media screen and (max-width:1440px){
+      .ingredients-quality {
+        display: block;
+      }
+      .quality-text {
+        justify-content: center;
+      }
+    }
+    @media screen and (max-width:992px){
+      .ingredients-content h2{
+        font-size: 32px;
+      }
+      .ingredients-desc {
+        font-size: 22px;
+        line-height: 30px;
+      }
+      .ingredients-quality p {
+        font-size: 25px;
+      }
+      .ingredients-testimonial {
+        display: block;
+      }
+      .ingredients-testimonial-box {
+        margin-bottom: 50px;
+      }
+      .ingredients-products-box {
+        width: 100%;
+        margin-bottom: 50px;
+      }
+      .ingredients-products {
+        display: block;
+      }
+      .ingredient_modal {width: 100%;max-width: 100%;}
+    }
+     @media screen and (max-width: 567px){
+      .ingredients-products-img img {
+        max-width: 130px;
+      }
+      .ingredients-products-box {
+        display: block;
+      }
+      .ingredients-products-content {
+        margin-left: 0;
+      }
+        .info-btn span {
+        display: none;
+      }
+     .info-btn {
+        padding: 7px 20px !important;
+       display: none;
+      }
+
+      .nutrition {
+        margin-left: 0;
+      }
+       .ingredients-head {
+      margin-bottom: 25px;
+      }
+      .ingredients-quality p {
+        font-size: 17px;
+      }
+      .ingredients-section {
+        padding-top: 50px;
+        padding-bottom: 50px;
+      }
+      .ingredients-quality p {
+        font-size: 17px;
+      }
+       .ingredients-quality{
+         margin-bottom: 25px;
+       }
+       .ingredients-products-img{    display: flex;    justify-content: center;}
+       .ingredients-products-box{text-align: center;}
+       .ingredients-products{margin-bottom: 30px;}
+       .nutrition h5 {font-size: 17px;}
+       .nutrition p{font-size: 15px;line-height: 14px;}
+       .nutrition p{font-size: 13px;}
+       .ingredients-products-content h5:after{left: 50%;transform: translate(-50%, -50%);right: 50%;}
+       .ingredients-testimonial-box p, .ingredients-products-content p {font-size: 16px;}
+    }
+</style>
+{% schema %}
+{
+  "name": "ingredients",
+  "settings": [
+    {
+      "type":"checkbox",
+      "id":"new_ingridt",
+      "label" : "New Ingredients"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_img",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "html",
+      "id": "desc",
+      "label": "Description"
+    },
+    {
+      "type": "image_picker",
+      "id": "sec-img",
+      "label": "Section Image"
+    },
+    {
+      "type": "html",
+      "id": "btn-svg",
+      "label": "Button svg"
+    },
+    {
+      "type": "text",
+      "id": "btn-txt",
+      "label": "Button main text"
+    },
+    {
+      "type": "text",
+      "id": "txt-btn",
+      "label": "Button text"
+    },
+    {
+      "type": "image_picker",
+      "id": "ing-popup",
+      "label": "popup image"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "quality",
+      "name": "Quality",
+      "settings": [
+        {
+          "type": "html",
+          "id": "svg-icon",
+          "label": "SVG icon"
+        },
+        {
+          "type": "text",
+          "id": "qua-txt",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "testimonial",
+      "name": "testimonial",
+      "settings": [
+        {
+          "type" :"image_picker",
+          "id" : "testi_img",
+          "label" : "Testimonial Image"
+        },
+        {
+          "type": "text",
+          "id": "testimonial-tital",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "testimonial-desc",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "ing-weight",
+          "label": "Weight"
+        },
+        {
+          "type": "text",
+          "id": "ing-unit",
+          "label": "Weight unit"
+        }
+      ]
+    },
+    {
+      "type": "Products",
+      "name": "Ingredients Products",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "pro_img",
+          "label": "product image"
+        },
+        {
+          "type": "text",
+          "id": "pro-title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "pro-desc",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ingredients"
+    }
+  ]
+}
+{% endschema %}

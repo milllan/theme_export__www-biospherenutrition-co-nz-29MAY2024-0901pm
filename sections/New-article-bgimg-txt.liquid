@@ -1,0 +1,96 @@
+<style>
+.wrp-{{ section.id }} {
+        background: url("{{ section.settings.bg_image | img_url: 'master' }}");
+        background-repeat: no-repeat;
+        background-size: cover;
+}
+
+  
+</style>
+
+<div class="wrp-bgi-only-txt wrp-{{ section.id }}" id="ExerciseDaily">
+    <div class="article_container">
+    {% if section.settings.main-text != blank %} <h4 class="sameasallsize">{{ section.settings.main-text  }}</h4> {% endif %}
+        <div class="row">
+                <div class="col-12">
+                    {% if section.settings.text-1 != blank %}     <h5> {{ section.settings.text-1 }}</h5> {% endif %}
+                    {% if section.settings.top_content-1 != blank %}
+                        <div class="inside-txt">
+                          {{ section.settings.top_content-1 }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-6">
+                    {% if section.settings.text-2 != blank %}  <h5> {{ section.settings.text-2 }}</h5> {% endif %}
+                    {% if section.settings.top_content-2 != blank %}
+                        <div class="inside-txt">
+                          {{ section.settings.top_content-2 }}
+                        </div>
+                   {% endif %}
+                </div>
+                <div class="col-6">
+                  {% if section.settings.text-3 != blank %} <h5> {{ section.settings.text-3 }}</h5> {% endif %}
+                  {% if section.settings.top_content-3 != blank %}
+                    <div class="inside-txt">
+                      {{ section.settings.top_content-3 }}
+                    </div>
+                  {% endif %}
+                </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Art BG img with column",
+    "settings": [
+      {
+        "type" : "image_picker",
+        "id" : "bg_image",
+        "label" : "Background image"
+      },
+       {
+        "type" : "text",
+        "id" : "main-text",
+        "label" : "Main title"
+      },
+      {
+        "type" : "text",
+        "id" : "text-1",
+        "label" : "First sub title"
+      },
+      {
+        "type" : "richtext",
+        "id" : "top_content-1",
+        "label" : "First description"
+      },
+            {
+        "type" : "text",
+        "id" : "text-2",
+        "label" : "Second sub title"
+      },
+      {
+        "type" : "richtext",
+        "id" : "top_content-2",
+        "label" : "Second description"
+      },
+            {
+        "type" : "text",
+        "id" : "text-3",
+        "label" : "Third sub title"
+      },
+      {
+        "type" : "richtext",
+        "id" : "top_content-3",
+        "label" : "Third description"
+      }
+    ],
+     "presets" :  [
+       {
+         "name" : "Article BG img with column"
+       }
+     ]
+  }
+{% endschema %}

@@ -1,0 +1,74 @@
+<div data-section-id="{{ section.id }}" data-section-type="as-tab-section" class="nitric-oxide-tab">{%- assign sec = section.settings -%}
+  <div class="page-width">
+    {%- if section.settings.title != blank -%}
+    <div class="section-header text-center">
+      <h2 class="h1 no-ls">{{ section.settings.title }}</h2>
+    </div>
+    {%- endif -%}
+    <div class="tab_wrapper">{%- capture tab_title_wrapper -%}
+      <ul class="tab_title_wrapper fw-bold small--hide">{%- for block in section.blocks -%}
+        {% if block.settings.title != blank  %}<li class="tab_title{% if forloop.first %} active{% endif %}" {{ block.shopify_arttibutes }} data-href="#{{ block.id }}">{{ block.settings.title }}</li>{%- endif -%}
+        {%- endfor -%}
+      </ul>{%- endcapture -%}{%- assign ttw = tab_title_wrapper | strip | strip_html -%}{%- if ttw != blank -%}{{tab_title_wrapper}}{%- endif -%}
+      <ul class="tab_content_wrapper fw-medium">{%- for block in section.blocks -%}
+        <li class="tab_content{% if forloop.first %} active{% endif %} rte{% if section.blocks.size == 1 %} only_content{% endif %}" id="{{ block.id }}" {{ block.shopify_arttibutes }}>
+          {% if block.settings.title != blank  %}<div class="tab_content_title medium-up--hide"><i class="icon"></i><span>{{ block.settings.title }}</span></div>{%- endif -%}
+          <div class="inner_tab_content">
+            {{ block.settings.detail }}
+          </div>
+            </li>          
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" defer="defer">  
+  window.addEventListener('DOMContentLoaded', (event) => {
+    $(document).on('click','.tab_title',function(){
+      var _this = $(this);
+      _this.addClass('active');
+      _this.siblings().removeClass('active');
+      $(_this.data('href')).addClass('active');
+      $(_this.data('href')).siblings().removeClass('active');
+    });
+  });
+</script>
+{% schema %}
+  {
+    "name": "Tabs",
+	"max_blocks":5,
+    "settings": [
+	 {
+		"type":"text",
+		"label":"Enter section title",
+		"id":"title"
+	 }
+	],
+	"blocks":[
+      {
+        "type":"tab",
+		"name":"Tab block",
+		"settings":[
+		{
+          "type":"text",
+          "label":"Enter tab title",
+          "id":"title",
+          "default":"Natural vs. Synthetic Astaxanthin"
+		},
+		{
+          "type":"richtext",
+          "label":"Enter tab detail",
+          "id":"detail",
+		  "default":"<p>The amount of Astaxanthin you should be taking will vary depending on your current health and what results you are looking to get out of it. Take at least 6mg a day for general health and an antioxidant boost and look to increase your dosage towards 12mg each day to notice significant benefits and treat ailments. Make sure you take your Astaxanthin with food, ideally alongside some healthy fats to assist with absorption.</p><p>You can read more about the right Astaxanthin dose here.</p>"
+		}
+		]
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

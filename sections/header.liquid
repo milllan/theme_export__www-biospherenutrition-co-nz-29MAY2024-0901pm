@@ -1,0 +1,875 @@
+{%- if section.settings.message -%}
+  <style>
+    {% if section.settings.logo != blank %}
+      .site-header__logo-image {
+        max-width: {{ section.settings.logo_max_width | escape }}px;height:auto;
+      }
+    {% endif %}
+.site-header__logo-image img{height:auto;}
+    {% if section.settings.align_logo == 'left' %}
+      .site-header__logo-image {
+        margin: 0;
+      }
+    {% endif %}
+  </style>
+{%- endif -%}
+
+{%- include 'search-drawer' -%}
+
+<div data-section-id="{{ section.id }}" data-section-type="header-section" data-header-section>
+
+  {%- if section.settings.s_h_con or section.settings.message -%}
+    <style>
+      .site-header-contact {
+        background-color: {{ section.settings.color_bg }};
+      }
+
+      .announcement-bar__link:hover {
+        {% assign brightness = section.settings.color_bg | color_brightness %}
+
+        {% if brightness <= 192 %}
+        {% assign lightenAmount = 255 | minus: brightness | divided_by: 255 | times: 16 %}
+        background-color: {{ section.settings.color_bg | color_lighten: lightenAmount }};
+        {% else %}
+        {% assign darkenAmount = 255 | divided_by: brightness | times: 8 %}
+        background-color: {{ section.settings.color_bg | color_darken: darkenAmount }};
+        {% endif %}
+      }
+
+      .announcement-bar__message,.site-header-contact {
+        color: {{ section.settings.color_text }};
+      }
+    </style>
+
+    <div class="site-header-contact{% if section.settings.message %} _has_annoumnet{% if section.settings.home_page_only %} _{{request.page_type }}{% else %} _index{% endif %}{% endif %}">
+      <div class="page-width">
+        <div class="sh-con_inner">
+          {%- if section.settings.s_h_con_d_1 != blank -%}
+            <div class="sh_con_detail first-child">
+              {%- for i in (1..2) -%}
+                {%- capture anchro -%}s_h_con_d_{{i}}{%- endcapture -%}
+                {%- if section.settings[anchro] != balnk -%}
+                  <a
+                    {% if forloop.last %}
+                      class="last"
+                    {% endif %}
+                    href="{%- if forloop.first -%}mailto{%- else -%}tel{%- endif -%}:{{section.settings[anchro]}}"
+                    title="{{section.settings[anchro]}}"
+                  >
+                    {%- if forloop.first -%}
+                      <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                    {% else -%}
+                      <i class="fa fa-phone" aria-hidden="true"></i>
+                    {%- endif -%}
+                    {{- section.settings[anchro] -}}
+                  </a>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+          {% if section.settings.message %}
+            {% if section.settings.home_page_only == false or request.page_type == 'index' %}
+              <div
+                class="announcement-bar"
+                role="region"
+                aria-label="{{ 'sections.header.announcement_bar_label' | t }}"
+              >
+                <div class="announcement-bar__message">{{ section.settings['announce-label'] }}</div>
+              </div>
+            {% endif %}
+          {% endif %}
+          {%- if settings.social_twitter_link != blank
+            or settings.social_facebook_link != blank
+            or settings.social_pinterest_link != blank
+            or settings.social_instagram_link != blank
+            or settings.social_tumblr_link != blank
+            or settings.social_snapchat_link != blank
+            or settings.social_youtube_link != blank
+            or settings.social_vimeo_link != blank
+            or request.page_type == 'article'
+            or request.page_type == 'blog'
+          -%}
+            {%- assign social_icons = true -%}
+          {%- endif -%}
+          {%- if social_icons and section.settings.s_h_con_social -%}
+            {%- assign socials = 'Twitter Facebook Pinterest Instagram Linkedin Tumblr Snapchat Vimeo YouTube'
+              | split: ' '
+            -%}
+            <div class="sh_con_social last-child">
+              <ul class="list--inline social-icons">
+                {%- for social in socials -%}
+                  {%- assign social_link = social | prepend: 'social_' | append: '_link' | downcase -%}
+                  {%- assign icon_link = social | prepend: 'icon-' | downcase -%}
+                  {%- if settings[social_link] != blank -%}
+                    <li class="social-icons__item{% if forloop.last %} last{% endif %}">
+                      <a
+                        class="social-icons__link"
+                        href="{{ settings[social_link] | escape }}"
+                        aria-describedby="a11y-external-message"
+                      >
+                        {%- include icon_link -%}
+                        <span class="icon__fallback-text">{{ social }}</span>
+                      </a>
+                    </li>
+                  {%- endif -%}
+                {%- endfor -%}
+
+                {%- if request.page_type == 'blog' or request.page_type == 'article' -%}
+                  <li class="last-child">
+                    <a class="social-icons__link" href="{{ shop.url }}{{ blog.url }}.atom">
+                      {% include 'icon-rss' %}
+                      <span class="icon__fallback-text">RSS</span>
+                    </a>
+                  </li>
+                {%- endif -%}
+              </ul>
+            </div>
+          {%- endif %}
+        </div>
+      </div>
+    </div>
+
+  {%- endif -%}
+
+  {% comment %}
+    {% if section.settings.message %}
+      {% if section.settings.home_page_only == false or request.page_type == 'index' %}
+        <style>
+          .announcement-bar {
+            background-color: {{ section.settings.color_bg }};
+          }
+
+          .announcement-bar__link:hover {
+            {% assign brightness = section.settings.color_bg | color_brightness %}
+
+            {% if brightness <= 192 %}
+              {% assign lightenAmount = 255 | minus: brightness | divided_by: 255 | times: 16 %}
+              background-color: {{ section.settings.color_bg | color_lighten: lightenAmount }};
+            {% else %}
+              {% assign darkenAmount = 255 | divided_by: brightness | times: 8 %}
+              background-color: {{ section.settings.color_bg | color_darken: darkenAmount }};
+            {% endif %}
+          }
+
+          .announcement-bar__message {
+            color: {{ section.settings.color_text }};
+          }
+
+        </style>
+
+        <div class="announcement-bar" role="region" aria-label="{{ 'sections.header.announcement_bar_label' | t }}">
+          {%- unless section.settings.message_link == blank -%}
+            <a href="{{ section.settings.message_link }}" class="announcement-bar__link">
+          {%- endunless -%}
+              <p class="announcement-bar__message">{{ section.settings.message_text | escape }}</p>
+          {%- unless section.settings.message_link == blank -%}
+            </a>
+          {%- endunless -%}
+        </div>
+
+      {% endif %}
+    {% endif %}
+  {% endcomment %}
+
+  {%- assign h_sticky = false -%}
+  {%- if template contains 'page.about' %}
+    {%- assign h_sticky = true -%}
+  {%- endif -%}
+  {%- if request.page_type == 'index' and section.settings.h_s_home %}
+    {%- assign h_sticky = true -%}
+  {%- endif -%}
+
+  <style type="text/css">
+    {%- if section.settings.h_s_color != 'rgb(0,0,0)' and section.settings.h_s_color != blank and h_sticky -%}
+    .site-nav a, .site-header__icons-wrapper,.mobile-nav__link,.site-nav__link--button{ color: {{ section.settings.h_s_color }}; }
+    {%- endif -%}
+    {%- if section.settings.b_b_color != 'rgb(0,0,0)' and section.settings.b_b_color != blank -%}
+    .site-nav__link--active .site-nav__label,.site-nav__link:not([disabled]):hover .site-nav__label,
+    .site-nav__link:focus .site-nav__label,.site-nav__link--button:hover {
+      border-bottom-color: {{ section.settings.b_b_color }};
+    }
+    .site-nav__link--search .site-header__icon{ border-color: {{ section.settings.b_b_color }}; }
+    .site-nav__link--active,.site-nav__link:not([disabled]):hover, .site-nav__link:focus,.site-nav__link:not([disabled]):hover .site-header__icon,
+    .site-nav__link:focus .site-header__icon,a.site-header__icon:not([disabled]):hover, a.site-header__icon:focus,.site-header__icon:not([disabled]):hover,.site-header__icon:focus,.site-header__icon.header_icon_active,.mobile-nav__link:not([disabled]):hover,.mobile-nav__link:focus{ color: {{ section.settings.b_b_color }}; }
+    {%- endif -%}
+  </style>
+
+
+  <header
+    class=" 
+      site-header{% if section.settings.align_logo == 'left' %} logo--left{% else %} logo--center{% endif %}
+      {%- if h_sticky %} h_s_home{%- else %} site-header-statick{%- endif -%}
+    "
+    role="banner"
+  >
+    <div class="grid grid--no-gutters grid--table site-header__mobile-nav">
+      {% if section.settings.align_logo == 'center' %}
+        {%- assign logo_classes = 'large-up--one-third medium-up--push-one-third logo-align--center' -%}
+      {% else %}
+        {%- assign logo_classes = 'large-up--one-quarter logo-align--left' -%}
+      {% endif %}
+      <div class="wrp-menu-icon">
+        {% unless linklists[section.settings.main_linklist] == blank %}
+          <button
+            type="button"
+            class="btn--link site-header__icon site-header__menu js-mobile-nav-toggle mobile-nav--open"
+            aria-controls="MobileNav"
+            aria-expanded="false"
+            aria-label="{{ 'layout.navigation.menu' | t }}"
+          >
+            {% include 'icon-hamburger' %}
+            {% include 'icon-close' %}
+          </button>
+        {% endunless %}
+      </div>
+      <div class="grid__item {{ logo_classes }}">
+        {%- include 'header-logo', h_sticky: h_sticky- %}
+      </div>
+
+      {% if section.settings.align_logo == 'left' %}
+        <nav class="s-nav grid__item medium-up--one-half medium-down--hide" id="AccessibleNav" role="navigation">
+          {% include 'site-nav', linklist: section.settings.main_linklist %}
+        </nav>
+      {% endif %}
+
+      <div class="grid__item {% if section.settings.align_logo == 'left' %}medium-up--one-quarter{% else %}medium-up--one-third medium-up--push-one-third{% endif %} text-right site-header__icons{% if shop.customer_accounts_enabled %} site-header__icons--plus{% endif %}">
+        <div class="site-header__icons-wrapper">
+          <button
+            type="button"
+            class="icon-search btn--link site-header__icon site-header__search-toggle js-drawer-open-top large-up--hide{% if canonical_url contains routes.search_url %} header_icon_active{% endif %}"
+          >
+            {% include 'icon-search' %}
+            <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
+          </button>
+
+          {% if shop.customer_accounts_enabled %}
+            {% if customer %}
+              <a
+                href="{{ routes.account_url }}"
+                class="icon-login site-header__icon site-header__account{% if canonical_url contains routes.account_url %} header_icon_active{% endif %}"
+              >
+                {% include 'icon-login' %}
+                <span class="icon__fallback-text">{{ 'layout.customer.account' | t }}</span>
+              </a>
+            {% else %}
+              <a
+                href="{{ routes.account_login_url }}"
+                class="icon-login site-header__icon site-header__account{% if canonical_url contains routes.account_login_url %} header_icon_active{% endif %}"
+              >
+                {% include 'icon-login' %}
+                <span class="icon__fallback-text">{{ 'layout.customer.log_in' | t }}</span>
+              </a>
+            {% endif %}
+          {% endif %}
+
+          <a class="site-header__icon header__icon--cart site-header__cart{% if canonical_url contains routes.cart_url %} header_icon_active{% endif %}">
+            <span class="po_relative">
+              {% include 'icon-cart' %}
+              <div
+                id="CartCount"
+                class="site-header__cart-count{% if cart.item_count == 0 %} hide{% endif %}"
+                data-cart-count-bubble
+              >
+                <span data-cart-count>{{ cart.item_count }}</span>
+                <span class="icon__fallback-text medium-up--hide">
+                  {{- 'layout.cart.items_count' | t: count: cart.item_count -}}
+                </span>
+              </div>
+            </span>
+            <span class="icon__text medium-down--hide">{{ 'layout.cart.title' | t }}</span>
+          </a>
+
+          {% unless linklists[section.settings.main_linklist] == blank %}
+            <button
+              type="button"
+              class="menu-bar btn--link site-header__icon site-header__menu js-mobile-nav-toggle mobile-nav--open"
+              aria-controls="MobileNav"
+              aria-expanded="false"
+              aria-label="{{ 'layout.navigation.menu' | t }}"
+            >
+              {% include 'icon-hamburger' %}
+              {% include 'icon-close' %}
+            </button>
+          {% endunless %}
+        </div>
+      </div>
+    </div>
+
+    <nav class="wrap-mobile-nav-wrapper large-up--hide" role="wrap-navigation">
+      <div class="product-listing">
+        <ul class="inner-list">
+          {% for product in section.settings.product_list %}
+            <li class="grid__item grid__item--{{section.id}}">
+              {% include 'menubar-product-card-grid',
+                max_height: max_height,
+                product: product,
+                show_vendor: section.settings.show_vendor
+              %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <!--
+        ================================== MObile navigation (Show on drawer)========================================================
+      -->
+      <div class="mobile-nav-wrapper large-up--hide" role="navigation">
+        <ul id="MobileNav" class="mobile-nav">
+          {% for link in linklists[section.settings['mobile-link_list']].links %}
+            {%- assign outerLoopIndex = forloop.index -%}
+            {%- assign link_title = link.title | downcase -%}
+            {%- unless link_title == 'search' -%}
+              <li class="mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %}">
+                {% if link.links != blank %}
+                  {% capture child_list_handle %}{{ link.handle }}-{{ outerLoopIndex }}{% endcapture %}
+                  <button
+                    type="button"
+                    class="btn--link js-toggle-submenu mobile-nav__link{% if link.child_active %} mobile-nav__link--active{% endif %}"
+                    data-target="{{ child_list_handle }}"
+                    data-level="1"
+                    aria-expanded="false"
+                  >
+                    <span class="mobile-nav__label">{{ link.title | escape }}</span>
+                    <div class="mobile-nav__icon">
+                      {% include 'icon-chevron-right' %}
+                    </div>
+                  </button>
+                  <ul class="mobile-nav__dropdown" data-parent="{{ child_list_handle }}" data-level="2">
+                    <li class="visually-hidden" tabindex="-1" data-menu-title="2">
+                      {{- link.title }}
+                      {{ 'layout.navigation.menu' | t -}}
+                    </li>
+                    <li class="mobile-nav__item border-bottom">
+                      <div class="mobile-nav__table">
+                        <div class="mobile-nav__table-cell mobile-nav__return">
+                          <button
+                            class="btn--link js-toggle-submenu mobile-nav__return-btn"
+                            type="button"
+                            aria-expanded="true"
+                            aria-label="{{ link.title }}"
+                          >
+                            {% include 'icon-chevron-left' %}
+                          </button>
+                        </div>
+                        <span class="mobile-nav__sublist-link mobile-nav__sublist-header mobile-nav__sublist-header--main-nav-parent">
+                          <span class="mobile-nav__label">{{ link.title | escape }}</span>
+                        </span>
+                      </div>
+                    </li>
+
+                    {% for childlink in link.links %}
+                      <li class="mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %}">
+                        {% if childlink.links != blank %}
+                          {% capture grandchild_list_handle %}{{ childlink.handle }}-{{ outerLoopIndex }}-{{ forloop.index }}{% endcapture %}
+                          <button
+                            type="button"
+                            class="btn--link js-toggle-submenu mobile-nav__link mobile-nav__sublist-link"
+                            data-target="{{ grandchild_list_handle }}"
+                            aria-expanded="false"
+                          >
+                            <span class="mobile-nav__label">{{ childlink.title | escape }}</span>
+                            <div class="mobile-nav__icon">
+                              {% include 'icon-chevron-right' %}
+                            </div>
+                          </button>
+                          <ul class="mobile-nav__dropdown" data-parent="{{ grandchild_list_handle }}" data-level="3">
+                            <li class="visually-hidden" tabindex="-1" data-menu-title="3">
+                              {{- childlink.title }}
+                              {{ 'layout.navigation.menu' | t -}}
+                            </li>
+                            <li class="mobile-nav__item border-bottom">
+                              <div class="mobile-nav__table">
+                                <div class="mobile-nav__table-cell mobile-nav__return">
+                                  <button
+                                    type="button"
+                                    class="btn--link js-toggle-submenu mobile-nav__return-btn"
+                                    data-target="{{ child_list_handle }}"
+                                    aria-expanded="true"
+                                    aria-label="{{ childlink.title }}"
+                                  >
+                                    {% include 'icon-chevron-left' %}
+                                  </button>
+                                </div>
+                                <a
+                                  href="{{ childlink.url }}"
+                                  class="mobile-nav__sublist-link mobile-nav__sublist-header"
+                                  {% if childlink.current %}
+                                    aria-current="page"
+                                  {% endif %}
+                                >
+                                  <span class="mobile-nav__label">{{ childlink.title | escape }}</span>
+                                </a>
+                              </div>
+                            </li>
+                            {% for grandchildlink in childlink.links %}
+                              <li class="mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %}">
+                                <a
+                                  href="{{ grandchildlink.url }}"
+                                  class="mobile-nav__sublist-link"
+                                  {% if grandchildlink.current %}
+                                    aria-current="page"
+                                  {% endif %}
+                                >
+                                  <span class="mobile-nav__label">{{ grandchildlink.title | escape }}</span>
+                                </a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        {% else %}
+                          <a
+                            href="{{ childlink.url }}"
+                            class="mobile-nav__sublist-link"
+                            {% if childlink.current %}
+                              aria-current="page"
+                            {% endif %}
+                          >
+                            <span class="mobile-nav__label">{{ childlink.title | escape }}</span>
+                          </a>
+                        {% endif %}
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% else %}
+                  <a
+                    href="{{ link.url }}"
+                    class="mobile-nav__link{% if link.active %} mobile-nav__link--active{% endif %}"
+                    {% if link.current %}
+                      aria-current="page"
+                    {% endif %}
+                  >
+                    <span class="mobile-nav__label">{{ link.title | escape }}</span>
+                  </a>
+                {% endif %}
+              </li>
+            {%- endunless -%}
+          {% endfor %}
+        </ul>
+      </div>
+      <!-- ================================================= -->
+      {% if section.settings['menubar-btn-label'] != blank %}
+        <div class="inner-bottom">
+          <div class="wrp-btn">
+            <a href="{{ section.settings.btn_link }}" class="btn"> {{ section.settings['menubar-btn-label'] }} </a>
+          </div>
+          {% if section.settings['info-label'] %}
+            <p>{{ section.settings['info-label'] }}</p>
+          {% endif %}
+        </div>
+      {% endif %}
+    </nav>
+  </header>
+
+  {% comment %}
+    {%- unless h_sticky -%}<div class="temp-header"></div>{%- endunless -%}
+  {% endcomment %}
+
+  {% if section.settings.align_logo == 'center' %}
+    <nav class="small--hide border-bottom" id="AccessibleNav" role="navigation">
+      {% include 'site-nav', linklist: section.settings.main_linklist, wrapper_class: 'site-nav--centered' %}
+    </nav>
+  {% endif %}
+</div>
+
+<script>
+      $( document ).ready(function() {
+          $('.inner-list').slick({
+             infinite: false,
+             slidesToShow: 3,
+             slidesToScroll: 1,
+              responsive: [
+                    {
+                      breakpoint: 768,
+                      settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                      }
+                    },
+                    {
+                      breakpoint: 376,
+                      settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                      }
+                    }
+                ]
+          });
+
+  {% comment %}           $(document).on( 'scroll',  function(){
+              var annheight = $(".sh-con_inner").height();
+
+            if ( $(document).scrollTop() >= annheight) {
+            $(".site-header-contact").css("display" , "none");
+            }
+            if ( $(document).scrollTop() <= annheight) {
+            $(".site-header-contact").css("display" , "block");
+            }
+
+            }); {% endcomment %}
+    });
+</script>
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    {% if section.settings.logo %}
+      {% assign image_size = section.settings.logo.width | append:'x' %}
+      "logo": {{ section.settings.logo | img_url: image_size | prepend: "https:" | json }},
+    {% endif %}
+    "sameAs": [
+      {{ settings.social_twitter_link | json }},
+      {{ settings.social_facebook_link | json }},
+      {{ settings.social_pinterest_link | json }},
+      {{ settings.social_instagram_link | json }},
+      {{ settings.social_tumblr_link | json }},
+      {{ settings.social_snapchat_link | json }},
+      {{ settings.social_youtube_link | json }},
+      {{ settings.social_vimeo_link | json }}
+    ],
+    "url": {{ shop.url | append: page.url | json }}
+  }
+</script>
+
+{% if request.page_type == 'index' %}
+  {% assign potential_action_target = shop.url | append: routes.search_url | append: '?q={search_term_string}' %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": {{ shop.name | json }},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {{ potential_action_target | json }},
+        "query-input": "required name=search_term_string"
+      },
+      "url": {{ shop.url | append: page.url | json }}
+    }
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "radio",
+      "id": "align_logo",
+      "label":"Logo alignment",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label":"Left"
+        },
+        {
+          "value": "center",
+          "label":"Centered"
+        }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": {
+        "da": "Logobillede",
+        "de": "Logo-Foto",
+        "en": "Logo image",
+        "es": "Logo",
+        "fi": "Logokuva",
+        "fr": "Image du logo",
+        "hi": "लोगो इमेज",
+        "it": "Immagine del logo",
+        "ja": "ロゴ画像",
+        "ko": "로고 이미지",
+        "nb": "Logobilde",
+        "nl": "Afbeelding van logo",
+        "pt-BR": "Imagem do logotipo",
+        "pt-PT": "Imagem do logótipo",
+        "sv": "Logobild",
+        "th": "รูปภาพโลโก้",
+        "zh-CN": "logo 图片",
+        "zh-TW": "標誌圖片"
+      }
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_drak",
+      "label": "Dark logo image"
+    },
+    {
+      "type": "range",
+      "id": "logo_max_width",
+      "label": {
+        "da": "Tilpasset logobredde",
+        "de": "Logobreite",
+        "en": "Custom logo width",
+        "es": "Ancho del logo personalizado",
+        "fi": "Mukautetun logon leveys",
+        "fr": "Largeur personnalisée du logo",
+        "hi": "कस्टम लोगो की चौड़ाई",
+        "it": "Larghezza logo personalizzato",
+        "ja": "ロゴの幅をカスタマイズする",
+        "ko": "사용자 지정 로고 폭",
+        "nb": "Tilpasset logobredde",
+        "nl": "Aangepaste logo-breedte",
+        "pt-BR": "Largura do logotipo personalizado",
+        "pt-PT": "Largura de logótipo personalizada",
+        "sv": "Anpassad logotypsbredd",
+        "th": "ความกว้างของโลโก้แบบกำหนดเอง",
+        "zh-CN": "自定义 logo 宽度",
+        "zh-TW": "自訂商標寬度"
+      },
+      "min": 50,
+      "max": 250,
+      "step": 5,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "link_list",
+      "id": "main_linklist",
+      "label": {
+        "da": "Menu",
+        "de": "Menü",
+        "en": "Menu",
+        "es": "Menú",
+        "fi": "Valikko",
+        "fr": "Menu",
+        "hi": "मेनू",
+        "it": "Menu",
+        "ja": "メニュー",
+        "ko": "메뉴",
+        "nb": "Meny",
+        "nl": "Menu",
+        "pt-BR": "Menu",
+        "pt-PT": "Menu",
+        "sv": "Meny",
+        "th": "เมนู",
+        "zh-CN": "菜单",
+        "zh-TW": "選單"
+      },
+      "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "mobile-link_list",
+      "label": {
+        "da": "Menu",
+        "de": "Menü",
+        "en": "Mobile Menu",
+        "es": "Menú",
+        "fi": "Valikko",
+        "fr": "Menu",
+        "hi": "मेनू",
+        "it": "Menu",
+        "ja": "メニュー",
+        "ko": "메뉴",
+        "nb": "Meny",
+        "nl": "Menu",
+        "pt-BR": "Menu",
+        "pt-PT": "Menu",
+        "sv": "Meny",
+        "th": "เมนู",
+        "zh-CN": "菜单",
+        "zh-TW": "選單"
+      }
+    },
+    {
+        "type": "text",
+        "id": "menubar-btn-label",
+        "label": "Menubar button label"
+    },
+    {
+        "type": "url",
+        "id": "btn_link",
+        "label": "Menubar button link"
+    },
+    {
+        "type": "text",
+        "id": "info-label",
+        "label": "Offer label"
+    },
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "Products List"
+    },
+    {
+      "type": "header",
+      "content": {
+        "da": "Meddelelseslinje",
+        "de": "Ankündigungsbereich",
+        "en": "Announcement bar",
+        "es": "Barra de anuncios",
+        "fi": "Ilmoituspalkki",
+        "fr": "Barre d'annonces",
+        "hi": "घोषणा बार",
+        "it": "Barra degli annunci",
+        "ja": "告知バー",
+        "ko": "공지 표시줄",
+        "nb": "Kunngjøringslinje",
+        "nl": "Aankondigingsbalk",
+        "pt-BR": "Barra de avisos",
+        "pt-PT": "Barra de comunicado",
+        "sv": "Meddelandefält",
+        "th": "แถบประกาศ",
+        "zh-CN": "公告栏",
+        "zh-TW": "公告列"
+      }
+    },
+    {
+      "type": "checkbox",
+      "id": "message",
+      "label": {
+        "da": "Vis meddelelse",
+        "de": "Ankündigung anzeigen",
+        "en": "Show announcement",
+        "es": "Mostrar anuncio",
+        "fi": "Näytä ilmoitus",
+        "fr": "Afficher l'annonce",
+        "hi": "घोषणा दिखाएं",
+        "it": "Mostra annuncio",
+        "ja": "告知を表示する",
+        "ko": "공지 표시",
+        "nb": "Vis kunngjøring",
+        "nl": "Aankondiging weergeven",
+        "pt-BR": "Exibir anúncio",
+        "pt-PT": "Mostrar comunicado",
+        "sv": "Visa tillkännagivande",
+        "th": "แสดงประกาศ",
+        "zh-CN": "显示公告",
+        "zh-TW": "顯示公告"
+      },
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "home_page_only",
+      "label": {
+        "da": "Kun startside",
+        "de": "Nur Startseite",
+        "en": "Home page only",
+        "es": "Solo página de inicio",
+        "fi": "Vain etusivu",
+        "fr": "Page d'accueil uniquement",
+        "hi": "केवल होमपेज",
+        "it": "Solo home page",
+        "ja": "ホームページのみ",
+        "ko": "홈페이지만",
+        "nb": "Kun på startsiden",
+        "nl": "Alleen homepage",
+        "pt-BR": "Apenas na página inicial",
+        "pt-PT": "Apenas a página inicial",
+        "sv": "Endast hemsida",
+        "th": "หน้าแรกเท่านั้น",
+        "zh-CN": "仅主页",
+        "zh-TW": "僅限首頁"
+      },
+      "default": true
+    },
+    {
+    "type": "richtext",
+    "id": "announce-label",
+    "label": "Announce label"
+    },
+    {
+      "type": "color",
+      "id": "color_bg",
+      "label": {
+        "da": "Bjælke",
+        "de": "Zeile",
+        "en": "Bar",
+        "es": "Barra",
+        "fi": "Palkki",
+        "fr": "Barre",
+        "hi": "बार",
+        "it": "Barra",
+        "ja": "バー",
+        "ko": "바",
+        "nb": "Felt",
+        "nl": "Balk",
+        "pt-BR": "Barra",
+        "pt-PT": "Barra",
+        "sv": "Fält",
+        "th": "แถบ",
+        "zh-CN": "栏",
+        "zh-TW": "橫條"
+      },
+      "default": "#3a3a3a"
+    },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": {
+        "da": "Tekst",
+        "de": "Text",
+        "en": "Text",
+        "es": "Texto",
+        "fi": "Teksti",
+        "fr": "Texte",
+        "hi": "टेक्स्ट",
+        "it": "Testo",
+        "ja": "テキスト",
+        "ko": "텍스트",
+        "nb": "Tekst",
+        "nl": "Tekst",
+        "pt-BR": "Texto",
+        "pt-PT": "Texto",
+        "sv": "Text",
+        "th": "ข้อความ",
+        "zh-CN": "文本",
+        "zh-TW": "文字"
+      },
+      "default": "#ffffff"
+    },
+	{
+	 "type":"header",
+	 "content":"Header"
+	},
+	{
+	 "type":"checkbox",
+	 "id":"h_s_home",
+	 "label":"Header sticky for home page only"
+	},
+	{
+	 "type":"color",
+	 "id":"h_s_color",
+	 "label":"Select nav color for sticky header"
+	},
+	{
+	 "type":"color",
+	 "id":"b_b_color",
+	 "label":"Nav Active border color",
+	 "default":"#00a2ff"
+	},
+	{
+	 "type":"header",
+	 "content":"Header Contact detail"
+	},
+	{
+	 "type":"checkbox",
+	 "label":"Show Header Contact",
+	 "id":"s_h_con",
+	 "default":true
+	},
+	{
+	 "type":"text",
+	 "label":"Enter email adress",
+	 "id":"s_h_con_d_1",
+	 "default": "info@yourdomain.com"
+	},
+	{
+	 "type":"text",
+	 "label":"Enter phone number",
+	 "id":"s_h_con_d_2",
+	 "default": "+88 123 456 7890"
+	},
+	{
+	 "type":"checkbox",
+	 "label":"Show Social Sharing",
+	 "id":"s_h_con_social",
+	 "default": true
+	}
+  ]
+}
+{% endschema %}

@@ -1,0 +1,79 @@
+<div class=" sleep_max bg_img">
+  <div class="inner_container">
+      {% if section.settings.title != blank %}<h2 class="ttl_replenish">{{ section.settings.title }}</h2>{% endif %}
+      {% if section.settings.subtitle != blank %}<div class="ttl_sub">{{ section.settings.subtitle }}</div>{% endif %}
+      {% if section.settings.content != blank %} <div class="inner_txt">{{ section.settings.content }} </div> {% endif %}
+
+     <div class="block_grid">
+          {% for block in section.blocks %}
+            <div class="inner_block">
+                {%  if block.settings.image != blank %}<img src="{{ block.settings.image | img_url:'master' }}"> {% endif %}
+                {% if block.settings.title != blank %} <h5> {{ block.settings.title}}</h5> {% endif %}
+                {% if block.settings.des_content != blank %}<div class="description"> {{ block.settings.des_content }}</div> {% endif %}
+            </div>
+        {% endfor %}   
+     </div>
+   </div>
+</div>
+
+
+<style>
+   .sleep_max.bg_img{background: url({{ section.settings.image | img_url:'master' }}) no-repeat scroll 0 0; background-size: cover;} 
+</style>
+
+    
+{% schema %}
+  {
+    "name": "Sleep Max Strength",
+    "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background Image"
+        },
+      {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Sub Title"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    }
+   ],
+    "blocks" :  [
+        {
+          "type" : "block",
+          "name"  :"Product ingredients",
+          "settings" : [
+                {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+                },
+                {
+                  "type": "text",
+                  "id": "title",
+                  "label": "Title"
+                },
+               {
+                "type": "richtext",
+                "id": "des_content",
+                "label": "Description"
+                }
+          ]
+        }
+    ],
+    "presets": [
+      {
+       "name": "Sleep Max Strength"
+    }
+    ] 
+  }
+{% endschema %}

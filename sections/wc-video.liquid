@@ -1,0 +1,38 @@
+<div class="wrap_video">
+    <div class="inner_container">
+      <video autoplay muted loop playsinline class="wc-video">
+        <source src="{{ section.settings.video_link }}" type="video/mp4">
+      </video>
+    </div>
+</div>
+{% schema %}
+{
+"name": "Section name",
+"settings": [
+  {
+    "type" : "url",
+    "id" : "video_link",
+    "label" : "Video link"
+  }
+],
+  "presets" : [
+    {
+    "name" : "Cstm video"  
+    }
+    
+  ]
+}
+{% endschema %}
+ 
+{% stylesheet %}
+ .wrap_video .inner_container {line-height:0px;}
+
+ .wrap_video .inner_container .wc-video{
+  right: 0;padding-bottom:25px;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+}
+{% endstylesheet %}
+{% javascript %}
+{% endjavascript %}

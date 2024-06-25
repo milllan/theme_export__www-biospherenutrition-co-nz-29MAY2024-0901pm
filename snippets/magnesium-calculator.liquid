@@ -1,0 +1,96 @@
+<div data-section-id="{{ id }}" data-section-type="magn-calculator-section" class="mag-calculator">
+  <div class="page-width">
+  	{% if title != blank or detail != blank %}<div class="text-center title_part {{ magnesium }}">
+      {%- if title != blank -%}<h2 class="no-ls h-border-bottom textcenter bcolor-meg_true">{{- title -}}</h2>{%- endif -%}
+      {%- if detail != blank -%}<div class="header_detail text_wrapper div_rich fw-medium">{{- detail | replace:'&lt;','<' | replace:'&gt;','>' -}}</div>{%- endif -%}
+      </div>{%- endif -%}
+  </div>
+  <div class="meg_calc">
+    <div class="mgc_weight_wrapper text-center">
+      <span class="mgc_w_title fw-bold">KG</span>
+      {% assign intial_value = slider_number | default : 65 %}
+      {% assign intial_value = intial_value | minus : 1 %}
+      <div class="mgc_weight" data-slick='{"slidesToShow": 1, "slidesToScroll": 1,"infinite": false, "centerMode": true, "variableWidth": true,"swipeToSlide":true,"initialSlide":{{ intial_value }} ,"arrows": true, "speed":150,"touchThreshold":200,"easing":"ease-out" }'>
+        {% assign low_range = 1 %}
+        {% assign high_range = 100 %}
+        {%- if slider_range != blank and slider_range contains 'to' -%}
+        	{% assign _slider_range = slider_range | downcase %}
+        	{% assign _slider_range = _slider_range | split: 'to' %}
+            {% assign low_range = _slider_range | first | plus : 0 %}
+            {% assign high_range = _slider_range | last | plus : 0 %}
+        {%- endif -%}
+        {%- for i in (low_range..high_range) -%}
+        <div class="mgc_w_number" data-number="{{i}}">{{ i }}</div>
+        {%- endfor -%}
+      </div>
+      <span class="mgc_w_ins">Please SELECT your weight in kilograms</span>
+      <span class="mgc_w_angle"></span>
+    </div>
+    <div class="page-width">
+      <div class="meg_inner fw-heavy">
+        <div class="ranger-grid">
+          <div class="range_item range_full">
+            <div class="range-title">Enter Your Weight</div>
+            <div class="input_range_value range_value"><input type="number" class="mag_calulate_input" /> </div>
+          </div>
+          <div class="range_item range_low">
+            <div class="range-title"><i class="fa fa-caret-down" aria-hidden="true"></i> LOW RANGE</div>
+            <div class="low_range_value range_value"><span class="value">0</span>mg</div>
+          </div>
+          <div class="range_item range_high">
+            <div class="range-title"><i class="fa fa-caret-up" aria-hidden="true"></i> HIGH RANGE</div>
+            <div class="high_range_value range_value"><span class="value">0</span>mg</div>
+          </div>
+        </div>
+        <div class="range_result div_rich fw-medium">On average, someone your weight should be consuming between<br />
+          <span class="range_r_span range_low"></span><span>and</span><span class="range_r_span range_high"></span><br />
+          of magnesium each day to maintain optimal magnesium levels.
+        </div>
+        {%- if re_btn_link != blank -%}<div class="text-center btn_vall_div">        
+        {%- if btn != blank and re_btn_link != blank -%}<a href="{{ re_btn_link }}" class="btn btn--has-shadow btn--medium btn-meg-bg btn-round_true tt-none">{{ btn }}</a>{%- endif -%}
+        </div>{%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" defer="defer">  
+  window.addEventListener('DOMContentLoaded', (event) => {
+	$('.mgc_weight').slick();    
+    $('.mgc_weight.slick-initialized .slick-center').prev().addClass('slick-font-large');
+    $('.mgc_weight.slick-initialized .slick-center').next().addClass('slick-font-large');
+    $('.mgc_weight.slick-initialized').on('swipe', function(event, slick, currentSlide, nextSlide){
+      $('.mgc_weight.slick-initialized .slick-font-large').removeClass('slick-font-large');
+      $('.mgc_weight.slick-initialized .slick-center').prev().addClass('slick-font-large');
+      $('.mgc_weight.slick-initialized .slick-center').next().addClass('slick-font-large');
+    });
+    $('.mgc_weight.slick-initialized').on('afterChange', function(event, slick, currentSlide, nextSlide){
+      $('.mgc_weight.slick-initialized .slick-font-large').removeClass('slick-font-large');
+      $('.mgc_weight.slick-initialized .slick-center').prev().addClass('slick-font-large');
+      $('.mgc_weight.slick-initialized .slick-center').next().addClass('slick-font-large');
+      var _weight = Number($('.mgc_w_number.slick-slide[data-slick-index="'+currentSlide+'"]').data('number'));
+      calculateMag(_weight);
+    });    
+    $(".mag_calulate_input").keyup($.debounce( 500, function(e){
+      if( $(this).val() != ""){
+        var _number = Number( $(this).val());
+        if( $('.mgc_w_number.slick-slide[data-number="'+$(this).val()+'"]').length ){
+          $('.mgc_weight.slick-initialized').slick('slickGoTo', (_number - 1) );	
+        }else{ calculateMag($(this).val()); }
+      }
+    }) )
+    function calculateMag(_number){      
+      var _number = Number(_number);
+      var _low = _number * 7, _high = _number * 10;      
+      _low = (String(_low)).indexOf('.') > -1 ? Number(_low.toFixed(2)) : _low ;
+      _high = (String(_high)).indexOf('.') > -1 ? _high.toFixed(2) : _high ;
+      (String(_low)).length > 5 || (String(_high)).length > 5 ? $('.ranger-grid').addClass('smallFont') : $('.ranger-grid').removeClass('smallFont');
+      $('.low_range_value .value').html( _low );
+      $('.high_range_value .value').html( _high );
+      $('.range_r_span.range_low').html( _low +"mg" );
+      $('.range_r_span.range_high').html( _high +"mg" );
+      return ;
+    }
+    
+    setTimeout(function(){ $('.mgc_weight').slick('refresh'); },150)
+  });
+</script>

@@ -1,0 +1,50 @@
+<style>
+.wrp-{{ section.id }} {
+        background: url("{{ section.settings.bg_image | img_url: 'master' }}");
+        background-repeat: no-repeat;
+        background-size: cover;
+}
+
+  
+</style>
+
+<div class="wrp-bgi-richtxt wrp-{{ section.id }}" id="Eat-an-early-dinner">
+    <div class="article_container">
+    {% if section.settings.main-text != blank %} <h4 class="sameasallsize">{{ section.settings.main-text  }}</h4> {% endif %}
+    {% if section.settings.content != blank %}
+          <div class="inner-txt"> 
+            {{ section.settings.content }} 
+          </div>
+      {% endif %}
+    </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Art BG img with richtext",
+    "settings": [
+      {
+        "type" : "image_picker",
+        "id" : "bg_image",
+        "label" : "Background image"
+      },
+       {
+        "type" : "text",
+        "id" : "main-text",
+        "label" : "Main title"
+      },
+      {
+        "type" : "richtext",
+        "id" : "content",
+        "label" : "First description"
+      }
+    ],
+     "presets" :  [
+       {
+         "name" : "Article BG img with richtext"
+       }
+     ]
+  }
+{% endschema %}

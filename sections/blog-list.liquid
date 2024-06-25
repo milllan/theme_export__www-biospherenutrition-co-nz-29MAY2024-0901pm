@@ -1,0 +1,77 @@
+<div class="bl_section">
+  {%- if section.settings.title != blank -%}
+  <div class="bl_head">
+    <h2>{{ section.settings.title }}</h2>
+  </div>
+  {%- endif -%}
+  <div class="bl_list_block">
+    {%- for block in section.blocks -%}
+    {%- assign blog = block.settings.blog -%}
+    <div class="bl_list_inr">
+      <div class="bl_list_wrap">
+        <div class="bl_media">
+          <img data-src="{{ block.settings.img | img_url:'' }}" class="lazyload" width="auto" height="auto" />
+        </div>
+        <div class="bl_content">
+          <div class="bl_con_desc">
+            <h3>{{ blog.title }}</h3>
+            {%- if block.settings.desc != blank -%}<div class="bl_contentdesc">{{ block.settings.desc }}</div>{%- endif -%}
+          </div>
+          {%- if block.settings.btn_label != blank -%}<a href="{{ blog.url }}" class="btn">{{ block.settings.btn_label }}</a>{%- endif -%}
+        </div>
+      </div>
+    </div>
+    {%- endfor -%}
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Blog List",
+    "settings": [
+      {
+        "type":"text",
+        "id":"title",
+        "label":"Heading"
+      }
+    ],
+    "blocks":[
+      {
+        "type":"blog",
+        "name":"Blog",
+        "settings":[
+          {
+            "type":"blog",
+            "id":"blog",
+            "label":"Blog"
+          },
+          {
+            "type":"image_picker",
+            "id":"img",
+            "label":"Image"
+          },
+          {
+            "type":"richtext",
+            "id":"desc",
+            "label":"Description"
+          },
+          {
+            "type":"text",
+            "id":"btn_label",
+            "label":"Button Label"
+          }
+        ]
+      }
+    ],
+    "presets":[
+      {
+        "name": "Blog List"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

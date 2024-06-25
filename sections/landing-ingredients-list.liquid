@@ -1,0 +1,345 @@
+<section class="section-landing-ingredients-list section-{{ section.id }}">
+  <div class="page-width">
+    <div class="landing-ingredients-list">
+      {%- if section.settings.title != blank -%}
+        <div class="ingredients-list-head">
+          <h2>{{ section.settings.title }}</h2>
+        </div>
+      {%- endif -%}
+      <div class="ln-wrap">
+        <table>
+          {%- if section.settings.title_svg != blank or section.settings['oth-ing'] != blank -%}
+            <thead>
+              {%- if section.settings.title_svg != blank -%}
+                <th>
+                  <span class="desktop-svg"> {{ section.settings.title_svg }} </span>
+                  <span class="mobile-svg-wrapper">
+                    {% if template == 'page.new_prebiotic_product' %}
+                     {% render 'green-mobile-svg' %} 
+                    {% elsif template == 'page.new-magnesium' %}
+                       {% render 'blue-svg' %} 
+                      {% else %}
+                    {% render 'mobile-svg' %} 
+                  {% endif %}</span>
+                </th>
+              {%- endif -%}
+              <th></th>
+              {%- if section.settings['oth-ing'] != blank -%}
+                <th>{{ section.settings['oth-ing'] }}</th>
+              {%- endif -%}
+            </thead>
+          {%- endif -%}
+          <tbody>
+            {%- for block in section.blocks -%}
+              {%- if block.settings['true-svg'] != blank
+                or block.settings.text != blank
+                or section.settings['false-svg'] != blank
+              -%}
+                <tr>
+                  {%- if section.settings['true-svg'] != blank -%}
+                    <td>{{ section.settings['true-svg'] }}</td>
+                  {%- endif -%}
+                  {%- if block.settings.text != blank -%}
+                    <td class="ingredients_list_text">{{ block.settings.text }}</td>
+                  {%- endif -%}
+                  {%- if section.settings['false-svg'] != blank -%}
+                    <td>{{ section.settings['false-svg'] }}</td>
+                  {%- endif -%}
+                </tr>
+              {%- endif -%}
+            {%- endfor -%}
+          </tbody>
+        </table>
+      </div>
+      {% if page.title == 'Prebiotic Deal' %}
+      <div class="new_prebiotic-table">
+        <table>
+          {%- if section.settings.title_svg != blank or section.settings['oth-ing'] != blank -%}
+            <thead>
+               <th></th>
+              {%- if section.settings.title_svg != blank -%}
+                <th>
+                  <span class="desktop-svg"> {{ section.settings.title_svg }} </span>
+                  <span class="mobile-svg-wrapper"> {% render 'mobile-svg' %} </span>
+                </th>
+              {%- endif -%}
+              {%- if section.settings['oth-ing'] != blank -%}
+                <th>{{ section.settings['oth-ing'] }}</th>
+              {%- endif -%}
+            </thead>
+          {%- endif -%}
+            <tbody>
+                {%- for block in section.blocks -%}
+                    {%- if block.settings['mobile-true-svg'] != blank
+                    or block.settings.text != blank
+                    or section.settings['mobile-false-svg'] != blank
+                    -%}
+                    <tr>
+                       {%- if block.settings.text != blank -%}
+                        <td class="ingredients_list_text">{{ block.settings.text }}</td>
+                      {%- endif -%}
+                      {%- if section.settings['mobile-true-svg'] != blank -%}
+                        <td> <img src="{{ section.settings['mobile-true-svg'] | img_url : 'master' }}" width="{{ section.settings['mobile-true-svg'].width }}" height="{{ section.settings['mobile-true-svg'].height }}" alt="{{ section.settings['mobile-true-svg'].alt }}" loading="lazy">  </td>
+                      {%- endif -%}
+                      {%- if section.settings['mobile-false-svg'] != blank -%}
+                        <td><img src="{{ section.settings['mobile-false-svg'] | img_url : 'master' }}" width="{{ section.settings['mobile-false-svg'].width }}" height="{{ section.settings['mobile-false-svg'].height }}" alt="{{ section.settings['mobile-false-svg'].alt }}" loading="lazy"> </td>
+                      {%- endif -%}
+                    </tr>
+                    {%- endif -%}
+                {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+      {% endif %}
+      </div>
+  </div>
+</section>
+
+<style>
+      .new_prebiotic-table{
+        display : none;
+      }
+      .new_prebiotic-table img{
+            width: 46px;
+    height: auto;
+      }
+      @media screen and (max-width : 767px){
+        .new_prebiotic-table{
+         display : none;  
+        }
+        .page-new_prebiotic_product .ingredients_list_text{
+              font-size: 16px;
+        }
+         /* .page-new_prebiotic_product .landing-ingredients-list table td:first-child {
+        text-align: left;
+         } */
+       /* .template-new_prebiotic_product .landing-ingredients-list table tbody tr td:nth-child(2){
+             align-items: center;
+    justify-content: center;
+    display: flex;
+       } */
+       /* .page-new_prebiotic_product .ln-wrap{
+           display : none;
+       } */
+        /* .page-new_prebiotic_product .landing-ingredients-list table th:nth-child(2) */
+       .page-new_prebiotic_product .landing-ingredients-list table th:last-child{
+        max-width: 25%;
+       width: 25%;
+      }
+        /* .page-new_prebiotic_product .landing-ingredients-list table tbody tr td:nth-child(1){
+        width: 50%;
+        max-width: 50%;
+        } */
+      /* .template-new_prebiotic_product .landing-ingredients-list table tbody tr td:nth-child(2), .template-new_prebiotic_product .landing-ingredients-list table tbody tr:last-child td:nth-child(2):before
+        {background: none;
+        } */
+        /* .template-new_prebiotic_product .landing-ingredients-list table tbody tr:nth-child(odd) td:nth-child(2):after ,.template-new_prebiotic_product .landing-ingredients-list table tbody tr:nth-child(odd){
+          background: none;
+        } */
+        /* .template-new_prebiotic_product .ingredients_list_text{
+        color: #4c4c4e;
+        } */
+         /* .template-new_prebiotic_product .landing-ingredients-list table tbody tr{
+               border-top: 4px solid rgba(0, 0, 0, 0.1);
+         } */
+        .new_prebiotic-table{
+                 box-shadow: 0px 20px 20px -10px #b0b0b0;
+              border-radius: 50px;
+          padding: 22px;
+        }
+          .template-new_prebiotic_product  .landing-ingredients-list table tbody tr td{
+            padding: 13px 5px;
+          }
+  }
+      .landing-ingredients-list table th, .landing-ingredients-list table td {
+        border: none;
+        text-align: center;
+        padding: 5px 5px;
+    }
+     .landing-ingredients-list table {
+        text-align: center;
+    }
+     .landing-ingredients-list table tbody tr:nth-child(odd) {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+     .landing-ingredients-list table tbody tr:nth-child(odd) td:first-child {
+         border-radius: 100px 0 0 100px;
+         width: 25%;
+        max-width: 25%;
+    }
+     .landing-ingredients-list table tbody tr:nth-child(odd) td:last-child {
+        border-radius: 0 100px 100px 0;
+       width: 25%;
+        max-width: 25%;
+    }
+     .landing-ingredients-list table th:first-child, .landing-ingredients-list table th:last-child {
+        width: 25%;
+        max-width: 25%;
+    }
+    .ingredients-list-head h2 {
+        font-size: 48px;
+        color: #384151;
+        font-weight: 800;
+        letter-spacing: 0.01px;
+        text-transform: inherit;
+        text-align: center;
+        padding-bottom: 25px;
+        margin-bottom: 100px;
+        position: relative;
+    }
+     .ingredients-list-head h2:after {
+        content: '';
+        position: absolute;
+        opacity: 0.502;
+        width: 100px;
+        height: 4px;
+        background-color: rgba(56, 65, 81, 0.5);
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+     .section-landing-ingredients-list {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+    .section-landing-ingredients-list .page-width {max-width: 1310px;}
+     .ingredients_list_text {
+        padding: 15.5px 0;
+        line-height: 26px;
+        margin: 0 25px;
+        font-size: 20px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #fff;
+        font-weight: bold;
+    }
+     .landing-ingredients-list table tbody tr td:nth-child(2), .landing-ingredients-list table tr th:nth-child(2) {
+         background: red;
+        width: 50%;
+        max-width: 50%;
+    }
+    .landing-ingredients-list table tr th:nth-child(2) {border-radius: 100px 100px 0 0;}
+    .landing-ingredients-list table tbody tr:last-child td:nth-child(2) {position: relative;}
+    .landing-ingredients-list table tbody tr:last-child td:nth-child(2):before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      left: 0;
+      height: 70px;
+      background: red;
+      bottom: -70px;
+      border-radius: 0 0 100px 100px;
+  }
+  .landing-ingredients-list table tbody tr:nth-child(odd) td:nth-child(2):after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    left: 0;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    height: 100%;
+    top: 0;
+  }
+  .landing-ingredients-list table tbody tr td:nth-child(2) {position: relative;z-index: 99;filter: drop-shadow(41.5px 71.88px 31px rgba(0, 0, 0, 0.3));}
+  .landing-ingredients-list table tbody tr td svg {vertical-align: middle;}
+  .mobile-svg-wrapper {display: none;}
+  @media screen and (max-width: 768px) {
+    .ingredients_list_text {font-size: 14px;}
+    .landing-ingredients-list table th svg {width: 100%;}
+    .landing-ingredients-list table tbody tr:last-child td:nth-child(2):before {    height: 38px;    bottom: -38px;}
+    .mobile-svg-wrapper {display: block;}
+    .desktop-svg {display: none;}
+    .ingredients_list_text {line-height: 15px;}
+    .section-landing-ingredients-list {    padding-bottom: 70px;  padding-top: 40px;}
+    .ingredients-list-head h2 {    margin-bottom: 40px;}
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Landing ingredients list",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_img",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id":"title",
+      "label": "Title"
+    },
+    {
+      "type" : "checkbox",
+      "id" : "enable_cls",
+      "label" : "New Ingredient"
+    },
+    {
+      "type": "html",
+      "id": "title_svg",
+      "label": "Title SVG"
+    },
+    {
+      "type": "text",
+      "id": "oth-ing",
+      "label": "other ingrediant title"
+    },
+    {
+      "type": "html",
+      "id": "true-svg",
+      "label": "True SVG"
+    },
+    {
+      "type": "html",
+      "id": "false-svg",
+      "label": "False SVG"
+    },{
+      "type": "image_picker",
+      "id": "mobile-true-svg",
+      "label": "mobile-true-svg"
+    },{
+      "type": "image_picker",
+      "id": "mobile-false-svg",
+      "label": "mobile-false-svg"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 0
+    }
+  ],
+  "blocks":[
+    {
+      "type":"list",
+      "name":"List",
+      "settings":[
+        {
+          "type":"text",
+          "id":"text",
+          "label":"Text"
+        }
+      ]
+    }
+  ],
+  "presets":[
+    {
+      "name": "Landing ingredients list"
+    }
+  ]
+}
+{% endschema %}

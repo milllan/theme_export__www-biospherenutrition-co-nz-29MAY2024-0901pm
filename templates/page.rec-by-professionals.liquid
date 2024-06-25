@@ -1,0 +1,74 @@
+<div data-section-id="{{ section.id }}" data-section-type="hero-section" class="hero-section po_relative">  
+  <div class="home-outline with-gradient" style="{% if page.metafields.rec-by-pro.color != blank %}background-color: {{ page.metafields.rec-by-pro.color }};{% endif %}"></div>
+    <div class="hero hero--adapt hero-{{ section.id }} box ratio-container lazyload js"
+         id="Hero-{{ section.id }}"
+         data-layout="full_width"
+         {%- if page.metafields.rec-by-pro.image -%}
+          {% unless page.metafields.rec-by-pro.image.alt == blank %}
+          role="img"
+          aria-label="{{ page.metafields.rec-by-pro.image.alt | escape }}"
+          data-alt="{{ page.metafields.rec-by-pro.image.alt | escape }}"
+          {% endunless %}
+         data-bgset="{{ page.metafields.rec-by-pro.image }}"         
+         data-sizes="auto"
+         data-parent-fit="cover"
+         style="background-position: center; background-image: url({{ page.metafields.rec-by-pro.image | replace:'.jpg','_300x300.jpg' }});"
+         {%- endif -%}>
+    {%- if page.metafields.rec-by-pro.image == blank -%}
+      <div class="placeholder-background">
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      </div>
+    {%- endif -%}      
+      <div class="hero__inner center">
+        <div class="page-width text-center">
+          {%- if page.metafields.rec-by-pro.title != blank -%}
+            <h2 class="header-bb no-ls mega-title">{{ page.metafields.rec-by-pro.title }}</h2>
+          {%- endif -%}
+          {%- if page.metafields.rec-by-pro.detail != blank -%}
+            <div class="rte-setting fw-medium mega-subtitle">{{ page.metafields.rec-by-pro.detail }}</div>
+          {%- endif -%}          
+        </div>
+      </div>
+    </div> 
+</div>
+<div data-section-id="{{ section.id }}" data-section-type="author-section">
+  <div class="page-width author-sec">
+    {% assign images = page.metafields.rec-pro.image %}
+      {% assign loop_size = images | size %}
+    <div class="wwr_grid{% if loop_size > 1 %} grid{% endif %}">
+      {%- for i in (1..loop_size)  -%}
+      {%- assign index = i | minus : 1 -%}
+      <div class="wwr_grid__item{% if loop_size > 1 %} grid__item medium-up--one-half{% endif %}" >
+        <div class="wwr_card text-center">
+          {%- if page.metafields.rec-pro.image[index] != blank -%}<div class="wwr_img_wrapper">
+          <div class="border_img">
+            <img class="lazyload bi-1" data-src="{{ 'biosphere-border_img.png' | asset_url }}" width="auto" height="auto" />
+            <img class="lazyload bi-1-hover" data-src="{{ 'biosphere-border_img_hover.png' | asset_url }}" width="auto" height="auto" />        
+            <div class="main_img">
+              <img class="lazyload" data-src="{{ page.metafields.rec-pro.image[index] }}" width="auto" height="auto" />
+            </div>
+          </div>
+          </div>{%- endif -%}
+          <div class="wwr_d_wrapper fw-medium">
+            {%- if page.metafields.rec-pro.title[index] != blank -%}
+            <h4 class="fw-semi-bold">{%- if page.metafields.rec-pro.title[index] contains ':' -%}<span>{{ page.metafields.rec-pro.title[index] | split:':' | first }} :</span>{{ page.metafields.rec-pro.title[index] | split:':' | last }}{%- else -%}{{ page.metafields.rec-pro.title[index] }}{%- endif -%}</h4>
+            {%- endif -%}{%- if page.metafields.rec-pro.subtitle[index] != blank -%}
+            <div class="wwr_subtitle">{{ page.metafields.rec-pro.subtitle[index] }}</div>
+            {%- endif -%}
+          </div>          
+        </div>
+        {%- if page.metafields.rec-pro.detail[index] != blank -%}
+        <div class="about_au rte text-center">
+          {{ page.metafields.rec-pro.detail[index] }}
+        </div>        
+        {%- endif -%}
+        {%- if page.metafields.rec-pro.btn_link[index] != blank -%}
+        <div class="text-center btn-vall_div">
+          <a href="{{ page.metafields.rec-pro.btn_link[index] }}" class="btn btn--has-shadow btn--medium btn-con-bg btn-round_true tt-none">{{ page.metafields.rec-pro.btn_title[index] }}</a>
+        </div>
+        {%- endif -%}
+      </div>         
+      {%- endfor -%}
+    </div>
+  </div>
+</div>

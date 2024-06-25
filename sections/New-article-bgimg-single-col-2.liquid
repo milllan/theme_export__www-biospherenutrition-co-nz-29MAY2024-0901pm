@@ -1,0 +1,63 @@
+<style>
+.wrp-{{ section.id }} {
+        background: url("{{ section.settings.bg_image | img_url: 'master' }}");
+        background-repeat: no-repeat;
+        background-size: cover;
+}
+  
+</style>
+<div class="super-wrp">
+    <div class="wrp-bgi-single-col  wrp-{{ section.id }}" id="Go-to-sleep-earlier">
+        <div class="article_container">
+    
+              <div class="row">
+                    <div class="col-9">
+                         {% if section.settings.main-text != blank %} <h4 class="sameasallsize">{{ section.settings.main-text  }}</h4> {% endif %}
+                            <div class="inner-txt">
+                                {{ section.settings.content }}
+                            </div>
+                    </div>                 
+                    <div class="col-3">
+                        <div class="inner-img">
+                            <figure><img src="{{ section.settings.image | img_url: 'master' }}" class="lazyloaded"></figure>
+                        </div>
+                    </div>
+
+              </div>
+        </div>
+    </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Art BG img with one col",
+    "settings": [
+      {
+        "type" : "image_picker",
+        "id" : "bg_image",
+        "label" : "Background image"
+      },
+       {
+        "type" : "text",
+        "id" : "main-text",
+        "label" : "Main title"
+      },
+       {
+        "type" : "image_picker",
+        "id" : "image",
+        "label" : "Image"
+      },
+      {
+        "type" : "richtext",
+        "id" : "content",
+        "label" : "First description"
+      }
+    ],
+     "presets" :  [
+       {
+         "name" : "Article BG img with single column two"
+       }
+     ]
+  }
+{% endschema %}

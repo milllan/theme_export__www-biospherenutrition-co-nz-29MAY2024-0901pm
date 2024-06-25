@@ -1,0 +1,148 @@
+<div class="feel-the-change" style="background-image: url({{ section.settings.bg_img | img_url: 'master' }});">
+  <div class="page-width">
+    <div class="feel-the-change-content">
+      <h2>{{ section.settings.title }}</h2>
+      <p>{{ section.settings.desc }}</p>
+    </div>
+  </div>
+  <div class="feek-the-change-img">
+    <img class="desc-content" src="{{ section.settings.content-img | img_url: 'master' }}">
+    <img class="mob-content" src="{{ section.settings.mob-content-img | img_url: 'master' }}">
+  </div>
+</div>
+
+<style>
+  .feel-the-change{
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    
+  }
+ .feel-the-change-content h2 {
+    font-size: 48px;
+    color: #ffffff;
+    font-weight: 800;
+    text-align: center;
+    text-transform: inherit;
+    margin: 0;
+   letter-spacing: 0.01px;
+}
+ .feel-the-change-content p {
+    font-size: 30px;
+    color: #ffffff;
+    font-weight: 800;
+    text-align: center;
+    opacity: 0.702;
+    padding-bottom: 20px;
+    position: relative;
+}
+  .feel-the-change-content p:after {
+    content: "";
+    position: absolute;
+    height: 4px;
+    width: 100px;
+    background-color: rgba(255,255,255,0.5019607843137255);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+  .feek-the-change-img {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .feek-the-change-img img {
+        width: 100%;
+    padding: 0 15px;
+    object-fit: cover;
+    max-width: 1200px;
+  }
+  .mob-content{
+    display: none;
+  }
+ @media screen and (max-width:992px){
+   .mob-content{
+    display: block;
+    max-width: 1200px;
+    object-fit: cover;
+    padding: 15px;
+    width: 100%;
+  }
+   .desc-content{
+    display: none;
+  }
+   .feel-the-change-content h2 {
+    font-size: 42px;
+  }
+   .feel-the-change-content p {
+    font-size: 26px;
+  }
+   
+ } 
+   @media screen and (max-width:767px){
+      .feek-the-change-img img{
+        padding:0;
+      }
+   }
+  @media screen and (max-width:480px){
+    .feel-the-change {padding-top: 50px;}
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "feel the change",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "bg_img",
+        "label": "Background Image"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "desc",
+        "label": "description"
+      },
+      {
+        "type": "image_picker",
+        "id": "content-img",
+        "label": "Content Img"
+      },
+      {
+        "type": "image_picker",
+        "id": "mob-content-img",
+        "label": "Mobile Content Img"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding Top",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding Bottom",
+        "default": 0
+      }
+    ],
+    "presets": [
+      {
+        "name": "feel the change"
+      }
+    ]
+  }
+{% endschema %}

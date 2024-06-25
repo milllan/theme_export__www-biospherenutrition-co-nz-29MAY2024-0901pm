@@ -1,0 +1,336 @@
+<div data-section-id="{{ section.id }}" data-section-type="home-grid-section-three">
+  <div class="grid grid--no-gutters">
+  	{%- for block in section.blocks -%}
+    <div class="type_{{ block.type }} gs_item gs_item-two gs_item--{{ block.id }} grid__item {% if block.type == "block" %}medium-up--two-eighths small--one-half{% else %}medium-up--one-half{% endif %} po_relative"
+         {%- assign opacity = block.settings.bg_opacity | default:100 -%}
+         {%- assign opacity = opacity | divided_by: 100.00 -%}
+         {% if block.type != "block" %}style="background-color:{{ block.settings.bg_color | color_modify: 'alpha', opacity }};"{% endif %}>
+      <div class="gs_img_wrapper">
+        {%- assign block_image = block.settings.image -%}
+        <div class="gs_img__grid" {{ block.shopify_attributes }}>
+          {%- assign min_aspect_ratio = block_image.aspect_ratio -%}
+          <img data-src="{{ block_image | img_url:'' }}" class="lazyload" data-sizes="auto" data-parent-fit="contain" data-widths="auto" width="auto" height="auto" {% if block.type != "block" %}data-width="{{ block_image.width }}"{% endif %} data-min-aspect-ratio="{{ min_aspect_ratio }}" />
+        </div>
+      </div>
+      <div class="gs_wrapper {{ block.settings.image_po }}"{% if block.settings.color_text != blank %} style="color:{{ block.settings.color_text }};" {%- endif -%}>
+        <div class="div_top">
+          {%- if block.settings.subtitle != blank -%}
+          <h3 class="">{{block.settings.subtitle}}</h3>
+          {%- endif -%}
+          {%- if block.settings.title != blank -%}
+          <h2 class="{{ block.settings.font_family }} {{ block.settings.font_size }}">{{block.settings.title}}</h2>
+          {%- endif -%}{%- if block.settings.detail != blank -%}
+          {%- assign text_size = block.settings.detail | size -%}          
+          <div class="text-wrapper fw-medium{% if text_size > 70 %} true{% endif %}"{% if block.settings.color_text_d != blank %} style="color:{{ block.settings.color_text_d }};" {%- endif -%}>
+            {{ block.settings.detail }}
+          </div>{%- endif -%}
+        </div>{%- if block.settings.btn_title != blank and block.settings.btn_link != blank -%}<div class="div_bottom {{ block.settings.btn_position }}">
+        {% if block.type == "block" %}
+        <a href="{{ block.settings.btn_link }}" class="btn btn--tertiary {{ block.settings.btn_size }}" title="{{ block.settings.btn_link | split:'/' | last | replace:'-',' ' | capitalize }}">{{ block.settings.btn_title }}</a>
+        {% else %}
+        <a href="{{ block.settings.btn_link }}" class="btn btn--link {{ block.settings.btn_size }}" title="{{ block.settings.btn_link | split:'/' | last | replace:'-',' ' | capitalize }}">{{ block.settings.btn_title }} {%- include 'icon-right-triple' -%}</a>
+        {%- endif -%}
+        </div>{%- endif -%}
+      </div>
+    </div>    
+    {%- endfor -%}  
+  </div>
+</div>
+
+<style type="text/css">{%- for block in section.blocks -%}	
+    .gs_item--{{ block.id }} .btn{ 
+    {%- if block.settings.btn_color_text != blank -%}
+    color: {{ block.settings.btn_color_text }};
+    {%- endif -%}
+    {%- if block.settings.btn_color_bg != blank -%}
+	background-color:{{ block.settings.btn_color_bg }};
+    {%- endif -%}
+    } 	
+  {% if block.type == "block" %}
+  {%- assign opacity = block.settings.bg_opacity | default:100 -%}
+  {%- assign opacity = opacity | divided_by: 100.00 -%}
+  {% if block.settings.bg_color != blank %}.gs_item--{{ block.id }} .gs_img__grid:after{ background-color:{{ block.settings.bg_color | color_modify: 'alpha', opacity }}; } {% endif %}
+  {% else %}
+  .gs_item--{{ block.id }} .gs_img_wrapper img{ {% if block.settings.e_right %}right{% else %}left{% endif %}: {% if block.settings.reverse %}-{% endif %}{{ block.settings.img_po_left }}%;
+    top: {{ block.settings.img_po_top }}%
+  }
+  {%- endif -%}
+{%- endfor -%}</style>
+{% schema %}
+  {
+    "name": "Grid Section three",
+	"max_blocks":3,
+  	"class": "index-section index-section--flush index-section--grid-section-three",
+    "settings": [],
+	"blocks":[
+	 {
+		"type":"image",
+		"name":"Image Block",		
+		"settings":[
+			{
+			  "type":"color",
+			  "label":"Select Block background color",
+			  "id":"bg_color",
+			  "default":"#000"
+			},
+			{
+			  "type":"image_picker",
+			  "label":"Upload image",
+			  "id":"image"
+			},
+			{
+			  "type":"range",
+			  "label":"Select image position from top",
+			  "id":"img_po_top",
+			  "min":0,
+			  "max":100,
+			  "default":10,
+			  "unit":"%",
+			  "step":1
+			},
+			{
+			  "type":"range",
+			  "label":"Select image position from left",
+			  "id":"img_po_left",
+			  "min":0,
+			  "max":100,
+			  "default":10,
+			  "unit":"%",
+			  "step":1
+			},
+			{
+			  "type":"checkbox",
+			  "label":"Enable postioning from right",
+			  "id":"e_right",
+			  "default": false,
+			  "info":"In you checked this option above option work for image positioning from right"
+			},
+			{
+			  "type":"checkbox",
+			  "label":"Enable reverse value",
+			  "id":"reverse",
+			  "default": true,
+			  "info":"In you checked this option image positioning value go in reverse side. This option apply only for left and right positioning"
+			},
+			{
+			  "type":"select",
+			  "label":"Select text alignment",
+			  "id":"image_po",
+			  "options":[
+				{
+				  "value":"left",
+				  "label":"Left"
+				},
+				{
+				  "value":"right",
+				  "label":"Right"
+				}
+			  ]
+			},
+			{
+			  "type":"text",
+			  "label":"Enter subtitle",
+			  "id":"subtitle",
+  			  "default":"Sub title"
+			},
+			{
+			  "type":"text",
+			  "label":"Enter title",
+			  "id":"title",
+  			  "default":"Title"
+			},
+			{
+			  "type":"color",
+			  "label":"Select title color",
+			  "id":"color_text"
+			},
+            {
+              "type": "select",
+              "id": "font_size",
+              "label":"Select font size fot title",
+              "default": "large",
+              "options": [
+                {
+                  "label": "Large",
+                  "value": "large"
+                },
+                {
+                  "label": "Medium",
+                  "value": "medium"
+                },
+                {
+                  "label": "Normal",
+                  "value": "normal"
+                }
+              ]
+            },
+            {
+              "type": "select",
+              "id": "font_family",
+              "label":"Select font family for title",
+              "default": "heading-font",
+              "options": [
+                {
+                  "label": "Futura PT",
+                  "value": " "
+                },
+                {
+                  "label": "Dharma Gothic E",
+                  "value": "heading-font"
+                }
+              ]
+            },
+			{
+			  "type":"text",
+			  "label":"Enter button title",
+			  "id":"btn_title"
+			},
+			{
+			  "type":"url",
+			  "label":"Provide button url",
+			  "id":"btn_link"
+			},
+            {
+              "type": "select",
+              "id": "btn_position",
+              "label":"Select Button alignment",
+              "default": "",
+              "options": [
+                {
+                  "label": "Default",
+                  "value": ""
+                },
+                {
+                  "label": "Left Side",
+                  "value": "left"
+                },
+                {
+                  "label": "Right Side",
+                  "value": "right"
+                }
+              ]
+            },
+            {
+              "type": "checkbox",
+              "id": "btn_size",
+              "label":"Enable default font size"
+			}
+		]
+	 },{
+		"type":"block",
+		"name":"Block",		
+		"settings":[
+			{
+			  "type":"image_picker",
+			  "label":"Upload image",
+			  "id":"image"
+			},
+			{
+			  "type":"color",
+			  "label":"Select Block background color",
+			  "id":"bg_color",
+			  "default":"#000"
+			},
+			{
+			  "type":"range",
+			  "label":"Select background opacity",
+			  "id":"bg_opacity",
+			  "min":0,
+			  "max":100,
+			  "default":40,
+			  "unit":"%",
+			  "step":1
+			},
+			{
+			  "type":"select",
+			  "label":"Select text alignment",
+			  "id":"image_po",
+			  "options":[
+				{
+				  "value":"left",
+				  "label":"Left"
+				},
+				{
+				  "value":"right",
+				  "label":"Right"
+				},
+				{
+				  "value":"center",
+				  "label":"Center"
+				}
+			  ],
+			  "default":"center"
+			},
+			{
+			  "type":"richtext",
+			  "label":"Enter detail",
+			  "id":"detail",
+			  "default":"<p>Detail</p>"
+			},
+			{
+			  "type":"color",
+			  "label":"Select title color",
+			  "id":"color_text"
+			},
+			{
+			  "type":"text",
+			  "label":"Enter button title",
+			  "id":"btn_title"
+			},
+			{
+			  "type":"url",
+			  "label":"Provide button url",
+			  "id":"btn_link"
+			},
+            {
+              "type": "checkbox",
+              "id": "btn_size",
+              "label":"Enable default font size"
+			}
+		]
+	 }
+	],
+  "presets": [
+    {
+      "name": "Grid Section Three",
+      "category": "Image",      
+      "settings": {},
+      "blocks": [
+        {
+          "type": "image",
+		  "settings":{
+			"reverse":true,
+			"image_po":"left",
+			"subtitle":"EVERYTHING YOU NEED TO KNOW",
+			"title":"MAGNESIUM"
+		  }
+        },
+        {
+          "type": "block",
+		  "settings":{
+			"bg_color":"#1a8f9d",
+			"detail":"<p>Check out how and why we started, what we’re all about and where we are heading</p>",
+			"btn_title":"OUR STORY",
+			"btn_link":"#"
+		  }
+        },
+        {
+          "type": "block",
+		  "settings":{
+			"bg_color":"#e36b00",
+			"detail":"<p>If you have any questions regarding our produtcs or your order, feel free to contact us.</p>",
+			"btn_title":"CONTACT US",
+			"btn_link":"#"
+		  }
+        }
+      ]
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

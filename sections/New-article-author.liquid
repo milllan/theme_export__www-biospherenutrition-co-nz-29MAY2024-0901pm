@@ -1,0 +1,49 @@
+<div class="author-block">
+    <div class="article_container">
+        <div class="inner-content">
+         {% if section.settings.image != blank %} <div class="profile-img">  <figure><img src="{{ section.settings.image | img_url: 'master' }}" class="lazyloaded"></figure></div> {% endif %}
+              {% if section.settings.title != blank %}<h5 class="author-name"> <span>Author : </span> {{ section.settings.title }}</h5> {% endif %}
+                {% if section.settings.detail != blank %}<div class="details">{{ section.settings.detail }} </div> {% endif %}
+                {% if section.settings.disclaimer != blank %}<div class="wc-disclaimer">{{ section.settings.disclaimer }} </div> {% endif %}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+	{
+	  "name":"Author details",
+	  "settings":[
+        {
+		  "type":"image_picker",
+		  "id":"image",
+		  "label":"Upload background image"
+		},
+        {
+		  "type":"text",
+		  "id":"title",
+		  "label":"Enter author name"
+		},
+        {
+		  "type":"richtext",
+		  "id":"detail",
+		  "label":"Enter detail"
+		},
+		{
+		  "type":"header",
+		  "content":"Disclaimer"
+		},
+		{
+		  "type":"richtext",
+		  "id":"disclaimer",
+		  "label":"Enter detail"
+		}
+	
+	  ],
+      "presets" : [
+        {
+          "name" : "Article author section"
+        }
+      ]
+	}
+{% endschema %}
+    

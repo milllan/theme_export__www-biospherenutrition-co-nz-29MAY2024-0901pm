@@ -1,0 +1,74 @@
+<div class="wrp-multi-col bg_color-{{ section.id }}" id="Sleep-Aids-and-Supplements">
+  <div class="article_container">
+    <div class="above-grid">
+      {% if section.settings.title != blank %}<h4 class="sameasallsize">{{ section.settings.title }}</h4>{% endif %}
+      {% if section.settings.content != blank %} <div class="inner_txt">{{ section.settings.content }} </div> {% endif %}
+    </div>
+     <div class="block_grid">
+          {% for block in section.blocks %}
+            <div class="inner_block">
+                {%  if block.settings.image != blank %} <figure><img src="{{ block.settings.image | img_url:'master' }}" class="lazyloaded"> </figure>{% endif %}
+                {% if block.settings.title != blank %} <h5> {{ block.settings.title}}</h5> {% endif %}
+                {% if block.settings.des_content != blank %}<div class="description"> {{ block.settings.des_content }}</div> {% endif %}
+            </div>
+        {% endfor %}   
+     </div>
+   </div>
+</div>
+
+
+<style>
+   .bg_color-{{ section.id }} {background:{{ section.settings.bg-color}};} 
+</style>
+
+    
+{% schema %}
+  {
+    "name": "Article multi column",
+    "settings": [
+        {
+          "type": "color_background",
+          "id": "bg-color",
+          "label": "Background color"
+        },
+      {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    }
+   ],
+    "blocks" :  [
+        {
+          "type" : "block",
+          "name"  :"Product ingredients",
+          "settings" : [
+                {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+                },
+                {
+                  "type": "text",
+                  "id": "title",
+                  "label": "Title"
+                },
+               {
+                "type": "richtext",
+                "id": "des_content",
+                "label": "Description"
+                }
+          ]
+        }
+    ],
+    "presets": [
+      {
+       "name": "Article multi column"
+    }
+    ] 
+  }
+{% endschema %}

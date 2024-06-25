@@ -1,0 +1,86 @@
+{%- assign sec = section.settings -%}
+{%- include 'banner' image: sec.image , alignment: sec.alignment, title : sec.title, detail : sec.detail, q_detail : sec.q_detail -%}
+{% schema %}
+  {
+    "name": "Banner 2",
+    "settings": [
+	 {
+		"type":"image_picker",
+		"label":"Upload image",
+		"id":"image"
+	 },
+     {
+      "type": "select",
+      "id": "alignment",
+      "label": "Image position",
+      "default": "center center",
+      "options": [
+      {
+      "label": "Top left",
+      "value": "left top"
+      },
+      {
+      "label":"Top center",
+      "value": "center top"
+      },
+      {
+      "label": "Top right",
+      "value": "right top"
+      },
+      {
+      "label": "Middle left",
+      "value": "left center"
+      },
+      {
+      "label": "Middle center",
+      "value": "center center"
+      },
+      {
+      "label":"Middle right",
+      "value": "right center"
+      },
+      {
+      "label":"Bottom left",
+      "value": "left bottom"
+      },
+      {
+      "label": "Bottom center",
+      "value": "center bottom"
+      },
+      {
+      "label": "Bottom right",
+      "value": "right bottom"
+      }
+      ]
+     },
+	 {
+		"type":"text",
+		"label":"Enter title",
+		"id":"title",
+		"default":"About <span>Astaxanthin NZ</span>"
+	 },
+	 {
+		"type":"richtext",
+		"label":"Enter detail",
+		"id":"detail",
+		"default":"<p>Astaxanthin is a reddish-pink pigment created by microalgae that give many sea creatures such as krill, salmon and crayfish their red colour. When certain algae are stressed by a change in their environments such as a change in temperature or a change in UV light, they release Astaxanthin to defend themselves. When released, the Astaxanthin surrounds the algae and protects it, giving it the ability to survive through tough conditions. It is these protective properties that have sparked so many new studies with new human health applications constantly being discovered.</p>"
+	 },
+	 {
+		"type":"header",
+		"content":"Quote"
+	 },
+	 {
+		"type":"richtext",
+		"label":"Enter quote",
+		"id":"q_detail",
+		"default":"<p><em>Biosphere provides a cost effective and easy way to get ideal amounts of Astaxanthin each day.</em></p>"
+	 }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

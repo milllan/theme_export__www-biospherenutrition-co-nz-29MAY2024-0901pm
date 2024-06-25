@@ -1,0 +1,469 @@
+<div class="home-outline wrap-landing-customer-review" data-section-id="{{ section.id }}" data-section-type="quotes">
+  <div class="page-width home-quotes-page-width">
+    {% if section.settings.title != blank %}
+    <div class="section-header text-center">
+      <h2>{{ section.settings.title | escape }}</h2>
+    </div>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+    <div class="quotes-wrapper">
+      <div class="quotes-slider landing-quotes-slider" >
+        {% for block in section.blocks %}
+        <div class="quotes-slide--item quotes-slide--{{ block.id }}" {{ block.shopify_attributes }}>
+          <blockquote class="quotes-slider__text text-center quotes-slider__text-n">
+            {%- if block.settings.image != blank -%}
+            <div class="t_img">
+            	<img data-src="{{ block.settings.image | img_url:'master' }}" class="lazyload" width="auto" height="auto" />
+            </div>{%- endif -%}
+            <div class="blockquote_wrapper">
+                {%- if block.settings.title -%}
+                	<span class="bq_title fw-bold">{{ block.settings.title }}</span>
+                {%- endif -%}
+                {%- if block.settings.date -%}
+                <span class="bq_date fw-light">{{ block.settings.date }}</span>
+                {%- endif -%}
+            </div>
+            <div class="blockquote_star">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </div>
+           {%- comment -%}<span class="quote-icon">{% include 'icon-quote' %}</span>{%- endcomment -%}
+            {% if block.settings.quote != blank %}
+            <div class="rte-setting rte">{{ block.settings.quote }}</div>
+            {% endif %}
+            {% if block.settings.author != blank %}
+            <cite>{{ block.settings.author | escape }}</cite>
+            {% endif %}
+          </blockquote>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if section.blocks.size == 0 %}
+    {% include 'no-blocks' %}
+    {% endif %}
+  </div>
+</div>
+
+
+
+{% schema %}
+{
+  "name": {
+    "da": "Udtalelser",
+    "de": "Testimonials",
+    "en": "Landing Testimonials",
+    "es": "Testimonios",
+    "fi": "Suositukset",
+    "fr": "Témoignages",
+    "hi": "प्रमाणपत्र",
+    "it": "Testimonial",
+    "ja": "お客様の声",
+    "ko": "추천",
+    "nb": "Tilbakemeldinger fra kunder",
+    "nl": "Getuigenissen",
+    "pt-BR": "Depoimentos",
+    "pt-PT": "Depoimentos",
+    "sv": "Kundberättelser",
+    "th": "เสียงชื่นชมจากลูกค้า",
+    "zh-CN": "感言",
+    "zh-TW": "推薦文"
+  },
+  "class": "index-section index-section--flush index-section--quotes",
+  "max_blocks": 9,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": {
+        "da": "Overskrift",
+        "de": "Titel",
+        "en": "Heading",
+        "es": "Título",
+        "fi": "Otsake",
+        "fr": "En-tête",
+        "hi": "शीर्षक",
+        "it": "Heading",
+        "ja": "見出し",
+        "ko": "제목",
+        "nb": "Overskrift",
+        "nl": "Kop",
+        "pt-BR": "Título",
+        "pt-PT": "Título",
+        "sv": "Rubrik",
+        "th": "ส่วนหัว",
+        "zh-CN": "标题",
+        "zh-TW": "標題"
+      },
+      "default": {
+        "da": "Udtalelser",
+        "de": "Testimonials",
+        "en": "Testimonials",
+        "es": "Testimonios",
+        "fi": "Suositukset",
+        "fr": "Témoignages",
+        "hi": "प्रमाणपत्र",
+        "it": "Testimonial",
+        "ja": "お客様の声",
+        "ko": "추천",
+        "nb": "Tilbakemeldinger fra kunder",
+        "nl": "Getuigenissen",
+        "pt-BR": "Depoimentos",
+        "pt-PT": "Depoimentos",
+        "sv": "Kundberättelser",
+        "th": "เสียงชื่นชมจากลูกค้า",
+        "zh-CN": "感言",
+        "zh-TW": "推薦文"
+      }
+    },
+		{
+		 "type":"image_picker",
+		 "label":"Upload background image",
+		 "id":"bg_img"
+		},
+		{
+		 "type":"checkbox",
+		 "label":"Enable bacground color",
+		 "id":"enadble_bg_c",
+		 "default":true,
+		 "info":"If you checked this option it will only the selected bg color"
+		},
+		{
+		 "type":"color",
+		 "label":"Select bacground color",
+		 "id":"bg_c",
+		 "default":"#000"
+		}
+  ],
+  "blocks": [
+    {
+      "type": "quote",
+      "name": {
+        "da": "Udtalelse",
+        "de": "Testimonial",
+        "en": "Testimonial",
+        "es": "Testimonio",
+        "fi": "Suositukset",
+        "fr": "Témoignages",
+        "hi": "प्रमाणपत्र",
+        "it": "Testimonial",
+        "ja": "お客様の声",
+        "ko": "추천",
+        "nb": "Anbefaling",
+        "nl": "Testimonial",
+        "pt-BR": "Depoimento",
+        "pt-PT": "Testemunho",
+        "sv": "Kundberättelser",
+        "th": "เสียงชื่นชมจากลูกค้า",
+        "zh-CN": "感言",
+        "zh-TW": "推薦文"
+      },
+      "settings": [
+        {
+		  "type":"image_picker",
+		  "id":"image",
+		  "label":"Upload image"
+		},
+        {
+          "type": "richtext",
+          "id": "quote",
+          "label": {
+            "da": "Tekst",
+            "de": "Text",
+            "en": "Text",
+            "es": "Texto",
+            "fi": "Teksti",
+            "fr": "Texte",
+            "hi": "टेक्स्ट",
+            "it": "Testo",
+            "ja": "テキスト",
+            "ko": "텍스트",
+            "nb": "Tekst",
+            "nl": "Tekst",
+            "pt-BR": "Texto",
+            "pt-PT": "Texto",
+            "sv": "Text",
+            "th": "ข้อความ",
+            "zh-CN": "文本",
+            "zh-TW": "文字"
+          },
+          "default": {
+            "da": "<p>Tilføj kundeanmeldelser og udtalelser for at fremhæve din butiks tilfredse kunder.</p>",
+            "de": "<p>Kunden-Reviews und Testimonials, die Kundenzufriedenheit beweisen.</p>",
+            "en": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.</p>",
+            "es": "<p>Agrega las reseñas y los testimonios de los clientes para mostrar a los clientes satisfechos de tu tienda.</p>",
+            "fi": "<p>Lisää asiakasarviointeja ja suositteluja esimerkeiksi myymäläsi tyytyväisistä asiakkaista.</p>",
+            "fr": "<p>Ajoutez des avis et témoignages pour mettre en avant vos clients satisfaits.</p>",
+            "hi": "<p>अपने स्टोर के खुश ग्राहकों को दिखाने के लिए ग्राहक समीक्षा और प्रशंसापत्र जोड़ें.</p>",
+            "it": "<p>Aggiungi recensioni e testimonianze sul tuo negozio per dimostrare che i clienti sono soddisfatti.</p>",
+            "ja": "<p>あなたのストアの幸せなお客様を紹介するために、カスタマーレビューとお客様の声を追加してください。</p>",
+            "ko": "<p>고객 리뷰 및 추천을 추가하여 스토어에 만족한 고객을 보여주십시오.</p>",
+            "nb": "<p>Legg til kundeomtaler og anbefalinger for å vise frem butikkens glade kunder.</p>",
+            "nl": "<p>Voeg beoordelingen van klanten en testimonials toe om te laten zien dat je klanten tevreden zijn.</p>",
+            "pt-BR": "<p>Adicione comentários e depoimentos para dar destaque aos clientes satisfeitos com a sua loja.</p>",
+            "pt-PT": "<p>Adicione análises e testemunhos para mostrar os clientes felizes da sua loja.</p>",
+            "sv": "<p>Lägg till kundrecensioner och berättelser för att visa upp din butiks nöjda kunder.</p>",
+            "th": "<p>เพิ่มรีวิวและเสียงชื่นชมจากลูกค้าเพื่อนำเสนอลูกค้าที่ได้รับความพึงพอใจจากร้านค้า</p>",
+            "zh-CN": "<p>添加客户评论和感言，以展示对您的商店满意的客户。</p>",
+            "zh-TW": "<p>新增顧客評論和推薦文，展示對您商店滿意之顧客。</p>"
+          }
+        },
+        {
+		  "type":"text",
+		  "id":"title",
+		  "label":"Enter comment title"
+		},
+        {
+		  "type":"text",
+		  "id":"date",
+		  "label":"Enter date"
+		},
+        {
+          "type": "text",
+          "id": "author",
+          "label": {
+            "da": "Forfatter",
+            "de": "Autor",
+            "en": "Author",
+            "es": "Autor",
+            "fi": "Kirjoittaja",
+            "fr": "Auteur",
+            "hi": "लेखक",
+            "it": "Autore",
+            "ja": "執筆者",
+            "ko": "작성자",
+            "nb": "Forfatter",
+            "nl": "Auteur",
+            "pt-BR": "Autoria",
+            "pt-PT": "Autoria",
+            "sv": "Upphovsman",
+            "th": "ผู้เขียน",
+            "zh-CN": "作者",
+            "zh-TW": "作者"
+          },
+          "default": {
+            "da": "Forfatterens navn",
+            "de": "Name des Autors",
+            "en": "Author's name",
+            "es": "Nombre del autor",
+            "fi": "Kirjoittajan nimi",
+            "fr": "Nom de l'auteur",
+            "hi": "लेखक का नाम",
+            "it": "Nome dell'autore",
+            "ja": "筆者の名前",
+            "ko": "작성자 이름",
+            "nb": "Forfatterens navn",
+            "nl": "Naam auteur",
+            "pt-BR": "Nome do autor",
+            "pt-PT": "Nome do autor",
+            "sv": "Författarens namn",
+            "th": "ชื่อผู้เขียน",
+            "zh-CN": "作者姓名",
+            "zh-TW": "作者名稱"
+          }
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": {
+        "da": "Udtalelser",
+        "de": "Testimonials",
+        "en": "Testimonials",
+        "es": "Testimonios",
+        "fi": "Suositukset",
+        "fr": "Témoignages",
+        "hi": "प्रमाणपत्र",
+        "it": "Testimonial",
+        "ja": "お客様の声",
+        "ko": "추천",
+        "nb": "Tilbakemeldinger fra kunder",
+        "nl": "Getuigenissen",
+        "pt-BR": "Depoimentos",
+        "pt-PT": "Depoimentos",
+        "sv": "Kundberättelser",
+        "th": "เสียงชื่นชมจากลูกค้า",
+        "zh-CN": "感言",
+        "zh-TW": "推薦文"
+      },
+      "category": {
+        "da": "Tekst",
+        "de": "Text",
+        "en": "Text",
+        "es": "Texto",
+        "fi": "Teksti",
+        "fr": "Texte",
+        "hi": "टेक्स्ट",
+        "it": "Testo",
+        "ja": "テキスト",
+        "ko": "텍스트",
+        "nb": "Tekst",
+        "nl": "Tekst",
+        "pt-BR": "Texto",
+        "pt-PT": "Texto",
+        "sv": "Text",
+        "th": "ข้อความ",
+        "zh-CN": "文本",
+        "zh-TW": "文字"
+      },
+      "blocks": [
+        {
+          "type": "quote"
+        },
+        {
+          "type": "quote"
+        },
+        {
+          "type": "quote"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+<style type="text/css">
+  
+  .home-outline .quotes-slider__text{ background-color:{{ section.settings.bg_c }}; }
+  .quotes-wrapper .slick-dots li button::before {
+    border: none;
+  }
+  .wrap-landing-customer-review .section-header.text-center h2 {
+    color: #000000;
+    line-height: 58px;
+    font-size: 45px;
+    font-weight: 600;
+    font-family: "Futura PT",sans-serif;
+    text-transform: capitalize;
+    letter-spacing: 0;
+    margin:82px 0 30px 0;
+  }
+  .home-outline{padding:0;}
+  .quotes-slider{padding-bottom:0;}
+  
+  .wrap-landing-customer-review .slick-dots li a:before, .slick-dots li button:before {
+    background-color: #c4c4c4;
+  }
+  
+  .wrap-landing-customer-review .quotes-slider .quotes-slide--item {
+    padding: 0 22.5px;
+    padding-top: calc(5px + .477vw);
+    height: auto !important;
+  }
+  
+  .wrap-landing-customer-review .slick-dots li a:focus:before, .wrap-landing-customer-review .slick-dots li a:hover:before, .wrap-landing-customer-review .slick-dots li button:focus:before, .wrap-landing-customer-review .slick-dots li button:hover:before {
+    border-color: #00a2ff;
+    background-color: #c4c4c4;
+  }
+  
+  .wrap-landing-customer-review .slick-dots li.slick-active button:before {
+    border-color: #00a2ff;
+    background-color: #c4c4c4;
+  }
+  
+  .wrap-landing-customer-review  .t_img {
+    width: 100px;
+    padding-bottom: 0px;
+    margin: 0 auto 38px;
+  }
+  
+  .wrap-landing-customer-review .quotes-slider__text {
+    margin-top: 20%;
+    padding: 38px 38px 24px;
+    height: auto;
+    height: calc(100% - 65px);
+  }
+  
+  .wrap-landing-customer-review .blockquote_wrapper:after {
+  	display: none;
+  }
+  
+  .wrap-landing-customer-review .blockquote_wrapper {
+    padding-bottom: 4px;
+  }
+  
+  .wrap-landing-customer-review .quotes-slider .rte-setting {
+    margin-top: 5px;
+  }
+  .wrap-landing-customer-review .quotes-slider .slick-track{display: flex !important;}
+  @media only screen and (max-width:1450px){
+    .wrap-landing-customer-review .quotes-slider__text {height: calc(100% - 60px);}
+  }
+  
+  @media only screen and (max-width:1290px){
+    .wrap-landing-customer-review .quotes-slider__text {height: calc(100% - 55px);}
+  }
+  
+  @media only screen and (max-width:1199px){
+    .wrap-landing-customer-review .quotes-slider .quotes-slide--item .t_img img {
+      width: 100%;
+    }
+    .wrap-landing-customer-review .quotes-slider__text{padding-left:15px;padding-right:15px;}
+  }
+  
+  @media only screen and (max-width:991px){
+    .wrap-landing-customer-review .quotes-slider__text {height: calc(100% - 60px);}
+  }
+  
+  @media only screen and (max-width:767px){
+    .wrap-landing-customer-review .section-header.text-center h2 {
+      line-height: 40px;
+      font-size: 34px;
+      margin: 50px 0 30px 0;
+    }
+    .wrap-landing-customer-review .quotes-slider__text {height: calc(100% - 65px);}
+  }
+  
+  @media only screen and (max-width:574px){
+    .wrap-landing-customer-review .quotes-slider__text {height: auto;}
+  }
+  
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $( document ).ready(function() {
+
+    $('.landing-quotes-slider').slick({
+      dots: true,
+      autoplay:true,
+      autoplaySpeed:1000,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2
+          }
+        },
+        {
+          breakpoint: 575,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+        // You can unslick at a given breakpoint now by adding:
+        // settings: "unslick"
+        // instead of a settings object
+      ]
+    });
+
+  });
+</script>

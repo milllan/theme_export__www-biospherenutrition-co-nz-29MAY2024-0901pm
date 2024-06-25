@@ -1,0 +1,86 @@
+<div class="review_section" style="background: url({{ section.settings.bg_image | img_url:'master' }}) no-repeat scroll center; background-size: cover;">
+  <div class="inner_review_section">
+    {% for block in section.blocks %}
+      <div class="review_itm">
+        <div class="inner_review_dv">
+          {% if block.settings.review_body != blank %}<div class="inner_text_dv">{{ block.settings.review_body }}</div>{% endif %}
+       <div class="inside_content">   
+           {% if block.settings.name != blank %}
+            <h3>{{ block.settings.name }} </h3>
+           {% endif %}   
+          <div class="rating">
+              {% if block.settings.rating == "one" %}
+              <span> {% render 'active_start' %}</span><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span>
+              {% elsif  block.settings.rating == "two" %}
+              <span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span>  
+              {% elsif  block.settings.rating == "three" %}
+              <span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span><span> {% render 'deactive_start' %}</span><span> {% render 'deactive_start' %}</span>
+              {% elsif  block.settings.rating == "four" %}
+              <span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span><span> {% render 'deactive_start' %}</span>      
+              {% else %}
+              <span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span><span> {% render 'active_start' %}</span>                
+             {% endif %}
+           </div>
+            <img src="{{ 'Quote_red.png' | asset_url }}" alt="quote" title="quote" />
+       </div>
+        </div>
+      </div>
+      {% endfor %}
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Review Section",
+    "settings": [{
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    }],
+    "blocks": [{
+      "type": "review_block",
+      "name": "Review Block",
+      "settings": [{
+          "type": "richtext",
+          "id": "review_body",
+          "label": "Review Body"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name"
+        },
+       {
+        "type": "select",
+        "id": "rating",
+        "label": "Star Rating",
+        "options": [
+        {
+        "value": "one",
+        "label": "One"
+        },
+        {
+        "value": "two",
+        "label": "Two"
+        },
+        {
+        "value": "three",
+        "label": "Three"
+        },
+        {
+        "value": "four",
+        "label": "Four"
+        },
+        {
+        "value": "five",
+        "label": "Five"
+        }
+        ]
+      }
+      ]
+    }],
+    "presets": [{
+      "name": "Review Section Nitric Oxide",
+      "category": "Text"
+    }]
+  }
+{% endschema %}

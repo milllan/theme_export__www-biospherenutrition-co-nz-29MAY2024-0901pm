@@ -1,0 +1,142 @@
+<div data-section-id="{{ section.id }}" data-section-type="author-section" class="page--{{ page.handle }}">
+  <div class="page-width author-sec">
+    <div class="wwr_grid">    
+      <div class="wwr_grid__item" >
+        <div class="wwr_card text-center">
+          {%- if section.settings.image != blank -%}<div class="wwr_img_wrapper">
+          <div class="border_img">
+            {%- if page.handle == "nitric-oxide" -%}
+            <img class="lazyload bi-1 one-whole" src="{{ 'biosphere-border_img-nitrix_ox.png' | asset_img_url:'50x' }}" data-src="{{ 'biosphere-border_img-nitrix_ox.png' | asset_url }}" width="auto" height="auto" />
+            {%- else -%}
+            <img class="lazyload bi-1 one-whole" src="{{ 'biosphere-border_img.png' | asset_img_url:'50x' }}" data-src="{{ 'biosphere-border_img.png' | asset_url }}" width="auto" height="auto" />{%- endif -%}
+            <img class="lazyload bi-1-hover" data-src="{{ 'biosphere-border_img_hover.png' | asset_url }}" width="auto" height="auto" />        
+            <div class="main_img">
+              <img class="lazyload" src="{{section.settings.image | img_url:'50x'}}" data-src="{{section.settings.image | img_url:''}}" width="auto" height="auto" />
+            </div>
+          </div>
+          </div>{%- endif -%}
+          <div class="wwr_d_wrapper fw-medium">
+            {%- if section.settings.title != blank -%}
+            <h4 class="fw-semi-bold{% if page.handle == "nitric-oxide" %} nitric_ox-color{% endif %}">{%- if section.settings.title contains ':' -%}<span>{{ section.settings.title | split:':' | first }} :</span>{{ section.settings.title | split:':' | last }}{%- else -%}{{ section.settings.title }}{%- endif -%}</h4>
+            {%- endif -%}{%- if section.settings.subtitle != blank -%}
+            <div class="wwr_subtitle">{{ section.settings.subtitle }}</div>
+            {%- endif -%}         
+            {%- if section.settings.detail != blank -%}
+            <div class="wwr_text">
+              {{ section.settings.detail }}
+            </div>{%- endif -%}
+{% comment %}            {%- assign socials = "Facebook Twitter Instagram" | split: ' ' -%}   
+            {%- for social in socials -%}
+            {%- assign social_link = social | prepend: 'social_' | append: '_link' | downcase -%}
+            {%- assign icon_link = social | prepend: 'icon-' | downcase -%}
+            {%- if section.settings[social_link] != blank -%}
+            {%- if forloop.index == 1 -%}
+            <ul class="list--inline social-icons wwr_social">
+              {%- endif -%}
+              <li class="social-icons__item">
+                <a class="social-icons__link" href="{{ section.settings[social_link] | escape }}" aria-describedby="a11y-external-message">
+                  {%- include icon_link -%}
+                  <span class="icon__fallback-text">{{ social }}</span>
+                </a>
+              </li>
+              {%- if forloop.last == 1 -%}
+            </ul>
+            {%- endif -%}
+            {%- endif -%}
+            {%- endfor -%}{%- endcomment -%}
+            {%- if section.settings.stitle != blank and section.settings.social_twitter_link != blank -%}
+            <div class="wwr_so_title no_social"><a href="{{ section.settings.social_twitter_link }}">{{ section.settings.stitle }}</a></div>
+            {%- endif -%}
+          </div>
+          
+        </div>
+        {%- if section.settings.a_detail != blank -%}
+        <div class="about_au rte text-center{% if page.handle == "nitric-oxide" %} nitric_ox-color{% endif %}">
+          {{ section.settings.a_detail }}
+        </div>
+        {%- endif -%}
+        {% assign reference = page.metafields.reference.reference | default: section.settings.reference %}
+        {%- if reference != blank -%}
+        <div class="reference" id="Reference">
+          <div class="refe_title"><i class="icon"></i><span>References</span></div>
+          <div class="refe_content rte active{% if page.handle == "nitric-oxide" %} nitric_ox-color{% endif %}">{{ reference }}</div>
+        </div>
+        {%- endif -%}
+        {% assign disclaimer = page.metafields.disclaimer.disclaimer | default: section.settings.disclaimer %}
+        {%- if disclaimer != blank  -%}<div class="disclaimer">
+        {{- disclaimer -}}
+        </div>{%- endif -%}      
+      </div>          
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Author Section",
+    "settings": [
+{
+		  "type":"image_picker",
+		  "id":"image",
+		  "label":"Upload image"
+		},
+		{
+		  "type":"text",
+		  "id":"title",
+		  "label":"Enter title"
+		},
+		{
+		  "type":"text",
+		  "id":"subtitle",
+		  "label":"Enter Subtitle"
+		},
+		{
+		  "type":"richtext",
+		  "id":"detail",
+		  "label":"Enter detail"
+		},
+		{
+		  "type":"richtext",
+		  "id":"a_detail",
+		  "label":"Enter detail about author"
+		},
+		{
+		  "type":"header",
+		  "content":"Social"
+		},
+		{
+		  "type":"text",
+		  "id":"stitle",
+		  "label":"Enter Social title"
+		},
+        {
+          "type": "url",
+          "id": "social_twitter_link",
+          "label": "Provide link"
+        },
+		{
+		  "type":"header",
+		  "content":"Reference"
+		},
+		{
+		  "type":"richtext",
+		  "id":"reference",
+		  "label":"Enter detail about author"
+		},
+		{
+		  "type":"header",
+		  "content":"Disclaimer"
+		},
+		{
+		  "type":"richtext",
+		  "id":"disclaimer",
+		  "label":"Enter detail about author"
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

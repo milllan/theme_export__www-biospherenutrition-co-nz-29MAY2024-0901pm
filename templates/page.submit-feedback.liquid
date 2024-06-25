@@ -1,0 +1,82 @@
+  <div class="page-width submit-feedback">
+    <div class="grid">
+      <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+        <div class="section-header text-center">
+          <h1 {% if wholesaler %}class="h-border-bottom textcenter border-color_d"{% endif %}>{{ page.title }}</h1>
+        </div>        
+        {% if page.content.size > 0 %}
+        <div class="rte div_rich{% if wholesaler %} text-center{% endif %}">
+          {{ page.content }}
+        </div>
+        {% endif %}
+
+        <div class="contact-form form-vertical">
+          {%- assign formId = 'ContactFormFeedBack' -%}          
+          {% form 'contact', id: formId %}
+          {% include 'form-status', form: form, form_id: formId %}          
+          
+          <input type="hidden" id="{{ formId }}-location" name="contact[Form]" value="FeedBack Form">          
+          <div class="grid grid--half-gutters">            
+            <div class="grid__item">
+              <label for="{{ formId }}-email">{{ 'contact.form.email' | t }} <span aria-hidden="true">*</span></label>
+              <input
+                     type="email"
+                     id="{{ formId }}-email"
+                     name="contact[email]"
+                     autocorrect="off"
+                     autocapitalize="off"
+                     placeholder="E.g. john@doe.com"
+                     value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                     aria-required="true"
+                     {%- if form.errors contains 'email' -%}
+                     class="input--error"
+                     aria-invalid="true"
+                     aria-describedby="{{ formId }}-email-error"
+                     {%- endif -%}
+                     >
+              {%- if form.errors contains 'email' -%}
+              <span id="{{ formId}}-email-error" class="input-error-message">
+                <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                {% include 'icon-error' %}
+                <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+              </span>
+              <span>So we can send you your $5 coupon with free shipping</span>
+              {%- endif -%}
+            </div>
+          </div>
+          
+          <label for="{{ formId }}-message">{{ 'contact.form.message' | t }} <span aria-hidden="true">*</span></label>
+          <textarea rows="6" id="{{ formId }}-message" name="contact[{{ 'contact.form.message' | t }}]" required="required" placeholder="Let us know how we can improve here">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+          
+          
+          <div class="option_text">
+            <h3 class="h4-large">Optional, how would you rate our service so far?</h3>
+            <p>Please answer on a 1-5 scale, with 1 being the worst, and 5 being the best.<p>
+          </div>
+          <div class="grid grid--half-gutters">            
+            <div class="grid__item medium-up--one-half">
+              <label for="{{ formId }}-number-1">How would you rate the quality of our products?</label>
+              <input type="number" name="contact[number-1]" value="" placeholder="Please answer with a number between 1 and 5" id="{{ formId }}-number-1" pattern="^\-?\d*([\.\,]\d+)?" inputmode="numeric" data-required="" aria-required="false" min="1" max="5" aria-invalid="false">
+            </div>
+            <div class="grid__item medium-up--one-half">
+              <label for="{{ formId }}-number-2">How would you rate the taste of our products?</label>
+              <input type="number" name="contact[number-2]" value="" placeholder="Please answer with a number between 1 and 5" id="{{ formId }}-number-2" pattern="^\-?\d*([\.\,]\d+)?" inputmode="numeric" data-required="" aria-required="false" min="1" max="5" aria-invalid="false">
+            </div>
+            <div class="grid__item medium-up--one-half">
+              <label for="{{ formId }}-number-3">How would you rate the value of our products?</label>
+              <input type="number" name="contact[number-3]" value="" placeholder="Please answer with a number between 1 and 5" id="{{ formId }}-number-3" pattern="^\-?\d*([\.\,]\d+)?" inputmode="numeric" data-required="" aria-required="false" min="1" max="5" aria-invalid="false">
+            </div>
+            <div class="grid__item medium-up--one-half">
+              <label for="{{ formId }}-number-4">How would you rate our customer service?</label>
+              <input type="number" name="contact[number-4]" value="" placeholder="Please answer with a number between 1 and 5" id="{{ formId }}-number-4" pattern="^\-?\d*([\.\,]\d+)?" inputmode="numeric" data-required="" aria-required="false" min="1" max="5" aria-invalid="false">
+            </div>
+          </div>
+
+          <input type="submit" class="btn btn-con-bg" value="{{ 'contact.form.submit' | t }}">
+
+          {% endform %}
+        </div>  
+      </div>
+    </div>
+  </div>
+  

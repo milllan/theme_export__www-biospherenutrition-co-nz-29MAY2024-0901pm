@@ -1,0 +1,160 @@
+{{ 'text-overlay.css' | asset_url | stylesheet_tag }}
+
+
+
+{% style %}
+  .text-overlay{
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  @media screen and (min-width: 992px) {
+  {% if section.settings.image != blank %}
+    .bg_image_{{ section.id }} {
+      background-image: url({{section.settings.image | img_url: 'master'}}); 
+      background-repeat: no-repeat;  
+      background-size: cover;
+      background-position: center center;
+    }
+  {% endif %}
+  }
+  @media screen and (max-width: 992px) {
+     .bg_image_{{ section.id }} {
+      background-image: url({{section.settings.mobile_image | img_url: 'master'}}); 
+      background-repeat: no-repeat;  
+      background-size: cover;
+      background-position: center center;
+    } 
+     .text-overlay {
+      padding-bottom: 365px;
+    }   
+  }
+{% endstyle %}
+<div class="text-overlay bg_image_{{ section.id }} desc-content">
+  <div class="page-width">
+    <div class="text-overlay-wrapper desktop">
+      <div class="text-overlay-title">
+        <h2>{{ section.settings.title }}</h2>
+        <h3>{{ section.settings.sub_title }}</h3>
+        {{ section.settings.detail-text }}
+        <div class="btn-with-text">
+          <a href="{{ section.settings.link }}" class="get-btn">{{ section.settings.btn-txt }}</a>
+          <div class="pro-desc">
+            <span>{{ section.settings.svg-icon }}</span>
+            <p>{{ section.settings.pro-text }}</p>
+          </div>
+        </div>
+      </div>      
+    </div>
+  </div>
+</div>
+<div class="text-overlay bg_image_{{ section.id }} mob-content">
+  <div class="page-width">
+    <div class="text-overlay-wrapper desktop">
+      <div class="text-overlay-title">
+        <h2>{{ section.settings.mobile_title }}</h2>
+        <h3>{{ section.settings.mob_sub_title }}</h3>
+        {{ section.settings.mob_detail-text }}
+        <div class="btn-with-text">
+          <a href="{{ section.settings.link }}" class="get-btn">{{ section.settings.btn-txt }}</a>
+          <div class="pro-desc">
+            <span>{{ section.settings.svg-icon }}</span>
+            <p>{{ section.settings.pro-text }}</p>
+          </div>
+        </div>
+      </div>      
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Text overlay",
+    "settings": [
+      {
+        "type":"image_picker",
+        "id":"image",
+        "label":"Image"
+      },
+      {
+        "type":"image_picker",
+        "id":"mobile_image",
+        "label":"Mobile Image"
+      },
+      {
+        "type":"text",
+        "id":"title",
+        "label":"Title"
+      },
+      {
+        "type":"text",
+        "id":"mobile_title",
+        "label":"Mobile Title"
+      },
+      {
+        "type":"text",
+        "id":"sub_title",
+        "label":"Sub Title"
+      },
+      {
+        "type":"text",
+        "id":"mob_sub_title",
+        "label":"Mobile Sub Title"
+      },
+      {
+        "type": "richtext",
+        "id": "detail-text",
+        "label": "Details Text"
+      },
+      {
+        "type": "richtext",
+        "id": "mob_detail-text",
+        "label": "Mobile Details Text"
+      },
+      {
+        "type": "text",
+        "id": "btn-txt",
+        "label": "BUtton Label"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Button Link"
+      },
+      {
+        "type": "html",
+        "id": "svg-icon",
+        "label": "SVG icon"
+      },
+      {
+        "type": "text",
+        "id": "pro-text",
+        "label": "Text"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding Top",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding Bottom",
+        "default": 0
+      }
+    ],
+    "presets":[
+      {
+        "name":"text-overlay"
+      }
+    ]
+  }
+{% endschema %}

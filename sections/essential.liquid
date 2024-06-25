@@ -1,0 +1,227 @@
+<div class="essential" style="background-image: url({{ section.settings.bg_img | img_url: 'master' }});">
+  <div class="page-width">
+    <div class="essential-content">
+      <h2>{{ section.settings.title }}</h2>
+      <p class="essentail-sub-title">{{ section.settings['sub-title'] }}</p>
+      <div class="essentail-desc">
+        {{ section.settings.desc }}
+      </div>
+      <div class="img-txt-content">
+        {% for block in section.blocks %}
+          <div class="essentail-img-text">
+            {% if block.settings.image != blank %}
+              <div class="essentail-img">
+                <img src="{{ block.settings.image | img_url: 'master' }}">
+              </div>
+            {% endif %}
+            <div class="essentail-img-desc">{{ block.settings['img-desc'] }}</div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="essentail-lst-desc">
+        {{ section.settings['lst-dsc'] }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+    .essential{
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+    .essential-content {
+      text-align: center;
+  }
+    .essential-content h2 {
+      font-size: 48px;
+      color: #ffffff;
+      font-weight: 800;
+      text-transform: inherit;
+      letter-spacing: 0.01px;
+      margin-bottom: 0;
+  }
+    .essentail-sub-title {
+      opacity: 0.702;
+      font-size: 30px;
+      color: #ffffff;
+      font-weight: 800;
+      margin-bottom: 30px;
+      padding-bottom: 30px;
+      position: relative;
+  }
+    .essentail-sub-title:after {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 4px;
+      background-color: rgba(255,255,255,0.5019607843137255);
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+  }
+    .essentail-desc p{
+      font-size: 28px;
+      color: #ffffff;
+      font-weight: 400;
+      margin-bottom: 30px;
+  }
+    .img-txt-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding-bottom: 25px;
+      margin-bottom: 25px;
+      position: relative;
+  }
+    .img-txt-content:after {
+      content: "";
+      position: absolute;
+      opacity: 0.502;
+      width: 100px;
+      height: 4px;
+      background-color: rgba(255,255,255,0.5019607843137255);
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+  }
+    .essentail-img img {
+      width: 100%;
+  }
+    .essential-content {
+      text-align: center;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+  }
+    .essentail-img-text {
+      width: calc(50% - 10px);
+  }
+    .essentail-img-desc p {
+      font-size: 28px;
+      color: #ffffff;
+  }
+    .essentail-lst-desc p {
+      font-size: 28px;
+      color: #ffffff;
+      font-weight: 400;
+  }
+    .essential-content h2 {font-size: 44px;}
+    @media screen and (max-width: 992px){
+      .essential-content h2 {
+        font-size: 42px;
+        line-height: 44px;
+      }
+      .essentail-sub-title {
+        font-size: 26px;
+        line-height: 30px;
+      }
+      .essentail-desc {
+        font-size: 22px;
+        line-height: 30px;
+        color: #fff;
+      }
+      .img-txt-content {
+        display: block;
+      }
+      .essentail-img-text {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      .essentail-img-desc p {
+        font-size: 24px;
+        line-height: 30px;
+      }
+      .essentail-lst-desc p {
+        font-size: 24px;
+        line-height: 30px;
+      }
+    }
+     @media screen and (max-width: 767px) {
+       .essential-content h2 {
+      font-size: 32px;
+      line-height: 38px;
+      }
+      .essential {
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }   
+   .essentail-img-desc p,.essentail-desc p,.essentail-lst-desc p {font-size: 16px;}       
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Essential",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_img",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "sub-title",
+      "label": "Sub Title"
+    },
+    {
+      "type": "richtext",
+      "id": "desc",
+      "label": "Description"
+    },
+    {
+      "type": "richtext",
+      "id": "lst-dsc",
+      "label": "last Description"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 0
+    }
+  ],
+  "blocks":[
+    {
+      "type": "text",
+      "name": "image with text",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "richtext",
+          "id": "img-desc",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Essential"
+    }
+  ]
+}
+{% endschema %}

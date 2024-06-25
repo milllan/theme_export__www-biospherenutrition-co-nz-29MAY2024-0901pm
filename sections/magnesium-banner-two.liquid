@@ -1,0 +1,186 @@
+{%- include 'banner-two',page :'magnesium' -%}
+{% schema %}
+  {
+    "name": "Section",
+    "settings": [
+	 {
+		"type":"image_picker",
+		"label":"Upload image",
+		"id":"image"
+	 },
+	 {
+		"type":"color",
+		"label":"Select background color",
+		"id":"bg_color"
+	 },
+     {
+      "type": "select",
+      "id": "alignment",
+      "label": "Image position",
+      "default": "center center",
+      "options": [
+      {
+      "label": "Top left",
+      "value": "left top"
+      },
+      {
+      "label":"Top center",
+      "value": "center top"
+      },
+      {
+      "label": "Top right",
+      "value": "right top"
+      },
+      {
+      "label": "Middle left",
+      "value": "left center"
+      },
+      {
+      "label": "Middle center",
+      "value": "center center"
+      },
+      {
+      "label":"Middle right",
+      "value": "right center"
+      },
+      {
+      "label":"Bottom left",
+      "value": "left bottom"
+      },
+      {
+      "label": "Bottom center",
+      "value": "center bottom"
+      },
+      {
+      "label": "Bottom right",
+      "value": "right bottom"
+      }
+      ]
+     },
+      {
+		"type":"text",
+		"label":"Enter section title",
+		"id":"title"
+      },
+      {
+		"type":"richtext",
+		"label":"Enter detail",
+		"id":"description"
+      },
+      {
+		"type":"text",
+		"label":"Enter button title",
+		"id":"bt"
+      },
+      {
+		"type":"url",
+		"label":"Provide button link",
+		"id":"bl"
+      },
+      {
+      "type":"header",
+      "content":"Second banner"
+      },
+	 {
+		"type":"image_picker",
+		"label":"Upload image",
+		"id":"image_2"
+	 },
+	 {
+		"type":"color",
+		"label":"Select background color",
+		"id":"bg_color_2"
+	 },
+     {
+      "type": "select",
+      "id": "alignment_2",
+      "label": "Image position",
+      "default": "center center",
+      "options": [
+      {
+      "label": "Top left",
+      "value": "left top"
+      },
+      {
+      "label":"Top center",
+      "value": "center top"
+      },
+      {
+      "label": "Top right",
+      "value": "right top"
+      },
+      {
+      "label": "Middle left",
+      "value": "left center"
+      },
+      {
+      "label": "Middle center",
+      "value": "center center"
+      },
+      {
+      "label":"Middle right",
+      "value": "right center"
+      },
+      {
+      "label":"Bottom left",
+      "value": "left bottom"
+      },
+      {
+      "label": "Bottom center",
+      "value": "center bottom"
+      },
+      {
+      "label": "Bottom right",
+      "value": "right bottom"
+      }
+      ]
+     },
+      {
+		"type":"text",
+		"label":"Enter section title",
+		"id":"title_2"
+      },
+      {
+		"type":"richtext",
+		"label":"Enter detail",
+		"id":"description_2"
+      },
+     {
+      "type": "select",
+      "id": "alig_2",
+      "label": "Content and Text",
+      "default": "left_right",
+      "options": [
+      {
+      "label": "Content left and Text align right",
+      "value": "left_right"
+      },
+      {
+      "label": "Content center and Text align center",
+      "value": "center_center"
+      },
+      {
+      "label": "Content right and Text align left",
+      "value": "right_left"
+      }
+      ]
+     },
+      {
+		"type":"text",
+		"label":"Enter button title",
+		"id":"bt_2"
+      },
+      {
+		"type":"url",
+		"label":"Provide button link",
+		"id":"bl_2"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

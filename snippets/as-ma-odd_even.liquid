@@ -1,0 +1,87 @@
+{%- assign magnesium = false -%}
+{%- if page == 'magnesium' -%}
+{%- assign magnesium = true -%}
+{%- endif -%}
+{%- assign nitric_oxide = false -%}
+{%- if page == 'nitric-oxide' -%}
+{%- assign nitric_oxide = true -%}
+{%- endif -%}
+<div data-section-id="{{ section.id }}" data-section-type="banner-section">
+  <div class="as_oe_grid page_nitrcO--{{ nitric_oxide }}">
+    {%- for block in section.blocks -%}
+    {%- assign blc = block.settings -%}
+    <div class="as_oe_item text_right_{{ blc.text_op_right }} as_oe_meg_{{magnesium}}_item lazyload" {{ block.shopify_attributes }}
+         {% if blc.text_image != blank and blc.banner_image_enable %} data-bg="{{ blc.text_image | img_url: '300x300' }}" data-bgset="{% include 'bgset', image: blc.text_image %}" data-sizes="auto" data-parent-fit="cover"
+         style="background-image: url('{{ blc.text_image | img_url: '1x1' }}');"{% endif %}>
+    {%- capture text_part -%}
+      {%- if blc.text_image != blank -%}<div class="text_bg lazyload"{% unless blc.banner_image_enable %} data-bg="{{ blc.text_image | img_url: '300x300' }}" data-bgset="{% include 'bgset', image: blc.text_image %}" data-sizes="auto" data-parent-fit="cover"{% endunless %}
+       style="opacity:{{ blc.text_image_o | divided_by: 100.00 }};padding-top: {{ 1.00 | divided_by : blc.text_image.aspect_ratio | times : 100 }}%;{% unless blc.banner_image_enable %}background-image: url('{{ blc.text_image | img_url: '1x1' }}');{% endunless %}">
+      </div>
+      {% unless blc.banner_image_enable %}<div class="over_lay"></div>{%- endunless -%}{%- endif -%}
+      <div class="inner_text{% if blc.text_image != blank and blc.banner_image_enable != true %} has_overlay{%- endif -%}">
+        {%- assign font_size =  blc.title | strip_html | size | plus:0 -%}        
+        <h2 class="no-ls{% if font_size > 20 and magnesium %} l_font{% elsif font_size < 43 and magnesium == false %} l_font{% endif %}{% if magnesium %} h-border-bottom{% unless blc.text_op_right %} textright{% endunless %}{% endif %}">{{ blc.title | newline_to_br  }}</h2>
+        <div class="div_rich{% if magnesium %} div_rich_m fw-medium{% endif %}">{{ blc.description | replace:'&lt;','<' | replace:'&gt;','>' }}</div>
+        {%- if blc.btn_link != blank -%}
+        <a href="{{ blc.btn_link }}" title="{{ blc.btn_title }}" class="btn {% unless magnesium %}btn-con-bg btn--NO__{{ nitric_oxide }} {% else %}btn--tertiary btn--medium {% endunless %}btn--has-shadow tt-none btn-round_true">{{ blc.btn_title }}</a>
+        {%- endif -%}
+      </div>
+      {%- endcapture -%}
+      {%- capture image_part -%}
+      {%- if blc.bg_image != blank -%}<div class="img_bg lazyload" data-bg="{{ blc.bg_image | img_url: '300x300' }}" data-bgset="{% include 'bgset', image: blc.bg_image %}" data-sizes="auto" data-parent-fit="cover"
+       style="opacity:{{ blc.bg_image_o | divided_by: 100.00 }}; background-image: url({{ blc.bg_image | img_url: '1x1' }});"></div>{%- endif -%}
+      {%- if blc.bg_image_overlay -%}
+      <div class="inner_img  overlay_enable lazyload" 
+      {% if blc.image != blank %} data-bg="{{ blc.image | img_url: '300x300' }}" data-bgset="{% include 'bgset', image: blc.image %}" data-sizes="auto" data-parent-fit="cover"
+       style="padding-top: {{ 1 | divided_by : blc.image.aspect_ratio | times : 100 }}%; background-image: url({{ blc.image | img_url: '1x1' }});" {%- endif -%}>
+      <div class="over_lay" style="opacity:{{ blc.bg_image_o | divided_by: 100.00 }};"></div>
+      </div>
+      {%- else -%}{% if blc.image != blank %}<div class="inner_img">
+      	<img data-src="{{ blc.image | img_url:'' }}" class="lazyload" alt="" width="auto" height="auto" />
+      </div>{%- endif -%}{%- endif -%}
+      {%- endcapture -%}
+      {%- if blc.text_op_right -%}
+      <div class="left_part has_img_part{% if blc.image == blank %} small--hide{% endif %}">{{ image_part }}</div>
+      <div class="right_part text_meg_{{magnesium}} text_nitricO_{{nitric_oxide}}">{{ text_part }}</div>
+      {%- else -%}
+      <div class="left_part text_meg_{{magnesium}} text_nitricO_{{nitric_oxide}}">{{ text_part }}</div>
+      <div class="right_part has_img_part{% if blc.image == blank %} small--hide{% endif %}">{{ image_part }}</div>      
+      {%- endif -%}
+    </div>
+    {%- endfor -%}
+  </div>
+</div>
+<script type="text/javascript" defer="defer">
+  function makequalSection(_event){
+    if(_event != "scroll"){ $('.as_oe_item._hasCustomHeight').css('min-height','').removeClass('_hasCustomHeight'); }
+    $('.as_oe_item').each(function(){
+      var _this = $(this);
+      var text_height =  _this.find('.text_meg_true').length ? _this.find('.text_meg_true').outerHeight() : _this.find('.text_bg').outerHeight();
+      if( _this.find('.text_meg_true').length ){
+        var bgimgHeight = _this.find('.has_img_part .inner_img.lazyload , .has_img_part .inner_img.lazyloaded').outerHeight();          
+        if ( bgimgHeight != null && _this.height() >  bgimgHeight ){
+          _this.find('.has_img_part .inner_img').addClass('make_full_h');
+        }
+      }else{        
+        if( _this.height() > text_height ){
+          _this.find('.text_bg').addClass('make_full_h');
+        }
+        if( _this.find('.inner_text').outerHeight() > _this.height() ){          
+          _this.css('min-height', _this.find('.inner_text').outerHeight()+'px');
+          _this.hasClass('_hasCustomHeight') ? null : _this.addClass('_hasCustomHeight');
+        }
+      }
+    });    
+  }
+  window.addEventListener('load', (event) => {
+    makequalSection();
+    $(window).on('resize', $.debounce( 100, function(e) { makequalSection(); }) );
+    $(document).scroll( $.debounce( 100, function(e) {
+            var  as_oe =  $('.as_oe_item').parent(), scroll = $(this).scrollTop();            
+            if( scroll > ( as_oe.offset().top - 100 ) &&  scroll < ( as_oe.offset().top + as_oe.outerHeight()) ) {              
+              makequalSection('scroll');
+            }
+      return false; 
+    }) )
+  });
+</script>

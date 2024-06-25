@@ -1,0 +1,35 @@
+{%- assign magnesium = false -%}
+{%- if page == 'magnesium' -%}
+{%- assign magnesium = true -%}
+{%- endif -%}
+{%- assign nitric_oxide = false -%}
+{%- if page == 'nitric-oxide' -%}
+{%- assign nitric_oxide = true -%}
+{%- endif -%}
+<div data-section-id="{{ section.id }}" data-section-type="banner-section">  
+  <div class="as_banner_two as_banner_three {{ magnesium }} lazyload{% if section.settings.image == blank or section.settings.title == blank or section.settings.description == blank %} hide{% endif %}" {% if section.settings.image != blank %}data-bg="{{ section.settings.image | img_url: '300x300' }}"
+       data-bgset="{% include 'bgset', image: section.settings.image %}" data-sizes="auto" data-parent-fit="cover" {% endif %}
+       style="{% if section.settings.bg_color != blank %} background-color:{{ section.settings.bg_color }}; {% endif %}{% if section.settings.image != blank %} background-position: {{ section.settings.alignment }}; background-image: url({{ section.settings.image | img_url: '1x1' }});{% endif %}">
+    {%- assign sec = section.settings -%}
+    <div class="page-width">
+    	{%- if sec.title != blank -%}
+      	<h2 class="no-ls h-border-bottom">{{ sec.title }}</h2>
+      	{%- endif -%}
+       {%- if sec.description != blank -%}<div class="header_detail text_wrapper div_rich fw-medium">{{ sec.description | replace:'&lt;','<' | replace:'&gt;','>' }}</div>{%- endif -%}      
+      {%- if section.blocks.size > 0 -%}
+      <div class="as_b_ul div_rich">
+      	{%- for block in section.blocks -%}
+      {%- assign index = forloop.index | modulo : 2 -%}
+      <div class="as_b_li{% if index == 0 %} even{% else %} odd{% endif %}{% if forloop.last %} last{% endif %}">
+        <h3>{{ block.settings.title }}</h3>
+        <div class="detail">{{ block.settings.detail }}</div>
+      </div>
+        {%- endfor -%}</div>
+      {%- endif -%}
+      {%- if sec.bl != blank and sec.bt != blank -%}
+      <div class="one-whole text-center btn_vall_div">
+        <a href="{{ sec.bl }}" class="btn {% if magnesium %}btn--tertiary {% endif %}btn-round_true tt-none" title="">{{ sec.bt }}</a>
+      </div>{%- endif -%}
+    </div>
+  </div>    
+</div>

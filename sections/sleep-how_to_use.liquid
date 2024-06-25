@@ -1,0 +1,126 @@
+<div class="how_to_choose" style="background: url({{ section.settings.image | img_url:'master' }}) no-repeat scroll 0 0; background-size: cover;">
+  <div class="inner_how_to">
+    <div class="ls-img">
+      <figure><img src="{{ section.settings.left-image |  img_url:'master' }}"></figure>
+    </div>
+    <div class="rs-img">
+         <figure><img src="{{ section.settings.right-image | img_url:'master' }}"></figure>
+    </div>
+    <div class="inner_how_to_dv">
+      {% if section.settings.title != blank %}<h2 class="ttl_replenish">{{ section.settings.title }}</h2>{% endif %}
+     {% if section.settings.subtitle != blank %}<span class="ttl_sub">{{ section.settings.subtitle }}</span>{% endif %}
+     <div class="how_to_use_feature">
+       {% for block in section.blocks %}
+         <div class="use_items">
+           <div class="inner_use_itm">
+             {% if block.settings.number != blank %}<span class="number_dv" style="color:{{ block.settings.text_color}}">{{ block.settings.number }}</span>{% endif %}
+             {% if block.settings.content != blank %}<div class="text_span">{{ block.settings.content }}</div>{% endif %}
+           </div>
+         </div>
+         {% endfor %}
+     </div>
+      <div class="recommdate_doese">
+        {% if section.settings.rec_ttl != blank %}<span class="ttl_sub">{{ section.settings.rec_ttl }}</span>{% endif %}
+        <div class="inner_rec_dos">
+       {% for i in (1..3) %}
+         {% capture age %}age_limit_{{ i }}{% endcapture %}
+         {% assign age_limit = section.settings[age] %}
+         {% capture does %}does_{{ i }}{% endcapture %}
+         {% assign does_des = section.settings[does] %}
+            {% if age_limit != blank %}
+         <div class="rec_itens_dv">
+           <div class="inner_rec_itm_dv">
+             {% if age_limit != blank %}<h4>{{ age_limit }}</h4>{% endif %}
+         {% comment %}
+         {% if does_des != blank %}<p>{{ does_des }}</p>{% endif %}
+         {% endcomment %}
+           </div>
+         </div>
+        {% endif %}
+         {% endfor %}
+        </div>
+     </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "How To Use (Sleep)",
+    "settings": [
+      {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "header",
+      "content": "Recommended Doeses"
+    },
+    {
+      "type": "image_picker",
+      "id": "left-image",
+      "label": "Left side Image"
+    },
+   {
+      "type": "image_picker",
+      "id": "right-image",
+      "label": "Right side Image"
+    },
+    {
+      "type": "text",
+      "id": "rec_ttl",
+      "label": "Recommended Doeses section Title"
+    },
+    {
+      "type": "text",
+      "id": "age_limit_1",
+      "label": "Morning advise"
+    },
+    {
+      "type": "text",
+      "id": "age_limit_2",
+      "label": "Noon advise"
+    },
+    {
+      "type": "text",
+      "id": "age_limit_3",
+      "label": "Evening advise"
+    }
+
+    ],
+    "blocks": [{
+      "type": "how_to_use_block",
+      "name": "How to Use Block",
+      "settings": [{
+        "type": "text",
+        "id": "number",
+        "label": "Number"
+      },
+      {
+        "type": "color_background",
+        "id": "text_color",
+        "label": "Number color"
+      },
+      {
+        "type": "text",
+        "id": "content",
+        "label": "Content"
+      }
+      ]
+    }],
+    "presets": [{
+      "name": "sleep How To Use",
+      "category": "text"
+    }]
+  }
+{% endschema %}

@@ -1,0 +1,90 @@
+{%- include 'faq', page: 'magnesium' -%}
+
+{% schema %}
+  {
+    "name": "FAQ",
+    "settings": [
+	 {
+		"type":"image_picker",
+		"label":"Upload background image",
+		"id":"image"
+	 },
+     {
+      "type": "select",
+      "id": "alignment",
+      "label": "Image position",
+      "default": "center center",
+      "options": [
+      {
+      "label": "Top left",
+      "value": "left top"
+      },
+      {
+      "label":"Top center",
+      "value": "center top"
+      },
+      {
+      "label": "Top right",
+      "value": "right top"
+      },
+      {
+      "label": "Middle left",
+      "value": "left center"
+      },
+      {
+      "label": "Middle center",
+      "value": "center center"
+      },
+      {
+      "label":"Middle right",
+      "value": "right center"
+      },
+      {
+      "label":"Bottom left",
+      "value": "left bottom"
+      },
+      {
+      "label": "Bottom center",
+      "value": "center bottom"
+      },
+      {
+      "label": "Bottom right",
+      "value": "right bottom"
+      }
+      ]
+     },
+	 {
+		"type":"text",
+		"label":"Enter section title",
+		"id":"title",
+		"default":"Astaxanthin FAQ"
+	 }
+	],
+	"blocks":[
+	 {
+		"type":"block",
+		"name":"FAQ block",
+		"settings":[
+		  {
+			"type":"textarea",
+			"label":"Enter question",
+			"id":"title",
+			"default":"What are the dangers and side effects of Astaxanthin?"
+		  },
+		  {
+			"type":"richtext",
+			"label":"Enter answer",
+			"id":"ans",
+			"default":"<p>Astaxanthin is a natural extract from algae. It has no known dangers from human consumption but may interact with some medication. In some rare cares huge doses over 50mg per day, may cause a temporary yellowish discoloration of the skin. You can check out our side effect page here.</p>"
+		  }
+		]
+	 }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

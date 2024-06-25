@@ -1,0 +1,365 @@
+<div class="ingredients-list {% if template.suffix == 'new-static-nitric-oxide' %}new_ingredients_list{% endif %}" {% if section.settings.bg_img != blank %}style="background-image: url({{ section.settings.bg_img | img_url: 'master' }});" {% endif %}>
+  <div class="page-width">
+    <div class="ingredients-list-content">
+      <h2>{{ section.settings.title }}</h2>
+      <div class="biosphere-magnesium">
+        <div class="bio-ingredients">
+          <h3>{{ section.settings.title_svg }}</h3>
+          {% for block in section.blocks %}
+           {% case block.type %} 
+             {% when 'true' %}
+            <span>{{ block.settings.true-svg }}</span>
+           {% endcase %} 
+          {% endfor %}  
+        </div>
+        <ul class="ingredients-unit">
+          {% for block in section.blocks %}
+          {% case block.type %}  
+          {% when 'list' %}
+          <li>{{ block.settings.list }}</li>
+          {% endcase %} 
+          {% endfor %}
+        </ul>
+        <div class="other-ingredients">
+          <h3>{{ section.settings.oth-ing }}</h3>
+          {% for block in section.blocks %}
+            {% case block.type %}
+             {% when 'false' %} 
+          <span>{{ block.settings.false-svg }}</span>
+          {% endcase %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .ingredients-list{
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .biosphere-magnesium {
+    display: flex;
+    justify-content: space-between;
+}
+  .bio-ingredients {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+  .other-ingredients {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+  .new_ingredients_list .ingredients-unit{background: #ee413b;opacity:1;}
+  .new_ingredients_list .ingredients-unit li{color: #fff;}
+  .new_ingredients_list .biosphere-magnesium{justify-content: center;}
+  .new_ingredients_list .bio-ingredients h3{margin-bottom: 10px;}
+  .new_ingredients_list .ingredients-unit li{padding: 15.5px 0;line-height: 26px;}
+  .new_ingredients_list .ingredients-list-content span{ margin: 15px 0;}
+  
+  .ingredients-unit {
+    border-radius: 35px;
+    filter: drop-shadow(41.5px 71.88px 31px rgba(0,0,0,0.3));
+    opacity: 0.702;
+    max-width: 610px;
+    width: 100%;
+    text-align: center;
+    background: #fff;
+    margin-top: 50px;
+}
+  .ingredients-unit li {
+    padding: 22.5px 0;
+    border-bottom: 2px solid #dbdada;
+    margin: 0 25px;
+    font-size: 24px;
+    letter-spacing: 1px;
+    line-height: 52px;
+    text-transform: uppercase;
+    color: #545051;
+    font-weight: bold;
+}
+  .ingredients-unit li:last-child {
+    border-bottom: unset;
+}
+  .ingredients-list-content span {
+    line-height: 0;
+    text-align: center;
+    margin-bottom: 15px;
+}
+  .bio-ingredients h3 {
+    line-height: 0;
+    margin-bottom: 42px;
+}
+  .ingredients-list-content h2 {
+    font-size: 48px;
+    color: #384151;
+    font-weight: 800;
+    letter-spacing: 0.01px;
+    text-transform: inherit;
+    text-align: center;
+    padding-bottom: 25px;
+    margin-bottom: 100px;
+    position: relative;
+}
+  .ingredients-list-content h2:after {
+    content: '';
+    position: absolute;
+    opacity: 0.502;
+    width: 100px;
+    height: 4px;
+    background-color: rgba(56,65,81,0.5019607843137255);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.other-ingredients h3 {
+    font-size: 28px;
+    letter-spacing: 1px;
+    line-height: 30px;
+    text-transform: uppercase;
+    color: #384151;
+    font-weight: bold;
+    margin-bottom: 36px;
+}
+  @media screen and (max-width: 1272px){
+    .other-ingredients h3 {
+    margin-bottom: 22px;
+    }
+  }
+  @media screen and (max-width: 1199px){
+    .other-ingredients h3 {
+    margin-bottom: 10px;
+    }
+  }
+  @media screen and (max-width: 1085px){
+    .other-ingredients h3 {
+    margin-bottom: 0px;
+    }
+  }
+  @media screen and (max-width: 992px){
+    .bio-ingredients {
+      order: 2;
+      margin-right: 15px;
+    }
+    .other-ingredients {
+      order: 3;
+    }
+    .ingredients-list-content h2 {
+      font-size: 42px;
+      line-height: 42px;
+    }
+    .bio-ingredients h3 svg {
+      max-width: 133px;
+    }
+    .other-ingredients h3 {
+      font-size: 16px;
+      line-height: 14px;
+      text-align: center;
+      font-weight: 900;
+      border-bottom: 2px solid #dbdada;
+      padding-bottom: 17px;
+      margin-bottom: 0;
+  }
+    .biosphere-magnesium {
+      border-radius: 35px;
+      filter: drop-shadow(41.5px 71.88px 31px rgba(0,0,0,0.3));
+      opacity: 0.702;
+      width: 100%;
+      text-align: center;
+      background: #fff;
+      margin-top: 0;
+      padding: 35px 25px 0;
+  }
+    .ingredients-unit {
+      border-radius: 0;
+      filter: unset;
+      opacity: 0.702;
+      max-width: unset;
+      width: 100%;
+      text-align: start;
+      background: unset;
+      margin-top: 45px;
+      order: 1;
+  }
+  .ingredients-unit li {
+    font-size: 20px;
+    font-weight: 900;
+    margin: 0;
+    line-height: 20px;
+  }
+  .ingredients-list-content span svg {
+    max-width: 55px;
+    height: 55px;
+  }
+    .ingredients-unit li:first-child {
+    border-top: 2px solid #dbdada;
+  }
+  .bio-ingredients h3 {
+    margin-bottom: 0;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #dbdada;
+  }  
+    .ingredients-list-content span {
+    text-align: center;
+    margin: 0px 0;
+  }
+    .bio-ingredients span:last-child {
+    border: none;
+  }
+    .other-ingredients span:last-child {
+    border: none;
+  }
+}
+  @media screen and (max-width: 567px){
+    .other-ingredients {
+    /* display: none; */
+    margin-top: 14px;
+    }
+    .ingredients-unit li {
+    border-bottom: none;
+    }
+    .ingredients-list-content span {
+    border-bottom: none;
+    }
+    .ingredients-list-content h2 {
+    font-size: 31px;
+    line-height: 35px;
+    }
+    .ingredients-list {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    }
+    .ingredients-list-content h2{
+      margin-bottom: 10px;
+    }
+    .ingredients-unit li{
+      font-size: 12px;
+      line-height: 15px;
+    }
+    .bio-ingredients{margin-right: 0;}
+    .ingredients-unit li {padding: 11.5px 0;}
+    .ingredients-list-content span svg {
+        max-width: 29px;
+        height: 35px;
+    }
+    .ingredients-list{
+      background-image: none !important;
+    }
+    
+    /* .other-ingredients{
+      display:block;
+    } 
+    .other-ingredients{
+      margin-top: 13px;
+    }
+    .ingredients-list-content span{
+      line-height: 5;
+      margin-bottom: 0px;
+    }
+    .ingredients-list-content span svg {
+    max-width: 44px;
+    height: 41px;
+    }
+    .ingredients-list-content .other-ingredients span{
+          line-height: 6;
+    }*/
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Ingredients list",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "bg_img",
+        "label": "Background Image"
+      },
+      {
+        "type": "text",
+        "id":"title",
+        "label": "Title"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "enable_cls",
+        "label" : "New Ingredient"
+      },
+      {
+        "type": "html",
+        "id": "title_svg",
+        "label": "Title SVG"
+      },
+      {
+        "type": "text",
+        "id": "oth-ing",
+        "label": "other ingrediant title"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding Top",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding Bottom",
+        "default": 0
+      }
+    ],
+    "blocks": [
+      {
+        "type": "true",
+        "name": "True SVG",
+        "settings": [
+          {
+            "type": "html",
+            "id": "true-svg",
+            "label": "True SVG"
+          }
+        ]
+      },
+      {
+        "type": "list",
+        "name": "list",
+        "settings": [
+          {
+            "type": "text",
+            "id": "list",
+            "label": "Infrediant list"
+          }
+        ]
+      },
+      {
+        "type": "false",
+        "name": "False SVG",
+        "settings": [
+          {
+            "type": "html",
+            "id": "false-svg",
+            "label": "False SVG"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Ingredients list"
+      }
+    ]
+  }
+{% endschema %}

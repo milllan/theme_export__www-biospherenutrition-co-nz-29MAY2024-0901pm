@@ -1,0 +1,169 @@
+<div class="landing-description">
+  <div class="mg-max-container">
+    <div class="landing-desc-container">
+      
+      <div class="landing-main-desc">
+        {% for block in section.blocks %}
+            {% case block.type %}
+
+            	{% when 'text' %}
+                  {% if block.settings.title != blank %}
+                  <h4>{{ block.settings.title }}</h4>
+                  {% endif %}
+
+                  {% if block.settings.text != blank %}
+                  <p>{{ block.settings.text }}</p>
+                  {% endif %}
+        
+            {% endcase %}
+        {% endfor %}
+      </div>
+      
+      <div class="landing-desc-image">
+        {% if section.settings.land_desc_img != blank %}
+          <figure>
+            {% if block.settings.image_link != blank %}<a href="{{ section.settings.image_link }}">{% endif %}
+              <img src="{{ section.settings.land_desc_img | img_url:'master' }}">  
+            {% if block.settings.image_link != blank %}</a>{% endif %}
+          </figure>
+        {% endif %}
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Landing Description",
+    "settings": [
+      {
+        "type":"image_picker",
+        "label":"Select Landing Description Image ",
+        "id":"land_desc_img"
+      },
+      {
+        "type": "url",
+        "id": "image_link",
+        "label": "Link for Image",
+        "info": "Optional"
+      }
+	],
+	"blocks": [
+      {
+        "type": "text",
+        "name": "Text",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Talk about your brand"
+          },
+          {
+            "type": "textarea",
+            "id": "text",
+            "label": "Text",
+			"info": "Use <br> tag for new line."
+          }
+        ]
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+<style type="text/css">
+  
+  @media (min-width: 1200px){
+    .mg-max-container {
+      max-width: 1540px;
+      width: 100%;
+      padding: 0 15px;
+      margin: 0 auto;
+    }
+  }
+  .landing-description{
+  	padding:76px 0 0 0;
+  }
+  .landing-description .landing-desc-container{
+  	padding-bottom:110px;
+  }
+  .landing-desc-container{
+  	display:flex;
+  }
+  .landing-main-desc{
+  	background:#ECECEC;
+    padding:45px 87px 82px 88px;
+    width:50%;
+  }
+  .landing-main-desc h4{
+    margin-bottom: 21px;
+    font-size: 35px;
+    color: #000;
+    font-weight: 600;
+    line-height: 45px;
+    font-family: "Futura PT",sans-serif;
+  } 
+  .landing-main-desc p{
+    padding-bottom: 26px;
+    font-size: 17px;
+    line-height: 27px;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
+  }
+  .landing-main-desc p:last-child{
+  	padding-bottom:0;
+  }
+  .landing-main-desc ul li{
+  	font-size: 17px;
+    line-height: 27px;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
+  }
+  .landing-main-desc ul{
+  	margin-bottom:23px;
+  }
+  .landing-desc-image{width:50%;}
+  .landing-desc-image figure{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    height:100%;
+    align-items:center;
+  }
+  .landing-desc-image figure img{
+  	object-fit:contain;
+  }
+  @media(max-width: 1199px){
+    .landing-description{padding:50px 0 0 0;}
+    .landing-main-desc{padding: 20px 40px 40px 40px;}
+    .landing-main-desc h4{margin-bottom:18px;}
+    .landing-main-desc p{font-size:16px;line-height: 23px;padding-bottom: 20px;font-weight:500;}
+    .landing-description .landing-desc-container {padding-bottom: 70px;}
+   
+  }
+  @media(max-width: 991px){
+    .landing-desc-container{flex-wrap:wrap;}
+    .landing-main-desc{width:100%;order:1;}
+    .landing-desc-image{width:100%;}
+    .landing-description .landing-desc-container{padding-bottom: 50px;}
+    .landing-desc-image{order:2;}
+  }
+  @media(max-width: 575px){
+    .landing-main-desc{padding: 15px 15px 20px 15px;order:1;}
+    .landing-main-desc h4{font-size: 27px;line-height: 34px;margin-bottom: 10px;}
+    .landing-main-desc p{font-size: 16px;line-height: 18px;padding-bottom: 10px;}
+    .landing-description{padding: 20px 0 0 0;}
+    .landing-description .landing-desc-container{padding-bottom: 20px;}
+    .landing-desc-image{order:2;padding:0 15px;}
+  }
+  
+</style>

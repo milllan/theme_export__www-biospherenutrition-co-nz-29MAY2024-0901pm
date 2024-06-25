@@ -1,0 +1,32 @@
+  <style>
+  .wrp_img_banner figure {margin: 0px;}
+  .wrp_img_banner figure img {width: 100%;}
+  </style>
+<div class="wrp_img_banner">
+  {% if  section.settings.banner-image != blank %}
+  <figure>
+        <img src="{{ section.settings.banner-image | img_url:'master' }}" alt="{{ section.settings.banner-image | handle }}" title="{{ section.settings.banner-image | handle }}" />
+  </figure>
+    {% endif %}
+
+</div>
+
+
+{% schema %}
+  {
+    "name": "Image banner",
+    "settings": [
+      {
+      "type": "image_picker",
+      "id": "banner-image",
+      "label": "Banner Image"
+    }
+    ],
+    "presets" : [
+         {
+           "name" : "Image banner"
+         }
+    ]
+  }
+{% endschema %}
+

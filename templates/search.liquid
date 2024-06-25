@@ -1,0 +1,210 @@
+{% paginate search.results by 10 %}
+
+<div class="page-width">
+  {% if search.performed == false %}
+    <div class="text-center">
+      <h1 class="h2">{{ 'general.search.title' | t }}</h1>
+  {% else %}
+    <div class="text-center">
+      <h1 class="h2">
+        <span class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}:</span>
+        {{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+      </h1>
+  {% endif %}
+      <div class="grid">
+        <div class="grid__item medium-up--six-tenths medium-up--push-two-tenths">
+          {% if search.performed and search.results_count == 0 %}
+            <div class="rte search--no-results-found">
+              <p>{{ 'general.search.no_results' | t }}</p>
+            </div>
+          {% endif %}
+          <form action="{{ routes.search_url }}" method="get" role="search" class="search-form search-page-form">
+            <div class="input-group input-group--nowrap">
+              <div class="input-group__field input-group__field--connected search-form__input-wrapper">
+                <input
+                  type="search"
+                  name="q"
+                  value="{{ search.terms | escape }}"
+                  placeholder="{{ 'general.search.placeholder' | t }}"
+                  role="combobox"
+                  aria-autocomplete="list"
+                  aria-owns="predictive-search-results"
+                  aria-expanded="false"
+                  aria-label="{{ 'general.search.placeholder' | t }}"
+                  aria-haspopup="listbox"
+                  class="search-form__input"
+                  data-search-page-predictive-search-input
+                />
+
+                <input type="hidden" name="options[prefix]" value="last" aria-hidden="true" />
+
+                <button type="reset" class="search-form__clear-action" aria-label="{{ 'general.search.clear_search_term' | t }}" data-search-page-predictive-search-clear>
+                  {% include 'icon-close' %}
+                </button>
+
+                <div class="predictive-search-wrapper" data-predictive-search-mount="default"></div>
+              </div>
+
+              <button type="submit" class="search-form__connected-submit" aria-label="{{ 'general.search.submit' | t }}" data-search-page-predictive-search-submit>
+                {% include 'icon-search' %}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+{% if search.performed %}
+  {% if search.results_count > 0 %}
+    <hr aria-hidden="true" />
+  {% endif %}
+
+  <h2 class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}</h2>
+
+  <ul class="page-width list-view-items">
+    {% for item in search.results %}
+      <li class="list-view-item">
+        {% if item.object_type == 'product' %}
+          {% include 'product-card-list', product: item %}
+        {% elsif item.object_type == 'article' %}
+        <div class="article-listing">
+          <div class="arti_img_wrapper">
+            <div id="{{ img_wrapper_id }}" class="article__list-image-wrapper js">
+              <a href="{{ item.url }}" class="article__list-image-container">
+                {% if item.image %}
+                {%- capture img_id -%}ArticleImage-{{ item.image.id }}{%- endcapture -%}
+                {%- capture img_wrapper_id -%}ArticleImageWrapper-{{ item.image.id }}{%- endcapture -%}
+                {%- assign img_url = item.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}                    
+                <div id="{{ img_id }}"
+                     class="article__list-image lazyload"                           
+                     data-bgset="{{ img_url }}"
+                     data-widths="[180, 360, 540, 720, 905, 1090, 1296, 1512, 1728, 2048]"
+                     data-aspectratio="{{ item.image.aspect_ratio }}"
+                     data-sizes="auto"
+                     alt="" style="background-image:url({{ item.image | img_url: '300x300' }})">
+                </div>                    
+                {%- else -%}                    
+                {{ 'image' | placeholder_svg_tag: 'my-custom-class article__list-image' }}                    
+                {% endif %}
+              </a>
+              <div class="article-social">
+                {% include 'social-sharing', share_title: item.title, share_permalink: item.url, share_image: item.image %}
+                {% if  item.comments_enabled? and item.comments_count > 0 %}
+                <div class="art_like_comment">
+                  <a href="{{ item.url }}#comments" class="article__comment-count">
+                    <i class="fa fa-commenting" aria-hidden="true"></i>{{ item.comments_count }}
+                  </a>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+            <noscript>
+              <p>
+                <a href="{{ item.url }}">
+                  {{ item.image | img_url: '455x300', scale: 2 | img_tag: item.title }}
+                </a>
+              </p>
+            </noscript>                  
+
+          </div>
+          <div class="arti_detail_wrapper">
+            <ul class="ar_tag_date">              
+              <li class="arti_date">
+                <span class="li_b article__date">
+                  {{ item.published_at | time_tag: format: 'date' }}
+                </span>
+              </li>              
+              {%- assign  tag_size = 0 -%}
+              {%- assign  has_author_tag = false -%}
+              {%- assign  author_tag = '' -%}
+              {% for tag in item.tags %}
+              {%- unless tag contains 'author_' -%}
+              {%- assign tag_size = tag_size | plus : 1 -%}
+              {%- else -%}
+              {%- assign  has_author_tag = true -%}
+              {%- assign  author_tag = tag -%}
+              {%- endunless -%}                
+              {%- endfor -%}
+              {% if tag_size > 0 %}                
+              {% for tag in item.tags %}
+              {%- unless tag contains 'author_' -%}
+              {%- assign blog_url =  item.handle | split:'/' | last -%}
+              {%- assign _blog_url =  item.url | split:'?' | last -%}
+              {%- capture tag_url -%}tagged/{{ tag | handle }}{%- endcapture -%}
+              {%- assign blog_url =  item.handle | replace: blog_url , tag_url -%}
+              <li class="arti_tag {{bol_url}}">
+                <a class="li_b" href="blogs/{{blog_url}}?{{_blog_url}}">{{ tag | replace:'-',' ' }}</a>
+              </li>
+              {%- endunless -%}
+              {% endfor %}                
+              {% endif %}
+            </ul>
+            <h2 class="article__title h3-large no-ls heading-font"><a href="{{ item.url }}">{{ item.title }}</a></h2>              
+            <div class="rte">
+              {% if item.excerpt.size > 0 %}
+              {{ item.excerpt | strip_html | truncate: 204 ,' [...]' }}
+              {% else %}
+              {{ item.content | strip_html | truncate: 204 ,' [...]' }}
+              {% endif %}
+            </div>
+            <ul class="list--inline article__meta-buttons">
+              {% if section.settings.blog_show_author %}<li>
+              <span class="article__author">{%- if author_tag != blank -%}
+                {%- assign author_tag = author_tag | split:'_' | last -%}
+                {{ 'blogs.article.by_author' | t: author: author_tag }}
+                {%- else -%}
+                {{ 'blogs.article.by_author' | t: author: article.author }}
+                {%- endif -%}
+              </span> 
+              </li>{% endif %}
+              <li class="read-btn">
+                <a href="{{ item.url }}" class="btn btn--link btn--has-icon-after" aria-label="{{ 'blogs.article.read_more_title' | t: title: item.title }}">
+                  <span class="btn--text">{{ 'blogs.article.read_more' | t }}</span> {%- include 'icon-right-triple' -%}
+                </a>
+              </li>
+            </ul>              
+          </div>
+        </div>
+        
+        {% else %}
+          <div class="{{ item.object_type }} product-card product-card--list">
+            <a href="{{ item.url }}" class="full-width-link">
+              <span class="visually-hidden">{{ item.title }}</span>
+            </a>
+            <div class="list-view-item__link">
+              <div class="list-view-item__image-column">
+                <div class="list-view-item__image-wrapper product-card__image-wrapper">
+                  {% unless item.image == null %}
+                    <img class="list-view-item__image" src="{{ item.image.src | img_url: '600x600' }}" alt="{{ item.image.alt | escape }}">
+                  {% endunless %}
+                </div>
+              </div>
+
+              <div class="list-view-item__title-column">
+                <div class="list-view-item__title" aria-hidden="true">
+                  <span class="product-card__title">{{ item.title }}</span>
+                </div>
+                <div>
+                  {% if item.published_at %}{{ item.published_at | date: format: "date" }} &#8212; {% endif %}
+                  {{ item.content | strip_html | truncate: 200 }}
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+
+  {%- if paginate.pages > 1 -%}
+    {% include 'pagination', paginate: paginate %}
+  {%- endif -%}
+{% endif %}
+
+{% if search.results_count < 2  %}
+  <div class="search--less-than-2-results"></div>
+{% endif %}
+
+{% endpaginate %}

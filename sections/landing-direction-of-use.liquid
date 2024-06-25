@@ -1,0 +1,85 @@
+<div class="landing-direction-of-use">
+  <div class="mg-max-container">
+    <div class="landing-desc-container">
+      <div class="landing-desc-image">
+        
+        {% if section.settings.land_desc_img != blank %}
+          <figure>
+            {% if block.settings.image_link != blank %}<a href="{{ section.settings.image_link }}">{% endif %}
+              <img src="{{ section.settings.land_desc_img | img_url:'master' }}" alt="{{ shop.name }}">   
+            {% if block.settings.image_link != blank %}</a>{% endif %}
+          </figure>
+        {% endif %}
+        
+      </div>
+      <div class="landing-main-desc">
+        
+        {% for block in section.blocks %}
+            {% case block.type %}
+
+            	{% when 'text' %}
+                  {% if block.settings.title != blank %}
+                  <h4>{{ block.settings.title }}</h4>
+                  {% endif %}
+
+                  {% if block.settings.text != blank %}
+                  <p>{{ block.settings.text }}</p>
+                  {% endif %}
+        
+            {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Landing Direction of Use",
+    "settings": [
+      {
+        "type":"image_picker",
+        "label":"Select Landing Description Image ",
+        "id":"land_desc_img"
+      },
+      {
+        "type": "url",
+        "id": "image_link",
+        "label": "Link for Image",
+        "info": "Optional"
+      }
+	],
+	"blocks": [
+      {
+        "type": "text",
+        "name": "Text",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Talk about your brand"
+          },
+          {
+            "type": "textarea",
+            "id": "text",
+            "label": "Text",
+			"info": "Use <br> tag for new line."
+          }
+        ]
+      }
+	]
+  }
+{% endschema %}
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+<style type="text/css">
+  .landing-direction-of-use .landing-desc-container{
+  	padding-bottom:0;
+  }
+</style>

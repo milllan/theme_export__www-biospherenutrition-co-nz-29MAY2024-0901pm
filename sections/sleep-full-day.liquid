@@ -1,0 +1,119 @@
+<div class="wrp_sleep-day bg_img">
+    <div class="inner_container"> 
+         <div class="row">
+            <div class="col">
+                    {% if section.settings.image-1 != blank %}
+                    <div class="wrp_img">
+                    <img src="{{ section.settings.image-1 | img_url:'master' }}" class="ineer_img">
+                    </div>
+                   {% endif %}
+                   {% if section.settings.title-1 != blank %} <h4 class="ttl">{{ section.settings.title-1 }} </h4> {% endif %}
+                   {% if section.settings.content-1 != blank %} <div class="des">{{ section.settings.content-1 }}</div> {% endif %}
+              </div>
+              <div class="col">
+                  {% if section.settings.image-2 != blank %}
+                  <div class="wrp_img">
+                  <img src="{{ section.settings.image-2  | img_url:'master' }}" class="ineer_img">
+                  </div>
+                  {% endif %}
+                  {% if section.settings.title-2 != blank %}<h4 class="ttl">{{ section.settings.title-2 }} </h4> {% endif %}
+                  {% if section.settings.content-2 %}<div class="des">{{ section.settings.content-2 }}</div> {% endif %}
+              </div>
+              <div class="col">
+                  {% if section.settings.image-3 != blank %}
+                  <div class="wrp_img">
+                  <img src="{{ section.settings.image-3  | img_url:'master' }}" class="ineer_img">
+                  </div>
+                   {% endif %}
+                 {% if section.settings.title-3 != blank %}  <h4 class="ttl">{{ section.settings.title-3 }} </h4> {% endif %}
+                 {% if section.settings.content-3 != blank %} <div class="des">{{ section.settings.content-3 }}</div> {% endif %}
+              </div>
+        </div>
+    </div>
+</div>  
+
+<style>
+  .wrp_sleep-day.bg_img{background: url({{ section.settings.image | img_url:'master' }}) no-repeat scroll 0 0; background-size: cover;} 
+</style>
+
+
+{% schema %}
+  {
+    "name": "Sleep full day",
+    "settings": [
+      {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background Image"
+        },
+      {
+        "type" :"header",
+        "content" : "Evening"
+      },
+      {
+        "type" : "image_picker",
+        "id" : "image-1",
+        "label" : "Image"
+      },
+      {
+        "type" : "text",
+        "id" : "title-1",
+        "label" : "Title"
+      },
+      {
+        "type" : "richtext",
+        "id" : "content-1",
+        "label" : "Description"
+      },
+      {
+        "type" :"header",
+        "content" : "Night"
+      },
+      {
+        "type" : "image_picker",
+        "id" : "image-2",
+        "label" : "Image"
+      },
+      {
+        "type" : "text",
+        "id" : "title-2",
+        "label" : "Title"
+      },
+      {
+        "type" : "richtext",
+        "id" : "content-2",
+        "label" : "Description"
+      },
+      {
+        "type" :"header",
+        "content" : "Morning"
+      },
+      {
+        "type" : "image_picker",
+        "id" : "image-3",
+        "label" : "Image"
+      },
+      {
+        "type" : "text",
+        "id" : "title-3",
+        "label" : "Title"
+      },
+      {
+        "type" : "richtext",
+        "id" : "content-3",
+        "label" : "Description"
+      }
+    ],
+    "presets" : [
+      {
+        "name" : "sleep full day"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
