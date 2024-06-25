@@ -13,15 +13,22 @@
             style="padding-top:{{ 1 | divided_by: article.image.aspect_ratio | times: 100 }}%;"
           {% endcomment %}
         >
+{% comment %}
           <img
-           
             id="{{ img_id }}"
-            class="article__grid-image "
-            src="{{ article.image | img_url: 'master' }}"
+            class="article__grid-image"
+            src="{{ article.image | imgage_url: 'master' }}"
             
             alt="article image"
             height="1420px" width="500px"
+            fetchpriority="high"
+            decoding="async"
+            loading="eager"
           >
+{% endcomment %}
+	{{ article.image | image_url: width: '1420' | image_tag: alt: img_alt, class: 'article__grid-image mill-preloaded', preload: true, widths: '576, 750, 1100, 1420',
+          fetchpriority: 'high', decoding: 'async', loading: 'eager', sizes: '90vw' }}
+
         </div>
       </div>
       <noscript>
@@ -118,7 +125,7 @@
     {%- endfor -%}
   {%- endif -%}
 {%- endfor -%}  
-<div class="article_other_sleep">  
+<div class="article_other_sleep" style="contain: content">  
   {%- for block in section.blocks -%}
     {%- if block.type == 'sleep' and pro_tag == block.settings.sleep_tag -%}
       <div
@@ -226,7 +233,7 @@
   {%- endfor -%}
 </div>  
 
-<div class="article_other_content">
+<div class="article_other_content" style="contain: content">
   {%- for block in section.blocks -%}
     {%- if block.type == 'product' and pro_tag == block.settings.tag -%}
       <div
@@ -325,11 +332,13 @@
                       {% endif %}
                     </h2>
                     <div class="pro_review_badge">
-                      <div
+                      <!-- <div
                         class="wc_product_review_badge"
                         data-handle="{{ product.handle }}"
                         data-product_id="{{ product.id }}"
                       ></div>
+                      -->
+                      <div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"></div>
                     </div>
 
                     {% if blogs.tags contains 'prebiotic' %}
@@ -375,7 +384,7 @@
                 {%- if image != blank and block.settings.image == blank -%}
                   <img
                     class="lazyload" loading="lazy"
-                    height="316" width="316"
+                    height="{{ block.settings.image_1.height }}" width="{{ block.settings.image_1.width }}"
                     data-src="{{ img_url }}"
                     data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
                     data-aspectratio="{{ block.settings.image_1.aspect_ratio }}"
@@ -513,6 +522,10 @@
   }
   .article__grid-image-wrapper .article__grid-image-container {
       padding-bottom: 35% ;
+  }
+  @media only screen and (max-width: 992px){
+    .article_other_content .vc_column-inner .wpb_wrapper a.btn .mk-button--text {font-size: 16px;line-height: normal;}
+    .article__grid-image-wrapper .article__grid-image-container{padding-bottom: 100%;}
   }
   .fature-img .article__grid-image-wrapper img {
     max-width: 100% !important;

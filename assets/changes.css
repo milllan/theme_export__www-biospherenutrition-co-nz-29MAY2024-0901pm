@@ -465,8 +465,8 @@ li.pbgb--li.pbgb--odd_li.pbgb--review .min-page-width {max-width: 100%;}
 /*  */
 header.site-header {background-color: #000e21;z-index: 999;-ms-transition: background-color 0.5s ease;-webkit-transition: background-color 0.5s ease;transition: background-color 0.5s ease;}
 .site-header__mobile-nav {background: transparent;}
-.site-header-contact .page-width {padding-top: 30px;}
-.site-header-contact .announcement-bar__message p {font-weight: 400;font-size: 12px;line-height: 15px;color: #000;}
+/* .site-header-contact .page-width {padding-top: 30px;} */
+.site-header-contact .announcement-bar__message p{color: #06416E;font-size: 14px;font-weight: 450;line-height: normal;text-transform: capitalize;}
 .t_index.site-header__logo:not(.true) .store_logo_1 {opacity: 1;visibility: unset;}
 .site-header-contact a{text-decoration:underline;}
 .slideshow-wrapper .float-button,.cart__price dl:nth-child(2),.wrp-progress .pending_amount,p.free-shipping-price,.t_img,.blockquote_wrapper,.blockquote_star{display:none;}
@@ -580,7 +580,7 @@ li.pbgb--li.pbgb--even_li.pbgb--video {border-right:solid #000 1.786vw;}
   .js-menu--is-open  .mobile-nav__icon svg path , .mobile-nav__item .icon path {fill: #fff !important;}
   .site-header.site-header.site-header-scrolled {border-bottom:1px solid #fff; top:0;}
   .site-header-contact .page-width {padding-top: 0px;}
-  .site-header-contact .page-width .sh-con_inner {justify-content: center;    padding: 10px 0px;}
+  /* .site-header-contact .page-width .sh-con_inner {justify-content: center;    padding: 10px 0px;} */
   .site-header__icons-wrapper button.icon-search,.site-header__icons-wrapper a.icon-login,.site-header__icons-wrapper button.menu-bar,.product-listing ul.inner-list li  .price__sale .price-item--sale,.product-listing ul.inner-list li .price__sale dt,.product-listing ul.inner-list li span.wc_product_review_avg_badge_count,.product-listing ul.inner-list li span.wc_product_review_avg_badge_text{display:none;}
   .grid__item .site-header__logo {max-width: 250px;margin: 0 auto;display: block;}
   .product-listing ul.inner-list li {padding-left: 25px;padding-right:25px;}
@@ -645,7 +645,7 @@ li.pbgb--li.pbgb--even_li.pbgb--video {border-right:solid #000 1.786vw;}
   .additional-checkout-buttons .shopify-cleanslate ul li:nth-child(2) iframe {border-radius: 25px;}
   /* ===============================Top product =============================== */
   .dire-use-wrapper .dire-use h3 {text-transform: uppercase;}
-  .home-feature-section,.wrp-products  span.wc_product_review_avg_badge_count,.wrp-products  span.wc_product_review_avg_badge_text,.wrp_inner_list .price-item b,.template-product nav.breadcrumbs,.product-single__media-group-wrapper .thumbnails-wrapper{display: none;}
+  .home-feature-section,.wrp-products  span.wc_product_review_avg_badge_count,.wrp-products  span.wc_product_review_avg_badge_text,.wrp_inner_list .price-item b,.template-product nav.breadcrumbs,.product-single__media-group-wrapper .thumbnails-wrapper{display: none; content-visibility: hidden;}
   .wrp-home-grid .wrp-products {display: block; background: #001A33;padding: 32px 22px;}
   .banner-content .inside_img .image_div:last-child {padding-right: 0px;}
   .wrp-home-grid .wrp-products h2 {text-align: center;color: #fff;font-family: 'Dharma Gothic E',sans-serif;font-size: 30px;line-height: normal;letter-spacing: 0px;margin-bottom: 24px;}
@@ -812,7 +812,7 @@ a.appstle_manageSubBtn{width:100%;display:inline-block;text-align:center;}
 .pdp_btn_wrap .product-form__cart-submit,.pdp_btn_wrap .product-form__item{margin:0;padding-left:0;padding-right:0;}
 .product-form__item ul.QuantityBox{width:90px;justify-content:center;}
 .bm_section{padding:45px 0;}
-.bm_media img{width:100%;object-fit:cover;border-radius:35px;}
+.bm_media img{width:100%;object-fit:cover;border-radius:35px;height:auto}
 .bm_conthead{margin-bottom:30px;}
 .bm_conthead h2{font-size:24px;line-height:normal;letter-spacing:-1px;text-transform:initial;margin:0;}
 .bm_headdesc{font-size:22px;line-height:normal;font-weight:500;}
@@ -1160,7 +1160,7 @@ a.appstle_manageSubBtn{width:100%;display:inline-block;text-align:center;}
   .prebiotic-product .benefit_wrapinr h3 {font-size: 20px;}
   .prebiotic-product .bene_headfrst svg {display: block;}
   .prebiotic-product .bene_true svg,.prebiotic-product .bene_false svg {width: 49px;height: 38px;}
-  .Magnesium .bioavailable_iconinr svg{
+  .Magnesium .bioavailable_iconinr svg,.Hydrate .bioavailable_iconinr svg{
     width:100%;
   }
 }

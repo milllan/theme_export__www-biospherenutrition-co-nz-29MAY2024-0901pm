@@ -2,11 +2,11 @@
    <div>
      
      <div class="pb_image_wrapper">   
-       <a style="border : 0px;" href="{{ articleURL }}"><img src="{{ articleImg }}" alt="{{ articleTitle }}" data-pin-nopin="true" /></a>
+       <a style="border:0" href="{{ articleURL }}"><img decoding="async" loading="lazy" fetchpriority="low" src="{{ articleImg }}" alt="{{ articleTitle }}" data-pin-nopin="true" /></a>
      </div>
       <div class="pb-text-wrapper">
        <div class="pb-text-title">
-       	<h4 class="pb-text-title-header"><a style="border : 0px;" href="{{ articleURL }}">{{ articleTitle }}</a></h4>
+       	<h4 class="pb-text-title-header"><a style="border:0" href="{{ articleURL }}">{{ articleTitle }}</a></h4>
        </div>
         {% if articleTruncate == 0 or arttruncate == 0 %}
         {% else %}
@@ -16,8 +16,8 @@
 	</div>
 {% else %}
    <div class="pb_content_wrapper">
-     <div class="pb_image_wrapper">   
-       <a style="border : 0px;" href="{{ ProdURL }}"><img src="{{ ProdImg }}" alt="{{ ProdTitle }}" data-pin-nopin="true"/></a>
+     <div class="pb_image_wrapper miLL">
+       <a style="border:0" href="{{ ProdURL }}"><img decoding="async" loading="lazy" fetchpriority="low" src="{{ ProdImg }}" alt="{{ ProdTitle }}" data-pin-nopin="true"/></a>
      {% if pb_displayBuynow and pb_displayBuynow_hover %}
       <div class="pb-image-hover">
         <form method="post" action="/cart/add">

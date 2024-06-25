@@ -215,7 +215,10 @@
                       {%- if block.settings[bt] != blank -%}
                       <li class="h_fea-item">
                         <div class="h_fea-item-wrapper">
+{%- comment -%}
                           <img data-src="{{ block.settings[bt] | img_url:'125x' }}" class="lazyload" width="auto" height="auto" />
+{%- endcomment -%}
+                          <img src="{{ block.settings[bt] | img_url:'125x' }}" class="mill-lazyload" width="125" height="139" decoding="async"/>
                         </div>
                       </li>
                       {%- endif -%}

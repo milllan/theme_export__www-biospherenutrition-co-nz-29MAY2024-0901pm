@@ -9,6 +9,174 @@
     .swatch_60-serving-tub {order: 1;}
   </style>
 {%- endif -%}
+
+{% if product.handle == "hydrate" %}
+  
+<style>
+      .new_prebiotic-table{
+        display : none;
+      }
+      .new_prebiotic-table img{
+            width: 46px;
+    height: auto;
+      }
+      @media screen and (max-width : 767px){
+        .new_prebiotic-table{
+         display : none;  
+        }
+        .page-new_prebiotic_product .ingredients_list_text{
+              font-size: 16px;
+        }
+         /* .page-new_prebiotic_product .landing-ingredients-list table td:first-child {
+        text-align: left;
+         } */
+       /* .template-new_prebiotic_product .landing-ingredients-list table tbody tr td:nth-child(2){
+             align-items: center;
+    justify-content: center;
+    display: flex;
+       } */
+       /* .page-new_prebiotic_product .ln-wrap{
+           display : none;
+       } */
+        /* .page-new_prebiotic_product .landing-ingredients-list table th:nth-child(2) */
+       .page-new_prebiotic_product .landing-ingredients-list table th:last-child{
+        max-width: 25%;
+       width: 25%;
+      }
+        /* .page-new_prebiotic_product .landing-ingredients-list table tbody tr td:nth-child(1){
+        width: 50%;
+        max-width: 50%;
+        } */
+      /* .template-new_prebiotic_product .landing-ingredients-list table tbody tr td:nth-child(2), .template-new_prebiotic_product .landing-ingredients-list table tbody tr:last-child td:nth-child(2):before
+        {background: none;
+        } */
+        /* .template-new_prebiotic_product .landing-ingredients-list table tbody tr:nth-child(odd) td:nth-child(2):after ,.template-new_prebiotic_product .landing-ingredients-list table tbody tr:nth-child(odd){
+          background: none;
+        } */
+        /* .template-new_prebiotic_product .ingredients_list_text{
+        color: #4c4c4e;
+        } */
+         /* .template-new_prebiotic_product .landing-ingredients-list table tbody tr{
+               border-top: 4px solid rgba(0, 0, 0, 0.1);
+         } */
+        .new_prebiotic-table{
+                 box-shadow: 0px 20px 20px -10px #b0b0b0;
+              border-radius: 50px;
+          padding: 22px;
+        }
+          .template-new_prebiotic_product  .landing-ingredients-list table tbody tr td{
+            padding: 13px 5px;
+          }
+  }
+      .landing-ingredients-list table th, .landing-ingredients-list table td {
+        border: none;
+        text-align: center;
+        padding: 5px 5px!important;
+    }
+     .landing-ingredients-list table {
+        text-align: center;
+    }
+     .landing-ingredients-list table tbody tr:nth-child(odd) {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+     .landing-ingredients-list table tbody tr:nth-child(odd) td:first-child {
+         border-radius: 100px 0 0 100px;
+         width: 25%;
+        max-width: 25%;
+    }
+     .landing-ingredients-list table tbody tr:nth-child(odd) td:last-child {
+        border-radius: 0 100px 100px 0;
+       width: 25%;
+        max-width: 25%;
+    }
+     .landing-ingredients-list table th:first-child, .landing-ingredients-list table th:last-child {
+        width: 25%;
+        max-width: 25%;
+       padding-bottom: 30px!important;
+    }
+    .ingredients-list-head h2 {
+        font-size: 48px;
+        color: #384151;
+        font-weight: 800;
+        letter-spacing: 0.01px;
+        text-transform: inherit;
+        text-align: center;
+        padding-bottom: 25px;
+        margin-bottom: 100px;
+        position: relative;
+    }
+     .ingredients-list-head h2:after {
+        content: '';
+        position: absolute;
+        opacity: 0.502;
+        width: 100px;
+        height: 4px;
+        background-color: rgba(56, 65, 81, 0.5);
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+     .section-landing-ingredients-list {
+        padding-top: 100px;
+        padding-bottom: 170px;
+    }
+    .section-landing-ingredients-list .page-width {max-width: 1310px;}
+     .ingredients_list_text {
+        padding: 15.5px 0;
+        line-height: 26px;
+        margin: 0 25px;
+        font-size: 20px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #fff;
+        font-weight: bold;
+    }
+     .landing-ingredients-list table tbody tr td:nth-child(2), .landing-ingredients-list table tr th:nth-child(2) {
+         background: {{ product.metafields.custom.product_colour }};
+        width: 50%;
+        max-width: 50%;
+    }
+    .landing-ingredients-list table tr th:nth-child(2) {border-radius: 100px 100px 0 0;}
+    .landing-ingredients-list table tbody tr:last-child td:nth-child(2) {position: relative;}
+    .landing-ingredients-list table tbody tr:last-child td:nth-child(2):before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      left: 0;
+      height: 85px;
+      background: {{ product.metafields.custom.product_colour }};
+      bottom: -85px;
+      border-radius: 0 0 100px 100px;
+  }
+  .landing-ingredients-list table tbody tr:nth-child(odd) td:nth-child(2):after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    left: 0;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    height: 100%;
+    top: 0;
+  }
+  .landing-ingredients-list table tbody tr td:nth-child(2) {position: relative;z-index: 99;filter: drop-shadow(19.5px 30.88px 22px rgba(0, 0, 0, 0.3));}
+  .landing-ingredients-list table tbody tr td svg {vertical-align: middle;}
+  .mobile-svg-wrapper {display: none;}
+  .landing-ingredients-list .cls-1{opacity: 1;}
+  @media screen and (max-width: 991px) {
+    .section-landing-ingredients-list{padding-bottom: 100px;}
+  }
+  @media screen and (max-width: 768px) {
+    .ingredients_list_text {font-size: 14px;}
+    .landing-ingredients-list table th svg {width: 100%;}
+    .landing-ingredients-list table tbody tr:last-child td:nth-child(2):before {    height: 38px;    bottom: -38px;}
+    .mobile-svg-wrapper {display: block;}
+    .desktop-svg {display: none;}
+    .ingredients_list_text {line-height: 15px;}
+    .section-landing-ingredients-list {    padding-bottom: 70px;  padding-top: 40px;}
+    .ingredients-list-head h2 {    margin-bottom: 40px;}
+  }
+</style>
+{% endif %}
 <ul class="product_main_block">
   <li class="pbgb--li pbgb--odd_li product_section">
     <div class="pdp_container">
@@ -222,11 +390,14 @@
             <div class="product-single__meta">
               <!-- product review short code -->
               <div class="pro_review_badge ">
-                <div
+                <a href="#looxReviews">
+                  <div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"></div>
+                </a>
+                <!-- <div
                   class="wc_product_review_badge"
                   data-handle="{{ product.handle }}"
                   data-product_id="{{ product.id }}"
-                ></div>
+                ></div> -->
               </div>
               <!-- ============================ -->
               <div class="inline-ttl-price">
@@ -538,7 +709,7 @@
                   </div>
                 </div>
               {% endif %}
-              {%- if product.metafields.product.ingre_detail != blank -%}
+              {%- if product.metafields.product.ingre_detail != blank or product.metafields.custom.product_ingredients != blank -%}
                 <div class="pdp_tabinner faq-li">
                   <div class="pdp_tabheader faq-que">
                     <h2>Ingredients<span class="faq-plunus"></span></h2>
@@ -647,7 +818,7 @@
   {%- if product.metafields.custom.bioavailable_title != blank
     or product.metafields.custom.bioavailable_desc != blank
   -%}
-    <li class="pbgb--li bioavailable_section">
+    <li class="pbgb--li bioavailable_section" style="contain: content">
       <div class="pdp_container">
         <div class="bioavailable_inr">
           {%- if product.metafields.custom.bioavailable_title != blank
@@ -679,9 +850,9 @@
       </div>
     </li>
   {%- endif -%}
-
+                          
   {%- if product.metafields.custom.biosphere_title != blank or product.metafields.custom.biospheredesc != blank -%}
-    <li class="pbgb--li bm_section {% if product.handle == 'prebiotic' %} prebiotic-product {% endif %}">
+    <li class="pbgb--li bm_section {% if product.handle == 'prebiotic' %} prebiotic-product {% endif %}" style="contain: content">
       <div class="pdp_container">
         <div class="bm_inner pdp_grid">
           <div class="bm_content">
@@ -718,6 +889,7 @@
             </div>
           </div>
           <div class="bm_media">
+          {% comment %}
             <img
               class="lazyload"
               data-src="{{ product.metafields.custom.biosphere_img | img_url:''}}"
@@ -725,6 +897,10 @@
               width="auto"
               height="auto"
             >
+          {% endcomment %}
+
+	{{ product.metafields.custom.biosphere_img | image_url:  width: '2525' | image_tag: widths: '576, 750, 1100, 1420, 1920, 2525', alt: product.metafields.custom.biosphere_img.alt, class: 'mill-lazy',
+          width: '2525',height: '2525', fetchpriority: 'low', decoding: 'async', loading: 'lazy', sizes: '(min-width: 768px) 90vw, 45vw' }}
           </div>
         </div>
       </div>
@@ -733,7 +909,7 @@
   {%- if product.metafields.custom.cleanest_ingredient_title != blank
     or product.metafields.custom.cleanest_ingredients_desc != blank
   -%}
-    <li class="pbgb--li ci_section">
+    <li class="pbgb--li ci_section" style="contain: content">
       <div class="pdp_container">
         <div class="ci_block">
           {%- if product.metafields.custom.cleanest_ingredient_title != blank
@@ -760,6 +936,7 @@
                 <div class="ci_coninner">
                   {%- if img != blank -%}
                     <div class="ci_img">
+{%- comment -%}
                       <img
                         data-src="{{ img | img_url: 'master' }}"
                         src="{{ img | img_url : 'master' }}"
@@ -768,6 +945,9 @@
                         width="auto"
                         height="auto"
                       >
+{%- endcomment -%}
+                      {{ img | image_url:  width: '2714' | image_tag: widths: '576, 750, 1100, 1420, 1920, 2101, 2525, 2714', alt: img.alt, class: 'mill-lazy',
+          width: '2714',height: '2714', fetchpriority: 'low', decoding: 'async', loading: 'lazy', sizes: '(min-width: 768px) 90vw, min(29vw, 400px)' }}
                     </div>
                   {%- endif -%}
                   <div class="ci_inner text-center">
@@ -801,10 +981,11 @@
     </li>
   {%- endif -%}
 
+  {% unless product.handle == "hydrate" %}                        
   {%- if product.metafields.custom.why_choose_biophere != blank
     or product.metafields.custom.benefit_second_title != blank
   -%}
-    <li class="pbgb--li benefit_section {% if product.handle == 'prebiotic' %} prebiotic-product {% endif %}">
+    <li class="pbgb--li benefit_section {% if product.handle == 'prebiotic' %} prebiotic-product {% endif %}" style="contain: content">
       <div class="pdp_container">
         <div class="bene_inner pdp_grid">
           <div class="bene_wrap">
@@ -813,6 +994,7 @@
                 <h2>{{ product.metafields.custom.why_choose_biophere }}</h2>
               </div>
               <div class="bene_headfrst">
+          {% comment %}
                 <img
                   class="lazyload"
                   data-src="{{ product.featured_image | img_url:'100x' }}"
@@ -820,6 +1002,9 @@
                   width="auto"
                   height="auto"
                 >
+          {% endcomment %}
+                {{ product.featured_image | image_url:  width: '576' | image_tag: widths: '100, 200, 300, 576, 750', alt: product.featured_image.alt, class: 'mill-lazy',
+          width: '100',height: '100', fetchpriority: 'low', decoding: 'async', loading: 'lazy', sizes: '100px' }}
                 {{ product.metafields.custom.benefit_frst_title }}
               </div>
               <div class="bene_headsec">
@@ -868,9 +1053,64 @@
       </div>
     </li>
   {%- endif -%}
+  {% endunless %}
 
+  {% if product.handle == 'hydrate' %}
+  <li class="section-landing-ingredients-list section-{{ section.id }}">
+  <div class="page-width">
+    <div class="landing-ingredients-list">
+      {%- if product.metafields.custom.why_choose_biophere != blank -%}
+        <div class="ingredients-list-head">
+          <h2>{{ product.metafields.custom.why_choose_biophere }}</h2>
+        </div>
+      {%- endif -%}
+      <div class="ln-wrap">
+        <table>
+          {%- if product.metafields.custom.benefit_frst_title != blank or product.metafields.custom.benefit_second_title != blank -%}
+            <thead>
+              {%- if product.metafields.custom.benefit_frst_title != blank -%}
+                <th>
+                  <span class="desktop-svg">{{ product.metafields.custom.benefit_frst_title }}</span>
+                </th>
+              {%- endif -%}
+              <th></th>
+              {%- if product.metafields.custom.benefit_second_title != blank -%}
+                <th>{{ product.metafields.custom.benefit_second_title }}</th>
+              {%- endif -%}
+            </thead>
+          {%- endif -%}
+          <tbody>
+            {%- for i in (1..10) -%}
+            {%- capture title -%}benefit_{{i}}{%- endcapture -%}
+            {%- assign heading = product.metafields.custom[title] -%}
+              {%- if heading != blank -%}
+                <tr>
+                    <td><svg xmlns="http://www.w3.org/2000/svg" width="29px" height="23px" xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <path fill-rule="evenodd" fill="rgb(104, 160, 55)" d="M12.219,19.043 C12.176,19.106 12.150,19.175 12.095,19.231 C11.837,19.488 11.498,19.607 11.161,19.599 C10.823,19.607 10.484,19.488 10.226,19.230 C10.171,19.175 10.145,19.106 10.103,19.043 L3.690,12.631 C3.191,12.133 3.191,11.325 3.690,10.826 C4.189,10.327 4.997,10.327 5.495,10.826 L11.161,16.491 L23.363,4.290 C23.861,3.791 24.669,3.791 25.168,4.290 C25.666,4.787 25.666,5.596 25.168,6.095 L12.219,19.043 Z"></path>
+                      </svg>
+                    </td>
+                  {%- if heading != blank -%}
+                    <td class="ingredients_list_text">{{ heading }}</td>
+                  {%- endif -%}
+                    <td>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="26px" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <path fill-rule="evenodd" fill="rgb(239, 66, 59)" d="M21.468,21.743 C20.969,22.241 20.161,22.241 19.662,21.743 L12.690,14.771 L5.717,21.743 C5.219,22.241 4.410,22.241 3.912,21.743 C3.413,21.244 3.413,20.436 3.912,19.937 L10.884,12.965 L3.912,5.992 C3.413,5.494 3.413,4.686 3.912,4.187 C4.410,3.688 5.219,3.688 5.717,4.187 L12.690,11.159 L19.662,4.187 C20.161,3.688 20.969,3.688 21.468,4.187 C21.966,4.686 21.966,5.494 21.468,5.992 L14.495,12.965 L21.468,19.937 C21.966,20.436 21.966,21.244 21.468,21.743 Z"></path>
+                      </svg>
+                    </td>
+                </tr>
+              {%- endif -%}
+            {%- endfor -%}
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+  </div>
+</li>
+{% endif %}
+                          
   {% if product.metafields.product.pro_faq_que_1 != blank %}
-    <li class="pbgb--li gq_section">
+    <li class="pbgb--li gq_section" style="contain: content">
       <div class="pdp_container">
         <div class="gq_block pdp_grid">
           <div class="gq_left">
@@ -919,32 +1159,13 @@
       </div>
     </li>
   {%- endif -%}
-  {%- assign product_schema = product.metafields.product_schema -%}
-  {% assign review_1 = product_schema.th_ratingCount | ceil %}
+  <!-- {%- assign product_schema = product.metafields.product_schema -%}
+  {% assign review_1 = product_schema.th_ratingCount | ceil %} -->
   <li
     class="pbgb--li pbgb--odd_li pbgb--review review_section"
-    style="{% if review_1 == 0 %} display:none !important;{% else %} display:block !important {% endif %}"
     id="pbgb--review"
   >
-    <div class="pdp_container">
-      <div class="pbgb--inner_content">
-        <div class="grid grid--no-gutters text-right">
-          <div class="grid__item one-hole">
-            <div class="review_head text-center">
-              <h2>Reviews</h2>
-            </div>
-            <div
-              id="wc_review_section"
-              class="wc_review_main_content text-right product-single__description"
-              data-url="{{ shop.url }}"
-              data-handle="{{ product.handle }}"
-              data-product_id="{{ product.id }}"
-              data-limit="0"
-            ></div>
-          </div>
-        </div>
-      </div>
-    </div>
+   <div id="looxReviews" data-product-id="{{product.id}}" class="loox-reviews-default"></div>
   </li>
 </ul>
 {%- comment -%}

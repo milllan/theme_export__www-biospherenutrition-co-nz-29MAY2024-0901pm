@@ -11,8 +11,8 @@
 
 {% assign feature_enabled = true %}
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css" fetchpriority="low">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css" fetchpriority="low">
 
 
 {% assign pb_matches_found = 0 %}
@@ -126,7 +126,7 @@
 	</script>
      <div id="related_articles_section" style="display: none">
 	<div id="related_articles_header" >{{ artheader }}</div>
-  	<div id="related_articles_slider" class="owl-carousel">
+  	<div id="related_articles_slider" class="owl-carousel" style="contain: layout">
 
 {% assign Slider_Items = 0 %}
 {% for Blog_Posts in match_arr_sorted %}

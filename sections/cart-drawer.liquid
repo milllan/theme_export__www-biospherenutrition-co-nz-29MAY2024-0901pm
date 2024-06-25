@@ -14,6 +14,7 @@
     <div class="drawer-header">
       {% comment %}<h5>{{ 'cart.general.title' | t }}</h5>{% endcomment %}
       <img
+        loading="lazy" decoding="async" fetchpriority="low"
         class="cd_logo_image"
         src="{{ settings.cd_logo_image | img_url:"" }}"
         alt="{{ settings.cd_logo_image.alt }}"

@@ -27,7 +27,7 @@ a.banner_button {font-size: 30px;font-weight: 900;line-height: 44.26px;padding: 
     background-color: #299646;
 }
 
-@media screen and (min-width: 991px){
+@media screen and (min-width: 992px){
   .page-new_prebiotic_product .static-banner-wrapper{
     display: flex;
     align-items: end;
@@ -43,7 +43,7 @@ a.banner_button {font-size: 30px;font-weight: 900;line-height: 44.26px;padding: 
 
 
 
-@media screen and (min-width: 991px) and (max-width: 1200px) {
+@media screen and (min-width: 992px) and (max-width: 1200px) {
   .static-banner-content-main .star_review {column-gap: 10px;}
   .static-banner-content-main .title-wrapper .title,.prebiotic .static-banner-content-main .title-wrapper .title ,.prebiotic  .green-title {font-size: 38px;max-width: 600px;}
 }
@@ -60,7 +60,7 @@ a.banner_button {font-size: 30px;font-weight: 900;line-height: 44.26px;padding: 
   .static-banner-info-wrapper {max-width: 100%;}
   .static-banner .page-width {padding: 0;}
   .static-banner-wrapper .mobile_image {display: block;width: 100%;}
-  .static-banner-wrapper .mobile_image img {width: 100%;display: block;}
+  .static-banner-wrapper .mobile_image img {width: 100%;display: block; height:auto;}
   .static-banner {background: none!important;}
   .static-banner-content-main .title-wrapper {text-align: center;}
   .static-banner-content-main .title-wrapper .title,.prebiotic .static-banner-content-main .title-wrapper .title ,.prebiotic  .green-title {font-size: 36px;text-align: center;line-height: 44.26px;}

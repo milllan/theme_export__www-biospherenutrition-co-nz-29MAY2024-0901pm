@@ -7,7 +7,7 @@
         {% if section.settings.content != blank %}{{ section.settings.content }}{% endif %}
         {% if section.settings.straimage %}
           <div class="star_image_div">
-            <img src="{{ section.settings.straimage | img_url:'master' }}" alt="{{ section.settings.straimage | handle }}" title="{{ section.settings.straimage | handle }}" />
+            <img width="336" height="46" decoding="async" loading="lazy" src="{{ section.settings.straimage | img_url:'master' }}" alt="{{ section.settings.straimage | handle }}" title="{{ section.settings.straimage | handle }}" />
           </div>
         {% endif %}
         <div class="review_slider">
@@ -18,7 +18,13 @@
                 {% if section.settings.customer_review_text != blank %}<span class="count_text_text">{{ section.settings.customer_review_text }}</span>{% endif %}
               </div>
               <div class="center_div">
-                <img src="{{ section.settings.reviewimage | img_url:'master' }}" alt="{{ section.settings.reviewimage | handle }}" title="{{ section.settings.reviewimage | handle }}" />
+{% comment %}
+                <img decoding="async" loading="eager" fetchpriority="high" src="{{ section.settings.reviewimage | img_url:'master' }}"
+                  alt="{{ section.settings.reviewimage | handle }}" title="{{ section.settings.reviewimage | handle }}" />
+{% endcomment %}
+                {%- assign alt = section.settings.reviewimage | handle -%}
+            	{{ section.settings.reviewimage | image_url: width: '1708' | image_tag: alt: alt, title: alt, class: 'mill-preloaded', preload: true, widths: '576, 750, 1100, 1420, 1708',
+          fetchpriority: 'high', decoding: 'async', loading: 'eager', sizes: '50vw' }}
               </div>
               <div class="right_div">
                 {% if section.settings.avg_rating_count != blank %}<h2 class="count_text">{{ section.settings.avg_rating_count }}</h2>{% endif %}

@@ -1,7 +1,11 @@
 <div class="main_banner_section_article">
   <div class="main_article_image">
     {% if section.settings.main_image %}
-  	<img src="{{ section.settings.main_image | img_url:'master' }}" alt="" />
+{% comment %}
+  	<img decoding="async" loading="eager" fetchpriority="high" src="{{ section.settings.main_image | img_url:'master' }}" alt="" />
+{% endcomment %}
+    {{ section.settings.main_image | image_url: width: '1708' | image_tag: alt: '', title: '', class: 'mill-preloaded', preload: true, widths: '576, 750, 1100, 1420, 1708',
+          fetchpriority: 'high', decoding: 'async', loading: 'eager', sizes: '100vw' }}
     {% endif %}
     <div class="banner_content">
       {% if section.settings.date %}
